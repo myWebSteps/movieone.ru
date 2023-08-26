@@ -1,4 +1,14 @@
 import './bootstrap';
+
+import '../assets/css/osahan.css';
+import '../assets/vendor/fontawesome-free/css/all.min.css';
+import '../assets/AdminLte/dist/css/adminlte.min.css';
+
+import '../assets/vendor/jquery/jquery.min'
+import '../assets/vendor/bootstrap/js/bootstrap.bundle.min'
+import '../assets/vendor/jquery-easing/jquery.easing.min'
+import '../assets/AdminLte/dist/js/adminlte'
+
 import '../css/app.css';
 
 import { createApp, h } from 'vue';

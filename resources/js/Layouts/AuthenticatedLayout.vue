@@ -12,7 +12,7 @@ import DropdownLink from "@/Components/DropdownLink.vue";
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container-fluid">
                 <!-- Logo -->
-                <Link :href="route('dashboard')" class="navbar-brand">
+                <Link :href="route('main.index')" class="navbar-brand">
                     <ApplicationLogo class="text-danger" width="36" />
                 </Link>
 
@@ -30,12 +30,20 @@ import DropdownLink from "@/Components/DropdownLink.vue";
                     <!-- Navigation Links -->
                     <div class="navbar-nav">
                         <NavLink
-                            :href="route('dashboard')"
-                            :active="route().current('dashboard')"
+                            :href="route('main.index')"
+                            :active="route().current('main.index')"
                         >
-                            Dashboard
+                            Главная
                         </NavLink>
-                    </div>
+                    </div>         <div class="navbar-nav">
+                    <NavLink
+                        :href="route('categories.index')"
+                        :active="route().current('categories.index')"
+                    >
+                        Категории
+                    </NavLink>
+                </div>
+
 
                     <!-- Settings Dropdown -->
                     <div class="navbar-nav ms-auto">

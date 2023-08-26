@@ -25,11 +25,15 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
+
+    Route::get('/admin/categories/create', \App\Http\Controllers\Back\Admin\Categories\CreateController::class)->name('categories.create');
+    Route::post('/admin/categories/store', \App\Http\Controllers\Back\Admin\Categories\StoreController::class)->name('categories.store');
+    Route::get('/admin/categories', \App\Http\Controllers\Back\Admin\Categories\IndexController::class)->name('categories.index');
+    Route::get('/admin', \App\Http\Controllers\Back\Admin\Main\IndexController::class)->name('main.index');
+
+
+    //Profile Routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
