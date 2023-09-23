@@ -42,6 +42,24 @@ import DropdownLink from "@/Components/DropdownLink.vue";
                     >
                         Категории
                     </NavLink>
+                    <NavLink
+                        :href="route('genres.index')"
+                        :active="route().current('genres.index')"
+                    >
+                        Жанры
+                    </NavLink>
+                    <NavLink
+                        :href="route('countries.index')"
+                        :active="route().current('countries.index')"
+                    >
+                        Страны
+                    </NavLink>
+                    <NavLink
+                        :href="route('movies.index')"
+                        :active="route().current('movies.index')"
+                    >
+                        Видео
+                    </NavLink>
                 </div>
 
 

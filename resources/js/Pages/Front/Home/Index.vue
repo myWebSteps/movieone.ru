@@ -1,0 +1,123 @@
+<script setup>
+    import { Head } from "@inertiajs/vue3";
+    import {defineComponent, reactive, watch, onMounted, computed, defineProps} from 'vue';
+    import {router} from '@inertiajs/vue3';
+    import FrontLayout from "@/Layouts/FrontLayout.vue";
+    import { VueperSlides, VueperSlide } from 'vueperslides'
+    import 'vueperslides/dist/vueperslides.css'
+    import { Link } from "@inertiajs/vue3";
+
+
+    const props = defineProps(['data'])
+
+    const slides = reactive( [
+        {
+            image: '/img/slider1.jpg'
+
+        },
+        {
+            image: '/img/slider2.jpg'
+        },
+        {
+            image: '/img/slider3.jpg'
+        },
+        {
+            image: '/img/slider4.jpg'
+        },
+        {
+            image: '/img/slider5.jpg'
+        },
+        {
+            image: '/img/slider6.jpg'
+        },
+        {
+            image: '/img/slider7.jpg'
+        },
+        {
+            image: '/img/slider8.jpg'
+        },
+        {
+            image: '/img/slider9.jpg'
+        },
+
+    ])
+
+
+</script>
+
+<template>
+       <!-- Content Header (Page header) -->
+    <FrontLayout>
+
+        <div class="page-header">
+
+            <Head title="MovieOne Онлайн кинотеатр" />
+
+            <vueper-slides
+                    fade
+                    :autoplay="true"
+                    :visible-slides="3"
+                    slide-multiple
+                    :slide-ratio="1 / 4"
+                    :arrows="false" class="p-0 m-0">
+                    <vueper-slide v-for="(slide, i) in slides" :key="i" :image="slide.image" />
+
+                </vueper-slides>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                <template v-for="item in data">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mt-4 mb-3">
+                        <h1 class="h5 mb-0 text-gray-900">{{item.category}}</h1>
+                        <Link :href="route('catalog.index', {category: item.category_id, order: 'year', page: '1'})" class="d-none d-sm-inline-block text-xs">
+                            Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
+                        </Link>
+                    </div>
+                    <!-- Content Row -->
+                    <div class="row">
+                        <div v-for="movie in item.movies" class="col-xl-3 col-md-6 mb-4">
+                            <div  class="card e-card shadow border-0">
+                                <Link :href="route('single.index', movie.id)">
+                                    <div class="m-card-cover">
+                                        <img :src="movie.poster" class="card-img-top" :alt="movie.nameEn">
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2 auto py-3 pl-3">
+                                                <div class="bg-white rounded text-center">
+                                                    <h6 class="text-danger mb-0 font-weight-bold">{{movie.year}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-10 p-3">
+                                                <p v-if="movie.nameRu != null" class="card-text text-gray-900 mb-1">{{movie.nameRu}}</p>
+                                                <p v-if="movie.nameEn != null" class="card-text text-gray-900 mb-1">{{movie.nameEn}}</p>
+                                                <p class="card-text">
+                                                    <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
+                                                    <small v-for="genre in movie.genres" class="text-muted">
+                                                        {{genre.title}} &nbsp
+                                                    </small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Page Heading -->
+                </template>
+
+
+
+            </div><!--/. row -->
+            </div><!--/. container-fluid -->
+        </section>
+<!--         /.content -->
+        </div>
+    </FrontLayout>
+
+</template>

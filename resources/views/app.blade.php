@@ -14,4 +14,7 @@
     <body>
         @inertia
     </body>
+
+        <script src="https://kinobox.tv/kinobox.min.js"></script>
+
 </html>

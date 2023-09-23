@@ -19,7 +19,7 @@ defineProps({
                 <Link
                     v-if="$page.props.auth.user"
                     class="nav-link"
-                    :href="route('dashboard')"
+                    :href="route('main.index')"
                 >
                     Dashboard
                 </Link>
