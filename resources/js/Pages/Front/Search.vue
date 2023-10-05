@@ -1,13 +1,3 @@
-<script setup>
-    import { Head } from "@inertiajs/vue3";
-    import { Link } from "@inertiajs/vue3";
-    import FrontLayout from "@/Layouts/FrontLayout.vue";
-    import {router} from '@inertiajs/vue3';
-    import {defineComponent, reactive, watch, onMounted, computed, defineProps} from 'vue';
-    const props = defineProps(['movies'])
-
-</script>
-
 <template>
     <FrontLayout>
         <!-- Main content -->
@@ -64,5 +54,22 @@
         </section>
         </FrontLayout>
 </template>
+
+
+<script>
+    import {Head, Link} from "@inertiajs/vue3";
+    import FrontLayout from "@/Layouts/FrontLayout.vue";
+
+
+    export default {
+        name: "Catalog",
+        props: ['movies'],
+        components: {Head, Link, FrontLayout},
+
+
+
+    }
+</script>
+
 
 
