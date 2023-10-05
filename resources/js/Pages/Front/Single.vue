@@ -370,7 +370,7 @@
                 }
             }).init();
 
-            // ym(94438576, 'hit', `/films/${this.$route.params.id}`);
+                ym(94438576, 'hit', `/movies/${this.movie.id}`);
         },
 
         methods:{

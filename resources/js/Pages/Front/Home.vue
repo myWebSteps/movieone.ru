@@ -98,6 +98,10 @@
         name: "Home",
         props: ['data'],
         components: {FrontLayout, Head, Link, Swiper, SwiperSlide},
+        mounted() {
+            ym(94438576, 'hit', '/');
+        },
+
         setup() {
             const onSwiper = (swiper) => {
                 console.log(swiper);

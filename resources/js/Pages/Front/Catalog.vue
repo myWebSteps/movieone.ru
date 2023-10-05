@@ -127,6 +127,10 @@
             }
         },
 
+        mounted() {
+            ym(94438576, 'hit', '/catalog');
+        },
+
         methods:{
             send(){
                 router.get('/movies', this.form);

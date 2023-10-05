@@ -72,7 +72,9 @@
         name: "Catalog",
         props: ['movies'],
         components: {Head, Link, FrontLayout},
-
+        mounted() {
+            ym(94438576, 'hit', '/search');
+        },
 
 
     }
