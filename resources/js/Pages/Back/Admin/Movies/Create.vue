@@ -1,4 +1,5 @@
 <template>
+    <AuthenticatedLayout>
     <div class="row m-3">
         <div class="accordion accordion-flush col-sm-6 m-3">
             <div class="accordion-item">
@@ -249,7 +250,7 @@
         </div>
 
     </div>
-
+    </AuthenticatedLayout>
 </template>
 
 <script>
