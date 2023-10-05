@@ -35,8 +35,9 @@
                 <!-- Playlist Dropdown Menu -->
                 <li v-if="playlist" class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="fa-solid fa-tags"></i>
-                        <span class="badge badge-danger navbar-badge">{{playCount}}</span>
+                        <i class="fas fa-eye"></i>
+
+                        <span class="badge badge-secondary">{{playCount}}</span>
 
                     </a>
 
@@ -48,10 +49,11 @@
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         {{item.nameRu}}
-                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+<!--                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>-->
                                     </h3>
-                                    <p class="text-sm">{{item.nameOriginal}}</p>
+                                    <p class="text-sm">{{item.nameEn}}</p>
                                     <p class="text-sm text-muted">{{item.year}}</p>
+                                    <p v-for="genre in item.genres" class="text-sm text-muted">{{genre.title}} &nbsp</p>
                                 </div>
                             </div>
                             <!-- Message End -->

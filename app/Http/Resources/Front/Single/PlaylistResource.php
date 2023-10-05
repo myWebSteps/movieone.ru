@@ -19,6 +19,7 @@ class PlaylistResource extends JsonResource
             'nameRu' => $this->nameRu,
             'nameEn' => $this->nameEn,
             'year' => $this->year,
+            'genres' => $this->genres,
             'posterUrl' => url('/storage'.$this->poster),
         ];
     }
