@@ -33,14 +33,15 @@
                 </li>
 
                 <!-- Playlist Dropdown Menu -->
-                <li v-if="this.$store.state.count != null" class="nav-item dropdown">
-                    <a @click="makePlaylist()" class="nav-link" data-toggle="dropdown" aria-expanded="true" href="#">
+                <li v-if="playlist" class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="fa-solid fa-tags"></i>
-                        <span class="badge badge-danger navbar-badge">{{$store.state.count}}</span>
+                        <span class="badge badge-danger navbar-badge">{{playCount}}</span>
+
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <Link v-for="item in playlist" :href="route('single.index', {id: item.id})" class="dropdown-item">
+                        <router-link v-for="item in playlist" :to="{name: 'film', params: {id: item.id}}" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
                                 <img :src="item.posterUrl" :alt="item.nameRu" class="img-size-50 mr-3">
@@ -49,12 +50,12 @@
                                         {{item.nameRu}}
                                         <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
                                     </h3>
-                                    <p class="text-sm">{{item.nameEn}}</p>
+                                    <p class="text-sm">{{item.nameOriginal}}</p>
                                     <p class="text-sm text-muted">{{item.year}}</p>
                                 </div>
                             </div>
                             <!-- Message End -->
-                        </Link>
+                        </router-link>
                         <div class="dropdown-divider"></div>
 
                     </div>
@@ -62,7 +63,7 @@
 
                 </li>
 
-                <li class="nav-item ml-4">
+            <li class="nav-item ml-4">
                     <a  href="https://instagram.com/roman_makukha_89?igshid=OGQ5ZDc2ODk2ZA==" class="nav-link" target="_blank">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
@@ -148,6 +149,7 @@
     import DropdownLink from "@/Components/DropdownLink.vue";
 
 
+
     export default {
         name: "Header",
 
@@ -164,7 +166,28 @@
             }
         },
 
+        mounted() {
+                this.playListCount()
+                this.makePlaylist()
+        },
+
         methods:{
+
+            playListCount(){
+                if(localStorage.hasOwnProperty('playlist') && localStorage.getItem('playlist') != '')
+                {
+                    this.playCount = localStorage.getItem('playlist').split(',')
+
+                    this.playCount = this.playCount.filter(function (el) {
+                        return el != '';
+                    });
+
+                    this.playCount = this.playCount.length
+
+                }else{
+                    this.playCount = null
+                }
+            },
 
             makePlaylist(){
                 console.log('makePlaylist')

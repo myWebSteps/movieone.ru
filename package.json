@@ -19,6 +19,7 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "vue-carousel": "^0.18.0",
         "vueperslides": "^3.5.1",
         "vuex": "^4.0.2"
     }

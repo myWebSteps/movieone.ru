@@ -10,17 +10,6 @@
                 <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
             </Head>
 
-            <vueper-slides
-                    fade
-                    :autoplay="true"
-                    :visible-slides="3"
-                    slide-multiple
-                    :slide-ratio="1 / 4"
-                    :arrows="false" class="p-0 m-0">
-                    <vueper-slide v-for="slide in slides" :image="slide.image" />
-
-                </vueper-slides>
-
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
@@ -84,49 +73,10 @@
     import { Link } from "@inertiajs/vue3";
     import FrontLayout from "@/Layouts/FrontLayout.vue";
     import {router} from '@inertiajs/vue3';
-    import { VueperSlides, VueperSlide } from 'vueperslides';
-    import 'vueperslides/dist/vueperslides.css';
-
 
     export default {
         name: "Home",
         props: ['data'],
-        components: {VueperSlides, VueperSlide, FrontLayout, Head, Link},
-
-        data(){
-            return{
-                slides: [
-                    {
-                        image: '/img/slider1.jpg'
-
-                    },
-                    {
-                        image: '/img/slider2.jpg'
-                    },
-                    {
-                        image: '/img/slider3.jpg'
-                    },
-                    {
-                        image: '/img/slider4.jpg'
-                    },
-                    {
-                        image: '/img/slider5.jpg'
-                    },
-                    {
-                        image: '/img/slider6.jpg'
-                    },
-                    {
-                        image: '/img/slider7.jpg'
-                    },
-                    {
-                        image: '/img/slider8.jpg'
-                    },
-                    {
-                        image: '/img/slider9.jpg'
-                    },
-                ]
-            }
-        },
-
+        components: {FrontLayout, Head, Link},
     }
 </script>

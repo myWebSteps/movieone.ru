@@ -6,7 +6,7 @@
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
     </Head>
 
-    <FrontLayout ref="front">
+    <FrontLayout ref="front_layout">
     <!-- Begin Page Content -->
 
     <div class="container-fluid">
@@ -67,12 +67,10 @@
                             <a @click.prevent="copyUrl()" href="#" class="d-sm-inline-block btn btn-primary shadow-sm mr-2"><i class="fa-regular fa-copy"></i></a>
 
                             <template v-if="!playlistItems">
-
-                                    <a @click.prevent="togglePlaylist(movie.id)" href="#" class="d-sm-inline-block btn btn-danger shadow-sm"> В избранное <i class="fa-solid fa-square-plus"></i></a>
-                                </template>
+                                <a @click.prevent="togglePlaylist(movie.id)" href="#" class="d-sm-inline-block btn btn-danger shadow-sm"> В избранное <i class="fa-solid fa-square-plus"></i></a>
+                            </template>
                             <template v-if="playlistItems">
-
-                            <a @click.prevent="togglePlaylist(movie.id)" href="#" class="d-sm-inline-block btn btn-danger shadow-sm"> Убрать <i class="fa-solid fa-square-minus"></i></a>
+                                <a @click.prevent="togglePlaylist(movie.id)" href="#" class="d-sm-inline-block btn btn-danger shadow-sm"> Убрать <i class="fa-solid fa-square-minus"></i></a>
                             </template>
                         </div>
                     </div>
@@ -293,6 +291,7 @@
     import { Head } from "@inertiajs/vue3";
     import { Link } from "@inertiajs/vue3";
 
+
     export default {
         name: "Single",
         props: ['movie', 'relatedMovies'],
@@ -303,23 +302,14 @@
                 staff: {},
                 reviews: {},
                 playlist: [],
+                playlistItems: null,
                 playlistRes: [],
                 newFilter: [],
                 currentPage: 1,
-                playlistItems: null,
             }
         },
 
         mounted() {
-            if(localStorage.getItem('playlist')){
-                this.playlistRes = localStorage.getItem('playlist').split(',')
-                if(this.playlistRes.includes(String(this.movie.id))){
-                    this.playlistItems = true;
-                }else{
-                    this.playlistItems = false;
-                }
-            }
-
             new Kinobox('.kinobox_player', {
                 'X-Settings': {
                     "Alloha" : {
@@ -384,12 +374,13 @@
         },
 
         methods:{
-
             togglePlaylist(id){
                 if(!localStorage.getItem('playlist')){
                     this.playlistRes.push(id)
                     localStorage.setItem('playlist', this.playlistRes)
-                    this.$store.commit('playListCount')
+
+                    this.$refs.front_layout.playListCount()
+                    this.$refs.front_layout.makePlaylist()
                     this.playlistItems = true;
                 }else{
                     this.playlistRes = localStorage.getItem('playlist').split(',')
@@ -401,11 +392,13 @@
                         })
                         if(this.playlistRes == ''){
                             localStorage.removeItem('playlist', '')
-                            this.$store.commit('playListCount')
+                            this.$refs.front_layout.playListCount()
+                            this.$refs.front_layout.makePlaylist()
                             this.playlistItems = false;
                         }else{
                             localStorage.setItem('playlist', this.playlistRes)
-                            this.$store.commit('playListCount')
+                            this.$refs.front_layout.playListCount()
+                            this.$refs.front_layout.makePlaylist()
                             this.playlistItems = false;
                         }
 
@@ -413,7 +406,8 @@
                     }else{
                         this.playlistRes.push(id)
                         localStorage.setItem('playlist', this.playlistRes)
-                        this.$store.commit('playListCount')
+                        this.$refs.front_layout.playListCount()
+                        this.$refs.front_layout.makePlaylist()
                         this.playlistItems = true;
                     }
                 }
