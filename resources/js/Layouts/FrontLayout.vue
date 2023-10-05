@@ -41,7 +41,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <router-link v-for="item in playlist" :to="{name: 'film', params: {id: item.id}}" class="dropdown-item">
+                        <Link v-for="item in playlist" :href="route('single.index', {movie: item.id})" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
                                 <img :src="item.posterUrl" :alt="item.nameRu" class="img-size-50 mr-3">
@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                             <!-- Message End -->
-                        </router-link>
+                        </Link>
                         <div class="dropdown-divider"></div>
 
                     </div>
