@@ -1,6 +1,6 @@
 <template>
 
-    <Head title="Создать страну" />
+    <Head title="Создать Страну" />
 
     <AuthenticatedLayout>
         <template #header>

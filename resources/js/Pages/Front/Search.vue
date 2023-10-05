@@ -1,5 +1,12 @@
 <template>
     <FrontLayout>
+
+        <Head>
+            <title>Поиск фильмов MovieOne.ru</title>
+            <meta name="description" content="MovieOne Онлайн кинотеатр с большим выбором фильмов, мультфильмов и аниме. У нас Вы всегда можете посмотреть любимые фильмы бесплатно и без регистрации" />
+            <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
+        </Head>
+
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">

@@ -1,6 +1,6 @@
 <template>
 
-    <Head title="Категории" />
+    <Head title="Видео" />
 
     <AuthenticatedLayout>
         <template #header>

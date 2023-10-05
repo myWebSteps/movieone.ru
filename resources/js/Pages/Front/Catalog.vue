@@ -1,4 +1,11 @@
 <template>
+
+    <Head>
+        <title>MovieOne.ru | Каталог фильмов, мультфильмов, анимэ онлайн бесплатно без регистрации</title>
+        <meta name="description" content="Каталог фильмов, мультфильмов, анимэ онлайн бесплатно без регистрации" />
+        <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
+    </Head>
+
     <FrontLayout>
         <!-- Main content -->
         <section class="content">

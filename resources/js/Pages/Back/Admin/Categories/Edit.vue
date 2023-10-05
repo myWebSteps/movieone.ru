@@ -1,6 +1,6 @@
 <template>
 
-    <Head title="Категории" />
+    <Head title="Редактировать Категорию" />
 
     <AuthenticatedLayout>
         <template #header>
