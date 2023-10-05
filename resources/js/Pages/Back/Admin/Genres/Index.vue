@@ -35,11 +35,11 @@
                                             <td>{{genre.id}}</td>
                                             <td>{{genre.title}}</td>
                                             <td>
-                                                <Link as="button" :href="route('genres.edit', {category: item.category_id, genre: genre.id})" class="btn btn-block btn-outline-warning btn-sm w-50"><i class="fa-solid fa-pen-to-square"></i>
+                                                <Link as="button" :href="this.route('genres.edit', {category: item.category_id, genre: genre.id})" class="btn btn-block btn-outline-warning btn-sm w-50"><i class="fa-solid fa-pen-to-square"></i>
                                                 </Link>
                                             </td>
                                             <td>
-                                                <Link method="delete" as="button" :href="route('genres.destroy', {genre: genre.id})" type="button" class="btn btn-block btn-outline-danger btn-sm w-50"><i class="fa-solid fa-trash"></i>
+                                                <Link method="delete" as="button" :href="this.route('genres.destroy', {genre: genre.id})" type="button" class="btn btn-block btn-outline-danger btn-sm w-50"><i class="fa-solid fa-trash"></i>
                                                 </Link>
                                             </td>
                                         </tr>
@@ -55,7 +55,7 @@
                                     </tbody>
                                 </table>
 
-                                <Link :href="route('genres.create', {category: item.category_id})" class="p-4">Добавить жанр</Link>
+                                <Link :href="this.route('genres.create', {category: item.category_id})" class="p-4">Добавить жанр</Link>
 
                             </div>
                             <!-- /.card-body -->

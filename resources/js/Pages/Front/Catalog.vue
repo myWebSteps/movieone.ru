@@ -46,7 +46,7 @@
                             <div v-for="movie in movies.data" class="col-xl-3 col-md-6 mb-4 col-sm-6">
 
                                 <div  class="card e-card shadow border-0">
-                                    <Link :href="route('single.index', {movie: movie.data.id})">
+                                    <Link :href="this.route('single.index', {movie: movie.data.id})">
                                         <div class="m-card-cover">
                                             <img :src="movie.data.posterUrl" class="card-img-top" alt="...">
                                         </div>
@@ -82,7 +82,7 @@
 
                             <li v-for="page in movies.links" class="page-item">
                                 <template v-if="Number(page.label)">
-                                    <a @click="changePage(page.label)" :class="page.label == route().params.page ? 'active' : ''" class="page-link" href="#">{{page.label}}</a>
+                                    <a @click="changePage(page.label)" :class="page.label == this.route().params.page ? 'active' : ''" class="page-link" href="#">{{page.label}}</a>
                                 </template>
                             </li>
 
@@ -111,11 +111,11 @@
         data(){
             return{
                 form: {
-                    category: route().params.category,
-                    type: route().params.type,
-                    genre: route().params.genre,
-                    order: route().params.order,
-                    page: route().params.page,
+                    category: this.route().params.category,
+                    type: this.route().params.type,
+                    genre: this.route().params.genre,
+                    order: this.route().params.order,
+                    page: this.route().params.page,
                 }
             }
         },

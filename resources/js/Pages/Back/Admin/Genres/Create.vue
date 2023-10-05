@@ -57,7 +57,7 @@
 
         methods:{
             newGenre(){
-                router.post(`/admin/genres/${route().params.category}/store`, this.form)
+                router.post(`/admin/genres/${this.route().params.category}/store`, this.form)
             },
         },
 
