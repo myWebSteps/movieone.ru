@@ -6,7 +6,7 @@
         <template #header>
             <h2 class="display-6">Редактировать жанр</h2>
         </template>
-        {{genre}}
+
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -36,16 +36,22 @@
 
 </template>
 
-<script setup>
+<script>
     import { Head } from "@inertiajs/vue3";
+    import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-    import {defineComponent, reactive, watch, onMounted, computed, defineProps} from 'vue';
     import {router} from '@inertiajs/vue3';
 
-    const props = defineProps(['genre'])
+    export default {
+        name: "Edit",
+        props: ['genre'],
+        components: {Head, Link, AuthenticatedLayout},
 
-    function updateGenre(id, catId, title){
-        router.patch(`/admin/genres/${id}`, {id: id, category_id: catId, title: title})
-    };
+        methods:{
+            updateGenre(id, catId, title){
+                router.patch(`/admin/genres/${id}`, {id: id, category_id: catId, title: title})
+            },
+        },
 
+    }
 </script>

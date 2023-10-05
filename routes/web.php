@@ -8,10 +8,13 @@ use Inertia\Inertia;
 //Info Routes:
 Route::get('/get_genres', \App\Http\Controllers\Info\GetGenresController::class);
 Route::get('/get_categories', \App\Http\Controllers\Info\GetCategoriesController::class);
+Route::post('/playlist', \App\Http\Controllers\Front\Single\PlaylistController::class);
+
 
 Route::get('/', \App\Http\Controllers\Front\Home\IndexController::class)->name('front.index');
 Route::get('/movies', \App\Http\Controllers\Front\Catalog\IndexController::class)->name('catalog.index');
 Route::get('/movies/{movie}', \App\Http\Controllers\Front\Single\IndexController::class)->name('single.index');
+Route::get('/search', \App\Http\Controllers\Front\Search\IndexController::class)->name('search.index');
 
 
 

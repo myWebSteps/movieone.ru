@@ -39,16 +39,24 @@
 
 </template>
 
-<script setup>
+<script>
     import { Head } from "@inertiajs/vue3";
+    import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-    import {defineComponent, reactive, watch, onMounted, computed, defineProps} from 'vue';
     import {router} from '@inertiajs/vue3';
 
-    const props = defineProps(['category'])
+    export default {
+        name: "Edit",
+        props: ['category'],
+        components: {Head, Link, router, AuthenticatedLayout},
 
-    function updateCategory(id, title, logo){
-        router.patch(`/admin/categories/${id}`, {title: title, logo: logo})
-    };
 
+        methods:{
+            updateCategory(id, title, logo){
+                router.patch(`/admin/categories/${id}`, {title: title, logo: logo})
+            },
+        },
+
+    }
 </script>
+

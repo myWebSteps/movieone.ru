@@ -16,6 +16,6 @@ class IndexController extends Controller
 
         $data = IndexResource::collection($categories)->resolve();
 
-        return Inertia::render('Front/Home/Index', compact('data'));
+        return Inertia::render('Front/Home', compact('data'));
     }
 }

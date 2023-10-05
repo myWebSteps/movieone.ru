@@ -35,23 +35,29 @@
 
 </template>
 
-<script setup>
-    import { Head } from "@inertiajs/vue3";
+<script>
+    import {Head, router} from "@inertiajs/vue3";
+    import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-    import {defineComponent, reactive, watch, onMounted, computed, defineProps} from 'vue';
-    import {router} from '@inertiajs/vue3';
 
-    const form = reactive(
-        {
-            title: null,
-        }
-    );
+    export default {
+        name: "Create",
+        props: ['country'],
+        components: {Head, Link, AuthenticatedLayout},
 
-    function newCountry(){
-        router.post('/admin/countries/store', form)
-    };
+        data(){
+            return{
+                form:{
+                    title: null,
+                },
+            }
+        },
 
-    // onMounted(()=>{});
+        methods:{
+            newCountry(){
+                router.post('/admin/countries/store', this.form)
+            },
+        },
 
-
+    }
 </script>

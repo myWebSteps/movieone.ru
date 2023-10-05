@@ -1,57 +1,14 @@
-<script setup>
-    import { Head } from "@inertiajs/vue3";
-    import {defineComponent, reactive, watch, onMounted, computed, defineProps} from 'vue';
-    import {router} from '@inertiajs/vue3';
-    import FrontLayout from "@/Layouts/FrontLayout.vue";
-    import { VueperSlides, VueperSlide } from 'vueperslides'
-    import 'vueperslides/dist/vueperslides.css'
-    import { Link } from "@inertiajs/vue3";
-
-
-    const props = defineProps(['data'])
-
-    const slides = reactive( [
-        {
-            image: '/img/slider1.jpg'
-
-        },
-        {
-            image: '/img/slider2.jpg'
-        },
-        {
-            image: '/img/slider3.jpg'
-        },
-        {
-            image: '/img/slider4.jpg'
-        },
-        {
-            image: '/img/slider5.jpg'
-        },
-        {
-            image: '/img/slider6.jpg'
-        },
-        {
-            image: '/img/slider7.jpg'
-        },
-        {
-            image: '/img/slider8.jpg'
-        },
-        {
-            image: '/img/slider9.jpg'
-        },
-
-    ])
-
-
-</script>
-
 <template>
        <!-- Content Header (Page header) -->
     <FrontLayout>
 
         <div class="page-header">
 
-            <Head title="MovieOne Онлайн кинотеатр" />
+            <Head>
+                <title>MovieOne.ru | Смотреть интересные фильмы и мультики, анимэ онлайн бесплатно без регистрации</title>
+                <meta name="description" content="MovieOne Онлайн кинотеатр с большим выбором фильмов, мультфильмов и аниме. У нас Вы всегда можете посмотреть любимые фильмы бесплатно и без регистрации" />
+                <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
+            </Head>
 
             <vueper-slides
                     fade
@@ -60,7 +17,7 @@
                     slide-multiple
                     :slide-ratio="1 / 4"
                     :arrows="false" class="p-0 m-0">
-                    <vueper-slide v-for="(slide, i) in slides" :key="i" :image="slide.image" />
+                    <vueper-slide v-for="slide in slides" :image="slide.image" />
 
                 </vueper-slides>
 
@@ -73,7 +30,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mt-4 mb-3">
                         <h1 class="h5 mb-0 text-gray-900">{{item.category}}</h1>
-                        <Link :href="route('catalog.index', {category: item.category_id, order: 'year', page: '1'})" class="d-none d-sm-inline-block text-xs">
+                        <Link :href="route('catalog.index', {category: item.category_id, order: 'year', page: '1', genre: '', type: ''})" class="d-none d-sm-inline-block text-xs">
                             Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
                         </Link>
                     </div>
@@ -121,3 +78,55 @@
     </FrontLayout>
 
 </template>
+
+<script>
+    import { Head } from "@inertiajs/vue3";
+    import { Link } from "@inertiajs/vue3";
+    import FrontLayout from "@/Layouts/FrontLayout.vue";
+    import {router} from '@inertiajs/vue3';
+    import { VueperSlides, VueperSlide } from 'vueperslides';
+    import 'vueperslides/dist/vueperslides.css';
+
+
+    export default {
+        name: "Home",
+        props: ['data'],
+        components: {VueperSlides, VueperSlide, FrontLayout, Head, Link},
+
+        data(){
+            return{
+                slides: [
+                    {
+                        image: '/img/slider1.jpg'
+
+                    },
+                    {
+                        image: '/img/slider2.jpg'
+                    },
+                    {
+                        image: '/img/slider3.jpg'
+                    },
+                    {
+                        image: '/img/slider4.jpg'
+                    },
+                    {
+                        image: '/img/slider5.jpg'
+                    },
+                    {
+                        image: '/img/slider6.jpg'
+                    },
+                    {
+                        image: '/img/slider7.jpg'
+                    },
+                    {
+                        image: '/img/slider8.jpg'
+                    },
+                    {
+                        image: '/img/slider9.jpg'
+                    },
+                ]
+            }
+        },
+
+    }
+</script>

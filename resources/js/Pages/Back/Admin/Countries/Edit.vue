@@ -36,16 +36,22 @@
 
 </template>
 
-<script setup>
-    import { Head } from "@inertiajs/vue3";
+<script>
+    import {Head, router} from "@inertiajs/vue3";
+    import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-    import {defineComponent, reactive, watch, onMounted, computed, defineProps} from 'vue';
-    import {router} from '@inertiajs/vue3';
 
-    const props = defineProps(['country'])
+    export default {
+        name: "Edit",
+        props: ['country'],
+        components: {Head, Link, AuthenticatedLayout},
 
-    function updateCountry(id, title){
-        router.patch(`/admin/countries/${id}`, {title: title})
-    };
+        methods:{
+            updateCountry(id, title){
+                router.patch(`/admin/countries/${id}`, {title: title})
+            },
+        },
 
+    }
 </script>
+

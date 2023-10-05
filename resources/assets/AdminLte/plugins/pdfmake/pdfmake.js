@@ -7034,7 +7034,7 @@ __webpack_require__(561);
        */
       init: function init(xformMode, key, cfg) {
         // Apply config defaults
-        this.cfg = this.cfg.extend(cfg); // Store transform mode and key
+        this.cfg = this.cfg.extend(cfg); // store transform mode and key
 
         this._xformMode = xformMode;
         this._key = key; // Set initial values
@@ -26710,7 +26710,7 @@ BrotliBitReader.prototype.readMoreInput = function() {
 
     if (bytes_read < BROTLI_READ_SIZE) {
       this.eos_ = 1;
-      /* Store 32 bytes of zero after the stream end. */
+      /* store 32 bytes of zero after the stream end. */
       for (var p = 0; p < 32; p++)
         this.buf_[dst + bytes_read + p] = 0;
     }
@@ -58210,7 +58210,7 @@ var ChainingContext = new r.VersionedStruct(r.uint16, {
   }
 });
 /*******************
- * Variation Store *
+ * Variation store *
  *******************/
 
 var F2DOT14 = new r.Fixed(16, 'BE', 14);
@@ -71296,7 +71296,7 @@ function isDataView(value) {
 }
 exports.isDataView = isDataView;
 
-// Store a copy of SharedArrayBuffer in case it's deleted elsewhere
+// store a copy of SharedArrayBuffer in case it's deleted elsewhere
 var SharedArrayBufferCopy = typeof SharedArrayBuffer !== 'undefined' ? SharedArrayBuffer : undefined;
 function isSharedArrayBufferToString(value) {
   return ObjectToString(value) === '[object SharedArrayBuffer]';

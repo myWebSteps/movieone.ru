@@ -3999,7 +3999,7 @@
 			}
 		};
 
-		// Store the data submitted for the API
+		// store the data submitted for the API
 		oSettings.oAjaxData = data;
 
 		// Allow plug-ins and external processes to modify the data
@@ -6395,7 +6395,7 @@
 			return;
 		}
 
-		/* Store the interesting variables */
+		/* store the interesting variables */
 		var state = {
 			time:    +new Date(),
 			start:   settings._iDisplayStart,
@@ -6487,7 +6487,7 @@
 			return;
 		}
 
-		// Store the saved state so it might be accessed at any time
+		// store the saved state so it might be accessed at any time
 		settings.oLoadedState = $.extend( true, {}, s );
 
 		// Restore key features - todo - for 1.11 this needs to be done by
@@ -9879,7 +9879,7 @@
 		"bVisible": null,
 
 		/**
-		 * Store for manual type assignment using the `column.type` option. This
+		 * store for manual type assignment using the `column.type` option. This
 		 * is held in store so we can manipulate the column's `sType` property.
 		 *  @type string
 		 *  @default null
@@ -12609,7 +12609,7 @@
 		 *          "data": function ( source, type, val ) {
 		 *            if (type === 'set') {
 		 *              source.price = val;
-		 *              // Store the computed display and filter values for efficiency
+		 *              // store the computed display and filter values for efficiency
 		 *              source.price_display = val=="" ? "" : "$"+numberFormat(val);
 		 *              source.price_filter  = val=="" ? "" : "$"+numberFormat(val)+" "+val;
 		 *              return;
@@ -13381,7 +13381,7 @@
 		"aanFeatures": [],
 
 		/**
-		 * Store data information - see {@link DataTable.models.oRow} for detailed
+		 * store data information - see {@link DataTable.models.oRow} for detailed
 		 * information.
 		 *  @type array
 		 *  @default []
@@ -13410,28 +13410,28 @@
 		"aIds": {},
 
 		/**
-		 * Store information about each column that is in use
+		 * store information about each column that is in use
 		 *  @type array
 		 *  @default []
 		 */
 		"aoColumns": [],
 
 		/**
-		 * Store information about the table's header
+		 * store information about the table's header
 		 *  @type array
 		 *  @default []
 		 */
 		"aoHeader": [],
 
 		/**
-		 * Store information about the table's footer
+		 * store information about the table's footer
 		 *  @type array
 		 *  @default []
 		 */
 		"aoFooter": [],
 
 		/**
-		 * Store the applied global search information in case we want to force a
+		 * store the applied global search information in case we want to force a
 		 * research or compare the old search to a new one.
 		 * Note that this parameter will be set by the initialisation routine. To
 		 * set a default use {@link DataTable.defaults}.
@@ -13441,7 +13441,7 @@
 		"oPreviousSearch": {},
 
 		/**
-		 * Store the applied search for each column - see
+		 * store the applied search for each column - see
 		 * {@link DataTable.models.oSearch} for the format that is used for the
 		 * filtering information for each column.
 		 *  @type array

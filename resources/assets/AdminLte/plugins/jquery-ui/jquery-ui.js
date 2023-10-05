@@ -2353,7 +2353,7 @@ if ( $.uiBackCompat !== false ) {
 						padding: 0
 					} ),
 
-				// Store the size in case width/height are defined in % - Fixes #5245
+				// store the size in case width/height are defined in % - Fixes #5245
 				size = {
 					width: element.width(),
 					height: element.height()
@@ -6438,7 +6438,7 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 					}
 					element[ widget ]( instanceOptions );
 
-					// Store an instance of the controlgroup to be able to reference
+					// store an instance of the controlgroup to be able to reference
 					// from the outermost element for changing options and refresh
 					var widgetElement = element[ widget ]( "widget" );
 					$.data( widgetElement[ 0 ], "ui-controlgroup-data",
@@ -9937,7 +9937,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 		//Cache the margins of the original element
 		this._cacheMargins();
 
-		//Store the helper's css position
+		//store the helper's css position
 		this.cssPosition = this.helper.css( "position" );
 		this.scrollParent = this.helper.scrollParent( true );
 		this.offsetParent = this.helper.offsetParent();
@@ -10624,14 +10624,14 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 				if ( !sortable.isOver ) {
 					sortable.isOver = 1;
 
-					// Store draggable's parent in case we need to reappend to it later.
+					// store draggable's parent in case we need to reappend to it later.
 					draggable._parent = ui.helper.parent();
 
 					sortable.currentItem = ui.helper
 						.appendTo( sortable.element )
 						.data( "ui-sortable-item", true );
 
-					// Store helper option to later restore it
+					// store helper option to later restore it
 					sortable.options._helper = sortable.options.helper;
 
 					sortable.options.helper = function() {
@@ -13180,7 +13180,7 @@ $.widget( "ui.droppable", {
 		this.proportions = function( /* valueToWrite */ ) {
 			if ( arguments.length ) {
 
-				// Store the droppable's proportions
+				// store the droppable's proportions
 				proportions = arguments[ 0 ];
 			} else {
 

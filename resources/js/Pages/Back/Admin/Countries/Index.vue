@@ -73,15 +73,15 @@
 
 </template>
 
-<script setup>
+<script>
     import { Head } from "@inertiajs/vue3";
     import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-    import {defineComponent, reactive, watch, onMounted, computed, defineProps} from 'vue';
 
-    const props = defineProps(['countries']);
+    export default {
+        name: "Index",
+        props: ['countries'],
+        components: {Head, Link, AuthenticatedLayout},
 
-
-
-
+    }
 </script>

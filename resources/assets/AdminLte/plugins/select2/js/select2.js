@@ -5314,7 +5314,7 @@ S2.define('select2/options',[
         // camelCase the attribute name to match the spec
         var camelDataName = dataName.replace(/-([a-z])/g, upperCaseLetter);
 
-        // Store the data attribute contents into the dataset since
+        // store the data attribute contents into the dataset since
         dataset[camelDataName] = dataValue;
       }
     }

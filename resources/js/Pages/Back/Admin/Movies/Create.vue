@@ -242,8 +242,8 @@
         </div>
 
 
-        <div v-if="Object.entries(form.errors).length > 0">
-            <p v-for="error in form.errors">
+        <div v-if="errors">
+            <p v-for="error in errors">
                 {{error}}
             </p>
         </div>
@@ -252,57 +252,59 @@
 
 </template>
 
-<script setup>
-    import { Head } from "@inertiajs/vue3";
-    import { Link } from "@inertiajs/vue3";
-    import { useForm } from '@inertiajs/vue3';
+<script>
+    import { Head, Link, router,} from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-    import {defineComponent, reactive, watch, onMounted, computed, defineProps} from 'vue';
-    import {router} from '@inertiajs/vue3';
 
-    const props = defineProps(['categories', 'countries']);
 
-    const test = reactive({
-        id: null,
-    })
-    let genres = reactive({
-        list: null,
-    })
+    export default {
+        name: "Create",
+        props: ['categories', 'countries'],
+        components: {Head, Link, AuthenticatedLayout},
 
-    const examples = reactive({
-        genres: null,
-        type: null,
-        posterUrlPreview: null,
-        countries: null,
-        nameOriginal: null,
-    })
+        data(){
+            return{
+                test:{
+                    id: null,
+                },
+                genres:{
+                    list: null,
+                },
+                examples:{
+                    genres: null,
+                    type: null,
+                    posterUrlPreview: null,
+                    countries: null,
+                    nameOriginal: null,
+                },
+                form: {
+                    kinopoiskId: null,
+                    year: null,
+                    nameRu: null,
+                    nameEn: null,
+                    poster: null,
+                    category: "",
+                    countries: [],
+                    type: "",
+                    duration: null,
+                    ageLimits: null,
+                    rate: null,
+                    slogan: null,
+                    description: null,
+                    genres: [],
+                },
+                errors: null,
+            }
+        },
 
-    const form = useForm({
-        kinopoiskId: null,
-        year: null,
-        nameRu: null,
-        nameEn: null,
-        poster: null,
-        category: "",
-        countries: [],
-        type: "",
-        duration: null,
-        ageLimits: null,
-        rate: null,
-        slogan: null,
-        description: null,
-        genres: [],
-    });
-
-    function parse()
-    {
+        methods:{
+            parse(){
         axios.get(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${this.form.kinopoiskId}`,
             {headers: {
                     'X-API-KEY': 'e3409535-696e-40cb-8764-86dda0af9f48',
                     'Content-Type': 'application/json',
                 }})
             .then(response=>{
-                console.log(response)
                 this.form.year = response.data.year
                 this.form.nameRu = response.data.nameRu
                 this.form.nameEn = response.data.nameEn
@@ -317,98 +319,117 @@
                 this.examples.countries = response.data.countries
                 this.examples.nameOriginal = response.data.nameOriginal
             })
-    }
+    },
 
-    function getGenresList(category){
-        axios.get(`/get_genres?category=${category}`)
-            .then(response=>{
-                this.genres.list = response.data
-            })
-    }
+            testVideo(){
+                new Kinobox('.kinobox_player', {
+                    'X-Settings': {
+                        "Alloha" : {
+                            "enable": true,
+                            "position": 1,
+                            "token": "",
+                        },
+                        "Ashdi": {
+                            "enable": true,
+                            "position": 2,
+                            "token": "",
+                        },
+                        "Bazon": {
+                            "enable": true,
+                            "position": 3,
+                            "token": "",
+                        },
+                        "Cdnmovies": {
+                            "enable": true,
+                            "position": 4,
+                            "token": "",
+                        },
+                        "Collaps":{
+                            "enable": true,
+                            "position": 5,
+                            "token": "",
+                        },
+                        "Hdvb":{
+                            "enable": true,
+                            "position": 6,
+                            "token": "",
+                        },
+                        "Iframe":{
+                            "enable": true,
+                            "position": 7,
+                            "token": "",
+                        },
+                        "Kodik":{
+                            "enable": true,
+                            "position": 8,
+                            "token": "",
+                        },
+                        "Videocdn": {
+                            "enable": true,
+                            "position": 9,
+                            "token": "",
+                        },
+                        "Voidboost": {
+                            "enable": true,
+                            "position": 10,
+                            "token": "",
+                        },
 
-    function checkInBD(id){
-        axios.post('/admin/movies/test_in_bd',{kinopoisk_id: String(id)})
-            .then(response=>{
-                console.log(response.data.length)
-
-                if(response.data.length > 0){
-                    this.test.id = 1
-                }else{
-                    this.test.id = 2
-                }
-            })
-    }
-
-    function testVideo(){
-        new Kinobox('.kinobox_player', {
-            'X-Settings': {
-                "Alloha" : {
-                    "enable": true,
-                    "position": 1,
-                    "token": "",
-                },
-                "Ashdi": {
-                    "enable": true,
-                    "position": 2,
-                    "token": "",
-                },
-                "Bazon": {
-                    "enable": true,
-                    "position": 3,
-                    "token": "",
-                },
-                "Cdnmovies": {
-                    "enable": true,
-                    "position": 4,
-                    "token": "",
-                },
-                "Collaps":{
-                    "enable": true,
-                    "position": 5,
-                    "token": "",
-                },
-                "Hdvb":{
-                    "enable": true,
-                    "position": 6,
-                    "token": "",
-                },
-                "Iframe":{
-                    "enable": true,
-                    "position": 7,
-                    "token": "",
-                },
-                "Kodik":{
-                    "enable": true,
-                    "position": 8,
-                    "token": "",
-                },
-                "Videocdn": {
-                    "enable": true,
-                    "position": 9,
-                    "token": "",
-                },
-                "Voidboost": {
-                    "enable": true,
-                    "position": 10,
-                    "token": "",
-                },
-
+                    },
+                    search: {
+                        kinopoisk: this.form.kinopoiskId,
+                        title: this.form.nameEn
+                    }
+                }).init();
             },
-            search: {
-                kinopoisk: this.form.kinopoiskId,
-                title: this.form.nameEn
+
+            getGenresList(category){
+                axios.get(`/get_genres?category=${category}`)
+                    .then(response=>{
+                        this.genres.list = response.data
+                    })
+            },
+
+            checkInBD(id){
+                axios.post('/admin/movies/test_in_bd',{kinopoisk_id: String(id)})
+                    .then(response=>{
+
+                        if(response.data.length > 0){
+                            this.test.id = 1
+                        }else{
+                            this.test.id = 2
+                        }
+                    })
+            },
+
+            store() {
+                router.post('/admin/movies/store', this.form)
+                router.on('success', (event) => {
+                    this.errors = null
+                    this.form.kinopoiskId = null,
+                        this.form.year = null,
+                        this.form.nameRu = null,
+                        this.form.nameEn = null,
+                        this.form.poster = null,
+                        this.form.category = "",
+                        this.form.countries = [],
+                        this.form.type = "",
+                        this.form.duration = null,
+                        this.form.ageLimits = null,
+                        this.form.rate = null,
+                        this.form.slogan = null,
+                        this.form.description = null,
+                        this.form.genres = []
+                })
+                router.on('error', (errors) => {
+                    this.errors = errors.detail.errors
+                })
+
+
             }
-        }).init();
-    }
-
-    function store() {
-        form.post('/admin/movies/store',
-            {
-                onSuccess: ()=> form.reset('year', 'nameRu', 'nameEn', 'poster', 'category', 'countries', 'type', 'duration', 'ageLimits', 'rate', 'slogan', 'description', 'genres')
-            })
+        },
 
     }
-
 </script>
 
 <style scoped>

@@ -35,26 +35,31 @@
 
 </template>
 
-<script setup>
+<script>
     import { Head } from "@inertiajs/vue3";
+    import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-    import {defineComponent, reactive, watch, onMounted, computed, defineProps} from 'vue';
     import {router} from '@inertiajs/vue3';
 
-    const form = reactive(
-        {
-            title: null,
-            category_id: route().params.category,
-        }
-    );
+    export default {
+        name: "Create",
+        props: ['genre'],
+        components: {Head, Link, AuthenticatedLayout},
 
-    function newGenre(){
-        router.post(`/admin/genres/${route().params.category}/store`, form)
-    };
+        data(){
+          return{
+              form:{
+                  title: null,
+                  category_id: route().params.category,
+              },
+          }
+        },
 
-    // onMounted(()=>{
-    //     console.log(route().params);
-    // });
+        methods:{
+            newGenre(){
+                router.post(`/admin/genres/${route().params.category}/store`, this.form)
+            },
+        },
 
-
+    }
 </script>

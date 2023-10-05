@@ -1,14 +1,3 @@
-<script setup>
-    import { Head } from "@inertiajs/vue3";
-    import { Link } from "@inertiajs/vue3";
-    import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-    import {defineComponent, reactive, watch, onMounted, computed, defineProps} from 'vue';
-
-    const props = defineProps(['categories']);
-
-
-</script>
-
 <template>
 
     <Head title="Категории" />
@@ -85,5 +74,19 @@
     </AuthenticatedLayout>
 
 </template>
+
+<script>
+    import { Head } from "@inertiajs/vue3";
+    import { Link } from "@inertiajs/vue3";
+    import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+
+    export default {
+        name: "Index",
+        props: ['categories'],
+        components: {Head, Link, AuthenticatedLayout},
+
+    }
+</script>
+
 
 

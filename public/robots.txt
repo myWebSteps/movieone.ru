@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+Allow: /
+Clean-param: category&order&page&key&year&genre&type
+Disallow: /admin/
+Disallow: /login/
+
+Host: https://www.movieone.ru

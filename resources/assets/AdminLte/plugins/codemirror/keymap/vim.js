@@ -652,7 +652,7 @@
 
     function maybeInitVimState(cm) {
       if (!cm.state.vim) {
-        // Store instance state in the CodeMirror object.
+        // store instance state in the CodeMirror object.
         cm.state.vim = {
           inputState: new InputState(),
           // Vim's input state that triggered the last edit, used to repeat

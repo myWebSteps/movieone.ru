@@ -39,24 +39,31 @@
 
 </template>
 
-<script setup>
+<script>
     import { Head } from "@inertiajs/vue3";
+    import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-    import {defineComponent, reactive, watch, onMounted, computed, defineProps} from 'vue';
     import {router} from '@inertiajs/vue3';
 
-    const form = reactive(
-        {
-            title: null,
-            logo: null,
-        }
-    );
+    export default {
+        name: "Create",
+        props: ['categories'],
+        components: {Head, Link, router, AuthenticatedLayout},
 
-    function newCategory(){
-        router.post('/admin/categories/store', form)
-    };
+        data(){
+            return{
+                form:{
+                    title: null,
+                    logo: null,
+                },
+            }
+        },
 
-    // onMounted(()=>{});
+        methods:{
+            newCategory(){
+                router.post('/admin/categories/store', this.form)
+            },
+        },
 
-
+    }
 </script>

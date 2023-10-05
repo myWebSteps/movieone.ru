@@ -1528,7 +1528,7 @@ function getAlpha(string) {
 // generators
 function hexString(rgba, a) {
    var a = (a !== undefined && rgba.length === 3) ? a : rgba[3];
-   return "#" + hexDouble(rgba[0]) 
+   return "#" + hexDouble(rgba[0])
               + hexDouble(rgba[1])
               + hexDouble(rgba[2])
               + (
@@ -15412,7 +15412,7 @@ var Legend = core_element.extend({
 					lineWidths[lineWidths.length - (i > 0 ? 0 : 1)] = 0;
 				}
 
-				// Store the hitbox width and height here. Final position will be updated in `draw`
+				// store the hitbox width and height here. Final position will be updated in `draw`
 				hitboxes[i] = {
 					left: 0,
 					top: 0,
@@ -15450,7 +15450,7 @@ var Legend = core_element.extend({
 				currentColWidth = Math.max(currentColWidth, itemWidth);
 				currentColHeight += fontSize + vPadding;
 
-				// Store the hitbox width and height here. Final position will be updated in `draw`
+				// store the hitbox width and height here. Final position will be updated in `draw`
 				hitboxes[i] = {
 					left: 0,
 					top: 0,

@@ -46,7 +46,7 @@ class MovieFilter extends AbstractFilter
     protected function genre(Builder $builder, $value)
     {
         $builder->whereHas('genres', function ($b) use($value){
-            $b->where('subcategory_id', (int)$value);
+            $b->where('genre_id', (int)$value);
         });
     }
 }

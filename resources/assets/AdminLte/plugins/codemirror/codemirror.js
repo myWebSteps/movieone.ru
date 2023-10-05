@@ -1765,7 +1765,7 @@
       if (builder.map.length == 0)
         { builder.map.push(0, 0, builder.content.appendChild(zeroWidthElement(cm.display.measure))); }
 
-      // Store the map and a cache object for the current logical line
+      // store the map and a cache object for the current logical line
       if (i == 0) {
         lineView.measure.map = builder.map;
         lineView.measure.cache = {};
@@ -3527,7 +3527,7 @@
     return result
   }
 
-  // Store a relative adjustment to the scroll position in the current
+  // store a relative adjustment to the scroll position in the current
   // operation (to be applied when the operation finishes).
   function addToScrollTop(cm, top) {
     if (top == null) { return }
@@ -4038,7 +4038,7 @@
     var display = cm.display;
 
     this.viewport = viewport;
-    // Store some values that we'll need later (but don't want to force a relayout for)
+    // store some values that we'll need later (but don't want to force a relayout for)
     this.visible = visibleLines(display, cm.doc, viewport);
     this.editorIsHidden = !display.wrapper.offsetWidth;
     this.wrapperHeight = display.wrapper.clientHeight;
