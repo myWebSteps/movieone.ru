@@ -41,11 +41,11 @@
                                             <td>{{category.title}}</td>
                                             <td> <i :class="category.logo"></i></td>
                                             <td>
-                                                <Link as="button" :href="`/admin/categories/${category.id}/edit`" class="btn btn-block btn-outline-warning btn-sm w-50"><i class="fa-solid fa-pen-to-square"></i>
+                                                <Link as="button" :href="this.route('categories.edit', {category: category.id})" class="btn btn-block btn-outline-warning btn-sm w-50"><i class="fa-solid fa-pen-to-square"></i>
                                                 </Link>
                                             </td>
                                             <td>
-                                                <Link method="delete" as="button" :href="`/admin/categories/${category.id}`" type="button" class="btn btn-block btn-outline-danger btn-sm w-50"><i class="fa-solid fa-trash"></i>
+                                                <Link method="delete" as="button" :href="this.route('categories.destroy', {category: category.id})" type="button" class="btn btn-block btn-outline-danger btn-sm w-50"><i class="fa-solid fa-trash"></i>
                                                 </Link>
                                             </td>
                                         </tr>

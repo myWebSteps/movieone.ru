@@ -35,7 +35,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mt-4 mb-3">
                         <h1 class="h5 mb-0 text-gray-900">{{item.category}}</h1>
-                        <Link :href="`/movie?category=${item.category_id}&order=year&page=1&genre=&type=`" class="d-none d-sm-inline-block text-xs">
+                        <Link :href="this.route('catalog.index', {category: item.category_id, order: 'year', page: '1', genre: '', type: ''})" class="d-none d-sm-inline-block text-xs">
                             Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
                         </Link>
                     </div>
@@ -43,7 +43,7 @@
                     <div class="row">
                         <div v-for="movie in item.movies" class="col-xl-3 col-md-6 mb-4">
                             <div  class="card e-card shadow border-0">
-                                <Link :href="`/movies/${movie.id}`">
+                                <Link :href="this.route('single.index', movie.id)">
                                     <div class="m-card-cover">
                                         <img :src="movie.poster" class="card-img-top" :alt="movie.nameEn">
                                     </div>

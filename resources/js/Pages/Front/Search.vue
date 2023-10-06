@@ -22,7 +22,7 @@
                         <div class="row">
                             <div v-for="movie in movies" class="col-xl-3 col-md-6 mb-4 col-sm-6">
                                 <div  class="card e-card shadow border-0">
-                                    <Link :href="`/movies/${movie.id}`">
+                                    <Link :href="this.route('single.index', {movie: movie.id})">
                                         <div class="m-card-cover">
                                             <img :src="movie.posterUrl" class="card-img-top" alt="...">
                                         </div>

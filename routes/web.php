@@ -12,7 +12,7 @@ Route::post('/playlist', \App\Http\Controllers\Front\Single\PlaylistController::
 
 
 Route::get('/', \App\Http\Controllers\Front\Home\IndexController::class)->name('front.index');
-Route::get('/movies', \App\Http\Controllers\Front\Catalog\IndexController::class)->name('movies.index');
+Route::get('/movies', \App\Http\Controllers\Front\Catalog\IndexController::class)->name('catalog.index');
 Route::get('/movies/{movie}', \App\Http\Controllers\Front\Single\IndexController::class)->name('single.index');
 Route::get('/search', \App\Http\Controllers\Front\Search\IndexController::class)->name('search.index');
 
