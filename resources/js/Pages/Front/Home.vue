@@ -9,7 +9,7 @@
     <FrontLayout>
 
         <div class="page-header">
-
+        {{$page.props.auth}}
             <swiper
                 :slides-per-view="3"
                 :space-between="0"
