@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-4 mt-4 col-md-4 col-6">
 
-                    <Link :href="this.route('movies.create')" class="btn btn-success">Добавить видео</Link>
+                    <Link href="/admin/movies/create" class="btn btn-success">Добавить видео</Link>
                 </div>
 
 

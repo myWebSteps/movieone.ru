@@ -20,7 +20,7 @@
                             <div class="input-group input-group-sm">
                                 <input v-model="searchKey" class="form-control form-control-navbar" type="search" placeholder="Введите название видео" aria-label="Search">
                                 <div class="input-group-append">
-                                    <Link :href="route('search.index', {key: searchKey})" class="btn btn-navbar">
+                                    <Link :href="`/search?key=${searchKey}`" class="btn btn-navbar">
                                         <i class="fas fa-search"></i>
                                     </Link>
                                     <button class="btn btn-navbar" type="button" data-widget="navbar-search">
@@ -42,7 +42,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <Link v-for="item in playlist" :href="route('single.index', {movie: item.id})" class="dropdown-item">
+                        <Link v-for="item in playlist" :href="`/movies/${item.id}`" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
                                 <img :src="item.posterUrl" :alt="item.nameRu" class="img-size-50 mr-3">
@@ -81,7 +81,7 @@
          <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <Link :href="route('front.index')" class="brand-link">
+            <Link href="/" class="brand-link">
                 <img src="/img/logo-icon.png" alt="AdminLTE Logo" class="brand-image">
                 <span class="brand-text font-weight-light">MovieOne</span>
             </Link>
@@ -95,7 +95,7 @@
                         data-accordion="false">
 
                         <li v-for="category in $page.props.categories" class="nav-item">
-                            <Link  class="nav-link" :href="route('catalog.index', {category: category.id, order: 'year', page: '1', genre: '', type: ''})">
+                            <Link  class="nav-link" :href="`/movies?category=${category.id}&order=year&page=1&genre=&type=`">
                                 <i :class="category.logo"></i>
                                 <p class="pl-2">{{category.title}}</p>
                             </Link>
