@@ -163,8 +163,8 @@
                                         <option  :value="category.id">{{category.title}}</option>
                                     </template>
                                 </select>
-                                <p  v-if="form.type != null">
-                                    Категория Кинопоиска: {{form.type}}
+                                <p  v-if="examples.type != null">
+                                    Категория Кинопоиска: {{examples.type}}
                                 </p>
                             </div>
                         </div>
@@ -309,6 +309,7 @@
                     'Content-Type': 'application/json',
                 }})
             .then(response=>{
+                console.log(response)
                 this.form.year = response.data.year
                 this.form.nameRu = response.data.nameRu
                 this.form.nameEn = response.data.nameEn
