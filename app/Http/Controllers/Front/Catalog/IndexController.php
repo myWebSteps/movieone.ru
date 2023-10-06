@@ -27,7 +27,7 @@ class IndexController extends Controller
 
         IndexResource::collection($movies)->resolve();
 
-        return Inertia::render('Front/Catalog', compact('genres', 'movies', 'category'));
+        return Inertia::render('Front/Catalog', compact('genres', 'movies', 'category', 'data'));
 
     }
 }

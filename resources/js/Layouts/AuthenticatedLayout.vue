@@ -12,7 +12,7 @@ import DropdownLink from "@/Components/DropdownLink.vue";
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container-fluid">
                 <!-- Logo -->
-                <Link :href="route('main.index')" class="navbar-brand">
+                <Link href="/" class="navbar-brand">
                     <ApplicationLogo class="text-danger" width="36" />
                 </Link>
 
@@ -30,33 +30,33 @@ import DropdownLink from "@/Components/DropdownLink.vue";
                     <!-- Navigation Links -->
                     <div class="navbar-nav">
                         <NavLink
-                            :href="route('main.index')"
-                            :active="route().current('main.index')"
+                            href="/"
+                            active="/"
                         >
                             Главная
                         </NavLink>
                     </div>         <div class="navbar-nav">
                     <NavLink
-                        :href="route('categories.index')"
-                        :active="route().current('categories.index')"
+                        href="/admin/categories"
+                        active="/admin/categories"
                     >
                         Категории
                     </NavLink>
                     <NavLink
-                        :href="route('genres.index')"
-                        :active="route().current('genres.index')"
+                        href="/admin/genres"
+                        active="/admin/genres"
                     >
                         Жанры
                     </NavLink>
                     <NavLink
-                        :href="route('countries.index')"
-                        :active="route().current('countries.index')"
+                        href="/admin/countries"
+                        active="/admin/countries"
                     >
                         Страны
                     </NavLink>
                     <NavLink
-                        :href="route('movies.index')"
-                        :active="route().current('movies.index')"
+                        href="/admin/movies"
+                        active="/admin/movies"
                     >
                         Видео
                     </NavLink>
@@ -69,11 +69,11 @@ import DropdownLink from "@/Components/DropdownLink.vue";
                             :label="$page.props.auth.user.name"
                             as-nav-item
                         >
-                            <DropdownLink :href="route('profile.edit')">
+                            <DropdownLink href="/profile">
                                 Profile
                             </DropdownLink>
                             <DropdownLink
-                                :href="route('logout')"
+                                href="logout"
                                 method="post"
                                 as="button"
                             >

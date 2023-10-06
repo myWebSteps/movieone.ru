@@ -22,7 +22,7 @@
                         <div class="col-xl-3 col-sm-8 d-inline">
                             <label>Тип:</label>
                             <select @change="send()" v-model="form.type" style="width: 100%" class="form-select">
-                                <option value="">Кино и сериалы</option>
+                                <option :value=null>Кино и сериалы</option>
                                 <option value="2">Кино</option>
                                 <option value="3">Сериалы</option>
                                 <option value="4">Мини сериалы</option>
@@ -32,7 +32,7 @@
                         <div class="col-xl-3 col-sm-8 d-inline">
                             <label for="genres">Жанр:</label>
                             <select @change="send()" v-model="form.genre" id="genres" class="form-select mb-1" aria-label="Default select example">
-                                <option value="">Все жанры</option>
+                                <option :value=null>Все жанры</option>
                                 <option v-for="genre in genres" :value="genre.id">{{genre.title}}</option>
 
                             </select>
@@ -53,7 +53,7 @@
                             <div v-for="movie in movies.data" class="col-xl-3 col-md-6 mb-4 col-sm-6">
 
                                 <div  class="card e-card shadow border-0">
-                                    <Link :href="this.route('single.index', {movie: movie.data.id})">
+                                    <Link :href="`/movies/${movie.data.id}`">
                                         <div class="m-card-cover">
                                             <img :src="movie.data.posterUrl" class="card-img-top" alt="...">
                                         </div>
@@ -89,7 +89,7 @@
 
                             <li v-for="page in movies.links" class="page-item">
                                 <template v-if="Number(page.label)">
-                                    <a @click="changePage(page.label)" :class="page.label == this.route().params.page ? 'active' : ''" class="page-link" href="#">{{page.label}}</a>
+                                    <a @click="changePage(page.label)" :class="page.label == this.data.page ? 'active' : ''" class="page-link" href="#">{{page.label}}</a>
                                 </template>
                             </li>
 
@@ -112,22 +112,23 @@
 
     export default {
         name: "Catalog",
-        props: ['genres', 'movies', 'category'],
+        props: ['genres', 'movies', 'category', 'data'],
         components: {Head, Link, FrontLayout},
 
         data(){
             return{
                 form: {
-                    category: this.route().params.category,
-                    type: this.route().params.type,
-                    genre: this.route().params.genre,
-                    order: this.route().params.order,
-                    page: this.route().params.page,
+                    category: this.data.category,
+                    type: this.data.type,
+                    genre: this.data.genre,
+                    order: this.data.order,
+                    page: this.data.page,
                 }
             }
         },
 
         mounted() {
+
             ym(94438576, 'hit', '/catalog');
         },
 

@@ -21,7 +21,7 @@ class IndexController extends Controller
 
         $movies = IndexResource::collection(Movie::filter($filter)->orderBy('id', 'desc')->take(20)->get())->resolve();
 
-        return Inertia::render('Front/Search', compact( 'movies'));
+        return Inertia::render('Front/Search', compact( 'movies', 'data'));
 
     }
 }

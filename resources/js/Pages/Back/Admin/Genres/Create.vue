@@ -3,6 +3,7 @@
     <Head title="Создать жанр" />
 
     <AuthenticatedLayout>
+
         <template #header>
             <h2 class="display-6">Создать жанр</h2>
         </template>
@@ -43,21 +44,21 @@
 
     export default {
         name: "Create",
-        props: ['genre'],
+        props: ['data'],
         components: {Head, Link, AuthenticatedLayout},
 
         data(){
           return{
               form:{
                   title: null,
-                  category_id: route().params.category,
+                  category_id: this.data,
               },
           }
         },
 
         methods:{
             newGenre(){
-                router.post(`/admin/genres/${this.route().params.category}/store`, this.form)
+                router.post(`/admin/genres/${this.data}/store`, this.form)
             },
         },
 

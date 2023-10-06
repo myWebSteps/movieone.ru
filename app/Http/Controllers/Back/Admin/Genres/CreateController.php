@@ -11,7 +11,8 @@ class CreateController extends Controller
 {
     public function __invoke(Request $request)
     {
+        $data = $request->category;
 
-       return Inertia::render('Back/Admin/Genres/Create');
+       return Inertia::render('Back/Admin/Genres/Create', compact('data'));
     }
 }
