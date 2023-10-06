@@ -18,7 +18,7 @@ Route::get('/search', \App\Http\Controllers\Front\Search\IndexController::class)
 
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::prefix('/admin')->group(function(){
         route::prefix('/categories')->group(function(){
