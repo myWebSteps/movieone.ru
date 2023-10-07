@@ -79,9 +79,9 @@
         </nav>
         <!-- /.navbar -->
          <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand">
             <!-- Brand Logo -->
-            <Link href="/" class="brand-link">
+            <Link data-widget="pushmenu" href="/" class="brand-link">
                 <img src="/img/logo-icon.png" alt="AdminLTE Logo" class="brand-image">
                 <span class="brand-text font-weight-light">MovieOne</span>
             </Link>
@@ -95,7 +95,7 @@
                         data-accordion="false">
 
                         <li v-for="category in $page.props.categories" class="nav-item">
-                            <Link  class="nav-link" :href="`/movies?category=${category.id}&order=year&page=1&genre=&type=`">
+                            <Link  class="nav-link" data-widget="pushmenu" :href="`/movies?category=${category.id}&order=year&page=1&genre=&type=`">
                                 <i :class="category.logo"></i>
                                 <p class="pl-2">{{category.title}}</p>
                             </Link>
@@ -107,14 +107,13 @@
             </div>
             <!-- /.sidebar -->
         </aside>
-        <div class="content-wrapper">
+
+        <main class="content-wrapper">
 
             <!-- Page Content -->
-            <main>
                 <slot />
-            </main>
 
-        </div>
+        </main>
 
         <!-- Main Footer -->
         <footer class="main-footer d-flex justify-content-around">
@@ -153,7 +152,7 @@
 
 
     export default {
-        name: "Header",
+        name: "FrontLayout",
 
         components: {Link},
 
