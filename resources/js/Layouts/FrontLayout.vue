@@ -3,7 +3,7 @@
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-dark">
             <!-- Left navbar links -->
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-2">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
@@ -79,7 +79,39 @@
         </nav>
         <!-- /.navbar -->
          <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand">
+
+        <!--Laptop version -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand d-none d-sm-block">
+            <!-- Brand Logo -->
+            <Link href="/" class="brand-link">
+                <img src="/img/logo-icon.png" alt="AdminLTE Logo" class="brand-image">
+                <span class="brand-text font-weight-light">MovieOne</span>
+            </Link>
+
+            <!-- Sidebar -->
+            <div class="sidebar os-host os-theme-light os-host-resize-disabled os-host-transition os-host-scrollbar-horizontal-hidden os-host-overflow os-host-overflow-y">
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+
+                        <li v-for="category in $page.props.categories" class="nav-item">
+                            <Link  class="nav-link" :href="`/movies?category=${category.id}&order=year&page=1&genre=&type=`">
+                                <i :class="category.logo"></i>
+                                <p class="pl-2">{{category.title}}</p>
+                            </Link>
+                        </li>
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!--Mobile version-->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand d-block d-sm-none">
             <!-- Brand Logo -->
             <Link data-widget="pushmenu" href="/" class="brand-link">
                 <img src="/img/logo-icon.png" alt="AdminLTE Logo" class="brand-image">
@@ -107,6 +139,8 @@
             </div>
             <!-- /.sidebar -->
         </aside>
+
+
 
         <main class="content-wrapper">
 
