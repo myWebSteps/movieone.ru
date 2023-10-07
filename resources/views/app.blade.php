@@ -8,7 +8,7 @@
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
     </head>
-    <body class="sidebar-mini layout-fixed sidebar-mini-md sidebar-closed sidebar-collapse control-sidebar-slide-open">
+    <body class="sidebar-mini sidebar-closed sidebar-collapse control-sidebar-slide-open sidebar-mini-md sidebar-mini-xs">
         @inertia
     </body>
 

@@ -193,7 +193,6 @@
             },
 
             makePlaylist(){
-                console.log('makePlaylist')
                 if(localStorage.hasOwnProperty('playlist') && localStorage.getItem('playlist') != ''){
                     axios.post('/playlist', {id: localStorage.getItem('playlist')})
                         .then(response=>{
