@@ -2,7 +2,7 @@
 
     <Head>
         <title>{{movie.nameRu}}/{{movie.nameEn}} Смотреть бесплатно без регистрации на MovieOne.ru</title>
-        <meta name="description" :content="movie.nameRu/movie.nameEn/movie.description" />
+        <meta name="description" :content="movie.description" />
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
     </Head>
 
