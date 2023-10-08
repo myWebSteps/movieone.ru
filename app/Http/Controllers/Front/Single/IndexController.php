@@ -15,7 +15,7 @@ class IndexController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $data = Movie::find($request->movie);
+        $data = Movie::findOrFail($request->movie);
 
         $result = new ShowResource($data);
 
