@@ -5,5 +5,4 @@ Disallow: /admin/
 Disallow: /login/
 Disallow: /search/
 Disallow: /movies/$
-
 Host: https://www.movieone.ru
