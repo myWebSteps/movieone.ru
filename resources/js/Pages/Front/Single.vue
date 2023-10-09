@@ -85,7 +85,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Рецензии<span class="badge badge-danger badge-counter">{{reviews.total}}</span></a>
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Рецензии<span class="badge badge-danger badge-counter ml-1">{{reviews.total}}</span></a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
