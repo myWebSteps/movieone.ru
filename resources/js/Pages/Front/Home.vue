@@ -40,7 +40,7 @@
                         </Link>
                     </div>
                     <!-- Content Row -->
-                    <div class="row">
+                    <div class="row m-0">
                         <div v-for="movie in item.movies" class="col-xl-3 col-md-6 mb-4">
                             <div  class="card e-card shadow border-0">
                                 <Link :href="`/movies/${movie.id}`">
