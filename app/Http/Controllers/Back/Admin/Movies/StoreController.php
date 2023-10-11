@@ -18,16 +18,6 @@ class StoreController extends Controller
     {
         $data = $request->validated();
 
-
-//        unset($data['poster']);
-
-//        $countries = explode(',',$data['countries']);
-//        dd($countries);
-//        unset($data['countries']);
-//        $subcategories = explode(',',$data['subcategories']);
-//        unset ($data['subcategory_id']);
-
-
             Image::make($data['poster'])
                 ->fit(684, 1000)
                 ->save(storage_path('/app/public/files'.'/poster'.$data['kinopoiskId'].'.'.$data['poster']->getClientOriginalExtension()));

@@ -14,7 +14,7 @@
                 <div class="row">
                     <!-- Page Heading -->
                     <div class="ml-3 d-sm-flex align-items-center justify-content-between pt-4 mb-4">
-                        <h1 class="h5 mb-0 text-gray-900">Результаты запроса: {{this.data.key}}</h1>
+                        <h1 class="h5 mb-0 text-gray-900">Результаты запроса: {{data.key}}</h1>
                     </div>
 
                     <div class="col-xl-12 col-lg-8 mt-4">

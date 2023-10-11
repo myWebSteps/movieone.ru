@@ -150,17 +150,29 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-
                             <div class="card-body p-0 reviews-card">
 
-                                <nav v-if="reviews.totalPages > 1" class="d-grid justify-content-md-center">
-                                    <ul class="pagination">
-
+                                <nav v-if="reviews.totalPages > 1" aria-label="reviews pagination">
+                                   <ul class="pagination">
+                                        <li v-if="currentPage != 1" class="page-item">
+                                            <a @click.prevent="getReviews(String(currentPage - 1))" class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
                                         <li v-for="page in reviews.totalPages" class="page-item">
-                                            <a @click.prevent="getReviews(page)" :class="page == reviews.currentPage? 'active' : ''" class="page-link" href="#" :value="page">{{page}}</a>
+                                            <template v-if="(page - currentPage < 3 && page - currentPage > -3) || page == 1 || page == reviews.totalPages">
+                                            <a @click.prevent="getReviews(page)" :class="page == currentPage? 'active' : ''" class="page-link" href="#" :value="page">{{page}}</a>
+                                            </template>
+                                            <template v-if="(currentPage - page == 3 && currentPage != 4) || (currentPage - page == -3 && currentPage != reviews.totalPages - 3)">
+                                                <span class="page-link">...</span>
+                                            </template>
                                         </li>
 
-
+                                        <li class="page-item">
+                                            <a v-if="currentPage != reviews.totalPages" @click.prevent="getReviews(String(currentPage + 1))" class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </nav>
 
@@ -182,14 +194,28 @@
                                     </div>
                                 </div>
 
-                                <nav v-if="reviews.totalPages > 1" class="d-grid justify-content-md-center">
-                                    <ul class="pagination">
 
+                                <nav v-if="reviews.totalPages > 1" aria-label="reviews pagination">
+                                    <ul class="pagination">
+                                        <li v-if="currentPage != 1" class="page-item">
+                                            <a @click.prevent="getReviews(String(currentPage - 1))" class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
                                         <li v-for="page in reviews.totalPages" class="page-item">
-                                                <a @click.prevent="getReviews(page)" :class="page == reviews.currentPage? 'active' : ''" class="page-link" href="#" :value="page">{{page}}</a>
+                                            <template v-if="(page - currentPage < 3 && page - currentPage > -3) || page == 1 || page == reviews.totalPages">
+                                                <a @click.prevent="getReviews(page)" :class="page == currentPage? 'active' : ''" class="page-link" href="#" :value="page">{{page}}</a>
+                                            </template>
+                                            <template v-if="(currentPage - page == 3 && currentPage != 4) || (currentPage - page == -3 && currentPage != reviews.totalPages - 3)">
+                                                <span class="page-link">...</span>
+                                            </template>
                                         </li>
 
-
+                                        <li class="page-item">
+                                            <a v-if="currentPage != reviews.totalPages" @click.prevent="getReviews(String(currentPage + 1))" class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </nav>
 

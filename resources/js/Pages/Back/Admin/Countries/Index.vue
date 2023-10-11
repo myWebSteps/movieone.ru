@@ -39,11 +39,11 @@
                                             <td>{{country.id}}</td>
                                             <td>{{country.title}}</td>
                                             <td>
-                                                <Link as="button" :href="`/admin/countries/${country.id}/edit`" class="btn btn-block btn-outline-warning btn-sm w-50"><i class="fa-solid fa-pen-to-square"></i>
+                                                <Link as="button" :href="`/admin/countries/${country.id}/edit`" class="btn btn-block btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i>
                                                 </Link>
                                             </td>
                                             <td>
-                                                <Link method="delete" as="button" :href="`/admin/countries/${country.id}`" type="button" class="btn btn-block btn-outline-danger btn-sm w-50"><i class="fa-solid fa-trash"></i>
+                                                <Link method="delete" as="button" :href="`/admin/countries/${country.id}`" type="button" class="btn btn-block btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i>
                                                 </Link>
                                             </td>
                                         </tr>

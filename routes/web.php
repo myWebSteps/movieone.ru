@@ -48,11 +48,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
         route::prefix('/movies')->group(function(){
             Route::post('/test_in_bd', \App\Http\Controllers\Back\Admin\Movies\TestInBdController::class);
 
-//            Route::get('/{category}/edit', \App\Http\Controllers\Back\Admin\Categories\EditController::class)->name('categories.edit');
+            Route::get('/{movie}/edit', \App\Http\Controllers\Back\Admin\Movies\EditController::class)->name('movies.edit');
             Route::get('/create', \App\Http\Controllers\Back\Admin\Movies\CreateController::class)->name('movies.create');
             Route::post('/store', \App\Http\Controllers\Back\Admin\Movies\StoreController::class)->name('movies.store');
             Route::get('/', \App\Http\Controllers\Back\Admin\Movies\IndexController::class)->name('movies.index');
-//            Route::patch('/{category}', \App\Http\Controllers\Back\Admin\Categories\UpdateController::class)->name('categories.update');
+            Route::patch('/{movie}', \App\Http\Controllers\Back\Admin\Movies\UpdateController::class)->name('movies.update');
             Route::delete('/{movie}', \App\Http\Controllers\Back\Admin\Movies\DestroyController::class)->name('movies.destroy');
         });
 
