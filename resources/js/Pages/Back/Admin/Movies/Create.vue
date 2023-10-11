@@ -116,9 +116,6 @@
                                 <label for="nameOriginal">Английское название:</label>
                                 <input v-model="form.nameEn" type="text" class="form-control" id="nameOriginal" placeholder="Введите английское название">
                             </div>
-                            <p> Оригинальное название:
-                                <span>{{examples.nameOriginal}}</span>
-                            </p>
                         </div>
 
                         <!--poster Upload -->
@@ -279,7 +276,6 @@
                     type: null,
                     posterUrlPreview: null,
                     countries: null,
-                    nameOriginal: null,
                 },
                 form: {
                     kinopoiskId: null,
@@ -312,7 +308,7 @@
                 console.log(response)
                 this.form.year = response.data.year
                 this.form.nameRu = response.data.nameRu
-                this.form.nameEn = response.data.nameEn
+                this.form.nameEn = response.data.nameOriginal
                 this.form.duration = response.data.filmLength
                 this.form.ageLimits = response.data.ratingAgeLimits
                 this.form.rate = response.data.ratingKinopoisk
@@ -322,7 +318,6 @@
                 this.examples.type = response.data.type
                 this.examples.posterUrlPreview = response.data.posterUrlPreview
                 this.examples.countries = response.data.countries
-                this.examples.nameOriginal = response.data.nameOriginal
             })
     },
 
