@@ -1,7 +1,7 @@
 <template>
 
     <Head>
-        <title>{{movie.nameRu}}/{{movie.nameEn}} Смотреть бесплатно без регистрации на MovieOne.ru</title>
+        <title>{{movie.nameRu}}/{{movie.nameEn}} Смотреть бесплатно без регистрации</title>
         <meta name="description" :content="movie.description" />
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
     </Head>
