@@ -40,6 +40,14 @@
                                 </div>
                             </div>
 
+                            <!-- Slug -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Slug">Slug:</label>
+                                    <input v-model="form.slug" type="text" class="form-control" id="slug" placeholder="Введите английское название">
+                                </div>
+                            </div>
+
                             <!--poster Upload -->
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -173,6 +181,7 @@
                     kinopoisk_id: this.movie.kinopoisk_id,
                     nameRu: this.movie.nameRu,
                     nameEn: this.movie.nameEn,
+                    slug: this.movie.slug,
                     year: this.movie.year,
                     poster: null,
                     countries: this.movie.countries,
@@ -187,11 +196,6 @@
                 genresList: this.genres,
             }
         },
-
-        mounted(){
-            console.log(this.form);
-        },
-
 
 
         methods:{
@@ -209,6 +213,7 @@
                 router.post(`/admin/movies/${this.form.id}`, {
                     _method: 'patch',
                     kinopoisk_id: this.form.kinopoisk_id,
+                    slug: this.form.slug,
                     nameRu: this.form.nameRu,
                     nameEn: this.form.nameEn,
                     countries: this.form.countries,

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Back\Admin\Movies;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -23,6 +24,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'kinopoisk_id'=>'nullable',
+            'slug' => ['nullable', Rule::unique('movies', 'id')->ignore($this->id)],
             'nameRu'=>'nullable',
             'nameEn'=>'nullable',
             'countries' => 'nullable',

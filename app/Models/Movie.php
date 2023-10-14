@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Models\Traits\Filterable;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
 {
     use Filterable;
+    use Sluggable;
 
     protected $table = 'movies';
     protected $guarded = false;
@@ -24,4 +26,12 @@ class Movie extends Model
         return $this->belongsToMany(Country::class, CountryMovie::class);
     }
 
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'nameRu'
+            ]
+        ];
+    }
 }

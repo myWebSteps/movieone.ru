@@ -19,6 +19,7 @@ class RelatedMoviesResource extends JsonResource
 
         return [
                 'id' => $this->id,
+                'slug' => $this->slug,
                 'nameRu' => $this->nameRu,
                 'nameEn' => $this->nameEn,
                 'poster' => $poster_path,

@@ -276,7 +276,7 @@
                     <div class="row col-12 d-flex justify-content-center">
                     <div v-for="relatedMovie in relatedMovies" class="col-xl-3 col-md-3 col-sm-4 col-9 col-6">
                         <div  class="card e-card shadow border-0">
-                            <Link :href="`/movies/${relatedMovie.id}`" class=""><div class="m-card-cover">
+                            <Link :href="`/movies/${relatedMovie.slug}`" class=""><div class="m-card-cover">
                                 <img :src="relatedMovie.poster" class="card-img-top" alt="...">
                             </div>
                                 <div class="card-body p-0">

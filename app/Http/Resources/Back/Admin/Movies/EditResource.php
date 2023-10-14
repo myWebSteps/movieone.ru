@@ -28,6 +28,7 @@ class EditResource extends JsonResource
 
         return [
             'id' => $this->id,
+            'slug' => $this->slug,
             'kinopoisk_id' => $this->kinopoisk_id,
             'nameRu' => $this->nameRu,
             'nameEn' => $this->nameEn,

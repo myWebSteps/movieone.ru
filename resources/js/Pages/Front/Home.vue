@@ -43,7 +43,7 @@
                     <div class="row m-0">
                         <div v-for="movie in item.movies" class="col-xl-3 col-md-6 mb-4">
                             <div  class="card e-card shadow border-0">
-                                <Link :href="`/movies/${movie.id}`">
+                                <Link :href="`/movies/${movie.slug}`">
                                     <div class="m-card-cover">
                                         <img :src="movie.poster" class="card-img-top" :alt="movie.nameEn">
                                     </div>
