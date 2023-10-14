@@ -139,7 +139,7 @@
             },
 
             changePage(page){
-                form.page = page
+                this.form.page = page
                 this.send();
             }
 
