@@ -49,7 +49,6 @@
                 </div>
             </div>
             <div class="col-xl-9 col-lg-9">
-                {{movie}}
                 <div class="bg-white info-header shadow rounded mb-4">
                     <div class="row d-flex align-items-center justify-content-between p-3 border-bottom">
                         <div class="col-lg-7 m-b-4">
