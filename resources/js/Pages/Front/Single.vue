@@ -23,6 +23,7 @@
                     <div class="row">
 
                     <div class="col-sm-6 col-xl-12 col-lg-12">
+
                         <img :src="movie.posterUrl" class="img-fluid rounded" :alt="movie.nameEn">
                     </div>
                     <div class="col-sm-6 col-xl-12 col-lg-12">
@@ -48,7 +49,7 @@
                 </div>
             </div>
             <div class="col-xl-9 col-lg-9">
-
+                {{movie}}
                 <div class="bg-white info-header shadow rounded mb-4">
                     <div class="row d-flex align-items-center justify-content-between p-3 border-bottom">
                         <div class="col-lg-7 m-b-4">
