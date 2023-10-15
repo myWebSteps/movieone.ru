@@ -42,9 +42,9 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <Link v-for="item in playlist" :href="`/movies/${item.id}`" class="dropdown-item">
+                        <Link v-for="item in playlist" :href="`/movies/${item.slug}`" class="dropdown-item">
                             <!-- Message Start -->
-                            <div class="media">
+                            <div class="media text-wrap">
                                 <img :src="item.posterUrl" :alt="item.nameRu" class="img-size-50 mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
@@ -57,8 +57,9 @@
                                 </div>
                             </div>
                             <!-- Message End -->
+                            <div class="dropdown-divider"></div>
                         </Link>
-                        <div class="dropdown-divider"></div>
+
 
                     </div>
 

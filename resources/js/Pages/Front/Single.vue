@@ -398,7 +398,7 @@
                 }
             }).init();
 
-                ym(94438576, 'hit', `/movies/${this.movie.id}`);
+                ym(94438576, 'hit', `/movies/${this.movie.slug}`);
         },
 
         methods:{
