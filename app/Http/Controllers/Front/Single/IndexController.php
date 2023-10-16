@@ -23,7 +23,7 @@ class IndexController extends Controller
 
         $genre = Genre::where('id', $result->genres[0]->id)->first();
 
-        $resultRelatedMovies = $genre->movies->whereNotIn('id', $request->movie)->shuffle()->take(4);
+        $resultRelatedMovies = $genre->movies->whereNotIn('slug', $request->movie)->shuffle()->take(4);
 
         $relatedMovies = RelatedMoviesResource::collection($resultRelatedMovies)->resolve();
 
