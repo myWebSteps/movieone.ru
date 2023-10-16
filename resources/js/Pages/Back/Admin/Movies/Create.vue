@@ -161,7 +161,7 @@
                                     </template>
                                 </select>
                                 <p  v-if="examples.type != null">
-                                    Категория Кинопоиска: {{examples.type}}
+                                    Категория Кинопоиска: {{examples.category}}
                                 </p>
                             </div>
                         </div>
@@ -194,7 +194,7 @@
                                     <option value="3">Сериалы</option>
                                     <option value="4">Мини сериалы</option>
                                 </select>
-                                <p> Тип по Кинопоиску:
+                                <p v-if="examples.type != null"> Сериал:
                                     {{examples.type}}
                                 </p>
                             </div>
@@ -274,6 +274,7 @@
                 examples:{
                     genres: null,
                     type: null,
+                    category: null,
                     posterUrlPreview: null,
                     countries: null,
                 },
@@ -315,7 +316,8 @@
                 this.form.slogan = response.data.slogan
                 this.form.description = response.data.description
                 this.examples.genres = response.data.genres
-                this.examples.type = response.data.type
+                this.examples.category = response.data.type
+                this.examples.type = response.data.serial
                 this.examples.posterUrlPreview = response.data.posterUrlPreview
                 this.examples.countries = response.data.countries
             })

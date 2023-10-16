@@ -9,7 +9,7 @@
                 </li>
             </ul>
             <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto mr-2">
                 <!-- Navbar Search -->
                 <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -18,7 +18,7 @@
                     <div class="navbar-search-block">
                         <form class="form-inline">
                             <div class="input-group input-group-sm">
-                                <input v-model="searchKey" class="form-control form-control-navbar" type="search" placeholder="Введите название видео" aria-label="Search">
+                                <input v-model="searchKey" class="form-control form-control-navbar" placeholder="Введите название видео" aria-label="Search">
                                 <div class="input-group-append">
                                     <Link :href="`/search?key=${searchKey}`" class="btn btn-navbar">
                                         <i class="fas fa-search"></i>
@@ -71,7 +71,12 @@
                         <i class="fa-brands fa-instagram"></i>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ml-2">
+                    <a  href="https://dzen.ru/movieone" class="nav-link d-grid align-items-center" target="_blank">
+                        <img style="width: 18px" src="/img/zen.svg" alt="zen_image">
+                    </a>
+                </li>
+                <li class="nav-item ml-2">
                     <a href="https://t.me/kino_movieone" class="nav-link" target="_blank">
                         <i class="fa-brands fa-telegram"></i>
                     </a>
@@ -152,19 +157,24 @@
 
         <!-- Main Footer -->
         <footer class="main-footer d-flex justify-content-around">
-            <div class="justify-content-start col-6">
+            <div class="justify-content-start col-4">
                 <strong>MovieOne &copy; 2023</strong>
             </div>
-            <div class="d-flex justify-content-end col-6">
+            <div class="d-flex justify-content-end col-8">
 
-              <span class="nav-item">
+              <span class="nav-item mr-3 d-grid align-items-end">
                   <a  href="https://instagram.com/roman_makukha_89?igshid=OGQ5ZDc2ODk2ZA==" class="nav-link">
-                      <i class="fa-brands fa-instagram"></i>
+                      <i style="font-size: 24px" class ="fa-brands fa-instagram p-0 m-0"></i>
                   </a>
               </span>
-                <span class="nav-item ml-2">
+                <span class="nav-item mr-3 d-grid align-items-end">
+                    <a  href="https://dzen.ru/movieone" class="nav-link p-0 m-0" target="_blank">
+                        <img style="height: 28px; padding-bottom: 2px" src="/img/zen-grey.svg" alt="zen_image">
+                    </a>
+                </span>
+                <span class="nav-item mr-3 d-grid align-items-end">
                   <a href="https://t.me/kino_movieone" class="nav-link">
-                      <i class="fa-brands fa-telegram"></i>
+                      <i style="font-size: 24px" class="fa-brands fa-telegram p-0 m-0"></i>
                   </a>
               </span>
             </div>

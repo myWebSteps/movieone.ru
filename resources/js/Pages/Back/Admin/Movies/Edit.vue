@@ -44,7 +44,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="Slug">Slug:</label>
-                                    <input v-model="form.slug" type="text" class="form-control" id="slug" placeholder="Введите английское название">
+                                    <input v-model="form.slug" type="text" class="form-control" id="slug" placeholder="Введите слаг">
                                 </div>
                             </div>
 
