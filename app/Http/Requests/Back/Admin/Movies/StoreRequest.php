@@ -25,6 +25,7 @@ class StoreRequest extends FormRequest
             'kinopoiskId'=>'required|string',
             'nameRu'=>'required|string',
             'nameEn'=>'required|string',
+            'age_limits' => 'required|string',
             'countries' => 'required',
             'category'=>'required|string',
             'genres'=>'required',

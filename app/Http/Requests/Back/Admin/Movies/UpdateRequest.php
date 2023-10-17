@@ -23,20 +23,21 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'kinopoisk_id'=>'nullable',
-            'slug' => ['nullable', Rule::unique('movies', 'id')->ignore($this->id)],
-            'nameRu'=>'nullable',
-            'nameEn'=>'nullable',
-            'countries' => 'nullable',
-            'category_id'=>'nullable',
-            'genres'=>'nullable',
-            'year'=>'nullable',
-            'duration'=>'nullable',
-            'rate'=>'nullable',
-            'slogan'=>'nullable',
-            'description'=>'nullable',
+            'kinopoisk_id'=>'required',
+            'slug' => ['required', Rule::unique('movies', 'id')->ignore($this->id)],
+            'nameRu'=>'required',
+            'nameEn'=>'required',
+            'age_limits'=> 'required',
+            'countries' => 'required',
+            'category_id'=>'required',
+            'genres'=>'required',
+            'year'=>'required',
+            'duration'=>'required',
+            'rate'=>'required',
+            'slogan'=>'required',
+            'description'=>'required',
             'poster' => 'nullable',
-            'type'=>'nullable',
+            'type'=>'required',
         ];
     }
 }

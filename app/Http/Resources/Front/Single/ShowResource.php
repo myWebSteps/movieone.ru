@@ -24,6 +24,7 @@ class ShowResource extends JsonResource
             'posterUrl' => $posterUrl,
             'nameRu' => $this->nameRu,
             'nameEn' => $this->nameEn,
+            'age_limits' => $this->age_limits,
             'category' => $this->category_id,
             'genres' => $this->genres,
             'type' => $this->type,

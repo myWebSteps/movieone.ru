@@ -35,6 +35,8 @@
                         <p>{{movie.endYear}}</p>
                         <h5 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Рейтинг:</h5>
                         <p>{{movie.rate}}</p>
+                        <h5 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Ограничения по возрасту:</h5>
+                        <p>{{movie.age_limits}}</p>
                         <h5 v-if="movie.endYear != null" class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Страны:</h5>
                         <p>
                         <span v-for="country in movie.countries">
@@ -270,7 +272,7 @@
 
             <template v-if="relatedMovies.length > 0">
             <div class="bg-white info-header shadow rounded mb-4">
-                <div class="row d-flex align-content-center-start justify-content-start p-3 border-bottom">
+                <div class="row d-flex align-content-center-start justify-content-start p-3 border-bottom mb-3">
                         <h6 class="text-gray-900 m-2 font-weight-bold">Похожие фильмы:</h6>
                 </div>
                     <div class="row col-12 d-flex justify-content-center">

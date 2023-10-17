@@ -118,6 +118,14 @@
                             </div>
                         </div>
 
+                        <!-- AgeLimits -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="ageLimits">Возрастные ограничения:</label>
+                                <input v-model="form.age_limits" type="text" class="form-control" id="ageLimits" placeholder="Введите ограничение по возрасту">
+                            </div>
+                        </div>
+
                         <!--poster Upload -->
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -288,7 +296,7 @@
                     countries: [],
                     type: "",
                     duration: null,
-                    ageLimits: null,
+                    age_limits: null,
                     rate: null,
                     slogan: null,
                     description: null,
@@ -311,7 +319,7 @@
                 this.form.nameRu = response.data.nameRu
                 this.form.nameEn = response.data.nameOriginal
                 this.form.duration = response.data.filmLength
-                this.form.ageLimits = response.data.ratingAgeLimits
+                this.form.age_limits = response.data.ratingAgeLimits
                 this.form.rate = response.data.ratingKinopoisk
                 this.form.slogan = response.data.slogan
                 this.form.description = response.data.description
@@ -408,20 +416,21 @@
                 router.post('/admin/movies/store', this.form)
                 router.on('success', (event) => {
                     this.errors = null
-                    this.form.kinopoiskId = null,
-                        this.form.year = null,
-                        this.form.nameRu = null,
-                        this.form.nameEn = null,
-                        this.form.poster = null,
-                        this.form.category = "",
-                        this.form.countries = [],
-                        this.form.type = "",
-                        this.form.duration = null,
-                        this.form.ageLimits = null,
-                        this.form.rate = null,
-                        this.form.slogan = null,
-                        this.form.description = null,
+                    this.form.kinopoiskId = null
+                        this.form.year = null
+                        this.form.nameRu = null
+                        this.form.nameEn = null
+                        this.form.poster = null
+                        this.form.category = ""
+                        this.form.countries = []
+                        this.form.type = ""
+                        this.form.duration = null
+                        this.form.age_limits = null
+                        this.form.rate = null
+                        this.form.slogan = null
+                        this.form.description = null
                         this.form.genres = []
+                        this.form.poster = null
                 })
                 router.on('error', (errors) => {
                     this.errors = errors.detail.errors

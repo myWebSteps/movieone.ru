@@ -40,6 +40,14 @@
                                 </div>
                             </div>
 
+                            <!-- ageLimits -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="ageLimits">Ограничения по возрасту:</label>
+                                    <input v-model="form.age_limits" type="text" class="form-control" id="ageLimits" placeholder="Введите ограничения по возрасту">
+                                </div>
+                            </div>
+
                             <!-- Slug -->
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -181,6 +189,7 @@
                     kinopoisk_id: this.movie.kinopoisk_id,
                     nameRu: this.movie.nameRu,
                     nameEn: this.movie.nameEn,
+                    age_limits: this.movie.age_limits,
                     slug: this.movie.slug,
                     year: this.movie.year,
                     poster: null,
@@ -216,6 +225,7 @@
                     slug: this.form.slug,
                     nameRu: this.form.nameRu,
                     nameEn: this.form.nameEn,
+                    age_limits: this.form.age_limits,
                     countries: this.form.countries,
                     category_id: this.form.category_id,
                     genres: this.form.genres,

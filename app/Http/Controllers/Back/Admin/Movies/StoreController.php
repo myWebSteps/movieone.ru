@@ -31,6 +31,7 @@ class StoreController extends Controller
                     'kinopoisk_id' => $data['kinopoiskId'],
                     'nameRu' => $data['nameRu'],
                     'nameEn' => $data['nameEn'],
+                    'age_limits' => $data['age_limits'],
                     'poster' => $poster_path,
                     'type' => $data['type'],
                     'category_id' => $data['category'],
