@@ -34,6 +34,7 @@ class EditResource extends JsonResource
             'nameEn' => $this->nameEn,
             'age_limits' => $this->age_limits,
             'poster' => $posterUrl,
+            'trailer' => $this->trailer,
             'type' => $this->type,
             'category_id' => $this->category_id,
             'genres' => $genresArr,

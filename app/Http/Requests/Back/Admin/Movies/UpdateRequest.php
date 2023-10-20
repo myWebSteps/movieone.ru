@@ -38,6 +38,7 @@ class UpdateRequest extends FormRequest
             'description'=>'required',
             'poster' => 'nullable',
             'type'=>'required',
+            'trailer'=>'nullable|string',
         ];
     }
 }

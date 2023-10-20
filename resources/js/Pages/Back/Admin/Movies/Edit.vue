@@ -40,6 +40,14 @@
                                 </div>
                             </div>
 
+                            <!-- Trailer -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="trailer">Идентификатор трэйлера:</label>
+                                    <input v-model="form.trailer" type="text" class="form-control" id="trailer" placeholder="Введите идентификатор трэйлера">
+                                </div>
+                            </div>
+
                             <!-- ageLimits -->
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -201,6 +209,7 @@
                     rate: this.movie.rate,
                     slogan: this.movie.slogan,
                     description: this.movie.description,
+                    trailer: this.movie.trailer,
                 },
                 genresList: this.genres,
             }
@@ -225,6 +234,7 @@
                     slug: this.form.slug,
                     nameRu: this.form.nameRu,
                     nameEn: this.form.nameEn,
+                    trailer: this.form.trailer,
                     age_limits: this.form.age_limits,
                     countries: this.form.countries,
                     category_id: this.form.category_id,

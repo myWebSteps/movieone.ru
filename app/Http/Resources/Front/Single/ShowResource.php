@@ -22,6 +22,7 @@ class ShowResource extends JsonResource
             'slug' => $this->slug,
             'kinopoisk_id' => $this->kinopoisk_id,
             'posterUrl' => $posterUrl,
+            'trailer' => $this->trailer,
             'nameRu' => $this->nameRu,
             'nameEn' => $this->nameEn,
             'age_limits' => $this->age_limits,

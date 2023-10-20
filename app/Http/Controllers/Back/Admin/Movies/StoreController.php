@@ -33,6 +33,7 @@ class StoreController extends Controller
                     'nameEn' => $data['nameEn'],
                     'age_limits' => $data['age_limits'],
                     'poster' => $poster_path,
+                    'trailer' => $data['trailer'],
                     'type' => $data['type'],
                     'category_id' => $data['category'],
                     'year' => $data['year'],

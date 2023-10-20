@@ -17,7 +17,6 @@
                     <img src="/img/poster.jpg" class="img-fluid w-100" alt="promo poster">
                 </a>
             </div>
-
             <div class="col-xl-3 col-lg-3 col-sm-12">
                 <div class="bg-white p-3 widget shadow- rounded mb-4">
                     <div class="row">
@@ -79,18 +78,27 @@
                 </div>
                 <div class="bg-white p-3 widget shadow rounded mb-4">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <!-- Home -->
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Видео</a>
                         </li>
+                        <!-- Trailers -->
+                        <li class="nav-item" v-if="movie.trailer">
+                            <a class="nav-link" id="trailer-tab" data-toggle="tab" href="#trailer" role="tab" aria-controls="trailer" aria-selected="false">Трейлеры</a>
+                        </li>
+                        <!-- Actors -->
                         <li @click="getStaff(movie.kinopoisk_id)" class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Актеры
+                            <a class="nav-link" id="actors-tab" data-toggle="tab" href="#actors" role="tab" aria-controls="actors" aria-selected="false">Актеры
                             </a>
                         </li>
+                        <!-- Reviews -->
                         <li class="nav-item">
-                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Рецензии<span class="badge badge-danger badge-counter ml-1">{{reviews.total}}</span></a>
+                            <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Рецензии<span class="badge badge-danger badge-counter ml-1">{{reviews.total}}</span></a>
                         </li>
                     </ul>
+
                     <div class="tab-content" id="myTabContent">
+                        <!-- Home Tab -->
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
                             <div class="kinobox_player"></div>
@@ -100,9 +108,27 @@
                                 <p class="text-gray-800" v-html="movie.description"></p>
                             </article>
 
+                            <!-- Trailers Tab -->
 
+
+                            <!--Actors Tab-->
                         </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <!-- Trailers Tab -->
+                        <div v-if="movie.trailer" class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
+
+                            <iframe width="480" height="270" :src="`${movie.trailer}?from_block=partner&from=zen&mute=0&autoplay=0&tv=0`"
+                                    allow="autoplay; fullscreen; accelerometer; gyroscope; picture-in-picture; encrypted-media"
+                                    frameborder="0" scrolling="no" allowfullscreen>
+
+                            </iframe>
+
+                            <!-- Trailers Tab -->
+
+
+                            <!--Actors Tab-->
+                        </div>
+                        <!-- Actors Tab -->
+                        <div class="tab-pane fade" id="actors" role="tabpanel" aria-labelledby="actors-tab">
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4">
                                     <h5 class="h6 mt-0 mb-3 font-weight-bold text-gray-900">Режиссеры:</h5>
@@ -151,7 +177,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <!-- Reviews Tab-->
+                        <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                             <div class="card-body p-0 reviews-card">
 
                                 <nav v-if="reviews.totalPages > 1" aria-label="reviews pagination">

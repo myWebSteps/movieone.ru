@@ -130,7 +130,7 @@
 
         mounted() {
 
-            ym(94438576, 'hit', '/catalog');
+            ym(94438576, 'hit', '/movies');
         },
 
         methods:{

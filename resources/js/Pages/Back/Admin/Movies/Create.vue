@@ -118,6 +118,14 @@
                             </div>
                         </div>
 
+                        <!-- Trailer -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="trailer">Идентификатор трэйлера:</label>
+                                <input v-model="form.trailer" type="text" class="form-control" id="trailer" placeholder="Введите идентификатор трэйлера">
+                            </div>
+                        </div>
+
                         <!-- AgeLimits -->
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -301,6 +309,7 @@
                     slogan: null,
                     description: null,
                     genres: [],
+                    trailer: "",
                 },
                 errors: null,
             }
@@ -431,6 +440,7 @@
                         this.form.description = null
                         this.form.genres = []
                         this.form.poster = null
+                        this.form.trailer = ""
                 })
                 router.on('error', (errors) => {
                     this.errors = errors.detail.errors

@@ -36,6 +36,7 @@ class StoreRequest extends FormRequest
             'description'=>'required|string',
             'poster' => 'required',
             'type'=>'required|string',
+            'trailer' => 'nullable|string',
         ];
     }
 }
