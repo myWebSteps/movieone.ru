@@ -77,25 +77,43 @@
                                         </div>
                                     </Link>
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
 
-                    <nav v-if="movies.last_page > 1" aria-label="Page navigation example" class="d-grid justify-content-md-center">
+                    <div class="row d-grid justify-content-end">
+                    <nav v-if="movies.last_page > 1" aria-label="Page navigation example">
                         <ul class="pagination">
-
-                            <li v-for="page in movies.links" class="page-item">
-                                <template v-if="Number(page.label)">
-                                    <a @click="changePage(page.label)" :class="page.label == this.data.page ? 'active' : ''" class="page-link" href="#">{{page.label}}</a>
-                                </template>
+                            <li class="page-item">
+                                <a @click.prevent="changePage(movies.current_page - 1)" class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
                             </li>
-
-
+                            <li v-for="link in movies.links" class="page-item">
+                            <template v-if="Number(link.label) &&
+                            (movies.current_page - link.label < 3 &&
+                            movies.current_page - link.label > -3) ||
+                            Number(link.label) === 1 || Number(link.label) === movies.last_page
+                            ">
+                                <a @click.prevent="changePage(link.label)" :class="link.active? 'active' : ''" class="page-link" href="#">{{link.label}}</a>
+                            </template>
+                            <template v-if="Number(link.label) &&
+                            movies.current_page != 4 &&
+                            (movies.current_page - link.label === 3) ||
+                            Number(link.label) &&
+                            movies.current_page != movies.last_page - 3 &&
+                            (movies.current_page - link.label === -3)">
+                                <span class="page-link">...</span>
+                            </template>
+                            </li>
+                            <li v-if="movies.current_page != movies.last_page" class="page-item">
+                                <a @click.prevent="changePage(movies.current_page + 1)" class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
+                    </div>
                 </div>
 
 

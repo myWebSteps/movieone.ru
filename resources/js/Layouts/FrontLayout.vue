@@ -11,6 +11,7 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto mr-2">
                 <!-- Navbar Search -->
+
                 <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                         <i class="fas fa-search"></i>
@@ -18,11 +19,11 @@
                     <div class="navbar-search-block">
                         <form class="form-inline">
                             <div class="input-group input-group-sm">
-                                <input v-model="searchKey" class="form-control form-control-navbar" placeholder="Введите название видео" aria-label="Search">
+                                <input @click.enter.prevent="commenceSearch()" v-model="searchKey" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                                 <div class="input-group-append">
-                                    <Link :href="`/search?key=${searchKey}`" class="btn btn-navbar">
+                                    <button @click.prevent="commenceSearch()" class="btn btn-navbar" type="submit">
                                         <i class="fas fa-search"></i>
-                                    </Link>
+                                    </button>
                                     <button class="btn btn-navbar" type="button" data-widget="navbar-search">
                                         <i class="fas fa-times"></i>
                                     </button>
@@ -64,22 +65,6 @@
                     </div>
 
 
-                </li>
-
-            <li class="nav-item ml-4">
-                    <a  href="https://instagram.com/roman_makukha_89?igshid=OGQ5ZDc2ODk2ZA==" class="nav-link" target="_blank">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                </li>
-                <li class="nav-item ml-2">
-                    <a  href="https://dzen.ru/movieone" class="nav-link d-grid align-items-center" target="_blank">
-                        <img style="width: 18px" src="/img/zen.svg" alt="zen_image">
-                    </a>
-                </li>
-                <li class="nav-item ml-2">
-                    <a href="https://t.me/kino_movieone" class="nav-link" target="_blank">
-                        <i class="fa-brands fa-telegram"></i>
-                    </a>
                 </li>
             </ul>
         </nav>
@@ -189,10 +174,12 @@
 
 <script>
     import { Link } from "@inertiajs/vue3";
+    import {router} from '@inertiajs/vue3';
     import ApplicationLogo from "@/Components/ApplicationLogo.vue";
     import NavLink from "@/Components/NavLink.vue";
     import Dropdown from "@/Components/Dropdown.vue";
     import DropdownLink from "@/Components/DropdownLink.vue";
+
 
 
 
@@ -216,9 +203,17 @@
 
                 this.playListCount()
                 this.makePlaylist()
+
         },
 
+
+
         methods:{
+            commenceSearch(){
+                if(this.searchKey) {
+                    router.get(`/search?key=${this.searchKey}`)
+                }
+            },
 
             playListCount(){
                 if(localStorage.hasOwnProperty('playlist') && localStorage.getItem('playlist') != '')

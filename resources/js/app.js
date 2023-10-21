@@ -17,7 +17,7 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'MovieOne';
+// const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'MovieOne';
 
 createInertiaApp({
     title: (title) => `${title}`,

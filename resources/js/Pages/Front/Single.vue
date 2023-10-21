@@ -116,12 +116,13 @@
                         <!-- Trailers Tab -->
                         <div v-if="movie.trailer" class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
 
-                            <iframe width="480" height="270" :src="`${movie.trailer}?from_block=partner&from=zen&mute=0&autoplay=0&tv=0`"
+                            <div class="col-lg-8 col-md-9 col-sm-10 col-xs-12">
+                            <iframe width="100%" height="270" :src="`${movie.trailer}?from_block=partner&from=zen&mute=0&autoplay=0&tv=0`"
                                     allow="autoplay; fullscreen; accelerometer; gyroscope; picture-in-picture; encrypted-media"
                                     frameborder="0" scrolling="no" allowfullscreen>
 
                             </iframe>
-
+                            </div>
                             <!-- Trailers Tab -->
 
 
