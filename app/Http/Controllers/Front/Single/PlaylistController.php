@@ -18,7 +18,7 @@ class PlaylistController extends Controller
 
         $ids = explode(',', $data['id']);
 
-        $result = Movie::whereIn('id', $ids)->get();
+        $result = Movie::whereIn('id', $ids)->orderBy('nameRu', 'ASC')->get();
 
         return PlaylistResource::collection($result);
     }

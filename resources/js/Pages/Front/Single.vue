@@ -367,6 +367,7 @@
 
         mounted() {
         this.getReviews()
+        this.togglePlaylistButton()
 
             new Kinobox('.kinobox_player', {
                 'X-Settings': {
@@ -432,11 +433,22 @@
         },
 
         methods:{
+
+            togglePlaylistButton(){
+                if(localStorage.getItem('playlist')){
+                    this.playlistRes = localStorage.getItem('playlist').split(',')
+                    if(this.playlistRes.includes(String(this.movie.id))){
+                        this.playlistItems = true;
+                    }else{
+                        this.playlistItems = false;
+                    }
+                }
+            },
+
             togglePlaylist(id){
                 if(!localStorage.getItem('playlist')){
                     this.playlistRes.push(id)
                     localStorage.setItem('playlist', this.playlistRes)
-
                     this.$refs.front_layout.playListCount()
                     this.$refs.front_layout.makePlaylist()
                     this.playlistItems = true;
