@@ -14,7 +14,7 @@
             <div class="col-12 bg-white shadow mb-4">
                 <a href="https://t.me/kino_movieone" target="_blank">
                 <!--Постер Рекламы-->
-                    <img src="/img/poster.jpg" class="img-fluid w-100" alt="promo poster">
+                    <img src="/img/poster.webp" class="img-fluid w-100" alt="promo poster">
                 </a>
             </div>
             <div class="col-xl-3 col-lg-3 col-sm-12">
