@@ -9,22 +9,17 @@
     <FrontLayout>
 
         <div class="page-header">
-
-            <swiper
-                :slides-per-view="3"
-                :space-between="0"
-                @swiper="onSwiper"
-                @slideChange="onSlideChange">
-                <swiper-slide><img class="img-fluid" src="/img/slider1.webp" alt="..."></swiper-slide>
-                <swiper-slide><img class="img-fluid" src="/img/slider2.webp" alt="..."></swiper-slide>
-                <swiper-slide><img class="img-fluid" src="/img/slider3.webp" alt="..."></swiper-slide>
-                <swiper-slide><img class="img-fluid" src="/img/slider4.webp" alt="..."></swiper-slide>
-                <swiper-slide><img class="img-fluid" src="/img/slider5.webp" alt="..."></swiper-slide>
-                <swiper-slide><img class="img-fluid" src="/img/slider6.webp" alt="..."></swiper-slide>
-                <swiper-slide><img class="img-fluid" src="/img/slider7.webp" alt="..."></swiper-slide>
-                <swiper-slide><img class="img-fluid" src="/img/slider8.webp" alt="..."></swiper-slide>
-                <swiper-slide><img class="img-fluid" src="/img/slider9.webp" alt="..."></swiper-slide>
-            </swiper>
+            <div class="row">
+                <div class="col-4 p-0 m-0">
+                    <img class="img-fluid" src="/img/slider5.webp" alt="...">
+                </div>
+                <div class="col-4 p-0 m-0">
+                    <img class="img-fluid" src="/img/slider6.webp" alt="...">
+                </div>
+                <div class="col-4 p-0 m-0">
+                    <img class="img-fluid" src="/img/slider4.webp" alt="...">
+                </div>
+            </div>
 
         <!-- Main content -->
         <section class="content">
@@ -88,31 +83,14 @@
     import { Head } from "@inertiajs/vue3";
     import { Link } from "@inertiajs/vue3";
     import FrontLayout from "@/Layouts/FrontLayout.vue";
-    import {router} from '@inertiajs/vue3';
-
-    import { Swiper, SwiperSlide } from 'swiper/vue';
-    import 'swiper/css';
-
 
     export default {
         name: "Home",
         props: ['data'],
-        components: {FrontLayout, Head, Link, Swiper, SwiperSlide},
+        components: {FrontLayout, Head, Link},
         mounted() {
             ym(94438576, 'hit', '/');
         },
 
-        setup() {
-            const onSwiper = (swiper) => {
-                console.log(swiper);
-            };
-            const onSlideChange = () => {
-                console.log('slide change');
-            };
-            return {
-                onSwiper,
-                onSlideChange,
-            };
-        },
     }
 </script>
