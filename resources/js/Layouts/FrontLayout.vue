@@ -118,7 +118,7 @@
                         data-accordion="false">
 
                         <li v-for="category in $page.props.categories" class="nav-item">
-                            <Link :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
+                            <Link :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" data-widget="pushmenu" :href="`/movies?category=${category.slug}&order=year&page=1`">
                                 <i :class="category.logo"></i>
                                 <p class="pl-2">{{category.title}}</p>
                             </Link>
