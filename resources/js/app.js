@@ -1,7 +1,7 @@
 import './bootstrap';
 
 // import '../assets/css/osahan.css';
-import '../assets/vendor/fontawesome-free/css/all.min.css';
+// import '../assets/vendor/fontawesome-free/css/all.min.css';
 import '../assets/AdminLte/dist/css/alt/adminlte.core.css';
 import '../css/app.css';
 
