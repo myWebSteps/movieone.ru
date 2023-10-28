@@ -80,7 +80,7 @@
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <!-- Home -->
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Видео</a>
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Описание</a>
                         </li>
                         <!-- Trailers -->
                         <li class="nav-item" v-if="movie.trailer">
@@ -101,7 +101,7 @@
                         <!-- Home Tab -->
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                            <div class="kinobox_player"></div>
+                            <div v-if="movie.video_allowed == 1" class="kinobox_player"></div>
 
                             <article class="mt-2">
                                 <h1 class="text-gray-800">{{movie.nameRu}} / {{movie.nameEn}}</h1>
@@ -140,7 +140,7 @@
                                                 <div class="status-indicator bg-success"></div>
                                             </div>
                                             <div class="font-weight-bold">
-                                                <div class="text-truncate">{{person.nameRu}}</div>
+                                                <div class="text-truncate text-gray-900">{{person.nameRu}}</div>
                                                 <div class="small text-gray-500">{{person.professionText}}</div>
                                             </div>
                                         </a>
@@ -155,7 +155,7 @@
                                                 <div class="status-indicator bg-success"></div>
                                             </div>
                                             <div class="font-weight-bold">
-                                                <div class="text-truncate">{{person.nameRu}}</div>
+                                                <div class="text-truncate text-gray-900">{{person.nameRu}}</div>
                                                 <div class="small text-gray-500">{{person.professionText}}</div>
                                             </div>
                                         </a>
@@ -170,7 +170,7 @@
                                                 <div class="status-indicator bg-success"></div>
                                             </div>
                                             <div class="font-weight-bold">
-                                                <div class="text-truncate">{{person.nameRu}}</div>
+                                                <div class="text-truncate text-gray-900">{{person.nameRu}}</div>
                                                 <div class="small text-gray-500">{{person.professionText}}</div>
                                             </div>
                                         </a>
@@ -307,7 +307,7 @@
                     <div v-for="relatedMovie in relatedMovies" class="col-xl-3 col-md-3 col-sm-4 col-9 col-6">
                         <div  class="card e-card shadow border-0">
                             <Link :href="`/movies/${relatedMovie.slug}`" class=""><div class="m-card-cover">
-                                <img :src="relatedMovie.poster" class="card-img-top" alt="...">
+                                <img v-lazy="relatedMovie.poster" class="card-img-top" alt="...">
                             </div>
                                 <div class="card-body p-0">
                                     <div class="row no-gutters align-items-center">
@@ -369,65 +369,67 @@
         this.getReviews()
         this.togglePlaylistButton()
 
-            new Kinobox('.kinobox_player', {
-                'X-Settings': {
-                    "Alloha" : {
-                        "enable": true,
-                        "position": 1,
-                        "token": "",
-                    },
-                    "Ashdi": {
-                        "enable": true,
-                        "position": 2,
-                        "token": "",
-                    },
-                    "Bazon": {
-                        "enable": true,
-                        "position": 3,
-                        "token": "",
-                    },
-                    "Cdnmovies": {
-                        "enable": true,
-                        "position": 4,
-                        "token": "",
-                    },
-                    "Collaps":{
-                        "enable": true,
-                        "position": 5,
-                        "token": "",
-                    },
-                    "Hdvb":{
-                        "enable": true,
-                        "position": 6,
-                        "token": "",
-                    },
-                    "Iframe":{
-                        "enable": true,
-                        "position": 7,
-                        "token": "",
-                    },
-                    "Kodik":{
-                        "enable": true,
-                        "position": 8,
-                        "token": "",
-                    },
-                    "Videocdn": {
-                        "enable": true,
-                        "position": 9,
-                        "token": "",
-                    },
-                    "Voidboost": {
-                        "enable": true,
-                        "position": 10,
-                        "token": "",
-                    },
+            if(this.movie.video_allowed == 1){
+                new Kinobox('.kinobox_player', {
+                    'X-Settings': {
+                        "Alloha" : {
+                            "enable": true,
+                            "position": 1,
+                            "token": "",
+                        },
+                        "Ashdi": {
+                            "enable": true,
+                            "position": 2,
+                            "token": "",
+                        },
+                        "Bazon": {
+                            "enable": true,
+                            "position": 3,
+                            "token": "",
+                        },
+                        "Cdnmovies": {
+                            "enable": true,
+                            "position": 4,
+                            "token": "",
+                        },
+                        "Collaps":{
+                            "enable": true,
+                            "position": 5,
+                            "token": "",
+                        },
+                        "Hdvb":{
+                            "enable": true,
+                            "position": 6,
+                            "token": "",
+                        },
+                        "Iframe":{
+                            "enable": true,
+                            "position": 7,
+                            "token": "",
+                        },
+                        "Kodik":{
+                            "enable": true,
+                            "position": 8,
+                            "token": "",
+                        },
+                        "Videocdn": {
+                            "enable": true,
+                            "position": 9,
+                            "token": "",
+                        },
+                        "Voidboost": {
+                            "enable": true,
+                            "position": 10,
+                            "token": "",
+                        },
 
-                },
-                search: {
-                    kinopoisk: this.movie.kinopoisk_id,
-                    title: this.movie.nameEn
-                }
-            }).init();
+                    },
+                    search: {
+                        kinopoisk: this.movie.kinopoisk_id,
+                        title: this.movie.nameEn
+                    }
+                }).init();
+            }
 
                 ym(94438576, 'hit', `/movies/${this.movie.slug}`);
         },

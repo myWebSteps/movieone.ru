@@ -30,7 +30,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::delete('/{category}', \App\Http\Controllers\Back\Admin\Categories\DestroyController::class)->name('categories.destroy');
         });
         route::prefix('/genres')->group(function(){
-            Route::get('{genre}/{category}/edit', \App\Http\Controllers\Back\Admin\Genres\EditController::class)->name('genres.edit');
+            Route::get('{genre}/edit', \App\Http\Controllers\Back\Admin\Genres\EditController::class)->name('genres.edit');
             Route::get('{category}/create', \App\Http\Controllers\Back\Admin\Genres\CreateController::class)->name('genres.create');
             Route::post('{category}/store', \App\Http\Controllers\Back\Admin\Genres\StoreController::class)->name('genres.store');
             Route::get('/', \App\Http\Controllers\Back\Admin\Genres\IndexController::class)->name('genres.index');

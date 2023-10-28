@@ -23,9 +23,9 @@
                             <label>Тип:</label>
                             <select @change="send()" v-model="form.type" style="width: 100%" class="form-select">
                                 <option :value=null>Кино и сериалы</option>
-                                <option value="2">Кино</option>
-                                <option value="3">Сериалы</option>
-                                <option value="4">Мини сериалы</option>
+                                <option value="feature">Полнометражные</option>
+                                <option value="serial">Сериалы</option>
+                                <option value="mini_serial">Мини сериалы</option>
                             </select>
                         </div>
 
@@ -33,7 +33,7 @@
                             <label for="genres">Жанр:</label>
                             <select @change="send()" v-model="form.genre" id="genres" class="form-select mb-1" aria-label="Default select example">
                                 <option :value=null>Все жанры</option>
-                                <option v-for="genre in genres" :value="genre.id">{{genre.title}}</option>
+                                <option v-for="genre in genres" :value="genre.slug">{{genre.title}}</option>
 
                             </select>
                         </div>
@@ -55,7 +55,7 @@
                                 <div  class="card e-card shadow border-0">
                                     <Link :href="`/movies/${movie.data.slug}`">
                                         <div class="m-card-cover">
-                                            <img :src="movie.data.posterUrl" class="card-img-top" alt="...">
+                                            <img v-lazy="movie.data.posterUrl" class="card-img-top" alt="...">
                                         </div>
                                         <div class="card-body p-0">
                                             <div class="row no-gutters align-items-center">
@@ -136,6 +136,7 @@
 
         data(){
             return{
+                queryArr: {},
                 form: {
                     category: this.data.category,
                     type: this.data.type,
@@ -147,13 +148,17 @@
         },
 
         mounted() {
-
             ym(94438576, 'hit', '/movies');
         },
 
         methods:{
             send(){
-                router.get('/movies', this.form);
+                for(let key in this.form){
+                    if(this.form[key] !== null) {
+                        this.queryArr[key] = this.form[key]
+                    }
+                }
+                router.get('/movies', this.queryArr);
             },
 
             changePage(page){

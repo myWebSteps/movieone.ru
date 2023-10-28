@@ -53,7 +53,7 @@
 <!--                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>-->
                                     </h3>
                                     <p class="text-sm">{{item.nameEn}}</p>
-                                    <p class="text-sm text-muted">{{item.year}}</p>
+                                    <p class="text-sm text-danger">{{item.year}}</p>
                                     <p v-for="genre in item.genres" class="text-sm text-muted">{{genre.title}} &nbsp</p>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                         data-accordion="false">
 
                         <li v-for="category in $page.props.categories" class="nav-item">
-                            <Link  class="nav-link" :href="`/movies?category=${category.id}&order=year&page=1&genre=&type=`">
+                            <Link :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
                                 <i :class="category.logo"></i>
                                 <p class="pl-2">{{category.title}}</p>
                             </Link>
@@ -118,7 +118,7 @@
                         data-accordion="false">
 
                         <li v-for="category in $page.props.categories" class="nav-item">
-                            <Link  class="nav-link" data-widget="pushmenu" :href="`/movies?category=${category.id}&order=year&page=1&genre=&type=`">
+                            <Link :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
                                 <i :class="category.logo"></i>
                                 <p class="pl-2">{{category.title}}</p>
                             </Link>

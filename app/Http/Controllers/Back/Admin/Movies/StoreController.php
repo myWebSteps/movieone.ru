@@ -19,7 +19,7 @@ class StoreController extends Controller
         $data = $request->validated();
 
             Image::make($data['poster'])
-                ->fit(684, 1000)
+                ->fit(250, 370)
                 ->save(storage_path('/app/public/files'.'/poster'.$data['kinopoiskId'].'.'.$data['poster']->getClientOriginalExtension()));
 
 

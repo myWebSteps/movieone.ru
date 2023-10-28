@@ -4,6 +4,8 @@
 namespace App\Http\Filters;
 
 
+use App\Models\Category;
+use App\Models\Genre;
 use Illuminate\Database\Eloquent\Builder;
 
 class MovieFilter extends AbstractFilter
@@ -28,25 +30,46 @@ class MovieFilter extends AbstractFilter
 
     protected function category(Builder $builder, $value)
     {
-        $builder->where('category_id', (int)$value);
+
+        $cat = Category::where('slug', $value)->first();
+
+        $builder->where('category_id', $cat->id);
     }
 
     protected function type(Builder $builder, $value)
     {
-        $builder->where('type', (int)$value);
+        if($value === 'feature')
+        {
+            $type = 2;
+        }else if($value === 'serial')
+        {
+            $type = 3;
+        }else if($value === 'mini_serial')
+        {
+            $type = 4;
+        }else
+        {
+        abort(404);
+        }
+
+        $builder->where('type', $type);
     }
 
     protected function search(Builder $builder, $value)
     {
         $builder->where('nameRu', 'like', "%$value%")
-        ->orWhere('nameEn', 'like', "%$value%")
-        ->orWhere('description', 'like', "%$value%");
+        ->orWhere('nameEn', 'like', "%$value%");
     }
 
     protected function genre(Builder $builder, $value)
     {
-        $builder->whereHas('genres', function ($b) use($value){
-            $b->where('genre_id', (int)$value);
+        $cat = Category::where('slug', $this->getQueryParam('category'))->first();
+
+        $builder->where('category_id', (int)$cat->id)->whereHas('genres', function ($b) use($value){
+
+            $genre = Genre::where('slug', $value)->first();
+
+            $b->where('genre_id', $genre->id);
         });
     }
 }

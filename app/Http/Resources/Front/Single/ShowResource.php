@@ -35,7 +35,7 @@ class ShowResource extends JsonResource
             'endYear' => $this->year,
             'rate' => $this->rate,
             'countries' => $this->countries,
-
+            'video_allowed' => $this->video_allowed,
         ];
     }
 }

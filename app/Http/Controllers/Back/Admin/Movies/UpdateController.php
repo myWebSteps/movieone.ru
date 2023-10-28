@@ -18,7 +18,7 @@ class UpdateController extends Controller
 
         if($data['poster'] != null){
             Image::make($data['poster'])
-                ->fit(684, 1000)
+                ->fit(250, 370)
                 ->save(storage_path('/app/public/files'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension()));
         }
 

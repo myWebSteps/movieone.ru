@@ -11,11 +11,15 @@
                 <div class="row">
                     <div class="col-md-6 col-12">
 
-                    <form @submit.prevent="updateCategory(category.id, category.title, category.logo)">
+                    <form @submit.prevent="updateCategory(category.id, category.title, category.slug, category.logo)">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="categoryTitle">Category Title</label>
                                 <input v-model="category.title" type="text" class="form-control" id="categoryTitle" placeholder="Название категории">
+                            </div>
+                            <div class="form-group">
+                                <label for="categorySlug">Category Title</label>
+                                <input v-model="category.slug" type="text" class="form-control" id="categorySlug" placeholder="Slug категории">
                             </div>
                             <div class="form-group">
                                 <label for="categoryLogo">CategoryLogo</label>
@@ -52,8 +56,8 @@
 
 
         methods:{
-            updateCategory(id, title, logo){
-                router.patch(`/admin/categories/${id}`, {title: title, logo: logo})
+            updateCategory(id, title, slug, logo){
+                router.patch(`/admin/categories/${id}`, {title: title, slug: slug, logo: logo})
             },
         },
 

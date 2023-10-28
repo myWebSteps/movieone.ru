@@ -43,7 +43,8 @@ class EditResource extends JsonResource
             'duration' => $this->duration,
             'rate' => $this->rate,
             'slogan' => $this->slogan,
-            'description' => $this->description
+            'description' => $this->description,
+            'video_allowed' => $this->video_allowed,
         ];
     }
 }

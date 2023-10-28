@@ -18,6 +18,10 @@
                                 <input v-model="form.title" type="text" class="form-control" id="categoryTitle" placeholder="Название категории">
                             </div>
                             <div class="form-group">
+                                <label for="categorySlug">Category Slug</label>
+                                <input v-model="form.slug" type="text" class="form-control" id="categorySlug" placeholder="Slug категории">
+                            </div>
+                            <div class="form-group">
                                 <label for="categoryLogo">CategoryLogo</label>
                                 <input v-model="form.logo" type="text" class="form-control" id="categoryLogo" placeholder="Logo категории">
                             </div>
@@ -54,6 +58,7 @@
             return{
                 form:{
                     title: null,
+                    slug: null,
                     logo: null,
                 },
             }

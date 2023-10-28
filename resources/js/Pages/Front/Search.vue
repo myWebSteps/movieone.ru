@@ -24,7 +24,7 @@
                                 <div  class="card e-card shadow border-0">
                                     <Link :href="`/movies/${movie.slug}`">
                                         <div class="m-card-cover">
-                                            <img :src="movie.posterUrl" class="card-img-top" alt="...">
+                                            <img v-lazy="movie.posterUrl" class="card-img-top" alt="...">
                                         </div>
                                         <div class="card-body p-0">
                                             <div class="row no-gutters align-items-center">

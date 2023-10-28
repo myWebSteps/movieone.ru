@@ -21,7 +21,21 @@
                                 </div>
                             </div>
 
+                            <!-- Video allowed -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Показ видео:</label>
+                                    <select v-model="form.video_allowed" class="form-select">
+                                        <option :value="1">Разрешено</option>
+                                        <option :value="0">Запрещено</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
                         </div>
+
+
                         <div class="row">
 
                             <!-- NameRu -->
@@ -120,7 +134,7 @@
                                     <label>Тип:</label>
                                     <select v-model="form.type" style="width: 100%" class="form-select">
                                         <option value="" disabled>Выберите Тип</option>
-                                        <option value="2">Кино</option>
+                                        <option value="2">Полнометражные</option>
                                         <option value="3">Сериалы</option>
                                         <option value="4">Мини сериалы</option>
                                     </select>
@@ -210,6 +224,7 @@
                     slogan: this.movie.slogan,
                     description: this.movie.description,
                     trailer: this.movie.trailer,
+                    video_allowed: this.movie.video_allowed,
                 },
                 genresList: this.genres,
             }
@@ -246,6 +261,7 @@
                     description: this.form.description,
                     poster: this.form.poster,
                     type: this.form.type,
+                    video_allowed: this.form.video_allowed,
                 })
             },
 

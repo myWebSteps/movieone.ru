@@ -10,6 +10,7 @@ use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use function Symfony\Component\ErrorHandler\ErrorRenderer\abbrClass;
 
 class IndexController extends Controller
 {
@@ -17,9 +18,26 @@ class IndexController extends Controller
     {
         $data = $request->all();
 
-        $category = Category::where('id', $request->get('category'))->first();
+        if(!isset($data['category']))
+        {
+            abort(404);
+        };
+        if(!isset($data['type']))
+        {
+            $data['type'] = null;
+        };
+        if(!isset($data['genre']))
+        {
+            $data['genre'] = null;
+        };
+        if(!isset($data['page']))
+        {
+            $data['page'] = 1;
+        };
 
-        $genres = Genre::where('category_id', $request->get('category'))->get();
+        $category = Category::where('slug', $request->get('category'))->first();
+
+        $genres = Genre::where('category_id', $category->id)->get();
 
         $filter = app()->make(MovieFilter::class, ['queryParams' => array_filter($data)]);
 

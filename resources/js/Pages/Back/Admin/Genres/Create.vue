@@ -18,6 +18,10 @@
                                 <label for="genreTitle">Genre Title</label>
                                 <input v-model="form.title" type="text" class="form-control" id="genreTitle" placeholder="Название жанра">
                             </div>
+                            <div class="form-group">
+                                <label for="genreSlug">Slug</label>
+                                <input v-model="form.slug" type="text" class="form-control" id="genreSlug" placeholder="Slug жанра">
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
@@ -52,6 +56,7 @@
               form:{
                   title: null,
                   category_id: this.data,
+                  slug: null,
               },
           }
         },
