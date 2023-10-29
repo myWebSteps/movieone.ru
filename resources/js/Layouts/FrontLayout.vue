@@ -72,7 +72,7 @@
          <!-- Main Sidebar Container -->
 
         <!--Laptop version -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand d-none d-sm-block">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand d-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block">
             <!-- Brand Logo -->
             <Link href="/" class="brand-link">
                 <img src="/img/logo-icon.png" alt="AdminLTE Logo" class="brand-image">
@@ -88,7 +88,7 @@
                         data-accordion="false">
 
                         <li v-for="category in $page.props.categories" class="nav-item">
-                            <Link :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
+                            <Link :class="{'custom-active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
                                 <i :class="category.logo"></i>
                                 <p class="pl-2">{{category.title}}</p>
                             </Link>
@@ -102,7 +102,7 @@
         </aside>
 
         <!--Mobile version-->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand d-block d-sm-none">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand d-block d-sm-block d-md-block d-lg-none d-xl-none d-xxl-none">
             <!-- Brand Logo -->
             <Link data-widget="pushmenu" href="/" class="brand-link">
                 <img src="/img/logo-icon.png" alt="AdminLTE Logo" class="brand-image">
@@ -118,7 +118,7 @@
                         data-accordion="false">
 
                         <li v-for="category in $page.props.categories" class="nav-item">
-                            <Link :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" data-widget="pushmenu" :href="`/movies?category=${category.slug}&order=year&page=1`">
+                            <Link :class="{'custom-active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" data-widget="pushmenu" :href="`/movies?category=${category.slug}&order=year&page=1`">
                                 <i :class="category.logo"></i>
                                 <p class="pl-2">{{category.title}}</p>
                             </Link>

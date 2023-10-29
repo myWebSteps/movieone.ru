@@ -151,7 +151,7 @@ a {
     max-width: 10rem;
 }
 
-.active{
-    border: 1px solid white;
-    background-color: inherit !important;
+.custom-active{
+    border-bottom: 1px solid white;
+    box-shadow: 5px 2px 2px whitesmoke;
 }
