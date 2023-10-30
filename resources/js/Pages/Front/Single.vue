@@ -300,13 +300,14 @@
 
             <template v-if="relatedMovies.length > 0">
             <div class="bg-white info-header shadow rounded mb-4">
-                <div class="row d-flex align-content-center-start justify-content-start p-3 border-bottom mb-3">
+                <div class="row d-flex align-content-center-start justify-content-start p-3 border-bottom">
                         <h6 class="text-gray-900 m-2 font-weight-bold">Похожие фильмы:</h6>
                 </div>
-                    <div class="row col-12 d-flex justify-content-center">
+                    <div class="row col-12 mb-3 mt-3 d-flex justify-content-center row-gap-3">
                     <div v-for="relatedMovie in relatedMovies" class="col-xl-3 col-md-3 col-sm-4 col-9 col-6">
                         <div  class="card e-card shadow border-0">
-                            <Link :href="`/movies/${relatedMovie.slug}`" class=""><div class="m-card-cover">
+                            <Link :href="`/movies/${relatedMovie.slug}`" class="">
+                                <div class="m-card-cover">
                                 <img v-lazy="relatedMovie.poster" class="card-img-top" alt="...">
                             </div>
                                 <div class="card-body p-0">
