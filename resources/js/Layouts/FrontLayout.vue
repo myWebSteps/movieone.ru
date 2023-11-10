@@ -3,7 +3,7 @@
     <div id="wrapper">
         <!-- Sidebar -->
         <div class="sticky-sidebar">
-        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-dark accordion toggled" id="accordionSidebar">
             <!-- Sidebar - Brand -->
             <Link class="sidebar-brand d-flex align-items-center justify-content-center p-2" href="/">
                 <img class="h-100" src="/img/logo-icon.png" alt="logo image">

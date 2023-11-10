@@ -477,6 +477,7 @@
             },
 
             getReviews(page = 1){
+
                 axios.get(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${this.movie.kinopoisk_id}/reviews?page=${page}&order=DATE_DESC`,
                     {
                         headers: {
@@ -486,7 +487,6 @@
 
                     })
                     .then(r=>{
-                        console.log(r)
                         this.reviews = r.data
                         this.currentPage = page
                     })
