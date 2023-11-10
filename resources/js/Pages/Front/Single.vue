@@ -119,9 +119,11 @@
                                                     allow="autoplay; fullscreen; accelerometer; gyroscope; picture-in-picture; encrypted-media"
                                                     frameborder="0" scrolling="no" allowfullscreen>
                                             </iframe>
+                                            <p class="mb-0">{{trailer.name}}</p>
                                         </div>
                                         <div v-else-if="trailer.site == 'youtube'" class="mb-4 col-xl-6 col-lg-6">
                                             <iframe width="100%" height="215" :src="trailer.url" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            <p class="mb-0">{{trailer.name}}</p>
                                         </div>
                                     </template>
                             </div>
