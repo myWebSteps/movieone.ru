@@ -38,7 +38,7 @@
 
                     <!-- Content Row -->
                     <div class="row">
-                        <div v-for="movie in item.movies" class="col-xl-3 col-md-6 mb-4">
+                        <div v-for="movie in item.movies" class="col-xl-3 col-md-6 mb-4 ml-0 mr-0">
                             <div  class="card m-card shadow border-0">
                                 <Link :href="`/movies/${movie.slug}`">
                                     <div class="m-card-cover">
