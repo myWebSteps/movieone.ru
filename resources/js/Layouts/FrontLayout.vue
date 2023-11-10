@@ -92,7 +92,7 @@
                                             <img :src="item.posterUrl" :alt="item.nameRu"
                                                  class="w-100">
                                         </div>
-                                    <div>
+                                    <div class="w-50">
                                         <span class="font-weight-bold">{{item.nameRu}} / {{item.nameEn}}</span>
                                         <div v-for="genre in item.genres" class="small text-gray-500">{{genre.title}}</div>
                                         <div class="small text-danger">{{item.year}}</div>
