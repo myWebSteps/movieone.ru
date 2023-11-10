@@ -52,6 +52,7 @@
                             </div>
                         </div>
                     </form>
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -145,10 +146,12 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-absolute top-0 start-50 translate-middle-x z-3" role="alert">
-            <span>Поиск должен содержать минимум 3 символа</span>
+    <div v-if="errors" class="alert alert-warning alert-dismissible fade custom-position show z-3" role="alert">
+        <span>Поиск должен содержать минимум 3 символа</span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+
+
 
 </template>
 
