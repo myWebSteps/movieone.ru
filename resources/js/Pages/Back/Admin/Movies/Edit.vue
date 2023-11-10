@@ -54,11 +54,25 @@
                                 </div>
                             </div>
 
-                            <!-- Trailer -->
-                            <div class="col-sm-6">
+                            <div class="col-12">
                                 <div class="form-group">
-                                    <label for="trailer">Идентификатор трэйлера:</label>
-                                    <input v-model="form.trailer" type="text" class="form-control" id="trailer" placeholder="Введите идентификатор трэйлера">
+                                    <form>
+                                        <label>Трейлеры:</label>
+                                        <div v-if="form.trailers.length > 0" v-for="(trailer, index) in form.trailers" class="form-group input-group">
+                                            <input type="text" v-model="trailer.url" class="form-control col-8"
+                                                   placeholder="Идентификатор dzen или ссылка youtube">
+                                            <input type="text" v-model="trailer.name" class="form-control col-8"
+                                                   placeholder="Название">
+                                            <select v-model="trailer.site" class="form-select col-4">
+                                                <option value="dzen">dzen</option>
+                                                <option value="youtube">youtube</option>
+                                            </select>
+                                            <button @click="deleteTrailer(index)" type="button" class="btn btn-danger">-</button>
+                                        </div>
+                                        <span class="input-group-btn">
+                                        <button @click="addTrailer()" type="button" class="btn btn-success">Добавить трейлер</button>
+                                    </span>
+                                    </form>
                                 </div>
                             </div>
 
@@ -157,7 +171,18 @@
                                     <input v-model="form.rate" type="text" class="form-control" id="ratingKinopoisk" placeholder="Рейтинг">
                                 </div>
                             </div>
+
+                            <!-- Budget Parse -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="budget">Бюджет:</label>
+                                    <input v-model="form.budget" type="text" class="form-control" id="budget" placeholder="Бюджет">
+                                </div>
+                            </div>
+
                         </div>
+
+
 
                         <div class="row">
                             <div class="form-group">
@@ -182,14 +207,12 @@
 
                 <!-- /.card-body -->
             </div>
-
-
-<!--            <div v-if="errors">-->
-<!--                <p v-for="error in errors">-->
-<!--                    {{error}}-->
-<!--                </p>-->
-<!--            </div>-->
-
+       </div>
+        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-absolute bottom-0 end-0 z-10 position-fixed" role="alert">
+            <div v-for="error in errors">
+                <span>{{error}}</span>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </AuthenticatedLayout>
 
@@ -211,6 +234,7 @@
                     kinopoisk_id: this.movie.kinopoisk_id,
                     nameRu: this.movie.nameRu,
                     nameEn: this.movie.nameEn,
+                    trailers: this.movie.trailers,
                     age_limits: this.movie.age_limits,
                     slug: this.movie.slug,
                     year: this.movie.year,
@@ -221,17 +245,33 @@
                     type: this.movie.type,
                     duration: this.movie.duration,
                     rate: this.movie.rate,
+                    budget: this.movie.budget,
                     slogan: this.movie.slogan,
                     description: this.movie.description,
                     trailer: this.movie.trailer,
                     video_allowed: this.movie.video_allowed,
                 },
                 genresList: this.genres,
+                errors: false,
             }
         },
 
 
         methods:{
+
+            deleteTrailer(elemIndex){
+                this.form.trailers = this.form.trailers.filter((elem, index)=>{
+                    return index != elemIndex
+                })
+            },
+
+            addTrailer() {
+                this.form.trailers.unshift({
+                    url: null,
+                    name: null,
+                    site: 'dzen',
+                })
+            },
 
             renderGenres(){
                 this.form.genres = []
@@ -249,7 +289,7 @@
                     slug: this.form.slug,
                     nameRu: this.form.nameRu,
                     nameEn: this.form.nameEn,
-                    trailer: this.form.trailer,
+                    trailers: this.form.trailers,
                     age_limits: this.form.age_limits,
                     countries: this.form.countries,
                     category_id: this.form.category_id,
@@ -257,16 +297,16 @@
                     year: this.form.year,
                     duration: this.form.duration,
                     rate: this.form.rate,
+                    budget: this.form.budget,
                     slogan: this.form.slogan,
                     description: this.form.description,
                     poster: this.form.poster,
                     type: this.form.type,
                     video_allowed: this.form.video_allowed,
                 })
-            },
-
-            errorsDismiss(){
-                this.errors = {}
+                router.on('error', (errors) => {
+                    this.errors = errors.detail.errors
+                })
             },
 
         },

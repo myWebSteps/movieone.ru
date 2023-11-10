@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Traits\Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 class Genre extends Model
 {
+    use Filterable;
+
     protected $table = 'genres';
     protected $guarded = false;
     public $timestamps = false;

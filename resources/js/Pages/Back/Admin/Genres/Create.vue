@@ -34,7 +34,12 @@
             </div>
         </section>
 
-
+        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-absolute bottom-0 end-0 z-10 position-fixed" role="alert">
+            <div v-for="error in errors">
+                <span>{{error}}</span>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 
     </AuthenticatedLayout>
 
@@ -58,12 +63,16 @@
                   category_id: this.data,
                   slug: null,
               },
+              errors: false,
           }
         },
 
         methods:{
             newGenre(){
                 router.post(`/admin/genres/${this.data}/store`, this.form)
+                router.on('error', (errors) => {
+                    this.errors = errors.detail.errors
+                })
             },
         },
 

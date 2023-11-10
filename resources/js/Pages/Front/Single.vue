@@ -7,35 +7,29 @@
     </Head>
 
     <FrontLayout ref="front_layout">
-    <!-- Begin Page Content -->
-
-    <div class="container-fluid">
-        <div class="row d-flex justify-content-center">
-            <div class="col-12 bg-white shadow mb-4">
-                <a href="https://t.me/kino_movieone" target="_blank">
-                <!--Постер Рекламы-->
-                    <img src="/img/poster.webp" class="img-fluid w-100" alt="promo poster">
-                </a>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-sm-12">
-                <div class="bg-white p-3 widget shadow- rounded mb-4">
-                    <div class="row">
-
-                    <div class="col-sm-6 col-xl-12 col-lg-12">
-
-                        <img :src="movie.posterUrl" class="img-fluid rounded" :alt="movie.nameEn">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="cover-pic">
+<!--                        <div class="position-absolute bg-white shadow-sm rounded text-center p-2 m-4 love-box">-->
+<!--                            <h6 class="text-gray-900 mb-0 font-weight-bold"><i class="fas fa-heart text-danger"></i> {{movie.rate}}</h6>-->
+<!--                            <small class="text-muted">8,784</small>-->
+<!--                        </div>-->
+                        <img src="/img/poster.webp" class="img-fluid w-100" alt="promo poster">
                     </div>
-                    <div class="col-sm-6 col-xl-12 col-lg-12">
-                        <h5 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Продолжительность:</h5>
+                </div>
+                <div class="col-xl-3 col-lg-3">
+                    <div class="bg-white p-3 widget shadow rounded mb-4">
+                        <img :src="movie.posterUrl" class="img-fluid rounded" :alt="movie.nameEn">
+                        <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Продолжительность:</h1>
                         <p>{{movie.filmLength}} мин</p>
-                        <!--                    <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Год выпуска:</h1>-->
-                        <!--                    <p>{{movie.year}}</p>-->
-                        <h5 v-if="movie.endYear != null" class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Год окончания:</h5>
+                        <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Год окончания:</h1>
                         <p>{{movie.endYear}}</p>
-                        <h5 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Рейтинг:</h5>
+                        <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Рейтинг:</h1>
                         <p>{{movie.rate}}</p>
-                        <h5 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Ограничения по возрасту:</h5>
-                        <p>{{movie.age_limits}}</p>
+                        <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Ограничения по возрасту:</h1>
+                        <p class="mb-0">{{movie.age_limits}}</p>
                         <h5 v-if="movie.endYear != null" class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Страны:</h5>
                         <p>
                         <span v-for="country in movie.countries">
@@ -43,303 +37,275 @@
                         </span>
                         </p>
                     </div>
-
-                    </div>
-
-
                 </div>
-            </div>
-            <div class="col-xl-9 col-lg-9">
-                <div class="bg-white info-header shadow rounded mb-4">
-                    <div class="row d-flex align-items-center justify-content-between p-3 border-bottom">
-                        <div class="col-lg-7 m-b-4">
-                            <h3 v-if="movie.nameRu != null" class="text-gray-900 mb-0 mt-0 font-weight-bold">{{movie.nameRu}}</h3>
-                            <h3 v-if="movie.nameEn != null" class="text-gray-900 mb-0 mt-0 font-weight-bold">{{movie.nameEn}}</h3>
-                            <h5 class="mt-0 mb-3 mt-2">{{movie.slogan}}</h5>
-
-                            <p class="mb-0 text-gray-800">
-                                <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i>
-                                    <span v-for="genre in movie.genres">
+                <div class="col-xl-9 col-lg-9">
+                    <div class="bg-white info-header shadow rounded mb-4">
+                        <div class="row d-flex align-items-center justify-content-between p-3 border-bottom">
+                            <div class="col-lg-7 m-b-4">
+                                <h3 v-if="movie.nameRu != null" class="text-gray-900 mb-0 mt-0 font-weight-bold">{{movie.nameRu}}</h3>
+                                <h3 v-if="movie.nameEn != null" class="text-gray-900 mb-0 mt-0 font-weight-bold">{{movie.nameEn}}</h3>
+                                <h3 v-if="movie.nameEn != null" class="text-gray-900 mb-0 mt-0 font-weight-bold mb-1"><small>2019</small></h3>
+                                <p class="mb-0 text-gray-800">
+                                    <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i>
+                                        <span v-for="genre in movie.genres">
                                         {{genre.title}}&nbsp
                                     </span>
-                                </small></p>
+                                    </small></p>
+                            </div>
+                            <div class="col-lg-5 text-right">
+                                <a @click.prevent="copyUrl()" href="#" class="d-sm-inline-block btn btn-primary shadow-sm"><i class="fas fa-share-alt"></i></a>
+                                <template v-if="!playlistItems">
+                                    <a @click.prevent="togglePlaylist(movie.id)" href="#" class="d-sm-inline-block btn btn-danger shadow-sm ml-2"> В избранное <i class="fa-solid fa-square-plus"></i></a>
+                                </template>
+                                <template v-if="playlistItems">
+                                    <a @click.prevent="togglePlaylist(movie.id)" href="#" class="d-sm-inline-block btn btn-danger shadow-sm ml-2"> Убрать <i class="fa-solid fa-square-minus"></i></a>
+                                </template>
+                            </div>
                         </div>
-                        <div class="col-lg-5 text-right">
-                            <a @click.prevent="copyUrl()" href="#" class="d-sm-inline-block btn btn-primary shadow-sm mr-2"><i class="fa-regular fa-copy"></i></a>
-
-                            <template v-if="!playlistItems">
-                                <a @click.prevent="togglePlaylist(movie.id)" href="#" class="d-sm-inline-block btn btn-danger shadow-sm"> В избранное <i class="fa-solid fa-square-plus"></i></a>
-                            </template>
-                            <template v-if="playlistItems">
-                                <a @click.prevent="togglePlaylist(movie.id)" href="#" class="d-sm-inline-block btn btn-danger shadow-sm"> Убрать <i class="fa-solid fa-square-minus"></i></a>
-                            </template>
+                        <div class="row d-flex align-items-center justify-content-between py-3 px-4">
+                            <div class="col-lg-6 m-b-4">
+                                <p class="mb-0 text-gray-900"><i class="fas fa-money-bill fa-sm fa-fw mr-1"></i> BUDGET - <span class="text-white rounded px-2 py-1 bg-info">{{movie.budget}}</span></p>
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <a  href="https://instagram.com/roman_makukha_89?igshid=OGQ5ZDc2ODk2ZA==" class="btn btn-sm btn-danger btn-circle d-inline-flex ml-2">
+                                    <i style="font-size: 15px" class ="fa-brands fa-instagram"></i>
+                                </a>
+                                <a  href="https://dzen.ru/movieone" class="btn btn-sm btn-warning btn-circle d-inline-flex ml-2" target="_blank">
+                                    <img style="padding-bottom: 2px" class="h-100" src="/img/zen-grey.svg" alt="zen_image">
+                                </a>
+                                <a href="https://t.me/kino_movieone" class="btn btn-sm btn-info btn-circle d-inline-flex ml-2">
+                                    <i style="font-size: 15px" class="fa-brands fa-telegram"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="bg-white p-3 widget shadow rounded mb-4">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <!-- Home -->
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Описание</a>
-                        </li>
-                        <!-- Trailers -->
-                        <li class="nav-item" v-if="movie.trailer">
-                            <a class="nav-link" id="trailer-tab" data-toggle="tab" href="#trailer" role="tab" aria-controls="trailer" aria-selected="false">Трейлеры</a>
-                        </li>
-                        <!-- Actors -->
-                        <li @click="getStaff(movie.kinopoisk_id)" class="nav-item">
-                            <a class="nav-link" id="actors-tab" data-toggle="tab" href="#actors" role="tab" aria-controls="actors" aria-selected="false">Актеры
-                            </a>
-                        </li>
-                        <!-- Reviews -->
-                        <li class="nav-item">
-                            <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Рецензии<span class="badge badge-danger badge-counter ml-1">{{reviews.total}}</span></a>
-                        </li>
-                    </ul>
-
-                    <div class="tab-content" id="myTabContent">
-                        <!-- Home Tab -->
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
-                            <div v-if="movie.video_allowed == 1" class="kinobox_player"></div>
-
-                            <article class="mt-2">
-                                <h1 class="text-gray-800">{{movie.nameRu}} / {{movie.nameEn}}</h1>
-                                <p class="text-gray-800" v-html="movie.description"></p>
-                            </article>
+                    <div class="bg-white p-3 widget shadow rounded mb-4">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <!-- Home -->
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Описание</a>
+                            </li>
+                            <!-- Trailers -->
+                            <li class="nav-item" v-if="movie.trailers.videos_count > 0" >
+                                <a class="nav-link" id="trailer-tab" data-toggle="tab" href="#trailer" role="tab" aria-controls="trailer" aria-selected="false">Трейлеры<span class="badge badge-danger badge-counter ml-1">{{movie.trailers.videos_count}}</span></a>
+                            </li>
+                            <!-- Actors -->
+                            <li @click="getStaff(movie.kinopoisk_id)" class="nav-item">
+                                <a class="nav-link" id="actors-tab" data-toggle="tab" href="#actors" role="tab" aria-controls="actors" aria-selected="false">Актеры
+                                </a>
+                            </li>
+                            <!-- Reviews -->
+                            <li v-if="reviews.total > 0" class="nav-item">
+                                <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Рецензии<span class="badge badge-danger badge-counter ml-1">{{reviews.total}}</span></a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <!-- Home Tab -->
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div v-if="movie.video_allowed == 1" class="kinobox_player"></div>
+                                <article class="mt-2">
+                                    <h1 class="text-gray-800">{{movie.slogan}}</h1>
+                                    <p class="text-gray-800" v-html="movie.description"></p>
+                                </article>
+                            </div>
 
                             <!-- Trailers Tab -->
+                            <div v-if="movie.trailers.videos_count > 0" class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
 
-
-                            <!--Actors Tab-->
-                        </div>
-                        <!-- Trailers Tab -->
-                        <div v-if="movie.trailer" class="tab-pane fade" id="trailer" role="tabpanel" aria-labelledby="trailer-tab">
-
-                            <div class="col-lg-8 col-md-9 col-sm-10 col-xs-12">
-                            <iframe width="100%" height="270" :src="`${movie.trailer}?from_block=partner&from=zen&mute=0&autoplay=0&tv=0`"
-                                    allow="autoplay; fullscreen; accelerometer; gyroscope; picture-in-picture; encrypted-media"
-                                    frameborder="0" scrolling="no" allowfullscreen>
-
-                            </iframe>
+                                  <div class="row">
+                                    <template v-if="movie.trailers.videos_count > 0" v-for="trailer in movie.trailers.videos">
+                                        <div v-if="trailer.site == 'dzen'" class="mb-4 col-xl-6 col-lg-6">
+                                            <iframe width="100%" height="270" :src="`${trailer.url}?from_block=partner&from=zen&mute=0&autoplay=0&tv=0`"
+                                                    allow="autoplay; fullscreen; accelerometer; gyroscope; picture-in-picture; encrypted-media"
+                                                    frameborder="0" scrolling="no" allowfullscreen>
+                                            </iframe>
+                                        </div>
+                                        <div v-else-if="trailer.site == 'youtube'" class="mb-4 col-xl-6 col-lg-6">
+                                            <iframe width="100%" height="215" :src="trailer.url" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        </div>
+                                    </template>
+                            </div>
                             </div>
                             <!-- Trailers Tab -->
 
-
-                            <!--Actors Tab-->
-                        </div>
-                        <!-- Actors Tab -->
-                        <div class="tab-pane fade" id="actors" role="tabpanel" aria-labelledby="actors-tab">
-                            <div class="row">
-                                <div class="col-xl-4 col-lg-4">
-                                    <h5 class="h6 mt-0 mb-3 font-weight-bold text-gray-900">Режиссеры:</h5>
-                                    <div v-for="person in staff.directors" class="artist-list mb-3">
-                                       <a class="d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image mr-3">
-                                                <img style="width: 50px; height: 70px" :src="person.posterUrl" alt="">
-                                                <div class="status-indicator bg-success"></div>
-                                            </div>
-                                            <div class="font-weight-bold">
-                                                <div class="text-truncate text-gray-900">{{person.nameRu}}</div>
-                                                <div class="small text-gray-500">{{person.professionText}}</div>
-                                            </div>
-                                        </a>
+                            <!-- Actors Tab -->
+                            <div class="tab-pane fade" id="actors" role="tabpanel" aria-labelledby="actors-tab">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4">
+                                        <h5 class="h6 mt-0 mb-3 font-weight-bold text-gray-900">Режиссеры:</h5>
+                                        <div v-for="person in staff.directors" class="artist-list mb-3">
+                                            <a class="d-flex align-items-center" href="#">
+                                                <div class="dropdown-list-image mr-3">
+                                                    <img style="width: 50px; height: 70px" :src="person.posterUrl" alt="">
+                                                    <div class="status-indicator bg-success"></div>
+                                                </div>
+                                                <div class="font-weight-bold">
+                                                    <div class="text-truncate text-gray-900">{{person.nameRu}}</div>
+                                                    <div class="small text-gray-500">{{person.professionText}}</div>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4">
-                                    <h5 class="h6 mt-0 mb-3 font-weight-bold text-gray-900">Актеры:</h5>
-                                    <div v-for="person in staff.actors" class="artist-list mb-3">
-                                        <a class="d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image mr-3">
-                                                <img style="width: 50px; height: 70px" :src="person.posterUrl" alt="">
-                                                <div class="status-indicator bg-success"></div>
-                                            </div>
-                                            <div class="font-weight-bold">
-                                                <div class="text-truncate text-gray-900">{{person.nameRu}}</div>
-                                                <div class="small text-gray-500">{{person.professionText}}</div>
-                                            </div>
-                                        </a>
+                                    <div class="col-xl-4 col-lg-4">
+                                        <h5 class="h6 mt-0 mb-3 font-weight-bold text-gray-900">Актеры:</h5>
+                                        <div v-for="person in staff.actors" class="artist-list mb-3">
+                                            <a class="d-flex align-items-center" href="#">
+                                                <div class="dropdown-list-image mr-3">
+                                                    <img style="width: 50px; height: 70px" :src="person.posterUrl" alt="">
+                                                    <div class="status-indicator bg-success"></div>
+                                                </div>
+                                                <div class="font-weight-bold">
+                                                    <div class="text-truncate text-gray-900">{{person.nameRu}}</div>
+                                                    <div class="small text-gray-500">{{person.professionText}}</div>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4">
-                                    <h5 class="h6 mt-0 mb-3 font-weight-bold text-gray-900">Другие:</h5>
-                                    <div v-for="person in staff.support" class="artist-list mb-3">
-                                        <a class="d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image mr-3">
-                                                <img style="width: 50px; height: 70px" :src="person.posterUrl" alt="">
-                                                <div class="status-indicator bg-success"></div>
-                                            </div>
-                                            <div class="font-weight-bold">
-                                                <div class="text-truncate text-gray-900">{{person.nameRu}}</div>
-                                                <div class="small text-gray-500">{{person.professionText}}</div>
-                                            </div>
-                                        </a>
+                                    <div class="col-xl-4 col-lg-4">
+                                        <h5 class="h6 mt-0 mb-3 font-weight-bold text-gray-900">Другие:</h5>
+                                        <div v-for="person in staff.support" class="artist-list mb-3">
+                                            <a class="d-flex align-items-center" href="#">
+                                                <div class="dropdown-list-image mr-3">
+                                                    <img style="width: 50px; height: 70px" :src="person.posterUrl" alt="">
+                                                    <div class="status-indicator bg-success"></div>
+                                                </div>
+                                                <div class="font-weight-bold">
+                                                    <div class="text-truncate text-gray-900">{{person.nameRu}}</div>
+                                                    <div class="small text-gray-500">{{person.professionText}}</div>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Reviews Tab-->
-                        <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                            <div class="card-body p-0 reviews-card">
+                            <!-- Actors Tab End -->
 
-                                <nav v-if="reviews.totalPages > 1" aria-label="reviews pagination">
-                                   <ul class="pagination">
-                                        <li v-if="currentPage != 1" class="page-item">
-                                            <a @click.prevent="getReviews(String(currentPage - 1))" class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li v-for="page in reviews.totalPages" class="page-item">
-                                            <template v-if="(page - currentPage < 3 && page - currentPage > -3) || page == 1 || page == reviews.totalPages">
-                                            <a @click.prevent="getReviews(page)" :class="page == currentPage? 'active' : ''" class="page-link" href="#" :value="page">{{page}}</a>
-                                            </template>
-                                            <template v-if="(currentPage - page == 3 && currentPage != 4) || (currentPage - page == -3 && currentPage != reviews.totalPages - 3)">
-                                                <span class="page-link">...</span>
-                                            </template>
-                                        </li>
+                            <!-- Reviews Tab-->
+                            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                                <div class="card-body p-0 reviews-card">
 
-                                        <li class="page-item">
-                                            <a v-if="currentPage != reviews.totalPages" @click.prevent="getReviews(String(currentPage + 1))" class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                    <nav v-if="reviews.totalPages > 1" aria-label="reviews pagination">
+                                        <ul class="pagination">
+                                            <li v-if="currentPage != 1" class="page-item">
+                                                <a @click.prevent="getReviews(String(currentPage - 1))" class="page-link" href="#" aria-label="Previous">
+                                                    <div aria-hidden="true">&laquo;</div>
+                                                </a>
+                                            </li>
+                                            <li v-for="page in reviews.totalPages" class="page-item">
+                                                <template v-if="(page - currentPage < 3 && page - currentPage > -3) || page == 1 || page == reviews.totalPages">
+                                                    <a @click.prevent="getReviews(page)" :class="page == currentPage? 'active' : ''" class="page-link" href="#" :value="page">{{page}}</a>
+                                                </template>
+                                                <template v-if="(currentPage - page == 3 && currentPage != 4) || (currentPage - page == -3 && currentPage != reviews.totalPages - 3)">
+                                                    <div class="page-link">...</div>
+                                                </template>
+                                            </li>
 
-                                <div v-for="review in reviews.items" class="media mb-4">
-                                    <div class="media-body">
-                                        <div class="mt-0 mb-2">
-                                            <span class="h6 mr-2 text-muted text-gray-500">{{review.author}}</span>
-                                        </div>
-                                        <div class="mt-0 mb-2">
-                                            <span class="h6 mr-2 font-weight-bold text-gray-900">{{review.title}}</span>
-                                        </div>
-                                        <div v-if="review.type == 'POSITIVE'" class="mt-0 mb-2">
-                                            <span class="h6 mr-2 font-weight-bold text-success">+</span>
-                                        </div>
-                                        <div v-if="review.type == 'NEGATIVE'" class="mt-0 mb-2">
-                                            <span class="h6 mr-2 font-weight-bold text-danger">-</span>
-                                        </div>
-                                        <p v-html="review.description"></p>
+                                            <li class="page-item">
+                                                <a v-if="currentPage != reviews.totalPages" @click.prevent="getReviews(String(currentPage + 1))" class="page-link" href="#" aria-label="Next">
+                                                    <div aria-hidden="true">&raquo;</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+                                    <div v-for="review in reviews.items" class="media mb-4">
+                                        <div class="media-body">
+                                            <div class="mt-0 mb-2">
+                                                <div class="h6 mr-2 text-muted text-gray-500">{{review.author}}</div>
+                                            </div>
+                                            <div class="mt-0 mb-2 d-inline">
+                                                <div class="h6 mr-2 font-weight-bold text-gray-900 d-inline">{{review.title}}</div>
+                                            </div>
+                                            <div v-if="review.type == 'POSITIVE'" class="mt-0 mb-2 d-inline">
+                                                <div class="h6 mr-2 font-weight-bold text-success d-inline"><i class="fa fa-thumbs-up" aria-hidden="true"></i></div>
+                                            </div>
+                                            <div v-if="review.type == 'NEGATIVE'" class="mt-0 mb-2 d-inline">
+                                                <div class="h6 mr-2 font-weight-bold text-danger d-inline"><i class="fa fa-thumbs-down" aria-hidden="true"></i></div>
+                                            </div>
+                                            <div class="mt-2 mb-2">
+                                                <p v-html="review.description"></p>
+                                            </div>
+                                       </div>
                                     </div>
+
+
+                                    <nav v-if="reviews.totalPages > 1" aria-label="reviews pagination">
+                                        <ul class="pagination">
+                                            <li v-if="currentPage != 1" class="page-item">
+                                                <a @click.prevent="getReviews(String(currentPage - 1))" class="page-link" href="#" aria-label="Previous">
+                                                    <div aria-hidden="true">&laquo;</div>
+                                                </a>
+                                            </li>
+                                            <li v-for="page in reviews.totalPages" class="page-item">
+                                                <template v-if="(page - currentPage < 3 && page - currentPage > -3) || page == 1 || page == reviews.totalPages">
+                                                    <a @click.prevent="getReviews(page)" :class="page == currentPage? 'active' : ''" class="page-link" href="#" :value="page">{{page}}</a>
+                                                </template>
+                                                <template v-if="(currentPage - page == 3 && currentPage != 4) || (currentPage - page == -3 && currentPage != reviews.totalPages - 3)">
+                                                    <div class="page-link">...</div>
+                                                </template>
+                                            </li>
+
+                                            <li class="page-item">
+                                                <a v-if="currentPage != reviews.totalPages" @click.prevent="getReviews(String(currentPage + 1))" class="page-link" href="#" aria-label="Next">
+                                                    <div aria-hidden="true">&raquo;</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
-
-
-                                <nav v-if="reviews.totalPages > 1" aria-label="reviews pagination">
-                                    <ul class="pagination">
-                                        <li v-if="currentPage != 1" class="page-item">
-                                            <a @click.prevent="getReviews(String(currentPage - 1))" class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li v-for="page in reviews.totalPages" class="page-item">
-                                            <template v-if="(page - currentPage < 3 && page - currentPage > -3) || page == 1 || page == reviews.totalPages">
-                                                <a @click.prevent="getReviews(page)" :class="page == currentPage? 'active' : ''" class="page-link" href="#" :value="page">{{page}}</a>
-                                            </template>
-                                            <template v-if="(currentPage - page == 3 && currentPage != 4) || (currentPage - page == -3 && currentPage != reviews.totalPages - 3)">
-                                                <span class="page-link">...</span>
-                                            </template>
-                                        </li>
-
-                                        <li class="page-item">
-                                            <a v-if="currentPage != reviews.totalPages" @click.prevent="getReviews(String(currentPage + 1))" class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-
                             </div>
-
-
-                            <!--Comment Form-->
-<!--                            <div class="p-4 bg-light rounded mt-4">-->
-<!--                                <h5 class="card-title mb-4">Leave a Review</h5>-->
-<!--                                <form name="sentMessage">-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="control-group form-group col-lg-4 col-md-4">-->
-<!--                                            <div class="controls">-->
-<!--                                                <label>Your Name <span class="text-danger">*</span></label>-->
-<!--                                                <input type="text" class="form-control" required="">-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="control-group form-group col-lg-4 col-md-4">-->
-<!--                                            <div class="controls">-->
-<!--                                                <label>Your Email <span class="text-danger">*</span></label>-->
-<!--                                                <input type="email" class="form-control" required="">-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="control-group form-group col-lg-4 col-md-4">-->
-<!--                                            <div class="controls">-->
-<!--                                                <label>Rating <span class="text-danger">*</span></label>-->
-<!--                                                <select class="form-control custom-select">-->
-<!--                                                    <option>1 Star</option>-->
-<!--                                                    <option>2 Star</option>-->
-<!--                                                    <option>3 Star</option>-->
-<!--                                                    <option>4 Star</option>-->
-<!--                                                    <option>5 Star</option>-->
-<!--                                                </select>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="control-group form-group">-->
-<!--                                        <div class="controls">-->
-<!--                                            <label>Review <span class="text-danger">*</span></label>-->
-<!--                                            <textarea rows="3" cols="100" class="form-control"></textarea>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="text-right">-->
-<!--                                        <button type="submit" class="btn btn-primary">Send Message</button>-->
-<!--                                    </div>-->
-<!--                                </form>-->
-<!--                            </div>-->
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
 
+            <!--Related Movies -->
             <template v-if="relatedMovies.length > 0">
-            <div class="bg-white info-header shadow rounded mb-4">
-                <div class="row d-flex align-content-center-start justify-content-start p-3 border-bottom">
+                <div class="bg-white info-header shadow rounded mb-4 pb-3">
+                    <div class="row d-flex align-content-center-start justify-content-start p-3 border-bottom">
                         <h6 class="text-gray-900 m-2 font-weight-bold">Похожие фильмы:</h6>
-                </div>
-                    <div class="row col-12 mb-3 mt-3 d-flex justify-content-center row-gap-3">
-                    <div v-for="relatedMovie in relatedMovies" class="col-xl-3 col-md-3 col-sm-4 col-9 col-6">
-                        <div  class="card e-card shadow border-0">
-                            <Link :href="`/movies/${relatedMovie.slug}`" class="">
-                                <div class="m-card-cover">
-                                <img v-lazy="relatedMovie.poster" class="card-img-top" alt="...">
-                            </div>
-                                <div class="card-body p-0">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-2 auto py-3 pl-3">
-                                            <div class="bg-white rounded text-center">
-                                                <h6 class="text-danger mb-0 font-weight-bold">{{relatedMovie.year}}</h6>
-                                            </div>
-                                        </div>
-                                        <div class="col-10 p-3">
-                                            <p class="card-text text-gray-900 mb-1">{{relatedMovie.nameRu}}</p>
-                                            <p class="card-text text-gray-900 mb-1">{{relatedMovie.nameEn}}</p>
-                                            <p class="card-text">
-                                                <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
-                                                <small v-for="genre in relatedMovie.genres" class="text-muted">
-                                                    {{genre.title}} &nbsp
-                                                </small></p>
-                                        </div>
-
+                    </div>
+                    <div class="row col-12 mt-3 d-flex justify-content-center row-gap-3">
+                        <div v-for="relatedMovie in relatedMovies" class="col-xl-3 col-md-3 col-sm-4 col-9 col-6">
+                            <div  class="card e-card shadow border-0">
+                                <Link :href="`/movies/${relatedMovie.slug}`" class="">
+                                    <div class="m-card-cover">
+                                        <img v-lazy="relatedMovie.poster" class="card-img-top" alt="...">
                                     </div>
-                                </div>
-                            </Link>
+                                    <div class="card-body p-0">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-2 auto py-3 pl-3">
+                                                <div class="bg-white rounded text-center">
+                                                    <h6 class="text-danger mb-0 font-weight-bold">{{relatedMovie.year}}</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-10 p-3">
+                                                <p class="card-text text-gray-900 mb-1">{{relatedMovie.nameRu}}</p>
+                                                <p class="card-text text-gray-900 mb-1">{{relatedMovie.nameEn}}</p>
+                                                <p class="card-text">
+                                                    <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
+                                                    <small v-for="genre in relatedMovie.genres" class="text-muted">
+                                                        {{genre.title}} &nbsp
+                                                    </small></p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                    </div>
-            </div>
+                </div>
             </template>
 
-                </div>
-            </div>
+        </div>
+        <!-- /.container-fluid -->
 
-    <!-- /.container-fluid -->
+        <!-- Copy URL Popup -->
+        <div v-if="popup" class="alert alert-warning alert-dismissible fade show position-absolute top-0 start-50 translate-middle-x z-3" role="alert">
+            <span>Ссылка скопирована</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     </FrontLayout>
 </template>
 
@@ -363,6 +329,7 @@
                 playlistRes: [],
                 newFilter: [],
                 currentPage: 1,
+                popup: false,
             }
         },
 
@@ -517,6 +484,7 @@
 
                     })
                     .then(r=>{
+                        console.log(r)
                         this.reviews = r.data
                         this.currentPage = page
                     })
@@ -524,15 +492,14 @@
 
             copyUrl(){
                 navigator.clipboard.writeText(window.location.href)
+                this.popup = true
+                setTimeout(this.resetPopup, 1500)
 
-                $(document).Toasts('create', {
-                    class: 'bg-info',
-                    title: 'MovieOne.ru',
-                    subtitle: 'Закрыть',
-                    body: 'Ссылка успешно скопирована'
-                })
+            },
 
-            }
+            resetPopup(){
+                this.popup = false
+            },
 
         },
 

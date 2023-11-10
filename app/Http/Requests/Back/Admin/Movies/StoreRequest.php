@@ -32,11 +32,12 @@ class StoreRequest extends FormRequest
             'year'=>'required|string',
             'duration'=>'required|string',
             'rate'=>'required|string',
+            'budget' =>'required|string',
             'slogan'=>'required|string',
             'description'=>'required|string',
             'poster' => 'required',
             'type'=>'required|string',
-            'trailer' => 'nullable|string',
+            'trailers' => 'nullable',
             'video_allowed' => 'required|boolean',
         ];
     }

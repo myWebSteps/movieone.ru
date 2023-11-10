@@ -1,173 +1,153 @@
 <template>
-    <div class="wrapper">
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-dark">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav ml-2">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-            </ul>
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto mr-2">
-                <!-- Navbar Search -->
-
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <input @click.enter.prevent="commenceSearch()" v-model="searchKey" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button @click.prevent="commenceSearch()" class="btn btn-navbar" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
-
-                <!-- Playlist Dropdown Menu -->
-                <li v-if="playlist" class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="fas fa-eye"></i>
-
-                        <span class="badge badge-secondary">{{playCount}}</span>
-
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <Link v-for="item in playlist" :href="`/movies/${item.slug}`" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media text-wrap">
-                                <img :src="item.posterUrl" :alt="item.nameRu" class="img-size-50 mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        {{item.nameRu}}
-<!--                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>-->
-                                    </h3>
-                                    <p class="text-sm">{{item.nameEn}}</p>
-                                    <p class="text-sm text-danger">{{item.year}}</p>
-                                    <p v-for="genre in item.genres" class="text-sm text-muted">{{genre.title}} &nbsp</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                            <div class="dropdown-divider"></div>
-                        </Link>
-
-
-                    </div>
-
-
-                </li>
-            </ul>
-        </nav>
-        <!-- /.navbar -->
-         <!-- Main Sidebar Container -->
-
-        <!--Laptop version -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand d-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block">
-            <!-- Brand Logo -->
-            <Link href="/" class="brand-link">
-                <img src="/img/logo-icon.png" alt="AdminLTE Logo" class="brand-image">
-                <span class="brand-text font-weight-light">MovieOne</span>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div class="sticky-sidebar">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <Link class="sidebar-brand d-flex align-items-center justify-content-center p-2" href="/">
+                <img class="h-100" src="/img/logo-icon.png" alt="logo image">
+                <div class="sidebar-brand-text mx-3">MovieOne</div>
             </Link>
+            <!-- Nav Item - Dashboard -->
 
-            <!-- Sidebar -->
-            <div class="sidebar os-host os-theme-light os-host-resize-disabled os-host-transition os-host-scrollbar-horizontal-hidden os-host-overflow os-host-overflow-y">
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="people.html">-->
+<!--                    <i class="fas fa-fw fa-users"></i>-->
+<!--                    <span>Подборки</span></a>-->
+<!--            </li>-->
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-
-                        <li v-for="category in $page.props.categories" class="nav-item">
-                            <Link :class="{'custom-active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
-                                <i :class="category.logo"></i>
-                                <p class="pl-2">{{category.title}}</p>
-                            </Link>
-                        </li>
-
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
-
-        <!--Mobile version-->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4 sidebar-no-expand d-block d-sm-block d-md-block d-lg-none d-xl-none d-xxl-none">
-            <!-- Brand Logo -->
-            <Link data-widget="pushmenu" href="/" class="brand-link">
-                <img src="/img/logo-icon.png" alt="AdminLTE Logo" class="brand-image">
-                <span class="brand-text font-weight-light">MovieOne</span>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading">Кино</div>
+            <!-- Nav Item  -->
+            <li v-for="category in $page.props.categories" class="nav-item">
+            <Link :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
+            <i :class="category.logo"></i>
+            <span>{{category.title}}</span>
             </Link>
-
-            <!-- Sidebar -->
-            <div class="sidebar os-host os-theme-light os-host-resize-disabled os-host-transition os-host-scrollbar-horizontal-hidden os-host-overflow os-host-overflow-y">
-
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-
-                        <li v-for="category in $page.props.categories" class="nav-item">
-                            <Link :class="{'custom-active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" data-widget="pushmenu" :href="`/movies?category=${category.slug}&order=year&page=1`">
-                                <i :class="category.logo"></i>
-                                <p class="pl-2">{{category.title}}</p>
-                            </Link>
+            </li>
+        </ul>
+    </div>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-dark topbar mb-4 pl-0 static-top shadow">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <!-- Topbar Search -->
+                    <form class="d-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input @keypress.enter.prevent="commenceSearch()" v-model="searchKey" type="text" class="form-control bg-white border-0 small" placeholder="Искать фильмы по названию..." aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button @click.prevent="commenceSearch()" class="btn bg-white" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input @click.enter.prevent="commenceSearch()" v-model="searchKey" type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button @click.prevent="commenceSearch()" class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </li>
+                        <!-- Nav Item - Alerts -->
 
-                    </ul>
+                        <li v-if="playlist" class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="playlistDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="icon-eye"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger bg-gradient-danger">{{playCount}}</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="playlistDropdown">
+                                <h6 class="dropdown-header">
+                                    Избранное
+                                </h6>
+                                <Link v-for="item in playlist" :href="`/movies/${item.slug}`" class="dropdown-item d-flex align-items-center column-gap-2">
+                                        <div class="w-50">
+                                            <img :src="item.posterUrl" :alt="item.nameRu"
+                                                 class="w-100">
+                                        </div>
+                                    <div>
+                                        <span class="font-weight-bold">{{item.nameRu}} / {{item.nameEn}}</span>
+                                        <div v-for="genre in item.genres" class="small text-gray-500">{{genre.title}}</div>
+                                        <div class="small text-danger">{{item.year}}</div>
+                                    </div>
+                                </Link>
+                            </div>
+                        </li>
+                  </ul>
                 </nav>
-                <!-- /.sidebar-menu -->
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <slot></slot>
+                </div>
+                <!-- /.container-fluid -->
             </div>
-            <!-- /.sidebar -->
-        </aside>
+            <!-- End of Main Content -->
+            <!-- Footer -->
 
+            <footer class="sticky-footer bg-white">
+                <div class="container d-flex justify-content-evenly">
+                    <div class="copyright text-center my-auto ">
+                        <span>MovieOne &copy; 2023</span>
+                    </div>
+                    <div class="justify-self-end d-inline-flex">
+                         <span class="nav-item mr-3 d-grid align-items-end">
+                                  <a  href="https://instagram.com/roman_makukha_89?igshid=OGQ5ZDc2ODk2ZA==" class="nav-link text-gray-600">
+                                      <i style="font-size: 24px" class ="fa-brands fa-instagram p-0 m-0"></i>
+                                  </a>
+                              </span>
+                        <span class="nav-item mr-3 d-grid align-items-end">
+                                    <a  href="https://dzen.ru/movieone" class="nav-link p-0 m-0" target="_blank">
+                                        <img style="height: 28px; padding-bottom: 2px" src="/img/zen-grey.svg" alt="zen_image">
+                                    </a>
+                                </span>
+                        <span class="nav-item mr-3 d-grid align-items-end">
+                                  <a href="https://t.me/kino_movieone" class="nav-link text-gray-600">
+                                      <i style="font-size: 24px" class="fa-brands fa-telegram p-0 m-0"></i>
+                                  </a>
+                              </span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded mb-5" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-
-        <main class="content-wrapper">
-
-            <!-- Page Content -->
-                <slot />
-
-        </main>
-
-        <!-- Main Footer -->
-        <footer class="main-footer d-flex justify-content-around">
-            <div class="justify-content-start col-4">
-                <strong>MovieOne &copy; 2023</strong>
-            </div>
-            <div class="d-flex justify-content-end col-8">
-
-              <span class="nav-item mr-3 d-grid align-items-end">
-                  <a  href="https://instagram.com/roman_makukha_89?igshid=OGQ5ZDc2ODk2ZA==" class="nav-link">
-                      <i style="font-size: 24px" class ="fa-brands fa-instagram p-0 m-0"></i>
-                  </a>
-              </span>
-                <span class="nav-item mr-3 d-grid align-items-end">
-                    <a  href="https://dzen.ru/movieone" class="nav-link p-0 m-0" target="_blank">
-                        <img style="height: 28px; padding-bottom: 2px" src="/img/zen-grey.svg" alt="zen_image">
-                    </a>
-                </span>
-                <span class="nav-item mr-3 d-grid align-items-end">
-                  <a href="https://t.me/kino_movieone" class="nav-link">
-                      <i style="font-size: 24px" class="fa-brands fa-telegram p-0 m-0"></i>
-                  </a>
-              </span>
-            </div>
-
-
-
-        </footer>
-
+    <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-absolute top-0 start-50 translate-middle-x z-3" role="alert">
+            <span>Поиск должен содержать минимум 3 символа</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
 </template>
@@ -180,9 +160,6 @@
     import Dropdown from "@/Components/Dropdown.vue";
     import DropdownLink from "@/Components/DropdownLink.vue";
 
-
-
-
     export default {
         name: "FrontLayout",
 
@@ -190,19 +167,59 @@
 
         data(){
             return {
-                searchKey: null,
+                searchKey: '',
                 playCount: null,
                 playlist: null,
                 form:{
                     categories: null
-                }
+                },
+                errors: false,
             }
         },
 
         mounted() {
-
                 this.playListCount()
                 this.makePlaylist()
+
+
+            // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+            $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(e) {
+                if ($(window).width() > 768) {
+                    var e0 = e.originalEvent,
+                        delta = e0.wheelDelta || -e0.detail;
+                    this.scrollTop += (delta < 0 ? 1 : -1) * 30;
+                    e.preventDefault();
+                }
+            });
+
+            // Scroll to top button appear
+            $(document).on('scroll', function() {
+                var scrollDistance = $(this).scrollTop();
+                if (scrollDistance > 100) {
+                    $('.scroll-to-top').fadeIn();
+                } else {
+                    $('.scroll-to-top').fadeOut();
+                }
+            });
+
+            // Smooth scrolling using jQuery easing
+            $(document).on('click', 'a.scroll-to-top', function(e) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: ($($anchor.attr('href')).offset().top)
+                }, 1000, 'easeInOutExpo');
+                e.preventDefault();
+            });
+
+            // Toggle the side navigation
+            $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
+              $("body").toggleClass("sidebar-toggled");
+              $(".sidebar").toggleClass("toggled");
+              if ($(".sidebar").hasClass("toggled")) {
+                $('.sidebar .collapse').collapse('hide');
+              };
+            });
+
 
         },
 
@@ -210,9 +227,16 @@
 
         methods:{
             commenceSearch(){
-                if(this.searchKey) {
-                    router.get(`/search?key=${this.searchKey}`)
-                }
+                    if(this.searchKey.length >= 3) {
+                        router.get(`/search?key=${this.searchKey}`)
+                    }else{
+                      this.errors = true;
+                        setTimeout(this.deleteErrors, 1500)
+                    }
+
+            },
+            deleteErrors(){
+                this.errors = false
             },
 
             playListCount(){

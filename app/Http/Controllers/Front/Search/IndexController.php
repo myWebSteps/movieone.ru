@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front\Search;
 
 use App\Http\Controllers\Controller;
 use App\Http\Filters\MovieFilter;
+use App\Http\Requests\Front\FrontLayout\SearchRequest;
 use App\Http\Resources\Front\Catalog\IndexResource;
 use App\Models\Category;
 use App\Models\Genre;
@@ -13,7 +14,7 @@ use Inertia\Inertia;
 
 class IndexController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(SearchRequest $request)
     {
         $data = $request->all();
 

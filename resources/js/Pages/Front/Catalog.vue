@@ -2,100 +2,470 @@
 
     <Head>
         <title>MovieOne.ru | Каталог фильмов, мультфильмов, анимэ онлайн бесплатно без регистрации</title>
-        <meta name="description" content="Каталог фильмов, мультфильмов, анимэ онлайн бесплатно без регистрации" />
-        <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
+        <meta name="description" content="Каталог фильмов, мультфильмов, анимэ онлайн бесплатно без регистрации"/>
+        <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
     </Head>
 
     <FrontLayout>
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <!-- Content Row -->
-                <div class="row">
-                    <div class="row w-100 mb-3 pl-3 pr-3">
+        <!-- Begin Page Content -->
+        <!-- Page Heading -->
+        <section class="d-flex align-items-center justify-content-between mt-4 mb-3">
+            <h1 class="h5 d-inline-block mb-0 text-gray-900">{{category.title}}</h1>
+            <Link :href="`/movies?category=${data.category}&order=year&page=1`"
+                  class="d-inline-block btn btn-sm btn-primary shadow-sm">
+                Сбросить фильтр <i class="fas fa-times fa-sm text-white-50"></i>
+            </Link>
+        </section>
 
-                        <!-- Page Heading -->
-                        <div class="ml-3 d-sm-flex align-items-center justify-content-between pt-4 mb-4">
-                            <h1 class="h5 mb-0 text-gray-900">{{category.title}}</h1>
-                        </div>
-
-                        <div class="col-xl-3 col-sm-8 d-inline">
-                            <label>Тип:</label>
-                            <select @change="send()" v-model="form.type" style="width: 100%" class="form-select">
-                                <option :value=null>Кино и сериалы</option>
-                                <option value="feature">Полнометражные</option>
-                                <option value="serial">Сериалы</option>
-                                <option value="mini_serial">Мини сериалы</option>
-                            </select>
-                        </div>
-
-                        <div class="col-xl-3 col-sm-8 d-inline">
-                            <label for="genres">Жанр:</label>
-                            <select @change="send()" v-model="form.genre" id="genres" class="form-select mb-1" aria-label="Default select example">
-                                <option :value=null>Все жанры</option>
-                                <option v-for="genre in genres" :value="genre.slug">{{genre.title}}</option>
-
-                            </select>
-                        </div>
-
-                        <div class="col-xl-3 col-sm-8 d-inline">
-                            <label for="order">Сортировать по:</label>
-                            <select @change="send()" v-model="form.order" id="order" class="form-select mb-1" aria-label="Default select example">
-                                <option value="year">Год</option>
-                                <option value="rate">Рейтинг</option>
-                            </select>
-
-                        </div>
+        <!-- Filter Row -->
+        <section class="row">
+            <div class="col-xl-3 col-lg-4">
+                <!-- Mobile Filters -->
+                <div class="filters mobile-filters shadow rounded bg-white mb-4 d-xs-block d-sm-none">
+                    <div class="border-bottom">
+                        <a class="h6 font-weight-bold text-dark d-block m-0 p-3" data-toggle="collapse" href="#mobile-filters" role="button" aria-expanded="false" aria-controls="mobile-filters">
+                            Фильтр
+                            <i class="fas fa-angle-down float-right mt-1"></i></a>
                     </div>
-
-                    <div class="col-xl-12 col-lg-8">
-                        <div class="row">
-                            <div v-for="movie in movies.data" class="col-xl-3 col-md-6 mb-4 col-sm-6">
-
-                                <div  class="card e-card shadow border-0">
-                                    <Link :href="`/movies/${movie.data.slug}`">
-                                        <div class="m-card-cover">
-                                            <img v-lazy="movie.data.posterUrl" class="card-img-top" alt="...">
+                    <div id="mobile-filters"
+                         :class="form.type || form.genre || form.genres_filter != null ? 'show' : ''"
+                         class="filters-body collapse multi-collapse">
+                        <div id="accordion">
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingOffer">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseSort" aria-expanded="true" aria-controls="collapseSort">
+                                            Тип: <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseSort" :class="form.type != null ? 'show' : ''" class="collapse" aria-labelledby="headingOffer" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.type" type="radio"
+                                                   name="types_filter_mobile" class="custom-control-input" :value=null
+                                                   id="all_types_mobile">
+                                            <label class="custom-control-label" for="all_types_mobile">Кино и Сериалы
+                                                <small class="text-black-50">{{allTypesCount}}</small></label>
                                         </div>
-                                        <div class="card-body p-0">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-2 auto py-3 pl-3">
-                                                    <div class="bg-white rounded text-center">
-                                                        <h6 class="text-danger mb-0 font-weight-bold">{{movie.data.year}}</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-10 p-3">
-                                                    <p v-if="movie.data.nameRu != null" class="card-text text-gray-900 mb-1">{{movie.data.nameRu}}</p>
-                                                    <p v-if="movie.data.nameEn != null" class="card-text text-gray-900 mb-1">{{movie.data.nameEn}}</p>
-                                                    <p class="card-text">
-                                                        <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
-                                                        <small v-for="genre in movie.data.genres" class="text-muted">
-                                                            {{genre.title}} &nbsp
-                                                        </small></p>
-                                                </div>
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.type" type="radio"
+                                                   value="feature"
+                                                   name="types_filter_mobile" class="custom-control-input" id="feature">
+                                            <label class="custom-control-label" for="feature">Полнометражные <small
+                                                class="text-black-50">{{typesCount.feature}}</small></label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.type" type="radio"
+                                                   value="serial"
+                                                   name="types_filter_mobile" class="custom-control-input" id="serial">
+                                            <label class="custom-control-label" for="serial">Сериалы <small
+                                                class="text-black-50">{{typesCount.serial}}</small></label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.type" type="radio"
+                                                   value="mini_serial"
+                                                   name="types_filter_mobile"
+                                                   class="custom-control-input" id="mini_serial">
+                                            <label class="custom-control-label" for="mini_serial">Мини сериалы
+                                                <small
+                                                    class="text-black-50">{{typesCount.mini_serial}}</small></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingTwo">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                                            Жанры:
+                                            <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapsetwo" :class="form.genre || form.genres_filter != null ? 'show' : ''"
+                                     class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <form class="mb-3">
+                                            <div class="input-group rounded">
+                                                <input @keypress.enter.prevent="send()" v-model="form.genres_filter"
+                                                       type="search" class="form-control" placeholder="Поиск жанра..."
+                                                       aria-label="Search" aria-describedby="search-addon"/>
+                                                <button @click.prevent="send()" class="btn btn-outline-primary"
+                                                        id="search-addon">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div :class="seeAll.genres? 'hide' : 'custom-show'">
+                                            <div class="custom-control custom-radio">
+                                                <input @change.prevent="send()" v-model="form.genre" type="radio"
+                                                       name="genres_filter_mobile" class="custom-control-input" :value=null
+                                                       id="all_genres_mobile">
+                                                <label class="custom-control-label" for="all_genres">Все жанры <small
+                                                    class="text-black-50">{{allGenresCount}}</small></label>
+                                            </div>
+                                            <div v-for="genre in genres" class="custom-control custom-radio">
+                                                <input @change.prevent="send()" v-model="form.genre" type="radio"
+                                                       :value="genre.genre.slug"
+                                                       name="genres_filter_mobile"
+                                                       class="custom-control-input" :id="genre.genre.slug">
+                                                <label class="custom-control-label" :for="genre.genre.slug">{{genre.genre.title}}
+                                                    <small class="text-black-50">{{genre.genresCount}}</small></label>
                                             </div>
                                         </div>
-                                    </Link>
+                                        <template v-if="genres.length + 1 > 3">
+                                            <div @click.prevent="seeAll.genres = !seeAll.genres" class="mt-2"><a
+                                                href="#" class="link">{{seeAll.genres? 'Свернуть' : 'Развернуть'}}</a>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingOne">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Сортировать по: <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseOne" :class="form.order != null? 'show': ''" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.order" type="radio"
+                                                   name="order_filter_mobile" class="custom-control-input" value=year
+                                                   id="year">
+                                            <label class="custom-control-label" for="year">Год</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.order" type="radio"
+                                                   name="order_filter_mobile" class="custom-control-input" value=rate
+                                                   id="rate">
+                                            <label class="custom-control-label" for="rate">Рейтинг</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <!-- End Mobile Filters -->
 
-                    <div class="row d-grid justify-content-end">
-                    <nav v-if="movies.last_page > 1" aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a @click.prevent="changePage(movies.current_page - 1)" class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li v-for="link in movies.links" class="page-item">
+                <!-- Pad Filter -->
+                <div class="filters shadow rounded bg-white mb-3 d-none d-xs-none d-sm-block d-md-block d-lg-none">
+                    <div class="filters-header border-bottom p-3">
+                        <h6 class="m-0 text-dark">Фильтр Pad</h6>
+                    </div>
+                    <div class="filters-body">
+                        <div id="accordion">
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingTwo">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                                            Тип:
+                                            <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapsetwo" :class="form.type != null ? 'show' : ''" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.type" type="radio"
+                                                   name="types_filter_pad" class="custom-control-input" :value=null
+                                                   id="all_types_pad">
+                                            <label class="custom-control-label" for="all_types_pad">Кино и Сериалы
+                                                <small class="text-black-50">{{allTypesCount}}</small></label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.type" type="radio"
+                                                   value="feature"
+                                                   name="types_filter_pad" class="custom-control-input" id="feature">
+                                            <label class="custom-control-label" for="feature">Полнометражные <small
+                                                class="text-black-50">{{typesCount.feature}}</small></label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.type" type="radio"
+                                                   value="serial"
+                                                   name="types_filter_pad" class="custom-control-input" id="serial">
+                                            <label class="custom-control-label" for="serial">Сериалы <small
+                                                class="text-black-50">{{typesCount.serial}}</small></label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.type" type="radio"
+                                                   value="mini_serial"
+                                                   name="types_filter_pad"
+                                                   class="custom-control-input" id="mini_serial">
+                                            <label class="custom-control-label" for="mini_serial">Мини сериалы
+                                                <small
+                                                    class="text-black-50">{{typesCount.mini_serial}}</small></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingOne">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Жанры:
+                                            <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseOne" :class="form.genres_filter || form.genre != null ? 'show' : ''" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <form class="mb-3">
+                                            <div class="input-group rounded">
+                                                <input @keypress.enter.prevent="send()" v-model="form.genres_filter"
+                                                       type="search" class="form-control" placeholder="Поиск жанра..."
+                                                       aria-label="Search" aria-describedby="search-addon"/>
+                                                <button @click.prevent="send()" class="btn btn-outline-primary"
+                                                        id="search-addon">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div :class="seeAll.genres? 'hide' : 'custom-show'">
+                                            <div class="custom-control custom-radio">
+                                                <input @change.prevent="send()" v-model="form.genre" type="radio"
+                                                       name="genres_filter_pad" class="custom-control-input" :value=null
+                                                       id="all_genres_pad">
+                                                <label class="custom-control-label" for="all_genres_pad">Все жанры <small
+                                                    class="text-black-50">{{allGenresCount}}</small></label>
+                                            </div>
+                                            <div v-for="genre in genres" class="custom-control custom-radio">
+                                                <input @change.prevent="send()" v-model="form.genre" type="radio"
+                                                       :value="genre.genre.slug" name="genres_filter_pad"
+                                                       class="custom-control-input" :id="genre.genre.slug">
+                                                <label class="custom-control-label" :for="genre.genre.slug">{{genre.genre.title}}
+                                                    <small class="text-black-50">{{genre.genresCount}}</small></label>
+                                            </div>
+                                        </div>
+                                        <template v-if="genres.length + 1 > 3">
+                                            <div @click.prevent="seeAll.genres = !seeAll.genres" class="mt-2"><a
+                                                href="#" class="link">{{seeAll.genres? 'Свернуть' : 'Развернуть'}}</a>
+                                            </div>
+                                        </template>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingOffer">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseOffer" aria-expanded="true" aria-controls="collapseOffer">
+                                            Сортировать по: <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseOffer" class="collapse show" aria-labelledby="headingOffer" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.order" type="radio"
+                                                   name="order_filter_pad" class="custom-control-input" value=year
+                                                   id="year">
+                                            <label class="custom-control-label" for="year">Год</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.order" type="radio"
+                                                   name="order_filter_pad" class="custom-control-input" value=rate
+                                                   id="rate">
+                                            <label class="custom-control-label" for="rate">Рейтинг</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Pad Filter -->
+
+                <!-- Laptop Filters -->
+                <div class="filters shadow rounded bg-white mb-3 d-none d-xs-none d-sm-none d-md-none d-lg-block">
+                    <div class="filters-header border-bottom p-3">
+                        <h6 class="m-0 text-dark">Фильтр</h6>
+                    </div>
+                    <div class="filters-body">
+                        <div id="accordion">
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingTwo">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                                            Тип:
+                                            <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapsetwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.type" type="radio"
+                                                   name="types_filter" class="custom-control-input" :value=null
+                                                   id="all_types_laptop">
+                                            <label class="custom-control-label" for="all_types_laptop">Кино и Сериалы
+                                                <small class="text-black-50">{{allTypesCount}}</small></label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.type" type="radio"
+                                                   value="feature"
+                                                   name="types_filter" class="custom-control-input" id="feature">
+                                            <label class="custom-control-label" for="feature">Полнометражные <small
+                                                class="text-black-50">{{typesCount.feature}}</small></label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.type" type="radio"
+                                                   value="serial"
+                                                   name="types_filter" class="custom-control-input" id="serial">
+                                            <label class="custom-control-label" for="serial">Сериалы <small
+                                                class="text-black-50">{{typesCount.serial}}</small></label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.type" type="radio"
+                                                   value="mini_serial" name="types_filter"
+                                                   class="custom-control-input" id="mini_serial">
+                                            <label class="custom-control-label" for="mini_serial">Мини сериалы
+                                                <small
+                                                    class="text-black-50">{{typesCount.mini_serial}}</small></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingOne">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Жанры:
+                                            <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <form class="mb-3">
+                                            <div class="input-group rounded">
+                                                <input @keypress.enter.prevent="send()" v-model="form.genres_filter"
+                                                       type="search" class="form-control" placeholder="Поиск жанра..."
+                                                       aria-label="Search" aria-describedby="search-addon"/>
+                                                <button @click.prevent="send()" class="btn btn-outline-primary"
+                                                        id="search-addon">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div :class="seeAll.genres? 'hide' : 'custom-show'">
+                                            <div class="custom-control custom-radio">
+                                                <input @change.prevent="send()" v-model="form.genre" type="radio"
+                                                       name="genres_filter" class="custom-control-input" :value=null
+                                                       id="all_genres">
+                                                <label class="custom-control-label" for="all_genres">Все жанры <small
+                                                    class="text-black-50">{{allGenresCount}}</small></label>
+                                            </div>
+                                            <div v-for="genre in genres" class="custom-control custom-radio">
+                                                <input @change.prevent="send()" v-model="form.genre" type="radio"
+                                                       :value="genre.genre.slug" name="genres_filter"
+                                                       class="custom-control-input" :id="genre.genre.slug">
+                                                <label class="custom-control-label" :for="genre.genre.slug">{{genre.genre.title}}
+                                                    <small class="text-black-50">{{genre.genresCount}}</small></label>
+                                            </div>
+                                        </div>
+                                        <template v-if="genres.length + 1 > 3">
+                                            <div @click.prevent="seeAll.genres = !seeAll.genres" class="mt-2"><a
+                                                href="#" class="link">{{seeAll.genres? 'Свернуть' : 'Развернуть'}}</a>
+                                            </div>
+                                        </template>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingOffer">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseOffer" aria-expanded="true" aria-controls="collapseOffer">
+                                            Сортировать по: <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseOffer" class="collapse show" aria-labelledby="headingOffer" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.order" type="radio"
+                                                   name="order_filter" class="custom-control-input" value=year
+                                                   id="year">
+                                            <label class="custom-control-label" for="year">Год</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input @change.prevent="send()" v-model="form.order" type="radio"
+                                                   name="order_filter" class="custom-control-input" value=rate
+                                                   id="rate">
+                                            <label class="custom-control-label" for="rate">Рейтинг</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Laptop Filters -->
+
+            </div>
+            <!-- Movies -->
+            <div class="col-xl-9 col-lg-8">
+                <div class="row">
+                    <div v-if="movies.data.length > 0" v-for="movie in movies.data" class="col-xl-4 col-md-6 mb-4">
+                        <div class="card m-card shadow border-0">
+                            <Link :href="`/movies/${movie.data.slug}`">
+                                <div class="m-card-cover">
+                                    <img v-lazy="movie.data.posterUrl" class="card-img-top" alt="...">
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-2 auto py-3 pl-3">
+                                            <div class="bg-white rounded text-center">
+                                                <h6 class="text-danger mb-0 font-weight-bold">{{movie.data.year}}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-10 p-3">
+                                            <p v-if="movie.data.nameRu != null" class="card-text text-gray-900 mb-1">
+                                                {{movie.data.nameRu}}</p>
+                                            <p v-if="movie.data.nameEn != null" class="card-text text-gray-900 mb-1">
+                                                {{movie.data.nameEn}}</p>
+                                            <p class="card-text">
+                                                <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
+                                                <small v-for="genre in movie.data.genres" class="text-muted">
+                                                    {{genre.title}} &nbsp
+                                                </small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                    </div>
+                    <div v-if="movies.data.length === 0" class="text-muted"><i class="fas fa-search fa-sm"></i> Не нашел
+                        фильмов по заданным критериям. Попробуйте облегчить мне задачу
+                    </div>
+                </div>
+            </div>
+            <!-- End Movies -->
+        </section>
+        <!-- Pagination Row -->
+        <section class="row">
+            <div class="row d-grid justify-content-end">
+                <nav v-if="movies.last_page > 1" aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a @click.prevent="changePage(movies.current_page - 1)" class="page-link" href="#"
+                               aria-label="Previous">
+                                <div aria-hidden="true">&laquo;</div>
+                            </a>
+                        </li>
+                        <li v-for="link in movies.links" class="page-item">
                             <template v-if="Number(link.label) &&
                             (movies.current_page - link.label < 3 &&
                             movies.current_page - link.label > -3) ||
                             Number(link.label) === 1 || Number(link.label) === movies.last_page
                             ">
-                                <a @click.prevent="changePage(link.label)" :class="link.active? 'active' : ''" class="page-link" href="#">{{link.label}}</a>
+                                <a @click.prevent="changePage(link.label)" :class="link.active? 'active' : ''"
+                                   class="page-link" href="#">{{link.label}}</a>
                             </template>
                             <template v-if="Number(link.label) &&
                             movies.current_page != 4 &&
@@ -103,23 +473,23 @@
                             Number(link.label) &&
                             movies.current_page != movies.last_page - 3 &&
                             (movies.current_page - link.label === -3)">
-                                <span class="page-link">...</span>
+                                <div class="page-link">...</div>
                             </template>
-                            </li>
-                            <li v-if="movies.current_page != movies.last_page" class="page-item">
-                                <a @click.prevent="changePage(movies.current_page + 1)" class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    </div>
-                </div>
+                        </li>
+                        <li v-if="movies.current_page != movies.last_page" class="page-item">
+                            <a @click.prevent="changePage(movies.current_page + 1)" class="page-link" href="#"
+                               aria-label="Next">
+                                <div aria-hidden="true">&raquo;</div>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
 
-
-                </div>
 
         </section>
+        <!-- End Pagination Row -->
+
 
     </FrontLayout>
 </template>
@@ -131,11 +501,11 @@
 
     export default {
         name: "Catalog",
-        props: ['genres', 'movies', 'category', 'data'],
+        props: ['genres', 'allGenresCount', 'allTypesCount', 'typesCount', 'movies', 'category', 'data'],
         components: {Head, Link, FrontLayout},
 
-        data(){
-            return{
+        data() {
+            return {
                 queryArr: {},
                 form: {
                     category: this.data.category,
@@ -143,29 +513,38 @@
                     genre: this.data.genre,
                     order: this.data.order,
                     page: this.data.page,
-                }
+                    genres_filter: this.data.genres_filter,
+                },
+                seeAll: {
+                    genres: false,
+                },
             }
         },
 
         mounted() {
             ym(94438576, 'hit', '/movies');
+
         },
 
-        methods:{
-            send(){
-                for(let key in this.form){
-                    if(this.form[key] !== null) {
+        methods: {
+
+            makeQueryArr() {
+                for (let key in this.form) {
+                    if (this.form[key] !== null && this.form[key] !== '') {
                         this.queryArr[key] = this.form[key]
                     }
                 }
-                router.get('/movies', this.queryArr);
             },
 
-            changePage(page){
+            send() {
+                this.makeQueryArr()
+                router.get('/movies', this.queryArr, {preserveScroll: true});
+            },
+
+            changePage(page) {
                 this.form.page = page
                 this.send();
-            }
-
+            },
 
         }
 

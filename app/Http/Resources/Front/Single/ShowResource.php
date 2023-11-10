@@ -22,7 +22,10 @@ class ShowResource extends JsonResource
             'slug' => $this->slug,
             'kinopoisk_id' => $this->kinopoisk_id,
             'posterUrl' => $posterUrl,
-            'trailer' => $this->trailer,
+            'trailers' => [
+                'videos_count' => $this->trailers->count(),
+                'videos' => $this->trailers
+            ],
             'nameRu' => $this->nameRu,
             'nameEn' => $this->nameEn,
             'age_limits' => $this->age_limits,
@@ -34,6 +37,7 @@ class ShowResource extends JsonResource
             'filmLength' => $this->duration,
             'endYear' => $this->year,
             'rate' => $this->rate,
+            'budget' => $this->budget,
             'countries' => $this->countries,
             'video_allowed' => $this->video_allowed,
         ];

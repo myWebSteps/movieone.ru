@@ -23,8 +23,7 @@ class MovieFilter extends AbstractFilter
             self::CATEGORY => [$this, 'category'],
             self::GENRE => [$this, 'genre'],
             self::TYPE => [$this, 'type'],
-            self::SEARCH => [$this, 'search']
-
+            self::SEARCH => [$this, 'search'],
         ];
     }
 
@@ -72,4 +71,5 @@ class MovieFilter extends AbstractFilter
             $b->where('genre_id', $genre->id);
         });
     }
+
 }

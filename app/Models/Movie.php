@@ -26,6 +26,13 @@ class Movie extends Model
         return $this->belongsToMany(Country::class, CountryMovie::class);
     }
 
+    public function trailers()
+    {
+        return $this->hasMany(Trailer::class);
+    }
+
+
+
     public function sluggable(): array
     {
         return [

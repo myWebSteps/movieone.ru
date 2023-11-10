@@ -17,7 +17,6 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
-
             Image::make($data['poster'])
                 ->fit(250, 370)
                 ->save(storage_path('/app/public/files'.'/poster'.$data['kinopoiskId'].'.'.$data['poster']->getClientOriginalExtension()));
@@ -33,12 +32,12 @@ class StoreController extends Controller
                     'nameEn' => $data['nameEn'],
                     'age_limits' => $data['age_limits'],
                     'poster' => $poster_path,
-                    'trailer' => $data['trailer'],
                     'type' => $data['type'],
                     'category_id' => $data['category'],
                     'year' => $data['year'],
                     'duration' => $data['duration'],
                     'rate' => $data['rate'],
+                    'budget' =>$data['budget'],
                     'slogan' => $data['slogan'],
                     'description' => $data['description'],
                     ]
@@ -47,5 +46,15 @@ class StoreController extends Controller
         $movie->genres()->attach($data['genres']);
         $movie->countries()->attach($data['countries']);
 
+        if(isset($data['trailers'])) {
+            foreach($data['trailers'] as $item) {
+                $movie->trailers()->create([
+                    'movie_id' => $movie->id,
+                    'url' => $item['url'],
+                    'name' => $item['name'],
+                    'site' => $item['site'],
+                ]);
+            }
+        }
     }
 }

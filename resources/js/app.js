@@ -1,16 +1,16 @@
 import './bootstrap';
 
-// import '../assets/css/osahan.css';
-// import '../assets/vendor/fontawesome-free/css/all.min.css';
-import '../assets/AdminLte/dist/css/alt/adminlte.core.css';
+import '../assets/css/osahan.css';
+import '../assets/vendor/slick/slick.min.css'
+import '../assets/vendor/slick/slick-theme.min.css'
+import '../assets/vendor/fontawesome-free/css/all.min.css';
 import '../css/app.css';
 
 import '../assets/vendor/jquery/jquery.min'
 import '../assets/vendor/bootstrap/js/bootstrap.bundle.min'
-// import '../assets/vendor/jquery-easing/jquery.easing.min'
-import '../assets/AdminLte/dist/js/adminlte'
-
-
+import '../assets/vendor/jquery-easing/jquery.easing.min'
+// import '../assets/js/osahan'
+import '../assets/vendor/slick/slick.min'
 
 
 import { createApp, h } from 'vue';

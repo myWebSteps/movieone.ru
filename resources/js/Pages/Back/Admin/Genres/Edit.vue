@@ -33,7 +33,12 @@
                 </div>
             </div>
         </section>
-
+        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-absolute bottom-0 end-0 z-10 position-fixed" role="alert">
+            <div v-for="error in errors">
+                <span>{{error}}</span>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
 
 
     </AuthenticatedLayout>
@@ -54,6 +59,9 @@
         methods:{
             updateGenre(id, catId, slug, title){
                 router.patch(`/admin/genres/${id}`, {id: id, category_id: catId, slug: slug, title: title})
+                router.on('error', (errors) => {
+                    this.errors = errors.detail.errors
+                })
             },
         },
 

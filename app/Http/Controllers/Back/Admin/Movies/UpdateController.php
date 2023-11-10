@@ -28,6 +28,8 @@ class UpdateController extends Controller
         unset($data['countries']);
         $genres = $data['genres'];
         unset ($data['genres']);
+        $trailers = $data['trailers'];
+        unset($data['trailers']);
 
         $movie->update(
                 $data
@@ -35,6 +37,20 @@ class UpdateController extends Controller
 
         $movie->genres()->sync($genres);
         $movie->countries()->sync($countries);
+
+        $movie->trailers()->each(function ($trailer){
+            $trailer->delete();
+        });
+
+        forEach($trailers as $item){
+            $movie->trailers()->create([
+                'movie_id' => $movie->id,
+                'url' => $item['url'],
+                'name' => $item['name'],
+                'site' => $item['site'],
+            ]);
+        };
+
 
         return to_route('movies.index');
 
