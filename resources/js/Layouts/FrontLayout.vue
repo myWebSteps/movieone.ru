@@ -77,7 +77,7 @@
 
                         <li v-if="playlist" class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="playlistDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="icon-eye"></i>
+                                <i class="fas fa-eye"></i>
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger bg-gradient-danger">{{playCount}}</span>
                             </a>
