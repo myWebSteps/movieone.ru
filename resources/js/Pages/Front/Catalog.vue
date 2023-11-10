@@ -116,7 +116,7 @@
                                         </div>
                                         <template v-if="genres.length + 1 > 3">
                                             <div @click.prevent="seeAll.genres = !seeAll.genres" class="mt-2"><a
-                                                href="#" class="link">{{seeAll.genres? 'Свернуть' : 'Развернуть'}}</a>
+                                                href="#" class="link">{{seeAll.genres? 'Развернуть' : 'Свернуть'}}</a>
                                             </div>
                                         </template>
                                     </div>
