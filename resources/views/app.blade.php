@@ -27,6 +27,7 @@
             trackLinks:true,
             accurateTrackBounce:true
         });
+
     </script>
     <!-- /Yandex.Metrika counter -->
     <noscript><div><img src="https://mc.yandex.ru/watch/94438576" style="position:absolute; left:-9999px;" alt="" /></div></noscript>

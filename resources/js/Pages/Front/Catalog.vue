@@ -97,7 +97,7 @@
                                                 </button>
                                             </div>
                                         </form>
-                                        <div :class="seeAll.genres? 'custom-show' : 'hide'">
+                                        <div :class="seeAll.genres? 'custom-show' : 'custom-hide'">
                                             <div class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.genre" type="radio"
                                                        name="genres_filter_mobile" class="custom-control-input" :value=null
@@ -225,7 +225,7 @@
                                                 </button>
                                             </div>
                                         </form>
-                                        <div :class="seeAll.genres? 'custom-show' : 'hide'">
+                                        <div :class="seeAll.genres? 'custom-show' : 'custom-hide'">
                                             <div class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.genre" type="radio"
                                                        name="genres_filter_pad" class="custom-control-input" :value=null
@@ -352,7 +352,7 @@
                                                 </button>
                                             </div>
                                         </form>
-                                        <div :class="seeAll.genres? 'custom-show' : 'hide'">
+                                        <div :class="seeAll.genres? 'custom-show' : 'custom-hide'">
                                             <div class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.genre" type="radio"
                                                        name="genres_filter" class="custom-control-input" :value=null

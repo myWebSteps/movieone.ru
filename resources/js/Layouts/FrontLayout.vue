@@ -1,9 +1,9 @@
 <template>
     <!-- Page Wrapper -->
     <div id="wrapper">
-        <!-- Sidebar -->
-        <div class="sticky-sidebar">
-        <ul class="navbar-nav sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+        <!-- Sidebar Large -->
+        <div class="sticky-sidebar d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar_large">
             <!-- Sidebar - Brand -->
             <Link class="sidebar-brand d-flex align-items-center justify-content-center p-2" href="/">
                 <img class="h-100" src="/img/logo-icon.png" alt="logo image">
@@ -31,6 +31,38 @@
         </ul>
     </div>
         <!-- End of Sidebar -->
+
+        <!-- Sidebar Small -->
+        <div class="sticky-sidebar d-xs-block d-sm-block d-md-block d-lg-none d-xl-none d-xxl-none  ">
+            <ul class="navbar-nav sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+                <!-- Sidebar - Brand -->
+                <Link class="sidebar-brand d-flex align-items-center justify-content-center p-2" href="/">
+                    <img class="h-100" src="/img/logo-icon.png" alt="logo image">
+                    <div class="sidebar-brand-text mx-3">MovieOne</div>
+                </Link>
+                <!-- Nav Item - Dashboard -->
+
+                <!--            <li class="nav-item">-->
+                <!--                <a class="nav-link" href="people.html">-->
+                <!--                    <i class="fas fa-fw fa-users"></i>-->
+                <!--                    <span>Подборки</span></a>-->
+                <!--            </li>-->
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading">Кино</div>
+                <!-- Nav Item  -->
+                <li v-for="category in $page.props.categories" class="nav-item">
+                    <Link :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
+                        <i :class="category.logo"></i>
+                        <span>{{category.title}}</span>
+                    </Link>
+                </li>
+            </ul>
+        </div>
+        <!-- End of Sidebar -->
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
