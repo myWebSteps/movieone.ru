@@ -40,6 +40,8 @@ class StoreController extends Controller
                     'budget' =>$data['budget'],
                     'slogan' => $data['slogan'],
                     'description' => $data['description'],
+                    'meta_keywords' => $data['meta_keywords'],
+                    'meta_description' => $data['meta_description'],
                     ]
                 );
 
@@ -56,5 +58,7 @@ class StoreController extends Controller
                 ]);
             }
         }
+
+        return to_route('movies.index');
     }
 }

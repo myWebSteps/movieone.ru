@@ -16,7 +16,9 @@ class IndexController extends Controller
 {
     public function __invoke(SearchRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
+
+        dd($data);
 
         $filter = app()->make(MovieFilter::class, ['queryParams' => array_filter($data)]);
 

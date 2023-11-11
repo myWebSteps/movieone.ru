@@ -39,6 +39,8 @@ class StoreRequest extends FormRequest
             'type'=>'required|string',
             'trailers' => 'nullable',
             'video_allowed' => 'required|boolean',
+            'meta_keywords' => 'required|string',
+            'meta_description' => 'required|string',
         ];
     }
 }

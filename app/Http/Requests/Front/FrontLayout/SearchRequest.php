@@ -22,7 +22,7 @@ class SearchRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'key'=> 'min:3|max:50'
+            'key'=> 'required|min:3|max:50'
         ];
     }
     public function messages()

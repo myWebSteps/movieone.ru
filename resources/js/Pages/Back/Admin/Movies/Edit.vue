@@ -196,6 +196,19 @@
                                 <textarea class="w-100" v-model="form.description" id="description" rows="10" placeholder="Вставьте описание"></textarea>
                             </div>
 
+                            <div class="form-group">
+                                <label for="meta_keywords">Meta keywords:</label>
+                                <input v-model="form.meta_keywords" type="text" class="form-control" id="meta_keywords"
+                                       placeholder="Meta keywords">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="d-block" for="meta_description">Meta description:</label>
+
+                                <textarea class="w-100" v-model="form.meta_description" id="meta_description" rows="4"
+                                          placeholder="meta description"></textarea>
+                            </div>
+
 
                         </div>
 
@@ -250,6 +263,8 @@
                     description: this.movie.description,
                     trailer: this.movie.trailer,
                     video_allowed: this.movie.video_allowed,
+                    meta_keywords: this.movie.meta_keywords,
+                    meta_description: this.movie.meta_description,
                 },
                 genresList: this.genres,
                 errors: false,
@@ -303,6 +318,8 @@
                     poster: this.form.poster,
                     type: this.form.type,
                     video_allowed: this.form.video_allowed,
+                    meta_keywords: this.form.meta_keywords,
+                    meta_description: this.form.meta_description,
                 })
                 router.on('error', (errors) => {
                     this.errors = errors.detail.errors

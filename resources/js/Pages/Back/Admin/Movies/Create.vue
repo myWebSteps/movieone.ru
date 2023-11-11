@@ -305,8 +305,21 @@
                                           placeholder="Вставьте описание"></textarea>
                             </div>
 
+                            <div class="form-group">
+                                <label for="meta_keywords">Meta keywords:</label>
+                                <input v-model="form.meta_keywords" type="text" class="form-control" id="meta_keywords"
+                                       placeholder="Meta keywords">
+                            </div>
 
+                            <div class="form-group">
+                                <label class="d-block" for="meta_description">Meta description:</label>
+
+                                <textarea class="w-100" v-model="form.meta_description" id="meta_description" rows="4"
+                                          placeholder="meta description"></textarea>
+                            </div>
                         </div>
+
+
 
                         <div class="card-footer">
                             <button @click.prevent="store()" type="submit" class="btn btn-primary">Submit</button>
@@ -374,6 +387,8 @@
                     trailers: [],
                     video_allowed: 1,
                     budget: "",
+                    meta_keywords: "",
+                    meta_description: "",
                 },
                 errors: null,
             }
@@ -510,27 +525,7 @@
             store() {
                 console.log(this.form)
                 router.post('/admin/movies/store', this.form)
-                router.on('success', (event) => {
-                    this.errors = null
-                    this.form.kinopoiskId = null
-                    this.form.year = null
-                    this.form.nameRu = null
-                    this.form.nameEn = null
-                    this.form.poster = null
-                    this.form.category = ""
-                    this.form.countries = []
-                    this.form.type = ""
-                    this.form.duration = null
-                    this.form.age_limits = null
-                    this.form.rate = null
-                    this.form.slogan = null
-                    this.form.description = null
-                    this.form.genres = []
-                    this.form.poster = null
-                    this.form.trailers = []
-                    this.form.video_allowed = 1
-                })
-                router.on('error', (errors) => {
+                   router.on('error', (errors) => {
                     this.errors = errors.detail.errors
                 })
 
