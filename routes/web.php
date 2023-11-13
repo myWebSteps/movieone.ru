@@ -15,6 +15,7 @@ Route::get('/', \App\Http\Controllers\Front\Home\IndexController::class)->name('
 Route::get('/movies', \App\Http\Controllers\Front\Catalog\IndexController::class)->name('catalog.index');
 Route::get('/movies/{movie}', \App\Http\Controllers\Front\Single\IndexController::class)->name('single.index');
 Route::get('/search', \App\Http\Controllers\Front\Search\IndexController::class)->name('search.index');
+Route::post('/add_comment', \App\Http\Controllers\Comments\CreateController::class);
 
 
 
@@ -54,6 +55,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('/', \App\Http\Controllers\Back\Admin\Movies\IndexController::class)->name('movies.index');
             Route::patch('/{movie}', \App\Http\Controllers\Back\Admin\Movies\UpdateController::class)->name('movies.update');
             Route::delete('/{movie}', \App\Http\Controllers\Back\Admin\Movies\DestroyController::class)->name('movies.destroy');
+        });
+        route::prefix('/comments')->group(function(){
+            Route::get('/', \App\Http\Controllers\Back\Admin\Comments\IndexController::class)->name('comments.index');
+            Route::get('/{comment}/edit', \App\Http\Controllers\Back\Admin\Comments\EditController::class)->name('comments.edit');
+            Route::patch('/{comment}', \App\Http\Controllers\Back\Admin\Comments\UpdateController::class)->name('comments.update');
+            Route::delete('/{comment}', \App\Http\Controllers\Back\Admin\Comments\DestroyController::class)->name('comments.destroy');
+
         });
 
 

@@ -60,6 +60,12 @@ import DropdownLink from "@/Components/DropdownLink.vue";
                     >
                         Видео
                     </NavLink>
+                    <NavLink
+                        href="/admin/comments"
+                        active="/admin/comments"
+                    >
+                        Комментарии
+                    </NavLink>
                 </div>
 
 

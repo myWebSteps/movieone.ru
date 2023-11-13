@@ -93,15 +93,36 @@
                             </div>
 
                             <!--poster Upload -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="PosterUpload">Постер:</label>
+                            <div class="row">
+                            <div class="col-sm-6 d-flex align-items-center column-gap-2">
+                                <div class="preview w-25 d-inline-flex">
+                                    <img :src="examples.poster" alt="Превью постера" class="img-fluid">
+                                </div>
+                                <div class="form-group d-block">
+                                        <label for="PosterUpload">Постер:</label>
+
                                     <div class="mb-3" id="PosterUpload">
                                         <input @input="form.poster = $event.target.files[0]" class="form-control" type="file">
                                     </div>
                                 </div>
 
                             </div>
+
+                            <!--backdrop Upload -->
+                            <div class="col-sm-6">
+                                <div class="preview w-50 d-inline-flex">
+                                    <img :src="examples.backdrop" alt="Превью фоновой картинки" class="img-fluid">
+                                </div>
+                                <div class="form-group">
+                                    <label for="BackdropUpload">Фоновая картинка:</label>
+                                    <div class="mb-3" id="BackdropUpload">
+                                        <input @input="form.backdrop = $event.target.files[0]" class="form-control"
+                                               type="file">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
 
                             <!-- Country Select -->
                             <div class="col-sm-6">
@@ -252,6 +273,7 @@
                     slug: this.movie.slug,
                     year: this.movie.year,
                     poster: null,
+                    backdrop: null,
                     countries: this.movie.countries,
                     category_id: this.movie.category_id,
                     genres: this.movie.genres,
@@ -265,6 +287,11 @@
                     video_allowed: this.movie.video_allowed,
                     meta_keywords: this.movie.meta_keywords,
                     meta_description: this.movie.meta_description,
+                },
+                array:{},
+                examples:{
+                    poster: this.movie.poster,
+                    backdrop: this.movie.backdrop,
                 },
                 genresList: this.genres,
                 errors: false,
@@ -316,6 +343,7 @@
                     slogan: this.form.slogan,
                     description: this.form.description,
                     poster: this.form.poster,
+                    backdrop: this.form.backdrop,
                     type: this.form.type,
                     video_allowed: this.form.video_allowed,
                     meta_keywords: this.form.meta_keywords,

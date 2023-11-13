@@ -144,6 +144,47 @@
                                 </div>
                             </div>
 
+                            <!-- AgeLimits -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="ageLimits">Возрастные ограничения:</label>
+                                    <input v-model="form.age_limits" type="text" class="form-control" id="ageLimits"
+                                           placeholder="Введите ограничение по возрасту">
+                                </div>
+                            </div>
+
+                            <!--poster Upload -->
+                            <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="PosterUpload">Постер:</label>
+                                    <div class="mb-3" id="PosterUpload">
+                                        <input @input="form.poster = $event.target.files[0]" class="form-control"
+                                               type="file">
+                                    </div>
+                                    <a v-if="examples.posterUrlPreview" :href="examples.posterUrlPreview" target="_blank">Перейти к постеру</a>
+
+                                </div>
+
+                            </div>
+
+                            <!--backdrop Upload -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="BackdropUpload">Фоновая картинка:</label>
+                                    <div class="mb-3" id="BackdropUpload">
+                                        <input @input="form.backdrop = $event.target.files[0]" class="form-control"
+                                               type="file">
+                                    </div>
+                                    <a v-if="examples.backdropUrl" :href="examples.backdropUrl" target="_blank">Перейти к фоновой картинке</a>
+
+                                </div>
+
+                            </div>
+                            </div>
+
+                            <!-- Трейлеры -->
+                            <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
                                     <form>
@@ -159,38 +200,16 @@
                                             </select>
                                             <button @click="deleteTrailer(index)" type="button" class="btn btn-danger">-</button>
                                         </div>
-                                        <span class="input-group-btn">
+                                        <div class="input-group-btn">
                                         <button @click="addTrailer()" type="button" class="btn btn-success">Добавить трейлер</button>
-                                    </span>
+                                    </div>
                                     </form>
                                 </div>
                             </div>
-
-
-                            <!-- AgeLimits -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="ageLimits">Возрастные ограничения:</label>
-                                    <input v-model="form.age_limits" type="text" class="form-control" id="ageLimits"
-                                           placeholder="Введите ограничение по возрасту">
-                                </div>
-                            </div>
-
-                            <!--poster Upload -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="PosterUpload">Постер:</label>
-                                    <div class="mb-3" id="PosterUpload">
-                                        <input @input="form.poster = $event.target.files[0]" class="form-control"
-                                               type="file">
-                                    </div>
-                                    <a :href="examples.posterUrlPreview" target="_blank">Перейти к постеру</a>
-
-                                </div>
-
                             </div>
 
                             <!-- Country Select -->
+                            <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Страны</label>
@@ -207,9 +226,11 @@
                                     </p>
                                 </div>
                             </div>
+                            </div>
 
 
                             <!-- Cat Select -->
+                            <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Категория</label>
@@ -227,6 +248,7 @@
                             </div>
 
 
+
                             <!--SubCat Select -->
                             <div class="col-sm-6">
                                 <div class="form-group" v-if="genres.list != null">
@@ -242,6 +264,7 @@
                                     </span>
                                     </p>
                                 </div>
+                            </div>
                             </div>
 
 
@@ -367,6 +390,7 @@
                     type: null,
                     category: null,
                     posterUrlPreview: null,
+                    backdropUrl: null,
                     countries: null,
                 },
                 form: {
@@ -375,6 +399,7 @@
                     nameRu: null,
                     nameEn: null,
                     poster: null,
+                    backdrop: null,
                     category: "",
                     countries: [],
                     type: "",
@@ -389,6 +414,7 @@
                     budget: "",
                     meta_keywords: "",
                     meta_description: "",
+
                 },
                 errors: null,
             }
@@ -436,6 +462,7 @@
                         this.examples.category = response.data.type
                         this.examples.type = response.data.isSeries
                         this.examples.posterUrlPreview = response.data.poster.previewUrl
+                        this.examples.backdropUrl = response.data.backdrop.url
                         this.examples.countries = response.data.countries
                     })
 

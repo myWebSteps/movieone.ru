@@ -16,13 +16,26 @@ class UpdateController extends Controller
     {
         $data = $request->validated();
 
-        if($data['poster'] != null){
-            Image::make($data['poster'])
+        if(isset($data['poster']) && $data['poster'] !=null){
+            $poster_path = '/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension();
+            $data['poster'] = Image::make($data['poster'])
                 ->fit(250, 370)
-                ->save(storage_path('/app/public/files'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension()));
+                ->save(storage_path('/app/public/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension()));
+            $data['poster'] = $poster_path;
+        }else{
+            unset($data['poster']);
         }
 
-        unset($data['poster']);
+        if(isset($data['backdrop']) && $data['backdrop'] !=null){
+            $backdrop_path = '/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension();
+            $data['backdrop'] = Image::make($data['backdrop'])
+                ->fit(1300, 508)
+                ->save(storage_path('/app/public/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension()));
+        $data['backdrop'] = $backdrop_path;
+        }else{
+            unset($data['backdrop']);
+        }
+
 
         $countries = $data['countries'];
         unset($data['countries']);
@@ -31,9 +44,7 @@ class UpdateController extends Controller
         $trailers = $data['trailers'];
         unset($data['trailers']);
 
-        $movie->update(
-                $data
-                );
+        $movie->update($data);
 
         $movie->genres()->sync($genres);
         $movie->countries()->sync($countries);
@@ -53,6 +64,5 @@ class UpdateController extends Controller
 
 
         return to_route('movies.index');
-
     }
 }

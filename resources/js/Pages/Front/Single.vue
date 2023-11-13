@@ -12,11 +12,12 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
                     <div class="cover-pic">
-<!--                        <div class="position-absolute bg-white shadow-sm rounded text-center p-2 m-4 love-box">-->
-<!--                            <h6 class="text-gray-900 mb-0 font-weight-bold"><i class="fas fa-heart text-danger"></i> {{movie.rate}}</h6>-->
-<!--                            <small class="text-muted">8,784</small>-->
-<!--                        </div>-->
-                        <img src="/img/poster.webp" class="img-fluid w-100" alt="promo poster">
+                        <div v-if="comments.total_count >= 3" class="position-absolute bg-white shadow-sm rounded text-center p-2 m-4 love-box min-width">
+                            <h6 class="text-gray-900 mb-0 font-weight-bold"><i class="fas fa-heart text-danger"></i>{{comments.total_count}}</h6>
+                            <small class="text-muted">{{comments.score}}</small>
+                        </div>
+                        <img v-if="movie.backdropUrl != null" :src="movie.backdropUrl" class="img-fluid w-100" alt="cover picture">
+                        <img v-else src="/img/poster.webp" class="img-fluid w-100" alt="cover picture">
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3">
@@ -87,19 +88,26 @@
                             </li>
                             <!-- Trailers -->
                             <li class="nav-item" v-if="movie.trailers.videos_count > 0" >
-                                <a class="nav-link" id="trailer-tab" data-toggle="tab" href="#trailer" role="tab" aria-controls="trailer" aria-selected="false">Трейлеры<span class="badge badge-danger badge-counter ml-1">{{movie.trailers.videos_count}}</span></a>
+                                <a class="nav-link" id="trailer-tab" data-toggle="tab" href="#trailer" role="tab" aria-controls="trailer" aria-selected="false">Трейлеры <span class="badge badge-danger badge-counter">{{movie.trailers.videos_count}}</span></a>
+                            </li>
+                            <!--Comments-->
+                            <li class="nav-item">
+                                <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="false">Комментарии <span v-if="comments.total_count > 0" class="badge badge-danger badge-counter">{{comments.total_count}}</span></a>
+                            </li>
+                            <!-- Reviews -->
+                            <li v-if="reviews.total > 0" class="nav-item">
+                                <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Рецензии <span class="badge badge-danger badge-counter">{{reviews.total}}</span></a>
                             </li>
                             <!-- Actors -->
                             <li @click="getStaff(movie.kinopoisk_id)" class="nav-item">
                                 <a class="nav-link" id="actors-tab" data-toggle="tab" href="#actors" role="tab" aria-controls="actors" aria-selected="false">Актеры
                                 </a>
                             </li>
-                            <!-- Reviews -->
-                            <li v-if="reviews.total > 0" class="nav-item">
-                                <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Рецензии<span class="badge badge-danger badge-counter ml-1">{{reviews.total}}</span></a>
-                            </li>
+
+
                         </ul>
                         <div class="tab-content" id="myTabContent">
+
                             <!-- Home Tab -->
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div v-if="movie.video_allowed == 1" class="kinobox_player"></div>
@@ -129,6 +137,70 @@
                             </div>
                             </div>
                             <!-- Trailers Tab -->
+
+                            <!--Comments Tab-->
+                            <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+                                <div class="card-body p-0 reviews-card">
+                                    <div v-if="comments.comments.length > 0" v-for="comment in comments.comments" class="media mb-4">
+                                        <img class="d-flex mr-3 rounded-circle" src="/img/comment.webp" alt="">
+                                        <div class="media-body">
+                                            <div class="mt-0 mb-1">
+                                                <p class="h6 mr-2 font-weight-bold text-gray-900 d-inline-block">{{comment.name}}</p>
+                                                <p class="d-inline-block"><i class="fa fa-calendar"></i> {{comment.updated_at}}</p>
+                                                <p class="stars-rating float-right d-inline-block">
+                                                    <template v-for="(item, index) in 5">
+                                                        <i :class="comment.rating > index ? 'text-danger' : ''" class="fa fa-heart pl-1 fs-6"></i>
+                                                    </template>
+                                                    <span class="rounded bg-danger text-dark ml-1 pl-1 pr-1 fs-6">{{comment.rating}}/5</span>
+                                                </p>
+                                            </div>
+                                            <p>{{comment.description}}</p>
+                                        </div>
+                                    </div>
+                                    <div v-else>
+                                        <div class="d-flex justify-content-center bg-gray-200 no-comments">
+                                            <p class="align-self-center p-0 m-0">У этого кино пока нет комментариев. Будьте первым!</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="p-4 bg-light rounded mt-4">
+                                    <h5 class="card-title mb-4">Оставьте комментарий</h5>
+                                    <form name="sentMessage" @submit.prevent="leaveComment()">
+                                        <div class="row">
+                                            <div class="control-group form-group col-lg-4 col-md-4">
+                                                <div class="controls">
+                                                    <label>Имя: <span class="text-danger">*</span></label>
+                                                    <input v-model="commentsForm.name" type="text" class="form-control" required="" placeholder="Введите имя">
+                                                </div>
+                                            </div>
+                                            <div class="control-group form-group col-lg-4 col-md-4">
+                                                <div class="controls">
+                                                    <label>Оценка <span class="text-danger">*</span></label>
+                                                    <select required="" v-model="commentsForm.rating" class="form-control custom-select">
+                                                        <option :value=null disabled selected>Оцените фильм</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="control-group form-group">
+                                            <div class="controls">
+                                                <label>Комментарий <span class="text-danger">*</span></label>
+                                                <textarea required="" v-model="commentsForm.description" rows="3" cols="100" class="form-control" placeholder="Напишите комментарий"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary">Отправить</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!--End Comments Tab -->
 
                             <!-- Actors Tab -->
                             <div class="tab-pane fade" id="actors" role="tabpanel" aria-labelledby="actors-tab">
@@ -303,27 +375,44 @@
         </div>
         <!-- /.container-fluid -->
 
+
+
         <!-- Copy URL Popup -->
-        <div v-if="popup" class="alert alert-warning alert-dismissible fade show position-absolute top-0 start-50 translate-middle-x z-3" role="alert">
+        <div v-if="popup" class="alert alert-success alert-dismissible fade show custom-fixed-position top-0 start-50 translate-middle-x z-3" role="alert">
             <span>Ссылка скопирована</span>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+
+        <div v-if="comment_errors" class="alert alert-warning alert-dismissible fade show custom-fixed-position" role="alert">
+            <div v-for="error in comment_errors">{{error}}</div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div v-if="comment_success" class="alert alert-success alert-dismissible fade show custom-fixed-position" role="alert">
+            <span>Комментарий успешно отправлен и будет опубликован после модерации</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
     </FrontLayout>
+
 </template>
 
 <script>
     import FrontLayout from "@/Layouts/FrontLayout.vue";
     import { Head } from "@inertiajs/vue3";
     import { Link } from "@inertiajs/vue3";
+    import {router} from '@inertiajs/vue3';
 
 
     export default {
         name: "Single",
-        props: ['movie', 'relatedMovies'],
+        props: ['movie', 'comments', 'relatedMovies'],
         components:{Head, Link, FrontLayout},
 
         data(){
             return{
+                comment_errors: false,
+                comment_success: false,
                 staff: {},
                 reviews: {},
                 playlist: [],
@@ -332,6 +421,11 @@
                 newFilter: [],
                 currentPage: 1,
                 popup: false,
+                commentsForm:{
+                    name: null,
+                    rating: null,
+                    description: null,
+                }
             }
         },
 
@@ -405,6 +499,39 @@
         },
 
         methods:{
+            flushErrors(data){
+                this.comment_errors = false
+            },
+            flushSuccess(data){
+                this.comment_success = false
+            },
+            resetPopup(){
+                this.popup = false
+            },
+
+            leaveComment(){
+                router.post('/add_comment', {
+                    movie_id: this.movie.id,
+                    name: this.commentsForm.name,
+                    rating: this.commentsForm.rating,
+                    description: this.commentsForm.description,
+                    }, {
+                    preserveScroll: true,
+                })
+                router.on('error', (error)=>{
+
+                    this.comment_errors = error.detail.errors
+                    setTimeout(this.flushErrors, 2500)
+                })
+                router.on('success', ()=>{
+                    this.comment_success = true
+                    setTimeout(this.flushSuccess, 2500)
+                    this.commentsForm.name = null
+                    this.commentsForm.rating = null
+                    this.commentsForm.description = null
+                })
+
+            },
 
             togglePlaylistButton(){
                 if(localStorage.getItem('playlist')){
@@ -495,13 +622,11 @@
             copyUrl(){
                 navigator.clipboard.writeText(window.location.href)
                 this.popup = true
-                setTimeout(this.resetPopup, 1500)
+                setTimeout(this.resetPopup, 2500)
 
             },
 
-            resetPopup(){
-                this.popup = false
-            },
+
 
         },
 

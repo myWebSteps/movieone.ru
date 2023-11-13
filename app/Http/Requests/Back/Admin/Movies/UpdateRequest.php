@@ -39,6 +39,7 @@ class UpdateRequest extends FormRequest
             'slogan'=>'required',
             'description'=>'required',
             'poster' => 'nullable',
+            'backdrop' => 'nullable',
             'type'=>'required',
             'trailer'=>'nullable|string',
             'video_allowed' => 'required|boolean',

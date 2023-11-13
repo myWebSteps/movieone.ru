@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Front\Single;
 
+use App\Http\Resources\Back\Admin\Comments\IndexResource;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -16,12 +17,18 @@ class ShowResource extends JsonResource
     public function toArray(Request $request): array
     {
         $posterUrl = url('storage' . $this->poster);
+        if($this->backdrop != null) {
+            $backdropUrl = url('storage' . $this->backdrop);
+        }else{
+            $backdropUrl = null;
+        }
 
         return [
             'id' => $this->id,
             'slug' => $this->slug,
             'kinopoisk_id' => $this->kinopoisk_id,
             'posterUrl' => $posterUrl,
+            'backdropUrl' => $backdropUrl,
             'trailers' => [
                 'videos_count' => $this->trailers->count(),
                 'videos' => $this->trailers
@@ -40,6 +47,7 @@ class ShowResource extends JsonResource
             'budget' => $this->budget,
             'countries' => $this->countries,
             'video_allowed' => $this->video_allowed,
+
         ];
     }
 }

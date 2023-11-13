@@ -17,12 +17,26 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
+        //Poster Upload
             Image::make($data['poster'])
                 ->fit(250, 370)
-                ->save(storage_path('/app/public/files'.'/poster'.$data['kinopoiskId'].'.'.$data['poster']->getClientOriginalExtension()));
+                ->save(storage_path('/app/public/posters'.'/poster'.$data['kinopoiskId'].'.'.$data['poster']->getClientOriginalExtension()));
+        //Backdrop Upload
+        if(isset($data['backdrop'])){
+            Image::make($data['backdrop'])
+                ->fit(1300, 508)
+                ->save(storage_path('/app/public/backdrops'.'/backdrop'.$data['kinopoiskId'].'.'.$data['backdrop']->getClientOriginalExtension()));
+        }
 
+            $poster_path = '/posters'.'/poster'.$data['kinopoiskId'].'.'.$data['poster']->getClientOriginalExtension();
 
-            $poster_path = '/files'.'/poster'.$data['kinopoiskId'].'.'.$data['poster']->getClientOriginalExtension();
+        if(isset($data['backdrop']))
+            {
+                $backdrop_path = '/backdrops'.'/backdrop'.$data['kinopoiskId'].'.'.$data['backdrop']->getClientOriginalExtension();
+            }else
+            {
+                $backdrop_path = null;
+            }
 
             $movie = Movie::firstOrCreate(
                 ['kinopoisk_id' => $data['kinopoiskId']],
@@ -32,6 +46,7 @@ class StoreController extends Controller
                     'nameEn' => $data['nameEn'],
                     'age_limits' => $data['age_limits'],
                     'poster' => $poster_path,
+                    'backdrop' => $backdrop_path,
                     'type' => $data['type'],
                     'category_id' => $data['category'],
                     'year' => $data['year'],

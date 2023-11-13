@@ -31,6 +31,11 @@ class Movie extends Model
         return $this->hasMany(Trailer::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 
 
     public function sluggable(): array
