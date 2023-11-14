@@ -309,8 +309,8 @@
 
             addTrailer() {
                 this.form.trailers.unshift({
-                    url: null,
-                    name: null,
+                    url: '',
+                    name: '',
                     site: 'dzen',
                 })
             },
@@ -325,7 +325,7 @@
 
             updateMovie(){
                 this.form.trailers = this.form.trailers.filter((elem)=>{
-                    if(elem.url != null && elem.url != '')
+                    if(elem.url != '' && elem.name != '')
                     {
                         return elem
                     }

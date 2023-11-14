@@ -430,8 +430,8 @@
 
             addTrailer() {
                 this.form.trailers.unshift({
-                    url: null,
-                    name: null,
+                    url: '',
+                    name: '',
                     site: 'dzen',
                 })
             },
@@ -551,11 +551,12 @@
 
             store() {
                 this.form.trailers = this.form.trailers.filter((elem)=>{
-                    if(elem.url != null && elem.url != '')
+                    if(elem.url != '' && elem.name != '')
                     {
                         return elem
                     }
                 })
+                console.log(this.form.trailers);
                 router.post('/admin/movies/store', this.form)
                    router.on('error', (errors) => {
                     this.errors = errors.detail.errors
