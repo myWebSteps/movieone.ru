@@ -38,8 +38,9 @@ class IndexController extends Controller
         foreach($comments['values'] as $item){
             $comments['score']  =  $comments['score'] + $item['rating'];
         }
-        $comments['score'] =  round($comments['score'] / $comments['total_count'], 2);
-
+        if($comments['score'] != 0) {
+            $comments['score'] = round($comments['score'] / $comments['total_count'], 2);
+        }
         $relatedMovies = RelatedMoviesResource::collection($resultRelatedMovies)->resolve();
 
         return Inertia::render('Front/Single', compact('movie', 'comments', 'relatedMovies'));
