@@ -46,10 +46,30 @@ require __DIR__.'/../vendor/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
-$kernel = $app->make(Kernel::class);
+//$kernel = $app->make(Kernel::class);
+//
+//$response = $kernel->handle(
+//    $request = Request::capture()
+//)->send();
 
-$response = $kernel->handle(
-    $request = Request::capture()
-)->send();
+try {
+    $kernel = $app->make(Kernel::class);
+
+    $response = $kernel->handle(
+        $request = Request::capture()
+    );
+
+    $response->send();
+
+    $kernel->terminate($request, $response);
+} catch (\Exception $e) {
+    // handle the exception here
+    $handler = app(\App\Exceptions\Handler::class);
+    $handler->report($e);
+    $response = $handler->render($request, $e);
+    $response->send();
+}
+
+
 
 $kernel->terminate($request, $response);
