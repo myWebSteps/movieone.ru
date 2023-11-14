@@ -15,7 +15,6 @@ class UpdateController extends Controller
     public function __invoke(UpdateRequest $request, Movie $movie)
     {
         $data = $request->validated();
-        dd($data);
 
         if(isset($data['poster']) && $data['poster'] !=null){
             $poster_path = '/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension();
