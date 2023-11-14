@@ -63,7 +63,7 @@ class StoreController extends Controller
         $movie->genres()->attach($data['genres']);
         $movie->countries()->attach($data['countries']);
 
-        if(isset($data['trailers'])) {
+        if(isset($data['trailers']) || !empty($data['trailers'])) {
             foreach($data['trailers'] as $item) {
                 $movie->trailers()->create([
                     'movie_id' => $movie->id,

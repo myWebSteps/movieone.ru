@@ -43,7 +43,7 @@ class UpdateController extends Controller
             $trailer->delete();
         });
 
-        if(!empty($data['trailers'])) {
+        if(isset($data['trailers']) || !empty($data['trailers'])) {
             foreach ($data['trailers'] as $item) {
                 $movie->trailers()->create([
                     'movie_id' => $movie->id,

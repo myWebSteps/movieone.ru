@@ -58,7 +58,7 @@
                                 <div class="form-group">
                                     <form>
                                         <label>Трейлеры:</label>
-                                        <div v-if="form.trailers.length > 0" v-for="trailer in form.trailers" class="form-group input-group">
+                                        <div v-if="form.trailers.length > 0" v-for="(trailer,index) in form.trailers" class="form-group input-group">
                                             <input type="text" v-model="trailer.url" class="form-control col-8"
                                                    placeholder="Идентификатор dzen или ссылка youtube">
                                             <input type="text" v-model="trailer.name" class="form-control col-8"
@@ -67,7 +67,7 @@
                                                 <option value="dzen">dzen</option>
                                                 <option value="youtube">youtube</option>
                                             </select>
-                                            <button @click="deleteTrailer(trailer.id)" type="button" class="btn btn-danger">-</button>
+                                            <button @click.prevent="deleteTrailer(index)" type="button" class="btn btn-danger">-</button>
                                         </div>
                                         <span class="input-group-btn">
                                         <button @click="addTrailer()" type="button" class="btn btn-success">Добавить трейлер</button>
@@ -303,7 +303,7 @@
 
             deleteTrailer(id){
                 this.form.trailers = this.form.trailers.filter((elem, index)=>{
-                    return elem.id != id
+                    return index != id
                 })
             },
 
@@ -325,7 +325,10 @@
 
             updateMovie(){
                 this.form.trailers = this.form.trailers.filter((elem)=>{
-                    return elem.url != null
+                    if(elem.url != null && elem.url != '')
+                    {
+                        return elem
+                    }
                 })
                 router.post(`/admin/movies/${this.form.id}`, {
                     _method: 'patch',

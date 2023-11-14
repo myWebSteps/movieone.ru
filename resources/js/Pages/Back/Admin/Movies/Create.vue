@@ -550,7 +550,12 @@
             },
 
             store() {
-                console.log(this.form)
+                this.form.trailers = this.form.trailers.filter((elem)=>{
+                    if(elem.url != null && elem.url != '')
+                    {
+                        return elem
+                    }
+                })
                 router.post('/admin/movies/store', this.form)
                    router.on('error', (errors) => {
                     this.errors = errors.detail.errors
