@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('movies', function (Blueprint $table) {
-            $table->tinyText('meta_description')->nullable()->after('description');
+            $table->text('meta_description')->nullable()->after('description');
         });
     }
 
