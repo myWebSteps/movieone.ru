@@ -55,7 +55,7 @@ class IndexController extends Controller
 
         //Movies filter
         $filter = app()->make(MovieFilter::class, ['queryParams' => array_filter($data)]);
-        $movies = Movie::filter($filter)->orderBy($request->get('order'), 'desc')->paginate(20, ['*'], 'page', $request->get('page'));
+        $movies = Movie::filter($filter)->orderBy($request->get('order'), 'desc')->paginate(18, ['*'], 'page', $request->get('page'));
         IndexResource::collection($movies)->resolve();
         //End of Movies Filter
 
@@ -72,7 +72,6 @@ class IndexController extends Controller
             $allGenresCount[] = $item->movies->count();
         };
         $allGenresCount = array_sum($allGenresCount);
-//        $genres = GenresResource::collection($getGenres)->resolve();
 
         $genres = GenresResource::collection($genres_result)->resolve();
         //End Genres count
