@@ -311,7 +311,7 @@
                 this.form.trailers.unshift({
                     url: '',
                     name: '',
-                    site: 'dzen',
+                    site: 'youtube',
                 })
             },
 
