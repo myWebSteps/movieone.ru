@@ -36,25 +36,15 @@ class UpdateController extends Controller
             unset($data['backdrop']);
         }
 
-
-        $countries = $data['countries'];
-        unset($data['countries']);
-        $genres = $data['genres'];
-        unset ($data['genres']);
-        $trailers = $data['trailers'];
-        unset($data['trailers']);
-
-        $movie->update($data);
-
-        $movie->genres()->sync($genres);
-        $movie->countries()->sync($countries);
+        $movie->genres()->sync($data['genres']);
+        $movie->countries()->sync($data['countries']);
 
         $movie->trailers()->each(function ($trailer){
             $trailer->delete();
         });
 
-        if(!empty($trailers)) {
-            foreach ($trailers as $item) {
+        if(!empty($data['trailers'])) {
+            foreach ($data['trailers'] as $item) {
                 $movie->trailers()->create([
                     'movie_id' => $movie->id,
                     'url' => $item['url'],
@@ -64,7 +54,10 @@ class UpdateController extends Controller
             };
         }
 
-
+        unset($data['countries']);
+        unset ($data['genres']);
+        unset($data['trailers']);
+        $movie->update($data);
         return to_route('movies.index');
     }
 }
