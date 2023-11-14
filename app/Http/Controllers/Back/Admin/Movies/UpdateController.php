@@ -53,14 +53,16 @@ class UpdateController extends Controller
             $trailer->delete();
         });
 
-        forEach($trailers as $item){
-            $movie->trailers()->create([
-                'movie_id' => $movie->id,
-                'url' => $item['url'],
-                'name' => $item['name'],
-                'site' => $item['site'],
-            ]);
-        };
+        if(!empty($trailers)) {
+            foreach ($trailers as $item) {
+                $movie->trailers()->create([
+                    'movie_id' => $movie->id,
+                    'url' => $item['url'],
+                    'name' => $item['name'],
+                    'site' => $item['site'],
+                ]);
+            };
+        }
 
 
         return to_route('movies.index');
