@@ -123,3 +123,10 @@
     vertical-align: top;
 }
 
+@media (max-width: 575.98px) {
+.mobile-container-fluid{
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+}
+}
+

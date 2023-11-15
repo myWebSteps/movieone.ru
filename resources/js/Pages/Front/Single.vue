@@ -8,7 +8,7 @@
 
     <FrontLayout ref="front_layout">
         <!-- Begin Page Content -->
-        <div class="container-fluid pl-2 pr-2">
+        <div class="container-fluid mobile-container-fluid">
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
                     <div class="cover-pic">
