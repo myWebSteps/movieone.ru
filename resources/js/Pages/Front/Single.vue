@@ -8,7 +8,7 @@
 
     <FrontLayout ref="front_layout">
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid pl-2 pr-2">
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
                     <div class="cover-pic">
@@ -22,7 +22,10 @@
                 </div>
                 <div class="col-xl-3 col-lg-3">
                     <div class="bg-white p-3 widget shadow rounded mb-4">
+                        <div class="d-inline-flex justify-content-center col-xs-12 col-sm-6 col-md-6 col-lg-12">
                         <img :src="movie.posterUrl" class="img-fluid rounded" :alt="movie.nameEn">
+                        </div>
+                        <div class="d-inline-block col-xs-12 col-sm-6 col-md-6 col-lg-12 vertical-align-top">
                         <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Продолжительность:</h1>
                         <p>{{movie.filmLength}} мин</p>
                         <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Год окончания:</h1>
@@ -37,6 +40,7 @@
                         {{country.title}}&nbsp
                         </span>
                         </p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-9">
@@ -265,7 +269,7 @@
                                                     <div aria-hidden="true">&laquo;</div>
                                                 </a>
                                             </li>
-                                            <li v-for="page in reviews.totalPages" class="page-item">
+                                            <li v-for="page in reviews.totalPages" class="page-item" :class="page == currentPage? 'active' : ''">
                                                 <template v-if="(page - currentPage < 3 && page - currentPage > -3) || page == 1 || page == reviews.totalPages">
                                                     <a @click.prevent="getReviews(page)" :class="page == currentPage? 'active' : ''" class="page-link" href="#" :value="page">{{page}}</a>
                                                 </template>
@@ -310,9 +314,9 @@
                                                     <div aria-hidden="true">&laquo;</div>
                                                 </a>
                                             </li>
-                                            <li v-for="page in reviews.totalPages" class="page-item">
+                                            <li v-for="page in reviews.totalPages" class="page-item" :class="page == currentPage? 'active' : ''">
                                                 <template v-if="(page - currentPage < 3 && page - currentPage > -3) || page == 1 || page == reviews.totalPages">
-                                                    <a @click.prevent="getReviews(page)" :class="page == currentPage? 'active' : ''" class="page-link" href="#" :value="page">{{page}}</a>
+                                                    <a @click.prevent="getReviews(page)" class="page-link" href="#" :value="page">{{page}}</a>
                                                 </template>
                                                 <template v-if="(currentPage - page == 3 && currentPage != 4) || (currentPage - page == -3 && currentPage != reviews.totalPages - 3)">
                                                     <div class="page-link">...</div>
@@ -335,14 +339,14 @@
 
             <!--Related Movies -->
             <template v-if="relatedMovies.length > 0">
-                <div class="bg-white info-header shadow rounded mb-4 pb-3">
+                <div class="bg-white info-header shadow rounded mb-4">
                     <div class="row d-flex align-content-center-start justify-content-start p-3 border-bottom">
                         <h6 class="text-gray-900 m-2 font-weight-bold">Похожие фильмы:</h6>
                     </div>
                     <div class="row col-12 mt-3 d-flex justify-content-center row-gap-3">
-                        <div v-for="relatedMovie in relatedMovies" class="col-xl-3 col-md-3 col-sm-4 col-9 col-6">
+                        <div v-for="relatedMovie in relatedMovies" class="col-xl-3 col-md-3 col-sm-4 col-9 col-6 mb-3">
                             <div  class="card e-card shadow border-0">
-                                <Link :href="`/movies/${relatedMovie.slug}`" class="">
+                                <Link :href="`/movies/${relatedMovie.slug}`">
                                     <div class="m-card-cover">
                                         <img v-lazy="relatedMovie.poster" class="card-img-top" alt="...">
                                     </div>

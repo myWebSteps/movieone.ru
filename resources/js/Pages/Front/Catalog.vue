@@ -7,9 +7,10 @@
     </Head>
 
     <FrontLayout>
+        <div class="container-fluid">
         <!-- Begin Page Content -->
         <!-- Page Heading -->
-        <section class="d-flex align-items-center justify-content-between mt-4 mb-3">
+        <section class="d-flex w-100 align-items-center justify-content-between mt-4 mb-3">
             <h1 class="h5 d-inline-block mb-0 text-gray-900">{{category.title}}</h1>
             <Link :href="`/movies?category=${data.category}&order=year&page=1`"
                   class="d-inline-block btn btn-sm btn-primary shadow-sm">
@@ -418,7 +419,7 @@
                                 <div class="m-card-cover">
                                     <img v-lazy="movie.data.posterUrl" class="card-img-top" alt="...">
                                 </div>
-                                <div class="card-body p-0">
+                                <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-2 auto py-3 pl-3">
                                             <div class="bg-white rounded text-center">
@@ -426,9 +427,9 @@
                                             </div>
                                         </div>
                                         <div class="col-10 p-3">
-                                            <p v-if="movie.data.nameRu != null" class="card-text text-gray-900 mb-1">
+                                            <p v-if="movie.data.nameRu != null" class="card-text text-gray-900 font-weight-bold mb-1">
                                                 {{movie.data.nameRu}}</p>
-                                            <p v-if="movie.data.nameEn != null" class="card-text text-gray-900 mb-1">
+                                            <p v-if="movie.data.nameEn != null" class="card-text text-gray-900 font-weight-bold mb-1">
                                                 {{movie.data.nameEn}}</p>
                                             <p class="card-text">
                                                 <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
@@ -449,23 +450,22 @@
             <!-- End Movies -->
         </section>
         <!-- Pagination Row -->
-        <section class="row">
-            <div class="row d-grid justify-content-end">
+        <section class="row d-flex justify-content-center">
                 <nav v-if="movies.last_page > 1" aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item">
+                        <li v-if="movies.current_page != 1" class="page-item">
                             <a @click.prevent="changePage(movies.current_page - 1)" class="page-link" href="#"
                                aria-label="Previous">
                                 <div aria-hidden="true">&laquo;</div>
                             </a>
                         </li>
-                        <li v-for="link in movies.links" class="page-item">
+                        <li v-for="link in movies.links" class="page-item" :class="link.active? 'active' : ''">
                             <template v-if="Number(link.label) &&
                             (movies.current_page - link.label < 3 &&
                             movies.current_page - link.label > -3) ||
                             Number(link.label) === 1 || Number(link.label) === movies.last_page
                             ">
-                                <a @click.prevent="changePage(link.label)" :class="link.active? 'active' : ''"
+                                <a @click.prevent="changePage(link.label)"
                                    class="page-link" href="#">{{link.label}}</a>
                             </template>
                             <template v-if="Number(link.label) &&
@@ -485,13 +485,10 @@
                         </li>
                     </ul>
                 </nav>
-            </div>
-
-
         </section>
         <!-- End Pagination Row -->
 
-
+        </div>
     </FrontLayout>
 </template>
 

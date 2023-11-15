@@ -7,6 +7,7 @@
     </Head>
        <!-- Content Header (Page header) -->
     <FrontLayout>
+        <div class="container-fluid">
 
             <div class="osahan-slider">
                 <div class="osahan-slider-item"><img src="img/slider1.webp" class="img-fluid rounded" alt="..."></div>
@@ -24,14 +25,13 @@
 
         <!-- Main content -->
         <section class="content">
-            <div class="container-fluid">
                 <div class="row">
                 <template v-for="item in data">
 
                     <!-- Page Heading -->
-                    <div class="d-flex align-items-center justify-content-between mt-4 mb-3">
+                    <div class="d-flex w-100 align-items-center justify-content-between mt-4 mb-3">
                         <h1 class="h5 mb-0 text-gray-900">{{item.category}}</h1>
-                        <Link :href="`/movies?category=${item.category_id}&order=year&page=1&genre=&type=`" class="text-xs">
+                        <Link :href="`/movies?category=${item.slug}&order=year&page=1`" class="text-xs">
                             Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
                         </Link>
                     </div>
@@ -73,9 +73,9 @@
 
 
             </div><!--/. row -->
-            </div><!--/. container-fluid -->
         </section>
 <!--         /.content -->
+        </div>
         </div>
     </FrontLayout>
 

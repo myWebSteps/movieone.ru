@@ -22,9 +22,9 @@
             <!-- Heading -->
             <div class="sidebar-heading">Кино</div>
             <!-- Nav Item  -->
-            <li v-for="category in $page.props.categories" class="nav-item">
-            <Link :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
-            <i :class="category.logo"></i>
+            <li v-for="category in $page.props.categories" :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}" class="nav-item">
+            <Link class="nav-link font-weight-bold" :href="`/movies?category=${category.slug}&order=year&page=1`">
+            <i class="font-weight-bold" :class="category.logo"></i>
             <span>{{category.title}}</span>
             </Link>
             </li>
@@ -53,9 +53,9 @@
                 <!-- Heading -->
                 <div class="sidebar-heading">Кино</div>
                 <!-- Nav Item  -->
-                <li v-for="category in $page.props.categories" class="nav-item">
-                    <Link :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}"   class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
-                        <i :class="category.logo"></i>
+                <li v-for="category in $page.props.categories" :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}" class="nav-item">
+                    <Link class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
+                        <i class="font-weight-bold" :class="category.logo"></i>
                         <span>{{category.title}}</span>
                     </Link>
                 </li>
@@ -78,7 +78,7 @@
                         <div class="input-group">
                             <input @keypress.enter.prevent="commenceSearch()" v-model="searchKey" type="text" class="form-control bg-white border-0 small" placeholder="Искать фильмы по названию..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button @click.prevent="commenceSearch()" class="btn bg-white" type="button">
+                                <button @click.prevent="commenceSearch()" class="btn bg-white text-lg" type="button">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -109,7 +109,7 @@
                         <!-- Nav Item - Alerts -->
 
                         <li v-if="playlist" class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="playlistDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-lg" href="#" id="playlistDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-eye"></i>
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger bg-gradient-danger">{{playCount}}</span>
@@ -136,31 +136,29 @@
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
                     <slot></slot>
-                </div>
-                <!-- /.container-fluid -->
+
             </div>
             <!-- End of Main Content -->
             <!-- Footer -->
 
             <footer class="sticky-footer bg-white">
-                <div class="container d-flex justify-content-evenly">
+                <div class="container d-flex justify-content-around">
                     <div class="copyright text-center my-auto ">
                         <span>MovieOne &copy; 2023</span>
                     </div>
                     <div class="justify-self-end d-inline-flex">
-                         <span class="nav-item mr-3 d-grid align-items-end">
+                         <span class="nav-item mr-3 d-flex align-items-center">
                                   <a  href="https://instagram.com/roman_makukha_89?igshid=OGQ5ZDc2ODk2ZA==" class="nav-link text-gray-600">
                                       <i style="font-size: 24px" class ="fa-brands fa-instagram p-0 m-0"></i>
                                   </a>
                               </span>
-                        <span class="nav-item mr-3 d-grid align-items-end">
+                        <span class="nav-item mr-3 d-flex align-items-center">
                                     <a  href="https://dzen.ru/movieone" class="nav-link p-0 m-0" target="_blank">
                                         <img style="height: 28px; padding-bottom: 2px" src="/img/zen-grey.svg" alt="zen_image">
                                     </a>
                                 </span>
-                        <span class="nav-item mr-3 d-grid align-items-end">
+                        <span class="nav-item mr-3 d-flex align-items-center">
                                   <a href="https://t.me/kino_movieone" class="nav-link text-gray-600">
                                       <i style="font-size: 24px" class="fa-brands fa-telegram p-0 m-0"></i>
                                   </a>
