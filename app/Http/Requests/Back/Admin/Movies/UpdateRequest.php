@@ -35,7 +35,7 @@ class UpdateRequest extends FormRequest
             'year'=>'required',
             'duration'=>'required',
             'rate'=>'required',
-            'budget' => 'required|string',
+            'budget' => 'nullable|string',
             'slogan'=>'required',
             'description'=>'required',
             'poster' => 'nullable',

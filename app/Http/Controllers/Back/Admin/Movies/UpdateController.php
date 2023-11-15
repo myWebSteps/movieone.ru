@@ -54,6 +54,11 @@ class UpdateController extends Controller
             };
         }
 
+        if(!isset($data['budget']) || $data['budget'] == '' || $data['budget'] == 'undefined undefined')
+        {
+            $data['budget'] = null;
+        }
+
         unset($data['countries']);
         unset ($data['genres']);
         unset($data['trailers']);

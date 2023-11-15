@@ -17,6 +17,7 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
+
         //Poster Upload
             Image::make($data['poster'])
                 ->fit(250, 370)
@@ -37,6 +38,11 @@ class StoreController extends Controller
             {
                 $backdrop_path = null;
             }
+
+        if(!isset($data['budget']) || $data['budget'] == '' || $data['budget'] == 'undefined undefined')
+        {
+            $data['budget'] = null;
+        }
 
             $movie = Movie::firstOrCreate(
                 ['kinopoisk_id' => $data['kinopoiskId']],
