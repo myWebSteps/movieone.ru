@@ -69,14 +69,14 @@
                         </div>
                         <div class="row d-flex align-items-center justify-content-between py-3 px-4">
                             <div class="col-lg-6 m-b-4">
-                                <p class="mb-0 text-gray-900"><i class="fas fa-money-bill fa-sm fa-fw mr-1"></i> BUDGET - <span class="text-white rounded px-2 py-1 bg-info">{{movie.budget}}</span></p>
+                                <p v-if="movie.budget" class="mb-0 text-gray-900"><i class="fas fa-money-bill fa-sm fa-fw mr-1"></i> Бюджет - <span class="text-white rounded px-2 py-1 bg-info">{{movie.budget}}</span></p>
                             </div>
                             <div class="col-lg-6 text-right">
                                 <a  href="https://instagram.com/roman_makukha_89?igshid=OGQ5ZDc2ODk2ZA==" class="btn btn-sm btn-danger btn-circle d-inline-flex ml-2">
                                     <i style="font-size: 15px" class ="fa-brands fa-instagram"></i>
                                 </a>
                                 <a  href="https://dzen.ru/movieone" class="btn btn-sm btn-warning btn-circle d-inline-flex ml-2" target="_blank">
-                                    <img style="padding-bottom: 2px" class="h-100" src="/img/zen-grey.svg" alt="zen_image">
+                                    <img class="h-100" src="/img/zen-grey.svg" alt="zen_image">
                                 </a>
                                 <a href="https://t.me/kino_movieone" class="btn btn-sm btn-info btn-circle d-inline-flex ml-2">
                                     <i style="font-size: 15px" class="fa-brands fa-telegram"></i>
