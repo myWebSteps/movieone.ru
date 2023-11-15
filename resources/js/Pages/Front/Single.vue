@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-xl-3 col-lg-3">
                     <div class="bg-white p-3 widget shadow rounded mb-4">
-                        <div class="d-inline-flex justify-content-center col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                        <div class="d-inline-flex justify-content-center col-xs-12 col-sm-6 col-md-6 col-lg-12 p-0">
                         <img :src="movie.posterUrl" class="img-fluid rounded" :alt="movie.nameEn">
                         </div>
                         <div class="d-inline-block col-xs-12 col-sm-6 col-md-6 col-lg-12 vertical-align-top">
