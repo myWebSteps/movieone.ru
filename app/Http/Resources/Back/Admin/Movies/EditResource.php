@@ -49,7 +49,7 @@ class EditResource extends JsonResource
             'slogan' => $this->slogan,
             'description' => $this->description,
             'video_allowed' => $this->video_allowed,
-            'title_id' => $this->title->id,
+            'title_id' => $this->title,
             'meta_keywords' => $this->meta_keywords,
             'meta_description' => $this->meta_description,
         ];

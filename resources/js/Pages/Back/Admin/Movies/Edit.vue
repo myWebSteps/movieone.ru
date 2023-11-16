@@ -237,27 +237,7 @@
                                 <label class="d-block" for="description">Описание:</label>
                                 <textarea class="w-100 form-control" v-model="form.description" id="description" rows="10" placeholder="Вставьте описание"></textarea>
                             </div>
-
-                            <div class="form-group">
-                                <label for="meta_keywords">Meta keywords:</label>
-                                <input v-model="form.meta_keywords" type="text" class="form-control" id="meta_keywords"
-                                       placeholder="Meta keywords">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="d-block" for="meta_description">Meta description:</label>
-
-                                <textarea class="w-100 form-control" v-model="form.meta_description" id="meta_description" rows="4"
-                                          placeholder="meta description"></textarea>
-                            </div>
-
-
                         </div>
-
-
-
-
-
 
                     </div>
                 </div>
@@ -269,9 +249,10 @@
                         <!--Title Select -->
                         <div class="col-sm-6">
                             <div class="form-group">
+
                                 <label>Заголовок:</label>
-                                <select v-model="form.title_id" style="width: 100%" class="form-select">
-                                    <option value="null" disabled selected>Выберите строку заголовка</option>
+                                <select v-model="form.title" style="width: 100%" class="form-select">
+                                    <option value="undefined" disabled>Выберите строку заголовка</option>
                                     <option v-for="title in titles" :value="title.id">{{title.description}}</option>
                                 </select>
                             </div>
@@ -345,7 +326,7 @@
                     description: this.movie.description,
                     trailer: this.movie.trailer,
                     video_allowed: this.movie.video_allowed,
-                    title_id: this.movie.title_id,
+                    title: this.movie.title,
                     meta_keywords: this.movie.meta_keywords,
                     meta_description: this.movie.meta_description,
                 },
@@ -412,7 +393,7 @@
                     backdrop: this.form.backdrop,
                     type: this.form.type,
                     video_allowed: this.form.video_allowed,
-                    title_id: this.form.title_id,
+                    title_id: this.form.title,
                     meta_keywords: this.form.meta_keywords,
                     meta_description: this.form.meta_description,
                 })
