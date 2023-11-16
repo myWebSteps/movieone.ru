@@ -345,29 +345,21 @@
                     </div>
                     <div class="row col-12 mt-3 d-flex justify-content-center row-gap-3">
                         <div v-for="relatedMovie in relatedMovies" class="col-xl-3 col-md-3 col-sm-4 col-9 col-6 mb-3">
-                            <div  class="card e-card shadow border-0">
+
+                            <div class="card m-card shadow border-0">
                                 <Link :href="`/movies/${relatedMovie.slug}`">
                                     <div class="m-card-cover">
-                                        <img v-lazy="relatedMovie.poster" class="card-img-top" alt="...">
+                                    <img v-lazy="relatedMovie.poster" class="card-img-top" alt="...">
                                     </div>
-                                    <div class="card-body p-0">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col-2 auto py-3 pl-3">
-                                                <div class="bg-white rounded text-center">
-                                                    <h6 class="text-danger mb-0 font-weight-bold">{{relatedMovie.year}}</h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-10 p-3">
-                                                <p class="card-text text-gray-900 mb-1">{{relatedMovie.nameRu}}</p>
-                                                <p class="card-text text-gray-900 mb-1">{{relatedMovie.nameEn}}</p>
-                                                <p class="card-text">
-                                                    <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
-                                                    <small v-for="genre in relatedMovie.genres" class="text-muted">
-                                                        {{genre.title}} &nbsp
-                                                    </small></p>
-                                            </div>
-
-                                        </div>
+                                    <div class="card-body p-3">
+                                        <h5 class="card-title text-gray-900 mb-1">{{relatedMovie.nameRu}}</h5>
+                                        <h5 class="card-title text-gray-900 mb-1">{{relatedMovie.nameEn}}</h5>
+                                        <p class="card-text mb-0">
+                                            <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
+                                            <small v-for="genre in relatedMovie.genres" class="text-muted">
+                                                {{genre.title}} &nbsp
+                                            </small></p>
+                                        <p class="card-text"><small class="text-danger"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{relatedMovie.year}}</small> </p>
                                     </div>
                                 </Link>
                             </div>

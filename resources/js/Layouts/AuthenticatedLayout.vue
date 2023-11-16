@@ -9,7 +9,7 @@ import DropdownLink from "@/Components/DropdownLink.vue";
 <template>
     <div class="bg-light min-vh-100">
         <!-- Primary Navigation Menu -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-admin-dark sticky-top">
             <div class="container-fluid">
                 <!-- Logo -->
                 <Link href="/" class="navbar-brand">
@@ -53,6 +53,12 @@ import DropdownLink from "@/Components/DropdownLink.vue";
                         active="/admin/countries"
                     >
                         Страны
+                    </NavLink>
+                    <NavLink
+                        href="/admin/titles"
+                        active="/admin/titles"
+                    >
+                        Заголовки
                     </NavLink>
                     <NavLink
                         href="/admin/movies"

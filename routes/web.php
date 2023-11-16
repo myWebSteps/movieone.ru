@@ -61,7 +61,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('/{comment}/edit', \App\Http\Controllers\Back\Admin\Comments\EditController::class)->name('comments.edit');
             Route::patch('/{comment}', \App\Http\Controllers\Back\Admin\Comments\UpdateController::class)->name('comments.update');
             Route::delete('/{comment}', \App\Http\Controllers\Back\Admin\Comments\DestroyController::class)->name('comments.destroy');
-
+        });
+        route::prefix('/titles')->group(function(){
+            Route::get('{title}/edit', \App\Http\Controllers\Back\Admin\Titles\EditController::class)->name('titles.edit');
+            Route::get('/create', \App\Http\Controllers\Back\Admin\Titles\CreateController::class)->name('titles.create');
+            Route::post('/store', \App\Http\Controllers\Back\Admin\Titles\StoreController::class)->name('titles.store');
+            Route::get('/', \App\Http\Controllers\Back\Admin\Titles\IndexController::class)->name('titles.index');
+            Route::patch('/{title}', \App\Http\Controllers\Back\Admin\Titles\UpdateController::class)->name('titles.update');
+            Route::delete('/{title}', \App\Http\Controllers\Back\Admin\Titles\DestroyController::class)->name('titles.destroy');
         });
 
 

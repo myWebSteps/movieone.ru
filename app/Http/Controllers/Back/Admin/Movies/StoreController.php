@@ -61,6 +61,7 @@ class StoreController extends Controller
                     'budget' =>$data['budget'],
                     'slogan' => $data['slogan'],
                     'description' => $data['description'],
+                    'title_id' => $data['title_id'],
                     'meta_keywords' => $data['meta_keywords'],
                     'meta_description' => $data['meta_description'],
                     ]

@@ -43,6 +43,7 @@ class UpdateRequest extends FormRequest
             'type'=>'required',
             'trailer'=>'nullable|string',
             'video_allowed' => 'required|boolean',
+            'title_id' => 'required',
             'meta_keywords' => 'required|string',
             'meta_description' => 'required|string',
         ];

@@ -36,6 +36,11 @@ class Movie extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function title()
+    {
+        return $this->belongsTo(Title::class);
+    }
+
 
 
     public function sluggable(): array

@@ -21,26 +21,22 @@
 
                         <div class="row">
                             <div v-for="movie in movies" class="col-xl-3 col-md-6 mb-4 col-sm-6">
-                                <div  class="card e-card shadow border-0">
+                                <div  class="card m-card shadow border-0">
                                     <Link :href="`/movies/${movie.slug}`">
                                         <div class="m-card-cover">
                                             <img v-lazy="movie.posterUrl" class="card-img-top" alt="...">
                                         </div>
-                                        <div class="card-body p-0">
+                                        <div class="card-body">
                                             <div class="row no-gutters align-items-center">
-                                                <div class="col-2 auto py-3 pl-3">
-                                                    <div class="bg-white rounded text-center">
-                                                        <h6 class="text-danger mb-0 font-weight-bold">{{movie.year}}</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-10 p-3">
-                                                    <p v-if="movie.nameRu != null" class="card-text text-gray-900 mb-1">{{movie.nameRu}}</p>
-                                                    <p v-if="movie.nameEn != null" class="card-text text-gray-900 mb-1">{{movie.nameEn}}</p>
-                                                    <p class="card-text">
+                                                <div class="card-body p-3">
+                                                    <h5 class="card-title text-gray-900 mb-1">{{movie.nameRu}}</h5>
+                                                    <h5 class="card-title text-gray-900 mb-1">{{movie.nameEn}}</h5>
+                                                    <p class="card-text mb-0">
                                                         <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
                                                         <small v-for="genre in movie.genres" class="text-muted">
                                                             {{genre.title}} &nbsp
                                                         </small></p>
+                                                    <p class="card-text"><small class="text-danger pt-0"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.year}}</small> </p>
                                                 </div>
                                             </div>
                                         </div>

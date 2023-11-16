@@ -3,158 +3,121 @@
     <Head title="Создать видео"/>
 
     <AuthenticatedLayout>
-        <div class="row m-3">
-            <div class="accordion accordion-flush col-sm-6 m-3">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                aria-controls="flush-collapseOne">
-                            Parser
-                        </button>
-                    </h2>
-                    <div id="flush-collapseOne" class="accordion-collapse collapse"
-                         data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            <div class="input-group mb-3">
-                                <input v-model="form.kinopoiskId" type="number" class="form-control"
-                                       placeholder="Введите номер видео по Кинопоиску" aria-label="Recipient's username"
-                                       aria-describedby="basic-addon2" wfd-id="id1">
-                                <span @click.prevent="parse()" type="button" class="input-group-text" id="basic-addon2">Parse</span>
+
+          <template #header>
+            <h2 class="display-6">Создать видео</h2>
+        </template>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+
+        <div class="bg-white p-3 widget shadow rounded mb-4">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <!-- Parse -->
+                <li class="nav-item">
+                    <a class="nav-link active" id="parser-tab" data-toggle="tab" href="#parser" role="tab" aria-controls="parser" aria-selected="true">Парсер</a>
+                </li>
+                <!-- Tests -->
+                <li class="nav-item">
+                    <a class="nav-link" id="tests-tab" data-toggle="tab" href="#tests" role="tab" aria-controls="tests" aria-selected="false">Тесты</a>
+                </li>
+                <!-- Posters & Trailers-->
+                <li class="nav-item">
+                    <a class="nav-link" id="posters_trailers-tab" data-toggle="tab" href="#posters_trailers" role="tab" aria-controls="posters_trailers" aria-selected="false">Постеры и трейлеры</a>
+                </li>
+                <!-- General Info-->
+                <li class="nav-item">
+                    <a class="nav-link" id="general_info-tab" data-toggle="tab" href="#general_info" role="tab" aria-controls="general_info" aria-selected="false">Информация</a>
+                </li>
+
+                <!-- SEO-->
+                <li class="nav-item">
+                    <a class="nav-link" id="seo-tab" data-toggle="tab" href="#seo" role="tab" aria-controls="seo" aria-selected="false">SEO</a>
+                </li>
+
+            </ul>
+            <div class="tab-content" id="myTabContent">
+
+                <!-- Parse Tab -->
+                <div class="tab-pane fade show active" id="parser" role="tabpanel" aria-labelledby="parser-tab">
+                    <div class="input-group mb-3 col-6">
+                        <input v-model="form.kinopoiskId" type="number" class="form-control"
+                               placeholder="Введите номер видео по Кинопоиску" aria-label="Recipient's username"
+                               aria-describedby="basic-addon2" wfd-id="id1">
+                        <span @click.prevent="parse()" type="button" class="input-group-text btn btn-success" id="basic-addon2">Parse</span>
+                    </div>
+                </div>
+
+                <!-- Tests Tab -->
+                <div class="tab-pane fade" id="tests" role="tabpanel" aria-labelledby="tests-tab">
+
+                    <div class="row">
+                        <div class="col-sm-4 col-6">
+                            <!-- Kinopoisk ID -->
+                            <div class="form-group col-5">
+                                <label for="testId">Наличие в БД:</label>
+                                <button @click="checkInBD(form.kinopoiskId)" type="button" class="btn btn-block btn-info"
+                                        id="testId">Тест
+                                </button>
                             </div>
-
                         </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Проверки видео</h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="col-sm-4 col-6">
-                        <!-- Kinopoisk ID -->
-                        <div class="form-group">
-                            <label for="testId">Наличие в БД:</label>
-                            <button @click="checkInBD(form.kinopoiskId)" type="button" class="btn btn-block btn-info"
-                                    id="testId">Тест
-                            </button>
+                        <div class="row">
+                        <div v-if="test.id != null" class="col-6">
+                            <div v-if="test.id == 1" class="alert alert-danger col-6" role="alert">
+                                Present in Database
+                            </div>
+                            <div v-if="test.id == 2" class="alert alert-info col-6" role="alert">
+                                Absent in Database
+                            </div>
                         </div>
-                    </div>
-                    <div v-if="test.id != null">
-                        <div v-if="test.id == 1" class="alert alert-danger" role="alert">
-                            Present in Database
                         </div>
-                        <div v-if="test.id == 2" class="alert alert-info" role="alert">
-                            Absent in Database
-                        </div>
-                    </div>
 
-                    <!-- Video Test -->
-                    <div class="col-sm-6">
-                        <div class="form-group mt-3" v-if="form.kinopoiskId != null">
-                            <div class="accordion accordion-flush">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button @click.prevent="testVideo()" class="accordion-button collapsed"
-                                                type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                                aria-controls="flush-collapseTwo">
-                                            Тест Видео
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                         data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body alert alert-info">
-                                            <div class="kinobox_player"></div>
+                        <!-- Video Test -->
+                        <div class="col-sm-6">
+                            <div class="form-group mt-3" v-if="form.kinopoiskId != null">
+                                <div class="accordion accordion-flush">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button @click.prevent="testVideo()" class="accordion-button collapsed"
+                                                    type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                                    aria-controls="flush-collapseTwo">
+                                                Тест Видео
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionFlushExample">
+                                            <div class="accordion-body alert alert-info">
+                                                <div class="kinobox_player"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                 </div>
-            </div>
-
-
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Добавление видео</h3>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <!-- Kinopoisk ID -->
-                                <div class="form-group">
-                                    <label for="KinopoiskId">Кинопоиск ID:</label>
-                                    <input v-model="form.kinopoiskId" type="number" class="form-control"
-                                           id="KinopoiskId" placeholder="Введите Кинопоиск ID">
-                                </div>
+                <!-- Trailers Tab -->
+
+                <!--Posters_trailers Tab-->
+                <div class="tab-pane fade" id="posters_trailers" role="tabpanel" aria-labelledby="posters_trailers-tab">
+
+                    <div class="row">
+                        <!-- Video allowed -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Показ видео:</label>
+                                <select v-model="form.video_allowed" class="form-select">
+                                    <option :value="1">Разрешено</option>
+                                    <option :value="0">Запрещено</option>
+                                </select>
                             </div>
-
-                            <div class="col-sm-6"></div>
-
-
-                            <!-- Year -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Год:</label>
-                                    <input v-model="form.year" type="text" placeholder="Выберите год"
-                                           class="form-control" aria-label="Sizing example input"
-                                           aria-describedby="inputGroup-sizing-default">
-                                </div>
-                            </div>
-
-                            <!-- Video allowed -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Показ видео:</label>
-                                    <select v-model="form.video_allowed" class="form-select">
-                                        <option :value="1">Разрешено</option>
-                                        <option :value="0">Запрещено</option>
-                                    </select>
-
-                                </div>
-                            </div>
-
                         </div>
+
+                        <!--poster Upload -->
                         <div class="row">
-
-                            <!-- NameRu -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="nameRu">Русское название:</label>
-                                    <input v-model="form.nameRu" type="text" class="form-control" id="nameRu"
-                                           placeholder="Введите русское название">
-                                </div>
-                            </div>
-
-                            <!-- NameEn -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="nameOriginal">Английское название:</label>
-                                    <input v-model="form.nameEn" type="text" class="form-control" id="nameOriginal"
-                                           placeholder="Введите английское название">
-                                </div>
-                            </div>
-
-                            <!-- AgeLimits -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="ageLimits">Возрастные ограничения:</label>
-                                    <input v-model="form.age_limits" type="text" class="form-control" id="ageLimits"
-                                           placeholder="Введите ограничение по возрасту">
-                                </div>
-                            </div>
-
-                            <!--poster Upload -->
-                            <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="PosterUpload">Постер:</label>
@@ -181,10 +144,10 @@
                                 </div>
 
                             </div>
-                            </div>
+                        </div>
 
-                            <!-- Трейлеры -->
-                            <div class="row">
+                        <!-- Трейлеры -->
+                        <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
                                     <form>
@@ -201,15 +164,68 @@
                                             <button @click="deleteTrailer(index)" type="button" class="btn btn-danger">-</button>
                                         </div>
                                         <div class="input-group-btn">
-                                        <button @click="addTrailer()" type="button" class="btn btn-success">Добавить трейлер</button>
-                                    </div>
+                                            <button @click="addTrailer()" type="button" class="btn btn-success">Добавить трейлер</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
-                            </div>
+                        </div>
 
-                            <!-- Country Select -->
-                            <div class="row">
+
+                    </div>
+                </div>
+                <!--General info Tab-->
+                <div class="tab-pane fade" id="general_info" role="tabpanel" aria-labelledby="general_info-tab">
+
+                    <div class="row">
+                        <!-- Kinopoisk ID -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="KinopoiskId">Кинопоиск ID:</label>
+                                <input v-model="form.kinopoiskId" type="number" class="form-control"
+                                       id="KinopoiskId" placeholder="Введите Кинопоиск ID">
+                            </div>
+                        </div>
+
+                        <!-- Year -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Год:</label>
+                                <input v-model="form.year" type="text" placeholder="Выберите год"
+                                       class="form-control" aria-label="Sizing example input"
+                                       aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+
+                        <!-- NameRu -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="nameRu">Русское название:</label>
+                                <input v-model="form.nameRu" type="text" class="form-control" id="nameRu"
+                                       placeholder="Введите русское название">
+                            </div>
+                        </div>
+
+                        <!-- NameEn -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="nameOriginal">Английское название:</label>
+                                <input v-model="form.nameEn" type="text" class="form-control" id="nameOriginal"
+                                       placeholder="Введите английское название">
+                            </div>
+                        </div>
+
+                        <!-- AgeLimits -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="ageLimits">Возрастные ограничения:</label>
+                                <input v-model="form.age_limits" type="text" class="form-control" id="ageLimits"
+                                       placeholder="Введите ограничение по возрасту">
+                            </div>
+                        </div>
+
+                        <!-- Country Select -->
+                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Страны</label>
@@ -226,11 +242,11 @@
                                     </p>
                                 </div>
                             </div>
-                            </div>
+                        </div>
 
 
-                            <!-- Cat Select -->
-                            <div class="row">
+                        <!-- Cat Select -->
+                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Категория</label>
@@ -265,56 +281,55 @@
                                     </p>
                                 </div>
                             </div>
-                            </div>
+                        </div>
 
-
-                            <!--Type Select -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Тип:</label>
-                                    <select v-model="form.type" style="width: 100%" class="form-select">
-                                        <option value="" disabled>Выберите Тип</option>
-                                        <option value="2">Полнометражные</option>
-                                        <option value="3">Сериалы</option>
-                                        <option value="4">Мини сериалы</option>
-                                    </select>
-                                    <p v-if="examples.type != null"> Сериал:
-                                        {{examples.type}}
-                                    </p>
-                                </div>
-                            </div>
-
-
-                            <!-- Duration Parse -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="filmLength">Продолжительность:</label>
-                                    <input v-model="form.duration" type="text" class="form-control" id="filmLength"
-                                           placeholder="В минутах">
-                                </div>
-                            </div>
-
-                            <!-- Rate Parse -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="ratingKinopoisk">Рейтинг:</label>
-                                    <input v-model="form.rate" type="text" class="form-control" id="ratingKinopoisk"
-                                           placeholder="Рейтинг">
-                                </div>
-                            </div>
-
-                            <!-- Budget Parse -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="budget">Бюджет:</label>
-                                    <input v-model="form.budget" type="text" class="form-control" id="budget"
-                                           placeholder="Бюджет">
-                                </div>
+                        <!--Type Select -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Тип:</label>
+                                <select v-model="form.type" style="width: 100%" class="form-select">
+                                    <option value="" disabled>Выберите Тип</option>
+                                    <option value="2">Полнометражные</option>
+                                    <option value="3">Сериалы</option>
+                                    <option value="4">Мини сериалы</option>
+                                </select>
+                                <p v-if="examples.type != null"> Сериал:
+                                    {{examples.type}}
+                                </p>
                             </div>
                         </div>
 
 
+                        <!-- Duration Parse -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="filmLength">Продолжительность:</label>
+                                <input v-model="form.duration" type="text" class="form-control" id="filmLength"
+                                       placeholder="В минутах">
+                            </div>
+                        </div>
+
+
+                        <!-- Rate Parse -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="ratingKinopoisk">Рейтинг:</label>
+                                <input v-model="form.rate" type="text" class="form-control" id="ratingKinopoisk"
+                                       placeholder="Рейтинг">
+                            </div>
+                        </div>
+
+                        <!-- Budget Parse -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="budget">Бюджет:</label>
+                                <input v-model="form.budget" type="text" class="form-control" id="budget"
+                                       placeholder="Бюджет">
+                            </div>
+                        </div>
+
                         <div class="row">
+
                             <div class="form-group">
                                 <label for="slogan">Слоган:</label>
                                 <input v-model="form.slogan" type="text" class="form-control" id="slogan"
@@ -324,9 +339,29 @@
                             <div class="form-group">
                                 <label class="d-block" for="description">Описание:</label>
 
-                                <textarea class="w-100" v-model="form.description" id="description" rows="10"
+                                <textarea class="w-100 form-control" v-model="form.description" id="description" rows="10"
                                           placeholder="Вставьте описание"></textarea>
                             </div>
+
+                    </div>
+                    </div>
+                </div>
+
+                <!--SEO Tab-->
+                <div class="tab-pane fade" id="seo" role="tabpanel" aria-labelledby="seo-tab">
+
+                    <div class="row">
+
+                        <!--Title Select -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Заголовок:</label>
+                                <select v-model="form.title_id" style="width: 100%" class="form-select">
+                                    <option value="null" disabled selected>Выберите строку заголовка</option>
+                                    <option v-for="title in titles" :value="title.id">{{title.description}}</option>
+                                </select>
+                            </div>
+                        </div>
 
                             <div class="form-group">
                                 <label for="meta_keywords">Meta keywords:</label>
@@ -337,23 +372,20 @@
                             <div class="form-group">
                                 <label class="d-block" for="meta_description">Meta description:</label>
 
-                                <textarea class="w-100" v-model="form.meta_description" id="meta_description" rows="4"
+                                <textarea class="w-100 form-control" v-model="form.meta_description" id="meta_description" rows="4"
                                           placeholder="meta description"></textarea>
                             </div>
-                        </div>
-
-
-
-                        <div class="card-footer">
-                            <button @click.prevent="store()" type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
+                          </div>
                 </div>
 
-                <!-- /.card-body -->
             </div>
-
+            <div class="card-footer">
+                <button @click.prevent="store()" type="submit" class="btn btn-primary">Submit</button>
+            </div>
         </div>
+                </div>
+            </div>
+        </section>
 
         <div v-if="errors"
              class="alert alert-warning alert-dismissible fade show position-absolute bottom-0 end-0 z-10 position-fixed"
@@ -374,7 +406,7 @@
 
     export default {
         name: "Create",
-        props: ['categories', 'countries'],
+        props: ['categories', 'countries', 'titles'],
         components: {Head, Link, AuthenticatedLayout},
 
         data() {
@@ -414,6 +446,7 @@
                     budget: "",
                     meta_keywords: "",
                     meta_description: "",
+                    title_id: null,
 
                 },
                 errors: null,
@@ -445,7 +478,6 @@
                         }
                     })
                     .then(response => {
-                        console.log(response)
                         this.form.year = response.data.year
                         this.form.nameRu = response.data.name
                         this.form.nameEn = response.data.alternativeName
@@ -556,7 +588,6 @@
                         return elem
                     }
                 })
-                console.log(this.form.trailers);
                 router.post('/admin/movies/store', this.form)
                    router.on('error', (errors) => {
                     this.errors = errors.detail.errors
