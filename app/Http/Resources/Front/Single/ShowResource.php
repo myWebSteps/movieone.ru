@@ -48,9 +48,9 @@ class ShowResource extends JsonResource
             'budget' => $this->budget,
             'countries' => $this->countries,
             'video_allowed' => $this->video_allowed,
-            'meta_title' => $this->title->description,
-            'meta_keywords' => $this->meta_keywords,
-            'meta_description'=> $this->meta_description,
+//            'meta_title' => $this->title->description,
+//            'meta_keywords' => $this->meta_keywords,
+//            'meta_description'=> $this->meta_description,
 
         ];
     }
