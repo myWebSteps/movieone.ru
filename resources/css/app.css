@@ -59,11 +59,11 @@
 }
 
 .container-fluid {
-    width: 100%;
-    padding-right: 0.75rem;
-    padding-left: 0.75rem;
-    margin-right: auto;
-    margin-left: auto;
+    width: 100% !important;
+    padding-right: 0.75rem !important;
+    padding-left: 0.75rem !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
 }
 
 @media (max-width: 575.98px) {

@@ -71,7 +71,7 @@ class IndexController extends Controller
         foreach($getGenres as $item){
             $allGenresCount[] = $item->movies->count();
         };
-        $allGenresCount = array_sum($allGenresCount);
+        $allGenresCount = $allTypesCount;
 
         $genres = GenresResource::collection($genres_result)->resolve();
         //End Genres count
