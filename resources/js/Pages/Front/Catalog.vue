@@ -420,7 +420,6 @@
                                     <img v-lazy="movie.data.posterUrl" class="card-img-top" alt="...">
                                 </div>
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
                                          <div class="card-body p-3">
                                             <h5 class="card-title text-gray-900 mb-1">{{movie.data.nameRu}}</h5>
                                             <h5 class="card-title text-gray-900 mb-1">{{movie.data.nameEn}}</h5>
@@ -432,7 +431,6 @@
                                             <p class="card-text"><small class="text-danger"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.data.year}}</small> </p>
                                         </div>
 
-                                    </div>
                                 </div>
                             </Link>
                         </div>
