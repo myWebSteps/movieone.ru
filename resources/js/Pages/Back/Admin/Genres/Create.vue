@@ -16,11 +16,11 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="genreTitle">Genre Title</label>
-                                <input v-model="form.title" type="text" class="form-control" id="genreTitle" placeholder="Название жанра">
+                                <input v-model="form.title" type="text" class="d-block cform cform-custom-input" id="genreTitle" placeholder="Название жанра">
                             </div>
                             <div class="form-group">
                                 <label for="genreSlug">Slug</label>
-                                <input v-model="form.slug" type="text" class="form-control" id="genreSlug" placeholder="Slug жанра">
+                                <input v-model="form.slug" type="text" class="d-block cform cform-custom-input" id="genreSlug" placeholder="Slug жанра">
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -34,11 +34,11 @@
             </div>
         </section>
 
-        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-absolute bottom-0 end-0 z-10 position-fixed" role="alert">
+        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end" role="alert">
+            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
             <div v-for="error in errors">
                 <span>{{error}}</span>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
     </AuthenticatedLayout>

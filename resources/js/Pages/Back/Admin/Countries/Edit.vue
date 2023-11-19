@@ -14,8 +14,8 @@
                     <form @submit.prevent="updateCountry(country.id, country.title)">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="categoryTitle">Category Title</label>
-                                <input v-model="country.title" type="text" class="form-control" id="categoryTitle" placeholder="Название категории">
+                                <label for="categoryTitle">Country Title</label>
+                                <input v-model="country.title" type="text" class="d-block cform cform-custom-input" id="categoryTitle" placeholder="Название страны">
                             </div>
 
                         </div>
@@ -30,11 +30,11 @@
             </div>
         </section>
 
-        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-absolute bottom-0 end-0 z-10 position-fixed" role="alert">
+        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end" role="alert">
+            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
             <div v-for="error in errors">
                 <span>{{error}}</span>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
 

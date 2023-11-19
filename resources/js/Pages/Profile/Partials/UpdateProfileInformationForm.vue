@@ -26,7 +26,7 @@ const form = useForm({
             <p>Update your account's profile information and email address.</p>
         </header>
 
-        <form @submit.prevent="form.patch(route('profile.update'))">
+        <form @submit.prevent="form.patch('/profile')">
             <div class="mb-4">
                 <InputLabel for="name" value="Name" />
 

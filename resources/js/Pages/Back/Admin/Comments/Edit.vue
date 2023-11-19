@@ -9,31 +9,35 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6 col-12">
+                    <div class="col-12">
 
                     <form @submit.prevent="updateComment()">
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="categoryTitle">Имя:</label>
-                                <input v-model="form.name" type="text" class="form-control" id="categoryTitle" placeholder="Название категории">
+                            <div class="col-6 col-xs-12 mb-3">
+                                <label for="authorName">Имя:</label>
+                                <input v-model="form.name" type="text" class="d-block cform cform-custom-input w-100" id="authorName" placeholder="Имя автора">
                             </div>
-                            <select v-model="form.rating" class="form-select">
+                            <div class="col-3 col-xs-12 mb-3">
+                            <label for="authorRating">Рейтинг:</label>
+                            <select v-model="form.rating" class="d-block cform cform-custom-input" id="authorRating">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                             </select>
-                            <div class="form-group">
-                                <label for="categoryLogo">Описание</label>
-                                <input v-model="form.description" type="text" class="form-control" id="categoryLogo" placeholder="Logo категории">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="commentDescription">Описание</label>
+                                <textarea v-model="form.description" type="text" rows="10" class="d-block cform cform-custom-input w-100" id="commentDescription">
+                                </textarea>
                             </div>
 
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input v-model="form.approved" type="checkbox" class="custom-control-input" id="approved">
-                                    <label class="custom-control-label" for="approved">Одобрить </label>
-                                </div>
+                            <div class="cform-switch cform-switch-big cform-custom-switch mb-3">
+                                <span class="pr-2">Одобрить</span>
+                                <input v-model="form.approved" type="checkbox" id="switch-1" checked />
+                                <label for="switch-1"></label>
+
                             </div>
 
 
@@ -49,11 +53,11 @@
             </div>
         </section>
 
-        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-absolute bottom-0 end-0 z-10 position-fixed" role="alert">
+        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end" role="alert">
+            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
             <div v-for="error in errors">
                 <span>{{error}}</span>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
     </AuthenticatedLayout>

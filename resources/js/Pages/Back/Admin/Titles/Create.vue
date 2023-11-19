@@ -9,13 +9,13 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6 col-12">
+                    <div class="col-12">
 
                     <form @submit.prevent="newTitle()">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="categoryTitle">Название фильма +</label>
-                                <input v-model="form.description" type="text" class="form-control" id="categoryTitle" placeholder="тело заголовка">
+                                <input v-model="form.description" type="text" class="d-block cform cform-custom-input w-100" id="categoryTitle" placeholder="тело заголовка">
                             </div>
                         </div>
                         <!-- /.card-body -->

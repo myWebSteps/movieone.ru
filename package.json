@@ -19,6 +19,8 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "cssformalize": "^2.0.2",
+        "sweetalert2": "^11.10.1",
         "vue3-lazyload": "^0.3.8"
     }
 }

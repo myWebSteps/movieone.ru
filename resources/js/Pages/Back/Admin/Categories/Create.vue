@@ -15,15 +15,15 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="categoryTitle">Category Title</label>
-                                <input v-model="form.title" type="text" class="form-control" id="categoryTitle" placeholder="Название категории">
+                                <input v-model="form.title" type="text" class="d-block cform cform-custom-input" id="categoryTitle" placeholder="Название категории">
                             </div>
                             <div class="form-group">
                                 <label for="categorySlug">Category Slug</label>
-                                <input v-model="form.slug" type="text" class="form-control" id="categorySlug" placeholder="Slug категории">
+                                <input v-model="form.slug" type="text" class="d-block cform cform-custom-input" id="categorySlug" placeholder="Slug категории">
                             </div>
                             <div class="form-group">
                                 <label for="categoryLogo">CategoryLogo</label>
-                                <input v-model="form.logo" type="text" class="form-control" id="categoryLogo" placeholder="Logo категории">
+                                <input v-model="form.logo" type="text" class="d-block cform cform-custom-input" id="categoryLogo" placeholder="Logo категории">
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -37,11 +37,11 @@
             </div>
         </section>
 
-        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-absolute bottom-0 end-0 z-10 position-fixed" role="alert">
+        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end" role="alert">
+            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
             <div v-for="error in errors">
                 <span>{{error}}</span>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
     </AuthenticatedLayout>
@@ -81,3 +81,4 @@
 
     }
 </script>
+

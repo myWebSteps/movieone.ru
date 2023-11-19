@@ -8,6 +8,7 @@ import '../css/app.css';
 
 
 
+
 import '../assets/vendor/jquery/jquery.min'
 import '../assets/vendor/bootstrap/js/bootstrap.bundle.min'
 import '../assets/vendor/jquery-easing/jquery.easing.min'

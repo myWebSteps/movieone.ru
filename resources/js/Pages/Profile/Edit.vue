@@ -19,8 +19,8 @@ defineProps({
             <h2 class="display-6">Profile</h2>
         </template>
 
-        <div class="d-flex flex-column gap-4">
-            <div class="card shadow-sm p-4">
+        <div class="d-flex flex-column">
+            <div class="card shadow-sm p-4 mb-4">
                 <UpdateProfileInformationForm
                     :must-verify-email="mustVerifyEmail"
                     :status="status"
@@ -28,11 +28,11 @@ defineProps({
                 />
             </div>
 
-            <div class="card shadow-sm p-4">
+            <div class="card shadow-sm p-4 mb-4">
                 <UpdatePasswordForm class="max-w-xl" />
             </div>
 
-            <div class="card shadow-sm p-4">
+            <div class="card shadow-sm p-4 mb-4">
                 <DeleteUserForm class="max-w-xl" />
             </div>
         </div>

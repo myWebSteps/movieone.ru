@@ -9,11 +9,11 @@ import DropdownLink from "@/Components/DropdownLink.vue";
 <template>
     <div class="bg-light min-vh-100">
         <!-- Primary Navigation Menu -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark custom-dark sticky-top">
             <div class="container-fluid">
                 <!-- Logo -->
                 <Link href="/" class="navbar-brand">
-                    <ApplicationLogo class="text-danger" width="36" />
+                    <img src="/img/logo-icon.png" class="w-50" alt="...">
                 </Link>
 
                 <!-- Hamburger -->
@@ -26,16 +26,15 @@ import DropdownLink from "@/Components/DropdownLink.vue";
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                     <!-- Navigation Links -->
                     <div class="navbar-nav">
                         <NavLink
-                            href="/"
-                            active="/"
+                            href="/admin"
+                            active="/admin"
                         >
                             Главная
                         </NavLink>
-                    </div>         <div class="navbar-nav">
                     <NavLink
                         href="/admin/categories"
                         active="/admin/categories"
@@ -76,7 +75,7 @@ import DropdownLink from "@/Components/DropdownLink.vue";
 
 
                     <!-- Settings Dropdown -->
-                    <div class="navbar-nav ms-auto">
+                    <div class="navbar-nav ms-auto custom-float-end">
                         <Dropdown
                             :label="$page.props.auth.user.name"
                             as-nav-item

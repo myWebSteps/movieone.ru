@@ -156,7 +156,7 @@
                 <!-- Pad Filter -->
                 <div class="filters shadow rounded bg-white mb-3 d-none d-xs-none d-sm-block d-md-block d-lg-none">
                     <div class="filters-header border-bottom p-3">
-                        <h6 class="m-0 text-dark">Фильтр Pad</h6>
+                        <h6 class="m-0 text-dark">Фильтр</h6>
                     </div>
                     <div class="filters-body">
                         <div id="accordion">
@@ -448,36 +448,40 @@
         <section class="row d-flex justify-content-center">
                 <nav v-if="movies.last_page > 1" aria-label="Page navigation example">
                     <ul class="pagination">
+                        <template v-if="movies.current_page != 1">
                         <li v-if="movies.current_page != 1" class="page-item">
                             <a @click.prevent="changePage(movies.current_page - 1)" class="page-link" href="#"
                                aria-label="Previous">
                                 <div aria-hidden="true">&laquo;</div>
                             </a>
                         </li>
-                        <li v-for="link in movies.links" class="page-item" :class="link.active? 'active' : ''">
-                            <template v-if="Number(link.label) &&
+                        </template>
+                        <template v-for="link in movies.links" >
+                           <li v-if="Number(link.label) &&
                             (movies.current_page - link.label < 3 &&
                             movies.current_page - link.label > -3) ||
                             Number(link.label) === 1 || Number(link.label) === movies.last_page
-                            ">
+                            " class="page-item" :class="link.active? 'active' : ''">
                                 <a @click.prevent="changePage(link.label)"
                                    class="page-link" href="#">{{link.label}}</a>
-                            </template>
-                            <template v-if="Number(link.label) &&
+                            </li>
+                            <li v-if="Number(link.label) &&
                             movies.current_page != 4 &&
                             (movies.current_page - link.label === 3) ||
                             Number(link.label) &&
                             movies.current_page != movies.last_page - 3 &&
                             (movies.current_page - link.label === -3)">
                                 <div class="page-link">...</div>
-                            </template>
-                        </li>
+                            </li>
+                        </template>
+                        <template v-if="movies.current_page != movies.last_page">
                         <li v-if="movies.current_page != movies.last_page" class="page-item">
                             <a @click.prevent="changePage(movies.current_page + 1)" class="page-link" href="#"
                                aria-label="Next">
                                 <div aria-hidden="true">&raquo;</div>
                             </a>
                         </li>
+                        </template>
                     </ul>
                 </nav>
         </section>

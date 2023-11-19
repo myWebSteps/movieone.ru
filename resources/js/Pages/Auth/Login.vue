@@ -63,12 +63,12 @@ const submit = () => {
                 <InputError :message="form.errors.password" />
             </div>
 
-            <div class="form-check mb-4">
-                <Checkbox id="remember" v-model:checked="form.remember" />
-                <label class="form-check-label" for="remember">
-                    Remember me
-                </label>
-            </div>
+<!--            <div class="form-check mb-4">-->
+<!--                <Checkbox id="remember" v-model:checked="form.remember" />-->
+<!--                <label class="form-check-label" for="remember">-->
+<!--                    Remember me-->
+<!--                </label>-->
+<!--            </div>-->
 
             <div class="d-flex align-items-center justify-content-end gap-3">
                 <Link v-if="canResetPassword" href="forgot-password">

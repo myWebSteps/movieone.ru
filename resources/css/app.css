@@ -1,6 +1,7 @@
 /* Import all of Bootstrap's CSS */
-@import "bootstrap/dist/css/bootstrap";
+/*@import "bootstrap/dist/css/bootstrap";*/
 /* @import "bootstrap/scss/bootstrap"; */
+@import 'cssformalize/css/css-formalize.css';
 
 .sticky-sidebar{
     position: sticky;
@@ -70,6 +71,36 @@
 .container-fluid {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+}
+.custom-dark {
+    background-color: black;
+}
+.d-grid{
+ display:grid;
+}
+
+.custom-first-element{
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+.custom-middle-element{
+    border-radius: 0 !important;
+}
+.custom-last-element{
+    border-bottom-right-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+.position-fixed-bottom-end{
+    position: fixed;
+    bottom: 0;
+    right:0;
+}
+.position-absolute-top-right{
+    position: absolute;
+    top: 0;
+    right:0;
 }
 
 @media (max-width: 575.98px) {

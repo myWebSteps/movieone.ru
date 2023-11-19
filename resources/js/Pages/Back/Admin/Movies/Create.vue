@@ -10,7 +10,6 @@
 
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
 
         <div class="bg-white p-3 widget shadow rounded mb-4">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -41,11 +40,11 @@
 
                 <!-- Parse Tab -->
                 <div class="tab-pane fade show active" id="parser" role="tabpanel" aria-labelledby="parser-tab">
-                    <div class="input-group mb-3 col-6">
-                        <input v-model="form.kinopoiskId" type="number" class="form-control"
+                    <div class="mb-3 col-12">
+                        <input v-model="form.kinopoiskId" type="number" class="w-75 d-inline cform cform-custom-input custom-first-element"
                                placeholder="Введите номер видео по Кинопоиску" aria-label="Recipient's username"
                                aria-describedby="basic-addon2" wfd-id="id1">
-                        <span @click.prevent="parse()" type="button" class="input-group-text btn btn-success" id="basic-addon2">Parse</span>
+                        <span @click.prevent="parse()" type="button" class="cform-btn cform-custom-btn cform-btn-accent cform-btn-xl custom-last-element" id="basic-addon2">Parse</span>
                     </div>
                 </div>
 
@@ -53,16 +52,16 @@
                 <div class="tab-pane fade" id="tests" role="tabpanel" aria-labelledby="tests-tab">
 
                     <div class="row">
-                        <div class="col-sm-4 col-6">
+                        <div class="col-12">
                             <!-- Kinopoisk ID -->
                             <div class="form-group col-5">
                                 <label for="testId">Наличие в БД:</label>
-                                <button @click="checkInBD(form.kinopoiskId)" type="button" class="btn btn-block btn-info"
+                                <button @click="checkInBD(form.kinopoiskId)" type="button" class="cform-btn cform-custom-btn cform-btn-accent"
                                         id="testId">Тест
                                 </button>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="col-12">
                         <div v-if="test.id != null" class="col-6">
                             <div v-if="test.id == 1" class="alert alert-danger col-6" role="alert">
                                 Present in Database
@@ -74,27 +73,10 @@
                         </div>
 
                         <!-- Video Test -->
-                        <div class="col-sm-6">
-                            <div class="form-group mt-3" v-if="form.kinopoiskId != null">
-                                <div class="accordion accordion-flush">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header">
-                                            <button @click.prevent="testVideo()" class="accordion-button collapsed"
-                                                    type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                                    aria-controls="flush-collapseTwo">
-                                                Тест Видео
-                                            </button>
-                                        </h2>
-                                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                             data-bs-parent="#accordionFlushExample">
-                                            <div class="accordion-body alert alert-info">
-                                                <div class="kinobox_player"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-12">
+                            <button v-if="form.kinopoiskId != null" @click.prevent="testVideo()" class="cform-btn cform-custom-btn cform-btn-accent mb-3">Тест Видео</button>
+                            <div class="kinobox_player col-xl-6"></div>
+
                         </div>
 
                 </div>
@@ -104,12 +86,13 @@
                 <!--Posters_trailers Tab-->
                 <div class="tab-pane fade" id="posters_trailers" role="tabpanel" aria-labelledby="posters_trailers-tab">
 
-                    <div class="row">
+                    <div class="row pl-2 pr-2">
+
                         <!-- Video allowed -->
-                        <div class="col-sm-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label>Показ видео:</label>
-                                <select v-model="form.video_allowed" class="form-select">
+                                <select v-model="form.video_allowed" class="cform cform-custom-input">
                                     <option :value="1">Разрешено</option>
                                     <option :value="0">Запрещено</option>
                                 </select>
@@ -117,12 +100,11 @@
                         </div>
 
                         <!--poster Upload -->
-                        <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-6 d-flex align-items-center column-gap-2">
                                 <div class="form-group">
                                     <label for="PosterUpload">Постер:</label>
                                     <div class="mb-3" id="PosterUpload">
-                                        <input @input="form.poster = $event.target.files[0]" class="form-control"
+                                        <input @input="form.poster = $event.target.files[0]" class="cform cform-custom-file"
                                                type="file">
                                     </div>
                                     <a v-if="examples.posterUrlPreview" :href="examples.posterUrlPreview" target="_blank">Перейти к постеру</a>
@@ -132,11 +114,11 @@
                             </div>
 
                             <!--backdrop Upload -->
-                            <div class="col-sm-6">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label for="BackdropUpload">Фоновая картинка:</label>
                                     <div class="mb-3" id="BackdropUpload">
-                                        <input @input="form.backdrop = $event.target.files[0]" class="form-control"
+                                        <input @input="form.backdrop = $event.target.files[0]" class="cform cform-custom-file"
                                                type="file">
                                     </div>
                                     <a v-if="examples.backdropUrl" :href="examples.backdropUrl" target="_blank">Перейти к фоновой картинке</a>
@@ -144,34 +126,30 @@
                                 </div>
 
                             </div>
-                        </div>
+
 
                         <!-- Трейлеры -->
-                        <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
                                     <form>
                                         <label>Трейлеры:</label>
                                         <div v-if="form.trailers.length > 0" v-for="(trailer, index) in form.trailers" class="form-group input-group">
-                                            <input type="text" v-model="trailer.url" class="form-control col-8"
+                                            <input type="text" v-model="trailer.url" class="cform cform-custom-input col-6 custom-first-element"
                                                    placeholder="Идентификатор dzen или ссылка youtube">
-                                            <input type="text" v-model="trailer.name" class="form-control col-8"
+                                            <input type="text" v-model="trailer.name" class="cform cform-custom-input col-3 custom-middle-element"
                                                    placeholder="Название">
-                                            <select v-model="trailer.site" class="form-select col-4">
+                                            <select v-model="trailer.site" class="cform cform-custom-input col-2 custom-middle-element">
                                                 <option value="dzen">dzen</option>
                                                 <option value="youtube">youtube</option>
                                             </select>
-                                            <button @click="deleteTrailer(index)" type="button" class="btn btn-danger">-</button>
+                                            <button @click="deleteTrailer(index)" type="button" class="cform-btn cform-custom-btn cform-btn-error col-1 custom-last-element">-</button>
                                         </div>
                                         <div class="input-group-btn">
-                                            <button @click="addTrailer()" type="button" class="btn btn-success">Добавить трейлер</button>
+                                            <button @click="addTrailer()" type="button" class="cform-btn cform-custom-btn cform-btn-accent">Добавить трейлер</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                        </div>
-
-
                     </div>
                 </div>
                 <!--General info Tab-->
@@ -179,57 +157,83 @@
 
                     <div class="row">
                         <!-- Kinopoisk ID -->
-                        <div class="col-sm-6">
+                        <div class="col-3 col-xs-12">
                             <div class="form-group">
                                 <label for="KinopoiskId">Кинопоиск ID:</label>
-                                <input v-model="form.kinopoiskId" type="number" class="form-control"
+                                <input v-model="form.kinopoiskId" type="number" class="d-block cform cform-custom-input"
                                        id="KinopoiskId" placeholder="Введите Кинопоиск ID">
                             </div>
                         </div>
 
                         <!-- Year -->
-                        <div class="col-sm-6">
+                        <div class="col-3 col-xs-12">
                             <div class="form-group">
                                 <label>Год:</label>
                                 <input v-model="form.year" type="text" placeholder="Выберите год"
-                                       class="form-control" aria-label="Sizing example input"
+                                       class="d-block cform cform-custom-input" aria-label="Sizing example input"
                                        aria-describedby="inputGroup-sizing-default">
                             </div>
                         </div>
 
                         <!-- NameRu -->
-                        <div class="col-sm-6">
+                        <div class="col-3 col-xs-12">
                             <div class="form-group">
                                 <label for="nameRu">Русское название:</label>
-                                <input v-model="form.nameRu" type="text" class="form-control" id="nameRu"
+                                <input v-model="form.nameRu" type="text" class="d-block cform cform-custom-input" id="nameRu"
                                        placeholder="Введите русское название">
                             </div>
                         </div>
 
                         <!-- NameEn -->
-                        <div class="col-sm-6">
+                        <div class="col-3 col-xs-12">
                             <div class="form-group">
                                 <label for="nameOriginal">Английское название:</label>
-                                <input v-model="form.nameEn" type="text" class="form-control" id="nameOriginal"
+                                <input v-model="form.nameEn" type="text" class="d-block cform cform-custom-input" id="nameOriginal"
                                        placeholder="Введите английское название">
                             </div>
                         </div>
 
                         <!-- AgeLimits -->
-                        <div class="col-sm-6">
+                        <div class="col-3 col-xs-12">
                             <div class="form-group">
                                 <label for="ageLimits">Возрастные ограничения:</label>
-                                <input v-model="form.age_limits" type="text" class="form-control" id="ageLimits"
+                                <input v-model="form.age_limits" type="text" class="d-block cform cform-custom-input" id="ageLimits"
                                        placeholder="Введите ограничение по возрасту">
                             </div>
                         </div>
 
+                        <!-- Duration Parse -->
+                        <div class="col-3 col-xs-12">
+                            <div class="form-group">
+                                <label for="filmLength">Продолжительность:</label>
+                                <input v-model="form.duration" type="text" class="d-block cform cform-custom-input" id="filmLength"
+                                       placeholder="В минутах">
+                            </div>
+                        </div>
+
+                        <!-- Rate Parse -->
+                        <div class="col-3 col-xs-12">
+                            <div class="form-group">
+                                <label for="ratingKinopoisk">Рейтинг:</label>
+                                <input v-model="form.rate" type="text" class="d-block cform cform-custom-input" id="ratingKinopoisk"
+                                       placeholder="Рейтинг">
+                            </div>
+                        </div>
+
+                        <!-- Budget Parse -->
+                        <div class="col-3 col-xs-12">
+                            <div class="form-group">
+                                <label for="budget">Бюджет:</label>
+                                <input v-model="form.budget" type="text" class="d-block cform cform-custom-input" id="budget"
+                                       placeholder="Бюджет">
+                            </div>
+                        </div>
+
                         <!-- Country Select -->
-                        <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-3 col-xs-12">
                                 <div class="form-group">
                                     <label>Страны</label>
-                                    <select v-model="form.countries" class="form-select" multiple>
+                                    <select v-model="form.countries" class="d-block cform cform-custom-input" multiple>
                                         <option disabled value="null">Выберите страны</option>
                                         <template v-for="country in countries">
                                             <option :value="country.id">{{country.title}}</option>
@@ -242,16 +246,30 @@
                                     </p>
                                 </div>
                             </div>
+
+                        <!--Type Select -->
+                        <div class="col-3 col-xs-12">
+                            <div class="form-group">
+                                <label>Тип:</label>
+                                <select v-model="form.type" style="width: 100%" class="d-block cform cform-custom-input">
+                                    <option value="" disabled>Выберите Тип</option>
+                                    <option value="2">Полнометражные</option>
+                                    <option value="3">Сериалы</option>
+                                    <option value="4">Мини сериалы</option>
+                                </select>
+                                <p v-if="examples.type != null"> Сериал:
+                                    {{examples.type}}
+                                </p>
+                            </div>
                         </div>
 
 
                         <!-- Cat Select -->
-                        <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-3 col-xs-12">
                                 <div class="form-group">
                                     <label>Категория</label>
                                     <select @change="getGenresList(form.category)" v-model="form.category"
-                                            class="form-select">
+                                            class="d-block cform cform-custom-input">
                                         <option disabled value="" selected>Выберите категорию</option>
                                         <template v-for="category in categories">
                                             <option :value="category.id">{{category.title}}</option>
@@ -266,11 +284,11 @@
 
 
                             <!--SubCat Select -->
-                            <div class="col-sm-6">
+                            <div class="col-3 col-xs-12">
                                 <div class="form-group" v-if="genres.list != null">
                                     <label>Жанры</label>
                                     <select v-model="form.genres" multiple placeholder="Можно выбрать несколько"
-                                            style="width: 100%" class="form-select">
+                                            style="width: 100%" class="d-block cform cform-custom-input">
                                         <option v-for="genre in genres.list" :value="genre.id">{{genre.title}}</option>
                                     </select>
                                     <p>
@@ -281,69 +299,20 @@
                                     </p>
                                 </div>
                             </div>
-                        </div>
 
-                        <!--Type Select -->
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Тип:</label>
-                                <select v-model="form.type" style="width: 100%" class="form-select">
-                                    <option value="" disabled>Выберите Тип</option>
-                                    <option value="2">Полнометражные</option>
-                                    <option value="3">Сериалы</option>
-                                    <option value="4">Мини сериалы</option>
-                                </select>
-                                <p v-if="examples.type != null"> Сериал:
-                                    {{examples.type}}
-                                </p>
-                            </div>
-                        </div>
-
-
-                        <!-- Duration Parse -->
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="filmLength">Продолжительность:</label>
-                                <input v-model="form.duration" type="text" class="form-control" id="filmLength"
-                                       placeholder="В минутах">
-                            </div>
-                        </div>
-
-
-                        <!-- Rate Parse -->
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="ratingKinopoisk">Рейтинг:</label>
-                                <input v-model="form.rate" type="text" class="form-control" id="ratingKinopoisk"
-                                       placeholder="Рейтинг">
-                            </div>
-                        </div>
-
-                        <!-- Budget Parse -->
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="budget">Бюджет:</label>
-                                <input v-model="form.budget" type="text" class="form-control" id="budget"
-                                       placeholder="Бюджет">
-                            </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="form-group">
+                           <div class="col-12">
                                 <label for="slogan">Слоган:</label>
-                                <input v-model="form.slogan" type="text" class="form-control" id="slogan"
+                                <input v-model="form.slogan" type="text" class="d-block cform cform-custom-input w-100" id="slogan"
                                        placeholder="Слоган">
                             </div>
 
-                            <div class="form-group">
+                            <div class="col-12">
                                 <label class="d-block" for="description">Описание:</label>
 
-                                <textarea class="w-100 form-control" v-model="form.description" id="description" rows="10"
+                                <textarea class="w-100 d-block cform cform-custom-input" v-model="form.description" id="description" rows="10"
                                           placeholder="Вставьте описание"></textarea>
                             </div>
 
-                    </div>
                     </div>
                 </div>
 
@@ -353,26 +322,26 @@
                     <div class="row">
 
                         <!--Title Select -->
-                        <div class="col-sm-6">
+                        <div class="col-8 col-xs-12">
                             <div class="form-group">
                                 <label>Заголовок:</label>
-                                <select v-model="form.title_id" style="width: 100%" class="form-select">
+                                <select v-model="form.title_id" style="width: 100%" class="w-100 d-block cform cform-custom-input">
                                     <option value="null" disabled selected>Выберите строку заголовка</option>
                                     <option v-for="title in titles" :value="title.id">{{title.description}}</option>
                                 </select>
                             </div>
                         </div>
 
-                            <div class="form-group">
+                            <div class="col-12">
                                 <label for="meta_keywords">Meta keywords:</label>
-                                <input v-model="form.meta_keywords" type="text" class="form-control" id="meta_keywords"
+                                <input v-model="form.meta_keywords" type="text" class="w-100 d-block cform cform-custom-input" id="meta_keywords"
                                        placeholder="Meta keywords">
                             </div>
 
-                            <div class="form-group">
+                            <div class="col-12">
                                 <label class="d-block" for="meta_description">Meta description:</label>
 
-                                <textarea class="w-100 form-control" v-model="form.meta_description" id="meta_description" rows="4"
+                                <textarea class="w-100 d-block cform cform-custom-input" v-model="form.meta_description" id="meta_description" rows="4"
                                           placeholder="meta description"></textarea>
                             </div>
                           </div>
@@ -383,17 +352,15 @@
                 <button @click.prevent="store()" type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
-                </div>
+
             </div>
         </section>
 
-        <div v-if="errors"
-             class="alert alert-warning alert-dismissible fade show position-absolute bottom-0 end-0 z-10 position-fixed"
-             role="alert">
+        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end" role="alert">
+            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
             <div v-for="error in errors">
                 <span>{{error}}</span>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
     </AuthenticatedLayout>
