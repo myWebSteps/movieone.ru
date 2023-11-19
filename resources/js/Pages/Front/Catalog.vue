@@ -428,7 +428,7 @@
                                                 <span v-for="genre in movie.data.genres" class="text-muted">
                                                     {{genre.title}} &nbsp
                                                 </span></p>
-                                            <p class="card-text"><small class="text-danger"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.data.year}}</small> </p>
+                                            <p class="card-text text-danger"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.data.year}}</p>
                                         </div>
 
                                 </div>
