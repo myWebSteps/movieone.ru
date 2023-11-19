@@ -33,10 +33,10 @@
                                                     <h5 class="card-title text-gray-900 mb-1">{{movie.nameEn}}</h5>
                                                     <p class="card-text mb-0">
                                                         <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
-                                                        <small v-for="genre in movie.genres" class="text-muted">
+                                                        <span v-for="genre in movie.genres" class="text-muted">
                                                             {{genre.title}} &nbsp
-                                                        </small></p>
-                                                    <p class="card-text"><small class="text-danger pt-0"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.year}}</small> </p>
+                                                        </span></p>
+                                                    <p class="card-text text-danger pt-0"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.year}}</p>
                                                 </div>
                                             </div>
                                         </div>
