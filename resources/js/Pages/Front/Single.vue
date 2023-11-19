@@ -58,11 +58,11 @@
                                 <h3 v-if="movie.nameEn != null" class="text-gray-900 mb-0 mt-0 font-weight-bold mb-1">
                                     <small>2019</small></h3>
                                 <p class="mb-0 text-gray-800">
-                                    <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i>
+                                    <span class="text-muted"><i class="fa-solid fa-tape mr-2"></i>
                                         <span v-for="genre in movie.genres">
                                         {{genre.title}}&nbsp
                                     </span>
-                                    </small></p>
+                                    </span></p>
                             </div>
                             <div class="col-lg-5 text-right">
                                 <a @click.prevent="copyUrl()" href="#"
@@ -417,9 +417,9 @@
                                         <h5 class="card-title text-gray-900 mb-1">{{relatedMovie.nameEn}}</h5>
                                         <p class="card-text mb-0">
                                             <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
-                                            <small v-for="genre in relatedMovie.genres" class="text-muted">
+                                            <span v-for="genre in relatedMovie.genres" class="text-muted">
                                                 {{genre.title}} &nbsp
-                                            </small></p>
+                                            </span></p>
                                         <p class="card-text"><small class="text-danger"><i
                                             class="fas fa-calendar-alt fa-sm text-gray-400"></i>
                                             {{relatedMovie.year}}</small></p>
