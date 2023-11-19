@@ -5,7 +5,7 @@ Author URI: Templatemonster
 Version: 1.0
 */
 
-@import url('https://fonts.googleapis.com/css?family=Be+Vietnam:100,100i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100;200;300;400;500;600;700;800;900&display=swap');
 *,
 *::before,
 *::after {
@@ -13,7 +13,7 @@ Version: 1.0
 }
 
 html {
-  font-family: 'Be Vietnam', sans-serif;
+  font-family: 'Onest', sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -233,7 +233,7 @@ a {
 
 body {
   margin: 0;
-  font-family: 'Be Vietnam', sans-serif;
+  font-family: 'Onest', sans-serif;
   font-size: 0.85rem;
   font-weight: 400;
   line-height: 1.5;
