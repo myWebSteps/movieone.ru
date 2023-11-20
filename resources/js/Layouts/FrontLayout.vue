@@ -119,12 +119,12 @@
                                 <h6 class="dropdown-header">
                                     Избранное
                                 </h6>
-                                <Link v-for="item in playlist" :href="`/movies/${item.slug}`" class="dropdown-item d-flex align-items-center column-gap-2">
+                                <Link v-for="item in playlist" :href="`/movies/${item.slug}`" class="dropdown-item d-flex align-items-center">
                                         <div class="w-50">
                                             <img :src="item.posterUrl" :alt="item.nameRu"
                                                  class="w-100">
                                         </div>
-                                    <div class="w-50">
+                                    <div class="w-50 p-2">
                                         <span class="font-weight-bold">{{item.nameRu}} / {{item.nameEn}}</span>
                                         <div v-for="genre in item.genres" class="small text-gray-500">{{genre.title}}</div>
                                         <div class="small text-danger">{{item.year}}</div>
