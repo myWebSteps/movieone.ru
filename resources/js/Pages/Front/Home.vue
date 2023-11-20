@@ -9,16 +9,13 @@
     <FrontLayout>
         <div class="container-fluid">
 
-            <div class="osahan-slider">
+            <div class="osahan-slider d-none">
                 <div class="osahan-slider-item"><img src="img/slider1.webp" class="img-fluid rounded" alt="..."></div>
                 <div class="osahan-slider-item"><img src="img/slider2.webp" class="img-fluid rounded" alt="..."></div>
                 <div class="osahan-slider-item"><img src="img/slider3.webp" class="img-fluid rounded" alt="..."></div>
                 <div class="osahan-slider-item"><img src="img/slider4.webp" class="img-fluid rounded" alt="..."></div>
                 <div class="osahan-slider-item"><img src="img/slider5.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item"><img src="img/slider6.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item"><img src="img/slider7.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item"><img src="img/slider8.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item"><img src="img/slider9.webp" class="img-fluid rounded" alt="..."></div>
+
             </div>
 
         <div class="page-header">
@@ -88,31 +85,35 @@
 
 
             // Osahan Slider
-            $('.osahan-slider').slick({
-                centerMode: true,
-                centerPadding: '100px',
-                slidesToShow: 3,
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            arrows: true,
-                            centerMode: true,
-                            centerPadding: '100px',
-                            slidesToShow: 2
+
+            jQuery(document).ready(function() {
+                $('.osahan-slider').slick({
+                    centerMode: true,
+                    centerPadding: '100px',
+                    slidesToShow: 1,
+                    responsive: [
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                arrows: true,
+                                centerMode: true,
+                                centerPadding: '100px',
+                                slidesToShow: 1
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                arrows: true,
+                                centerMode: true,
+                                centerPadding: '50px',
+                                slidesToShow: 1
+                            }
                         }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            arrows: true,
-                            centerMode: true,
-                            centerPadding: '50px',
-                            slidesToShow: 1
-                        }
-                    }
-                ]
-            });
+                    ]
+                });
+                $('.osahan-slider').removeClass( 'd-none' );
+            })
         },
 
     }
