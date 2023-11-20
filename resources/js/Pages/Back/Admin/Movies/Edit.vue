@@ -241,7 +241,7 @@
                         <div class="col-8 col-xs-12">
                             <div class="form-group">
                                 <label>Заголовок:</label>
-                                <select v-model="form.title" style="width: 100%" class="d-block cform cform-custom-input">
+                                <select v-model="form.title_id" style="width: 100%" class="d-block cform cform-custom-input">
                                     <option value="undefined" disabled>Выберите строку заголовка</option>
                                     <option v-for="title in titles" :value="title.id">{{title.description}}</option>
                                 </select>
@@ -318,7 +318,7 @@
                     description: this.movie.description,
                     trailer: this.movie.trailer,
                     video_allowed: this.movie.video_allowed,
-                    title: this.movie.title,
+                    title_id: this.movie.title_id,
                     meta_keywords: this.movie.meta_keywords,
                     meta_description: this.movie.meta_description,
                 },
@@ -385,7 +385,7 @@
                     backdrop: this.form.backdrop,
                     type: this.form.type,
                     video_allowed: this.form.video_allowed,
-                    title_id: this.form.title,
+                    title_id: this.form.title_id,
                     meta_keywords: this.form.meta_keywords,
                     meta_description: this.form.meta_description,
                 })
