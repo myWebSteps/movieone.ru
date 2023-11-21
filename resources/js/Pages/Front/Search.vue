@@ -27,18 +27,14 @@
                                             <img v-lazy="movie.posterUrl" class="card-img-top" alt="...">
                                         </div>
                                         <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="card-body p-3">
-                                                    <h5 class="card-title text-gray-900 mb-1">{{movie.nameRu}}</h5>
-                                                    <h5 class="card-title text-gray-900 mb-1">{{movie.nameEn}}</h5>
+                                                    <h5 class="card-title text-gray-900 mb-1 text-wrap">{{movie.nameRu}}</h5>
+                                                    <h5 class="card-title text-gray-900 mb-1 text-wrap">{{movie.nameEn}}</h5>
                                                     <p class="card-text mb-0">
                                                         <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
                                                         <span v-for="genre in movie.genres" class="text-muted">
                                                             {{genre.title}} &nbsp
                                                         </span></p>
                                                     <p class="card-text text-danger pt-0"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.year}}</p>
-                                                </div>
-                                            </div>
                                         </div>
                                     </Link>
                                 </div>
