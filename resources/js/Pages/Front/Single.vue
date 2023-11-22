@@ -147,14 +147,14 @@
                             </div>
 
                             <!-- Trailers Tab -->
-                            <div v-if="movie.trailers.videos_count > 0" class="tab-pane fade" id="trailer"
+                            <div @click.prevent="loadTrailers = true" v-if="movie.trailers.videos_count > 0" class="tab-pane fade" id="trailer"
                                  role="tabpanel" aria-labelledby="trailer-tab">
 
                                 <div class="row">
-                                    <template v-if="movie.trailers.videos_count > 0"
+                                    <template v-if="movie.trailers.videos_count > 0 && loadTrailers === true"
                                               v-for="trailer in movie.trailers.videos">
                                         <div v-if="trailer.site == 'dzen'" class="mb-4 col-xl-6 col-lg-6">
-                                            <iframe width="100%" height="270"
+                                            <iframe width="100%" height="215"
                                                     :src="`${trailer.url}?from_block=partner&from=zen&mute=0&autoplay=0&tv=0`"
                                                     allow="autoplay; fullscreen; accelerometer; gyroscope; picture-in-picture; encrypted-media"
                                                     frameborder="0" scrolling="no" allowfullscreen>
@@ -453,6 +453,7 @@
 
         data() {
             return {
+                loadTrailers: false,
                 comment_errors: '',
                 staff: {},
                 reviews: {},
