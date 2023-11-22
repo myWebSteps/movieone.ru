@@ -109,7 +109,7 @@
                                    aria-controls="home" aria-selected="true">Описание</a>
                             </li>
                             <!-- Trailers -->
-                            <li class="nav-item" v-if="movie.trailers.videos_count > 0">
+                            <li @click.prevent="loadTrailers = !loadTrailers" class="nav-item" v-if="movie.trailers.videos_count > 0">
                                 <a class="nav-link" id="trailer-tab" data-toggle="tab" href="#trailer" role="tab"
                                    aria-controls="trailer" aria-selected="false">Трейлеры <span
                                     class="badge badge-danger badge-counter">{{movie.trailers.videos_count}}</span></a>
@@ -147,11 +147,11 @@
                             </div>
 
                             <!-- Trailers Tab -->
-                            <div @click.prevent="loadTrailers = true" v-if="movie.trailers.videos_count > 0" class="tab-pane fade" id="trailer"
+                            <div v-if="movie.trailers.videos_count > 0" class="tab-pane fade" id="trailer"
                                  role="tabpanel" aria-labelledby="trailer-tab">
 
                                 <div class="row">
-                                    <template v-if="movie.trailers.videos_count > 0 && loadTrailers === true"
+                                    <template v-if="movie.trailers.videos_count > 0 && loadTrailers == true"
                                               v-for="trailer in movie.trailers.videos">
                                         <div v-if="trailer.site == 'dzen'" class="mb-4 col-xl-6 col-lg-6">
                                             <iframe width="100%" height="215"
