@@ -18,9 +18,9 @@
                             </h6>
                             <small class="text-muted">{{comments.score}}</small>
                         </div>
-                        <img v-if="movie.backdropUrl != null" :src="movie.backdropUrl" class="img-fluid w-100"
+                        <img ref="cover_pic" src="" class="img-fluid w-100"
                              alt="cover picture">
-                        <img v-else src="/img/poster.webp" class="img-fluid w-100" alt="cover picture">
+<!--                        <img v-else src="/img/poster.webp" class="img-fluid w-100" alt="cover picture">-->
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3">
@@ -473,6 +473,9 @@
         mounted() {
             this.getReviews()
             this.togglePlaylistButton()
+            this.loadCover()
+
+
 
             if (this.movie.video_allowed == 1) {
                 new Kinobox('.kinobox_player', {
@@ -540,6 +543,13 @@
         },
 
         methods: {
+            loadCover(){
+                if(this.movie.backdropUrl == null)
+                {
+                    this.movie.backdropUrl = "/img/poster.webp"
+                }
+                this.$refs.cover_pic.src = this.movie.backdropUrl
+            },
 
             leaveComment() {
                 router.post('/add_comment', {
