@@ -11,7 +11,7 @@
         <div class="container-fluid mobile-container-fluid">
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
-                    <div class="cover-pic">
+                    <div ref="cover" class="cover-pic d-none">
                         <div v-if="comments.total_count >= 3"
                              class="position-absolute bg-white shadow-sm rounded text-center p-2 m-4 love-box min-width">
                             <h6 class="text-gray-900 mb-0 font-weight-bold"><i class="fas fa-heart text-danger"></i>{{comments.total_count}}
@@ -548,6 +548,7 @@
                     this.movie.backdropUrl = "/img/poster.webp"
                 }
                 this.$refs.cover_pic.src = this.movie.backdropUrl
+                this.$refs.cover.classList.remove('d-none');
             },
 
             leaveComment() {
