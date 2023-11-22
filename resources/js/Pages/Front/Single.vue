@@ -1,9 +1,9 @@
 <template>
 
     <Head>
-        <title>{{movie.nameRu}}/{{movie.nameEn}} Смотреть бесплатно без регистрации</title>
-        <meta name="description" :content="movie.description"/>
-        <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
+        <title>{{movie.nameRu}}/{{movie.nameEn}} {{movie.meta_title}}</title>
+        <meta name="keywords" :content="movie.meta_keywords"/>
+        <meta name="description" :content="movie.meta_description"/>
     </Head>
 
     <FrontLayout ref="front_layout">
