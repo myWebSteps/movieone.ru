@@ -10,16 +10,11 @@
         <div class="container-fluid">
 
             <div class="osahan-slider d-none">
-                <div class="osahan-slider-item d-none d-sm-block"><img src="img/slider1.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item d-none d-sm-block"><img src="img/slider2.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item d-none d-sm-block"><img src="img/slider3.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item d-none d-sm-block"><img src="img/slider4.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item d-none d-sm-block"><img src="img/slider5.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item d-xs-block d-sm-none"><img src="img/slider_min_1.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item d-xs-block d-sm-none"><img src="img/slider_min_2.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item d-xs-block d-sm-none"><img src="img/slider_min_3.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item d-xs-block d-sm-none"><img src="img/slider_min_4.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item d-xs-block d-sm-none"><img src="img/slider_min_5.webp" class="img-fluid rounded" alt="..."></div>
+                <div class="osahan-slider-item"><img src="img/slider1.webp" class="img-fluid rounded" alt="..."></div>
+                <div class="osahan-slider-item"><img src="img/slider2.webp" class="img-fluid rounded" alt="..."></div>
+                <div class="osahan-slider-item"><img src="img/slider3.webp" class="img-fluid rounded" alt="..."></div>
+                <div class="osahan-slider-item"><img src="img/slider4.webp" class="img-fluid rounded" alt="..."></div>
+                <div class="osahan-slider-item"><img src="img/slider5.webp" class="img-fluid rounded" alt="..."></div>
             </div>
 
         <div class="page-header">
