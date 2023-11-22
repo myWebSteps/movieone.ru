@@ -20,7 +20,6 @@
                         </div>
                         <img ref="cover_pic" src="" class="img-fluid w-100"
                              alt="cover picture">
-<!--                        <img v-else src="/img/poster.webp" class="img-fluid w-100" alt="cover picture">-->
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3">
