@@ -109,7 +109,7 @@
                                    aria-controls="home" aria-selected="true">Описание</a>
                             </li>
                             <!-- Trailers -->
-                            <li @click.prevent="loadTrailers = !loadTrailers" class="nav-item" v-if="movie.trailers.videos_count > 0">
+                            <li @click.prevent="loadTrailers = true" class="nav-item" v-if="movie.trailers.videos_count > 0">
                                 <a class="nav-link" id="trailer-tab" data-toggle="tab" href="#trailer" role="tab"
                                    aria-controls="trailer" aria-selected="false">Трейлеры <span
                                     class="badge badge-danger badge-counter">{{movie.trailers.videos_count}}</span></a>
