@@ -30,9 +30,9 @@ class IndexController extends Controller
         $resultRelatedMovies = $genre->movies->whereNotIn('slug', $request->movie)->shuffle()->take(4);
 
         $comments = [];
-        $comments['comments'] = CommentResource::collection(Comment::where('approved', 1)->get())->resolve();
-        $comments['total_count'] = Comment::where('approved', 1)->count();
-        $comments['values'] = Comment::where('approved', 1)->select('rating')->get()->toArray();
+        $comments['comments'] = CommentResource::collection(Comment::where('movie_id', $data->id)->where('approved', 1)->get())->resolve();
+        $comments['total_count'] = Comment::where('movie_id', $data->id)->where('approved', 1)->count();
+        $comments['values'] = Comment::where('movie_id', $data->id)->where('approved', 1)->select('rating')->get()->toArray();
         $comments['score'] = 0;
 
         foreach($comments['values'] as $item){
