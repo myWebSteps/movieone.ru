@@ -80,6 +80,11 @@
         props: ['data'],
         components: {FrontLayout, Head, Link},
 
+
+        beforeMount() {
+            this.sliderSizes()
+        },
+
         data(){
             return{
                 slider:{
@@ -99,7 +104,6 @@
            this.sliderSizes()
 
             window.addEventListener("resize", () => {
-                console.log(window.innerWidth);
                 this.sliderSizes()
             });
 
@@ -136,11 +140,6 @@
         },
 
         methods:{
-
-            initSlider(){
-
-            },
-
             sliderSizes(){
                 if(window.innerWidth < 576){
                     this.slider.one = "img/slider_min_1.webp"
