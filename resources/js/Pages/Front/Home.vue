@@ -10,11 +10,11 @@
         <div class="container-fluid">
 
             <div class="osahan-slider d-none">
-                <div class="osahan-slider-item"><img src="img/slider1.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item"><img src="img/slider2.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item"><img src="img/slider3.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item"><img src="img/slider4.webp" class="img-fluid rounded" alt="..."></div>
-                <div class="osahan-slider-item"><img src="img/slider5.webp" class="img-fluid rounded" alt="..."></div>
+                <div class="osahan-slider-item"><img :src="slider.one" class="img-fluid rounded" alt="..."></div>
+                <div class="osahan-slider-item"><img :src="slider.two" class="img-fluid rounded" alt="..."></div>
+                <div class="osahan-slider-item"><img :src="slider.three" class="img-fluid rounded" alt="..."></div>
+                <div class="osahan-slider-item"><img :src="slider.four" class="img-fluid rounded" alt="..."></div>
+                <div class="osahan-slider-item"><img :src="slider.five" class="img-fluid rounded" alt="..."></div>
             </div>
 
         <div class="page-header">
@@ -79,9 +79,29 @@
         name: "Home",
         props: ['data'],
         components: {FrontLayout, Head, Link},
+
+        data(){
+            return{
+                slider:{
+                    one: "",
+                    two: "",
+                    three: "",
+                    four: "",
+                    five: "",
+                }
+            }
+
+        },
+
         mounted() {
             ym(94438576, 'hit', '/');
 
+           this.sliderSizes()
+
+            window.addEventListener("resize", () => {
+                console.log(window.innerWidth);
+                this.sliderSizes()
+            });
 
             // Osahan Slider
 
@@ -113,6 +133,29 @@
                 });
                 $('.osahan-slider').removeClass( 'd-none' );
             })
+        },
+
+        methods:{
+
+            initSlider(){
+
+            },
+
+            sliderSizes(){
+                if(window.innerWidth < 576){
+                    this.slider.one = "img/slider_min_1.webp"
+                    this.slider.two = "img/slider_min_2.webp"
+                    this.slider.three = "img/slider_min_3.webp"
+                    this.slider.four = "img/slider_min_4.webp"
+                    this.slider.five = "img/slider_min_5.webp"
+                }else{
+                    this.slider.one = "img/slider1.webp"
+                    this.slider.two = "img/slider2.webp"
+                    this.slider.three = "img/slider3.webp"
+                    this.slider.four = "img/slider4.webp"
+                    this.slider.five = "img/slider5.webp"
+                }
+            },
         },
 
     }
