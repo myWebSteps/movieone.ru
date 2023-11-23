@@ -62,13 +62,12 @@ class MovieFilter extends AbstractFilter
 
     protected function genre(Builder $builder, $value)
     {
-        $cat = Category::where('slug', $this->getQueryParam('category'))->first();
-
-        $builder->where('category_id', (int)$cat->id)->whereHas('genres', function ($b) use($value){
-
-            $genre = Genre::where('slug', $value)->first();
+        $builder->whereHas('genres', function ($b) use($value){
+            $cat = Category::where('slug', $this->getQueryParam('category'))->first();
+            $genre = Genre::where('category_id', $cat->id)->where('slug', $value)->first();
 
             $b->where('genre_id', $genre->id);
+
         });
     }
 
