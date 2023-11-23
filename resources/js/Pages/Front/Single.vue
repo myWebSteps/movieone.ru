@@ -50,11 +50,11 @@
                     <div class="bg-white info-header shadow rounded mb-4">
                         <div class="row d-flex align-items-center justify-content-between p-3 border-bottom">
                             <div class="col-lg-7 m-b-4">
-                                <h3 v-if="movie.nameRu != null" class="text-gray-900 mb-0 mt-0 font-weight-bold">
+                                <h3 class="text-gray-900 mb-0 mt-0 font-weight-bold">
                                     {{movie.nameRu}}</h3>
-                                <h3 v-if="movie.nameEn != null" class="text-gray-900 mb-0 mt-0 font-weight-bold">
+                                <h3 class="text-gray-900 mb-0 mt-0 font-weight-bold">
                                     {{movie.nameEn}}</h3>
-                                <h3 v-if="movie.nameEn != null" class="text-gray-900 mb-0 mt-0 font-weight-bold mb-1">
+                                <h3 class="text-gray-900 mb-0 mt-0 font-weight-bold mb-1">
                                     <small>{{movie.endYear}}</small></h3>
                                 <p class="mb-0 text-gray-800">
                                     <span class="text-muted"><i class="fa-solid fa-tape mr-2"></i>

@@ -90,9 +90,9 @@
                                         <form class="mb-3">
                                             <div class="input-group rounded">
                                                 <input @keypress.enter.prevent="send()" v-model="form.genres_filter"
-                                                       type="search" class="form-control" placeholder="Поиск жанра..."
+                                                       type="search" class="form-control custom-first-element" placeholder="Поиск жанра..."
                                                        aria-label="Search" aria-describedby="search-addon"/>
-                                                <button @click.prevent="send()" class="btn btn-outline-primary"
+                                                <button @click.prevent="send()" class="btn btn-outline-primary custom-last-element"
                                                         id="search-addon">
                                                     <i class="fas fa-search"></i>
                                                 </button>
@@ -213,9 +213,9 @@
                                         <form class="mb-3">
                                             <div class="input-group rounded">
                                                 <input @keypress.enter.prevent="send()" v-model="form.genres_filter"
-                                                       type="search" class="form-control" placeholder="Поиск жанра..."
+                                                       type="search" class="form-control custom-first-element" placeholder="Поиск жанра..."
                                                        aria-label="Search" aria-describedby="search-addon"/>
-                                                <button @click.prevent="send()" class="btn btn-outline-primary"
+                                                <button @click.prevent="send()" class="btn btn-outline-primary custom-last-element"
                                                         id="search-addon">
                                                     <i class="fas fa-search"></i>
                                                 </button>
@@ -334,9 +334,9 @@
                                         <form class="mb-3">
                                             <div class="input-group rounded">
                                                 <input @keypress.enter.prevent="send()" v-model="form.genres_filter"
-                                                       type="search" class="form-control" placeholder="Поиск жанра..."
+                                                       type="search" class="form-control custom-first-element" placeholder="Поиск жанра..."
                                                        aria-label="Search" aria-describedby="search-addon"/>
-                                                <button @click.prevent="send()" class="btn btn-outline-primary"
+                                                <button @click.prevent="send()" class="btn btn-outline-primary custom-last-element"
                                                         id="search-addon">
                                                     <i class="fas fa-search"></i>
                                                 </button>
