@@ -239,11 +239,15 @@
                                             <option :value="country.id">{{country.title}}</option>
                                         </template>
                                     </select>
-                                    <p> Страны по Кинопоиску:
-                                        <span v-for="country in examples.countries">
+                                    <div> Страны по Кинопоиску:
+                                    <div>
+                                        <ul>
+                                        <li v-for="country in examples.countries">
                                             {{country.name}} &nbsp
-                                    </span>
-                                    </p>
+                                    </li>
+                                </ul>
+                                </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -291,12 +295,16 @@
                                             style="width: 100%" class="d-block cform cform-custom-input">
                                         <option v-for="genre in genres.list" :value="genre.id">{{genre.title}}</option>
                                     </select>
-                                    <p>
+                                    <div>
                                         Жанры по кинопоиску:
-                                        <span v-for="genre in examples.genres">
+                                        <div>
+                                            <ul>
+                                        <li v-for="genre in examples.genres">
                                         {{genre.name}} &nbsp
-                                    </span>
-                                    </p>
+                                    </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -445,6 +453,7 @@
                         }
                     })
                     .then(response => {
+                        console.log(response)
                         this.form.year = response.data.year
                         this.form.nameRu = response.data.name
                         this.form.nameEn = response.data.alternativeName
