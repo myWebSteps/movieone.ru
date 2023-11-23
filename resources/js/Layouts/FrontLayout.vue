@@ -176,22 +176,13 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <div v-if="errors" class="alert alert-warning alert-dismissible fade custom-position show z-3" role="alert">
-        <span>Поиск должен содержать минимум 3 символа</span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-
-
-
 </template>
 
 <script>
     import { Link } from "@inertiajs/vue3";
     import {router} from '@inertiajs/vue3';
-    import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-    import NavLink from "@/Components/NavLink.vue";
-    import Dropdown from "@/Components/Dropdown.vue";
-    import DropdownLink from "@/Components/DropdownLink.vue";
+    import Swal from 'sweetalert2';
+
 
     export default {
         name: "FrontLayout",
@@ -206,7 +197,6 @@
                 form:{
                     categories: null
                 },
-                errors: false,
             }
         },
 
@@ -263,8 +253,11 @@
                     if(this.searchKey.length >= 3) {
                         router.get(`/search?key=${this.searchKey}`)
                     }else{
-                      this.errors = true;
-                        setTimeout(this.deleteErrors, 1500)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Поиск должен содержать минимум 3 символа',
+                        })
                     }
 
             },

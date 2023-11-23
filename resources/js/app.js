@@ -6,13 +6,9 @@ import '../assets/vendor/fontawesome-free/css/all.min.css';
 import '../assets/css/osahan.css';
 import '../css/app.css';
 
-
-
-
 import '../assets/vendor/jquery/jquery.min'
 import '../assets/vendor/bootstrap/js/bootstrap.bundle.min'
 import '../assets/vendor/jquery-easing/jquery.easing.min'
-// import '../assets/js/osahan'
 import '../assets/vendor/slick/slick.min'
 
 

@@ -4,6 +4,8 @@ import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import NavLink from "@/Components/NavLink.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
+
+import 'cssformalize/css/css-formalize.css';
 </script>
 
 <template>
