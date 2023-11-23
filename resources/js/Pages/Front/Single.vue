@@ -55,7 +55,7 @@
                                 <h3 v-if="movie.nameEn != null" class="text-gray-900 mb-0 mt-0 font-weight-bold">
                                     {{movie.nameEn}}</h3>
                                 <h3 v-if="movie.nameEn != null" class="text-gray-900 mb-0 mt-0 font-weight-bold mb-1">
-                                    <small>2019</small></h3>
+                                    <small>{{movie.endYear}}</small></h3>
                                 <p class="mb-0 text-gray-800">
                                     <span class="text-muted"><i class="fa-solid fa-tape mr-2"></i>
                                         <span v-for="genre in movie.genres">
