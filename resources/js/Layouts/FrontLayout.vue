@@ -17,10 +17,11 @@
 <!--                    <span>Подборки</span></a>-->
 <!--            </li>-->
 
+
+            <!-- Heading -->
+            <div class="sidebar-heading mt-3 mb-1">Кино</div>
             <!-- Divider -->
             <hr class="sidebar-divider">
-            <!-- Heading -->
-            <div class="sidebar-heading">Кино</div>
             <!-- Nav Item  -->
             <li v-for="category in $page.props.categories" :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}" class="nav-item">
             <Link class="nav-link font-weight-bold" :href="`/movies?category=${category.slug}&order=year&page=1`">
@@ -48,10 +49,11 @@
                 <!--                    <span>Подборки</span></a>-->
                 <!--            </li>-->
 
+
+                <!-- Heading -->
+                <div class="sidebar-heading mt-3 mb-1">Кино</div>
                 <!-- Divider -->
                 <hr class="sidebar-divider">
-                <!-- Heading -->
-                <div class="sidebar-heading">Кино</div>
                 <!-- Nav Item  -->
                 <li v-for="category in $page.props.categories" :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}" class="nav-item">
                     <Link class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
