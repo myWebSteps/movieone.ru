@@ -72,8 +72,8 @@
     border-radius: 0 !important;
 }
 .custom-last-element{
-    border-bottom-right-radius: 10px !important;
-    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 3px !important;
+    border-top-right-radius: 3px !important;
     border-bottom-left-radius: 0 !important;
     border-top-left-radius: 0 !important;
 }
