@@ -98,7 +98,7 @@
                                                 </button>
                                             </div>
                                         </form>
-                                        <div :class="seeAll.genres? 'custom-show' : 'custom-hide'">
+                                        <div>
                                             <div class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.genre" type="radio"
                                                        name="genres_filter_mobile" class="custom-control-input" :value=null
@@ -115,11 +115,6 @@
                                                     <small class="text-black-50">{{genre.genresCount}}</small></label>
                                             </div>
                                         </div>
-                                        <template v-if="genres.length + 1 > 3">
-                                            <div @click.prevent="seeAll.genres = !seeAll.genres" class="mt-2"><a
-                                                href="#" class="link">{{seeAll.genres? 'Свернуть' : 'Развернуть'}}</a>
-                                            </div>
-                                        </template>
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +221,7 @@
                                                 </button>
                                             </div>
                                         </form>
-                                        <div :class="seeAll.genres? 'custom-show' : 'custom-hide'">
+                                        <div>
                                             <div class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.genre" type="radio"
                                                        name="genres_filter_pad" class="custom-control-input" :value=null
@@ -242,12 +237,6 @@
                                                     <small class="text-black-50">{{genre.genresCount}}</small></label>
                                             </div>
                                         </div>
-                                        <template v-if="genres.length + 1 > 3">
-                                            <div @click.prevent="seeAll.genres = !seeAll.genres" class="mt-2"><a
-                                                href="#" class="link">{{seeAll.genres? 'Свернуть' : 'Развернуть'}}</a>
-                                            </div>
-                                        </template>
-
                                     </div>
                                 </div>
                             </div>
@@ -353,7 +342,7 @@
                                                 </button>
                                             </div>
                                         </form>
-                                        <div :class="seeAll.genres? 'custom-show' : 'custom-hide'">
+                                        <div>
                                             <div class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.genre" type="radio"
                                                        name="genres_filter" class="custom-control-input" :value=null
@@ -369,13 +358,7 @@
                                                     <small class="text-black-50">{{genre.genresCount}}</small></label>
                                             </div>
                                         </div>
-                                        <template v-if="genres.length + 1 > 3">
-                                            <div @click.prevent="seeAll.genres = !seeAll.genres" class="mt-2"><a
-                                                href="#" class="link">{{seeAll.genres? 'Свернуть' : 'Развернуть'}}</a>
-                                            </div>
-                                        </template>
-
-                                    </div>
+                                  </div>
                                 </div>
                             </div>
                             <div class="filters-card border-bottom p-3">
@@ -506,9 +489,6 @@
                     order: this.data.order,
                     page: this.data.page,
                     genres_filter: this.data.genres_filter,
-                },
-                seeAll: {
-                    genres: false,
                 },
             }
         },
