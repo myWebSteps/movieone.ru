@@ -53,7 +53,7 @@ class IndexController extends Controller
         {
             $data['yearTo'] = $originalYearTo;
         };
-        if((isset($data['yearFrom']) && isset($data['yearTo'])) && $data['yearTo'] < isset($data['yearFrom']))
+        if((isset($data['yearFrom']) && isset($data['yearTo'])) && $data['yearTo'] < $data['yearFrom'])
         {
             $data['yearFrom'] = $originalYearFrom;
             $data['yearTo'] = $originalYearTo;
