@@ -118,6 +118,32 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Фильтр по году -->
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingYear11">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear">
+                                            Год: <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseYear" class="collapse show" aria-labelledby="headingYear" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <MultiRangeSlider
+                                            :min= "+originalYearFrom"
+                                            :max="+originalYearTo"
+                                            :step="1"
+                                            :ruler="false"
+                                            :label="true"
+                                            :minValue="barMinValue"
+                                            :maxValue="barMaxValue"
+                                            @input="UpdateValues"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="filters-card border-bottom p-3">
                                 <div class="filters-card-header" id="headingOne">
                                     <h6 class="mb-0">
@@ -240,6 +266,32 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Фильтр по году -->
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingYear11">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear">
+                                            Год: <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseYear" class="collapse show" aria-labelledby="headingYear" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <MultiRangeSlider
+                                            :min= "+originalYearFrom"
+                                            :max="+originalYearTo"
+                                            :step="1"
+                                            :ruler="false"
+                                            :label="true"
+                                            :minValue="barMinValue"
+                                            :maxValue="barMaxValue"
+                                            @input="UpdateValues"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="filters-card border-bottom p-3">
                                 <div class="filters-card-header" id="headingOffer">
                                     <h6 class="mb-0">
@@ -361,6 +413,32 @@
                                   </div>
                                 </div>
                             </div>
+
+                            <!-- Фильтр по году -->
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingYear11">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear">
+                                            Год: <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseYear" class="collapse show" aria-labelledby="headingYear" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <MultiRangeSlider
+                                            :min= "+originalYearFrom"
+                                            :max="+originalYearTo"
+                                            :step="1"
+                                            :ruler="false"
+                                            :label="true"
+                                            :minValue="barMinValue"
+                                            :maxValue="barMaxValue"
+                                            @input="UpdateValues"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="filters-card border-bottom p-3">
                                 <div class="filters-card-header" id="headingOffer">
                                     <h6 class="mb-0">
@@ -386,6 +464,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -472,16 +551,19 @@
 <script>
     import {router, Head, Link} from "@inertiajs/vue3";
     import FrontLayout from "@/Layouts/FrontLayout.vue";
+    import MultiRangeSlider from "multi-range-slider-vue";
 
 
     export default {
         name: "Catalog",
-        props: ['genres', 'allGenresCount', 'allTypesCount', 'typesCount', 'movies', 'category', 'data'],
-        components: {Head, Link, FrontLayout},
+        props: ['genres', 'allGenresCount', 'allTypesCount', 'typesCount', 'movies', 'category', 'data', 'originalYearFrom', 'originalYearTo'],
+        components: {Head, Link, FrontLayout, MultiRangeSlider},
 
         data() {
             return {
                 queryArr: {},
+                barMinValue: +this.data.yearFrom,
+                barMaxValue: +this.data.yearTo,
                 form: {
                     category: this.data.category,
                     type: this.data.type,
@@ -508,9 +590,26 @@
                 }
             },
 
+            UpdateValues(e) {
+                this.barMinValue = e.minValue;
+                this.barMaxValue = e.maxValue;
+                this.send();
+            },
+
             send() {
                 this.makeQueryArr()
-                router.get('/movies', this.queryArr, {preserveScroll: true});
+                router.get('/movies',
+                    {
+                        category: this.queryArr.category,
+                        type: this.queryArr.type,
+                        genre: this.queryArr.genre,
+                        order: this.queryArr.order,
+                        page: this.queryArr.page,
+                        genres_filter: this.queryArr.genres_filter,
+                        yearFrom: this.barMinValue,
+                        yearTo: this.barMaxValue,
+                    },
+                    {preserveScroll: true});
             },
 
             changePage(page) {

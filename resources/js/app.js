@@ -12,6 +12,7 @@ import '../assets/vendor/jquery-easing/jquery.easing.min'
 import '../assets/vendor/slick/slick.min'
 
 
+
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';

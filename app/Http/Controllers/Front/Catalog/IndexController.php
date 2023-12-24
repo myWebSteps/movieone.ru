@@ -42,6 +42,22 @@ class IndexController extends Controller
         };
 
         $category = Category::where('slug', $request->get('category'))->first();
+        $originalYearFrom = Movie::where('category_id', $category->id)->min('year');
+        $originalYearTo = Movie::where('category_id', $category->id)->max('year');
+
+        if(!isset($data['yearFrom']))
+        {
+            $data['yearFrom'] = $originalYearFrom;
+        };
+        if(!isset($data['yearTo']))
+        {
+            $data['yearTo'] = $originalYearTo;
+        };
+        if((isset($data['yearFrom']) && isset($data['yearTo'])) && $data['yearTo'] < isset($data['yearFrom']))
+        {
+            $data['yearFrom'] = $originalYearFrom;
+            $data['yearTo'] = $originalYearTo;
+        }
 
         //Types count
         $typesCount = [];
@@ -50,8 +66,6 @@ class IndexController extends Controller
         $typesCount['serial'] = Movie::where('category_id', $category->id)->where('type', 3)->count();
         $typesCount['mini_serial'] = Movie::where('category_id', $category->id)->where('type', 4)->count();
         //End Types Count
-
-
 
         //Movies filter
         $filter = app()->make(MovieFilter::class, ['queryParams' => array_filter($data)]);
@@ -79,7 +93,7 @@ class IndexController extends Controller
         //End of Genres Filter
 
 
-        return Inertia::render('Front/Catalog', compact('genres', 'allGenresCount', 'allTypesCount', 'typesCount', 'movies', 'category', 'data'));
+        return Inertia::render('Front/Catalog', compact('genres', 'allGenresCount', 'allTypesCount', 'typesCount', 'movies', 'category', 'data', 'originalYearFrom', 'originalYearTo'));
 
     }
 }

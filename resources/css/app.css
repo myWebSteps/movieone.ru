@@ -94,4 +94,8 @@
     padding-right: 0.5rem !important;
 }
 }
+.multi-range-slider{
+    box-shadow: 0 0 0 black !important;
+    border: 0 solid white !important;
+}
 
