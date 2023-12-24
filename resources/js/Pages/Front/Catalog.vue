@@ -29,7 +29,7 @@
                             <i class="fas fa-angle-down float-right mt-1"></i></a>
                     </div>
                     <div id="mobile-filters"
-                         :class="form.type || form.genre || form.genres_filter != null ? 'show' : ''"
+                         :class="form.type || form.genre || form.genres_filter != null || originalYearFrom != data.yearFrom || originalYearTo != data.yearTo ? 'show' : ''"
                          class="filters-body collapse multi-collapse">
                         <div id="accordion">
                             <div class="filters-card border-bottom p-3">
