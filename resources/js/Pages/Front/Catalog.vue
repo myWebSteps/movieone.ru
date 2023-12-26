@@ -338,14 +338,14 @@
                                         <div>
                                             <div class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.country" type="radio"
-                                                       name="countries_filter_mobile" class="custom-control-input" :value=null
-                                                       id="all_countries_mobile">
-                                                <label class="custom-control-label" for="all_countries_mobile">Все страны <small
+                                                       name="countries_filter_pad" class="custom-control-input" :value=null
+                                                       id="all_countries_pad">
+                                                <label class="custom-control-label" for="all_countries_pad">Все страны <small
                                                     class="text-black-50">{{totalCount}}</small></label>
                                             </div>
                                             <div v-for="country in countries" class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.country" type="radio"
-                                                       :value="country.slug" name="countries_filter_mobile"
+                                                       :value="country.slug" name="countries_filter_pad"
                                                        class="custom-control-input" :id="country.slug">
                                                 <label class="custom-control-label" :for="country.slug">{{country.title}}
                                                     <small class="text-black-50">{{country.count}}</small></label>
@@ -530,13 +530,13 @@
                                             <div class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.country" type="radio"
                                                        name="countries_filter" class="custom-control-input" :value=null
-                                                       id="all_countries">
-                                                <label class="custom-control-label" for="all_countries">Все страны <small
+                                                       id="all_countries_laptop">
+                                                <label class="custom-control-label" for="all_countries_laptop">Все страны <small
                                                     class="text-black-50">{{totalCount}}</small></label>
                                             </div>
                                             <div v-for="country in countries" class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.country" type="radio"
-                                                       :value="country.slug" name="countries_filter"
+                                                       :value="country.slug" name="countries_filter_laptop"
                                                        class="custom-control-input" :id="country.slug">
                                                 <label class="custom-control-label" :for="country.slug">{{country.title}}
                                                     <small class="text-black-50">{{country.count}}</small></label>
