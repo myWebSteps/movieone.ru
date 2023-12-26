@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Clean-param: category&order&page&key&year&genre&type
+Clean-param: category&order&page&key&year&genre&type&yearFrom&yearTo&countries_filter&country&genres_filter
 Disallow: /admin/
 Disallow: /login/
 Disallow: /search/
