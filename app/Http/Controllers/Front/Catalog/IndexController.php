@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Front\Catalog;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\CountriesFilter;
 use App\Http\Filters\GenresFilter;
 use App\Http\Filters\MovieFilter;
+use App\Http\Resources\Front\Catalog\CountriesResource;
 use App\Http\Resources\Front\Catalog\GenresResource;
 use App\Http\Resources\Front\Catalog\IndexResource;
 use App\Models\Category;
+use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
@@ -31,6 +34,10 @@ class IndexController extends Controller
         if(!isset($data['genre']))
         {
             $data['genre'] = null;
+        };
+        if(!isset($data['country']))
+        {
+            $data['country'] = null;
         };
         if(!isset($data['page']))
         {
@@ -58,10 +65,11 @@ class IndexController extends Controller
             $data['yearFrom'] = $originalYearFrom;
             $data['yearTo'] = $originalYearTo;
         }
+        //totalCount
+        $totalCount = Movie::where('category_id', $category->id)->count();
 
         //Types count
         $typesCount = [];
-        $allTypesCount = Movie::where('category_id', $category->id)->count();
         $typesCount['feature'] = Movie::where('category_id', $category->id)->where('type', 2)->count();
         $typesCount['serial'] = Movie::where('category_id', $category->id)->where('type', 3)->count();
         $typesCount['mini_serial'] = Movie::where('category_id', $category->id)->where('type', 4)->count();
@@ -79,21 +87,29 @@ class IndexController extends Controller
             ->orderBy('title', 'ASC')
             ->get();
 
-        //Genres count
-        $getGenres = Genre::where('category_id', $category->id)->get();
-        $allGenresCount = [];
-        foreach($getGenres as $item){
-            $allGenresCount[] = $item->movies->count();
-        };
-        $allGenresCount = $allTypesCount;
+        //Countries Filter
+        $countries_filter = app()->make(CountriesFilter::class, ['queryParams' => array_filter($data)]);
+        $countries_result = Country::filter($countries_filter)
+            ->orderBy('title', 'ASC')
+            ->get();
 
         $genres = GenresResource::collection($genres_result)->resolve();
         //End Genres count
 
-        //End of Genres Filter
 
+        //Countries
+        $countries = [];
+        foreach ($countries_result as $item)
+        {
+            $countriesItem = [];
+            $countriesItem['id'] = $item->id;
+            $countriesItem['title'] = $item->title;
+            $countriesItem['slug'] = $item->slug;
+            $countriesItem['count'] = $item->movies->where('category_id', $category->id)->count();
+            $countries[] = $countriesItem;
+        }
 
-        return Inertia::render('Front/Catalog', compact('genres', 'allGenresCount', 'allTypesCount', 'typesCount', 'movies', 'category', 'data', 'originalYearFrom', 'originalYearTo'));
+        return Inertia::render('Front/Catalog', compact('genres', 'totalCount', 'typesCount', 'movies', 'category', 'data', 'originalYearFrom', 'originalYearTo', 'countries'));
 
     }
 }

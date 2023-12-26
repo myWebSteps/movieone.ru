@@ -16,7 +16,7 @@ class StoreController extends Controller
     {
         $data = $request->validated();
 
-        Country::firstOrCreate(['title' => $data['title']],
+        Country::firstOrCreate(['title' => $data['title'], 'slug'=>$data['slug']],
         $data
         );
 

@@ -5,6 +5,7 @@ namespace App\Http\Filters;
 
 
 use App\Models\Category;
+use App\Models\Country;
 use App\Models\Genre;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -16,6 +17,7 @@ class MovieFilter extends AbstractFilter
     const YEAR_FROM = 'yearFrom';
     const YEAR_TO = 'yearTo';
     const SEARCH = 'key';
+    const COUNTRY= 'country';
 
 
 
@@ -28,6 +30,7 @@ class MovieFilter extends AbstractFilter
             self::YEAR_FROM => [$this, 'yearFrom'],
             self::YEAR_TO => [$this, 'yearTo'],
             self::SEARCH => [$this, 'search'],
+            self::COUNTRY => [$this, 'country'],
         ];
     }
 
@@ -81,6 +84,15 @@ class MovieFilter extends AbstractFilter
             $genre = Genre::where('category_id', $cat->id)->where('slug', $value)->first();
 
             $b->where('genre_id', $genre->id);
+
+        });
+    }
+
+    protected function country(Builder $builder, $value)
+    {
+        $builder->whereHas('countries', function ($b) use($value){
+            $country = Country::where('slug', $value)->first();
+            $b->where('country_id', $country->id);
 
         });
     }

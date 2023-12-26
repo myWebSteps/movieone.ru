@@ -29,7 +29,7 @@
                             <i class="fas fa-angle-down float-right mt-1"></i></a>
                     </div>
                     <div id="mobile-filters"
-                         :class="form.type || form.genre || form.genres_filter != null || originalYearFrom != data.yearFrom || originalYearTo != data.yearTo ? 'show' : ''"
+                         :class="form.type || form.genre || form.country || form.genres_filter != null || form.countries_filter != null || originalYearFrom != data.yearFrom || originalYearTo != data.yearTo ? 'show' : ''"
                          class="filters-body collapse multi-collapse">
                         <div id="accordion">
                             <div class="filters-card border-bottom p-3">
@@ -47,7 +47,7 @@
                                                    name="types_filter_mobile" class="custom-control-input" :value=null
                                                    id="all_types_mobile">
                                             <label class="custom-control-label" for="all_types_mobile">Кино и Сериалы
-                                                <small class="text-black-50">{{allTypesCount}}</small></label>
+                                                <small class="text-black-50">{{totalCount}}</small></label>
                                         </div>
                                         <div class="custom-control custom-radio">
                                             <input @change.prevent="send()" v-model="form.type" type="radio"
@@ -104,7 +104,7 @@
                                                        name="genres_filter_mobile" class="custom-control-input" :value=null
                                                        id="all_genres_mobile">
                                                 <label class="custom-control-label" for="all_genres">Все жанры <small
-                                                    class="text-black-50">{{allGenresCount}}</small></label>
+                                                    class="text-black-50">{{totalCount}}</small></label>
                                             </div>
                                             <div v-for="genre in genres" class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.genre" type="radio"
@@ -119,9 +119,53 @@
                                 </div>
                             </div>
 
+                            <!--Фильтр по странам -->
+
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingOne">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseCountries" aria-expanded="true" aria-controls="collapseOne">
+                                            Страны:
+                                            <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseCountries" :class="form.country || form.countries_filter != null ? 'show' : ''" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <form class="mb-3">
+                                            <div class="input-group rounded">
+                                                <input @keypress.enter.prevent="send()" v-model="form.countries_filter"
+                                                       type="search" class="form-control custom-first-element" placeholder="Поиск по странам..."
+                                                       aria-label="Search" aria-describedby="search-addon"/>
+                                                <button @click.prevent="send()" class="btn btn-outline-primary custom-last-element"
+                                                        id="search-addon-countries-mobile">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div>
+                                            <div class="custom-control custom-radio">
+                                                <input @change.prevent="send()" v-model="form.country" type="radio"
+                                                       name="countries_filter_mobile" class="custom-control-input" :value=null
+                                                       id="all_countries_mobile">
+                                                <label class="custom-control-label" for="all_countries_mobile">Все страны <small
+                                                    class="text-black-50">{{totalCount}}</small></label>
+                                            </div>
+                                            <div v-for="country in countries" class="custom-control custom-radio">
+                                                <input @change.prevent="send()" v-model="form.country" type="radio"
+                                                       :value="country.slug" name="countries_filter_mobile"
+                                                       class="custom-control-input" :id="country.slug">
+                                                <label class="custom-control-label" :for="country.slug">{{country.title}}
+                                                    <small class="text-black-50">{{country.count}}</small></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Фильтр по году -->
                             <div class="filters-card border-bottom p-3">
-                                <div class="filters-card-header" id="headingYear11">
+                                <div class="filters-card-header" id="headingYear">
                                     <h6 class="mb-0">
                                         <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear">
                                             Год: <i class="fas fa-angle-down float-right"></i>
@@ -197,7 +241,7 @@
                                                    name="types_filter_pad" class="custom-control-input" :value=null
                                                    id="all_types_pad">
                                             <label class="custom-control-label" for="all_types_pad">Кино и Сериалы
-                                                <small class="text-black-50">{{allTypesCount}}</small></label>
+                                                <small class="text-black-50">{{totalCount}}</small></label>
                                         </div>
                                         <div class="custom-control custom-radio">
                                             <input @change.prevent="send()" v-model="form.type" type="radio"
@@ -253,7 +297,7 @@
                                                        name="genres_filter_pad" class="custom-control-input" :value=null
                                                        id="all_genres_pad">
                                                 <label class="custom-control-label" for="all_genres_pad">Все жанры <small
-                                                    class="text-black-50">{{allGenresCount}}</small></label>
+                                                    class="text-black-50">{{totalCount}}</small></label>
                                             </div>
                                             <div v-for="genre in genres" class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.genre" type="radio"
@@ -261,6 +305,50 @@
                                                        class="custom-control-input" :id="genre.genre.slug">
                                                 <label class="custom-control-label" :for="genre.genre.slug">{{genre.genre.title}}
                                                     <small class="text-black-50">{{genre.genresCount}}</small></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Фильтр по странам -->
+
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingOne">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseCountries" aria-expanded="true" aria-controls="collapseOne">
+                                            Страны:
+                                            <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseCountries" :class="form.country || form.countries_filter != null ? 'show' : ''" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <form class="mb-3">
+                                            <div class="input-group rounded">
+                                                <input @keypress.enter.prevent="send()" v-model="form.countries_filter"
+                                                       type="search" class="form-control custom-first-element" placeholder="Поиск по странам..."
+                                                       aria-label="Search" aria-describedby="search-addon"/>
+                                                <button @click.prevent="send()" class="btn btn-outline-primary custom-last-element"
+                                                        id="search-addon-countries-pad">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div>
+                                            <div class="custom-control custom-radio">
+                                                <input @change.prevent="send()" v-model="form.country" type="radio"
+                                                       name="countries_filter_mobile" class="custom-control-input" :value=null
+                                                       id="all_countries_mobile">
+                                                <label class="custom-control-label" for="all_countries_mobile">Все страны <small
+                                                    class="text-black-50">{{totalCount}}</small></label>
+                                            </div>
+                                            <div v-for="country in countries" class="custom-control custom-radio">
+                                                <input @change.prevent="send()" v-model="form.country" type="radio"
+                                                       :value="country.slug" name="countries_filter_mobile"
+                                                       class="custom-control-input" :id="country.slug">
+                                                <label class="custom-control-label" :for="country.slug">{{country.title}}
+                                                    <small class="text-black-50">{{country.count}}</small></label>
                                             </div>
                                         </div>
                                     </div>
@@ -345,7 +433,7 @@
                                                    name="types_filter" class="custom-control-input" :value=null
                                                    id="all_types_laptop">
                                             <label class="custom-control-label" for="all_types_laptop">Кино и Сериалы
-                                                <small class="text-black-50">{{allTypesCount}}</small></label>
+                                                <small class="text-black-50">{{totalCount}}</small></label>
                                         </div>
                                         <div class="custom-control custom-radio">
                                             <input @change.prevent="send()" v-model="form.type" type="radio"
@@ -400,7 +488,7 @@
                                                        name="genres_filter" class="custom-control-input" :value=null
                                                        id="all_genres">
                                                 <label class="custom-control-label" for="all_genres">Все жанры <small
-                                                    class="text-black-50">{{allGenresCount}}</small></label>
+                                                    class="text-black-50">{{totalCount}}</small></label>
                                             </div>
                                             <div v-for="genre in genres" class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.genre" type="radio"
@@ -411,6 +499,50 @@
                                             </div>
                                         </div>
                                   </div>
+                                </div>
+                            </div>
+
+                            <!--Фильтр по странам -->
+
+                            <div class="filters-card border-bottom p-3">
+                                <div class="filters-card-header" id="headingOne">
+                                    <h6 class="mb-0">
+                                        <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Страны:
+                                            <i class="fas fa-angle-down float-right"></i>
+                                        </a>
+                                    </h6>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="filters-card-body card-shop-filters">
+                                        <form class="mb-3">
+                                            <div class="input-group rounded">
+                                                <input @keypress.enter.prevent="send()" v-model="form.countries_filter"
+                                                       type="search" class="form-control custom-first-element" placeholder="Поиск по странам..."
+                                                       aria-label="Search" aria-describedby="search-addon"/>
+                                                <button @click.prevent="send()" class="btn btn-outline-primary custom-last-element"
+                                                        id="search-addon-countries">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div>
+                                            <div class="custom-control custom-radio">
+                                                <input @change.prevent="send()" v-model="form.country" type="radio"
+                                                       name="countries_filter" class="custom-control-input" :value=null
+                                                       id="all_countries">
+                                                <label class="custom-control-label" for="all_countries">Все страны <small
+                                                    class="text-black-50">{{totalCount}}</small></label>
+                                            </div>
+                                            <div v-for="country in countries" class="custom-control custom-radio">
+                                                <input @change.prevent="send()" v-model="form.country" type="radio"
+                                                       :value="country.slug" name="countries_filter"
+                                                       class="custom-control-input" :id="country.slug">
+                                                <label class="custom-control-label" :for="country.slug">{{country.title}}
+                                                    <small class="text-black-50">{{country.count}}</small></label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -556,7 +688,7 @@
 
     export default {
         name: "Catalog",
-        props: ['genres', 'allGenresCount', 'allTypesCount', 'typesCount', 'movies', 'category', 'data', 'originalYearFrom', 'originalYearTo'],
+        props: ['genres', 'totalCount', 'typesCount', 'movies', 'category', 'data', 'originalYearFrom', 'originalYearTo', 'countries'],
         components: {Head, Link, FrontLayout, MultiRangeSlider},
 
         data() {
@@ -568,9 +700,11 @@
                     category: this.data.category,
                     type: this.data.type,
                     genre: this.data.genre,
+                    country: this.data.country,
                     order: this.data.order,
                     page: this.data.page,
                     genres_filter: this.data.genres_filter,
+                    countries_filter: this.data.countries_filter,
                 },
             }
         },
@@ -603,9 +737,11 @@
                         category: this.queryArr.category,
                         type: this.queryArr.type,
                         genre: this.queryArr.genre,
+                        country: this.queryArr.country,
                         order: this.queryArr.order,
                         page: this.queryArr.page,
                         genres_filter: this.queryArr.genres_filter,
+                        countries_filter: this.queryArr.countries_filter,
                         yearFrom: this.barMinValue,
                         yearTo: this.barMaxValue,
                     },

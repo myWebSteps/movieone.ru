@@ -11,11 +11,15 @@
                 <div class="row">
                     <div class="col-md-6 col-12">
 
-                    <form @submit.prevent="updateCountry(country.id, country.title)">
+                    <form @submit.prevent="updateCountry(country.id, country.title, country.slug)">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="categoryTitle">Country Title</label>
                                 <input v-model="country.title" type="text" class="d-block cform cform-custom-input" id="categoryTitle" placeholder="Название страны">
+                            </div>
+                            <div class="form-group">
+                                <label for="genreSlug">Country Slug</label>
+                                <input v-model="country.slug" type="text" class="d-block cform cform-custom-input" id="genreSlug" placeholder="Slug страны">
                             </div>
 
                         </div>
@@ -59,8 +63,8 @@
         },
 
         methods:{
-            updateCountry(id, title){
-                router.patch(`/admin/countries/${id}`, {title: title})
+            updateCountry(id, title, slug){
+                router.patch(`/admin/countries/${id}`, {title: title, slug:slug})
                 router.on('error', (errors) => {
                     this.errors = errors.detail.errors
                 })

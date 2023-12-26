@@ -17,6 +17,10 @@
                                 <label for="countryTitle">Country Title</label>
                                 <input v-model="form.title" type="text" class="d-block cform cform-custom-input" id="countryTitle" placeholder="Название страны">
                             </div>
+                            <div class="form-group">
+                                <label for="countrySlug">Slug</label>
+                                <input v-model="form.slug" type="text" class="d-block cform cform-custom-input" id="countrySlug" placeholder="Slug страны">
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
@@ -54,6 +58,7 @@
             return{
                 form:{
                     title: null,
+                    slug: null,
                 },
                 errors: null,
             }
