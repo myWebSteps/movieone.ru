@@ -49,21 +49,21 @@
                                             <label class="custom-control-label" for="all_types_mobile">Кино и Сериалы
                                                 <small class="text-black-50">{{totalCount}}</small></label>
                                         </div>
-                                        <div class="custom-control custom-radio">
+                                        <div v-if="typesCount.feature > 0" class="custom-control custom-radio">
                                             <input @change.prevent="send()" v-model="form.type" type="radio"
                                                    value="feature"
                                                    name="types_filter_mobile" class="custom-control-input" id="feature">
                                             <label class="custom-control-label" for="feature">Полнометражные <small
                                                 class="text-black-50">{{typesCount.feature}}</small></label>
                                         </div>
-                                        <div class="custom-control custom-radio">
+                                        <div v-if="typesCount.serial > 0" class="custom-control custom-radio">
                                             <input @change.prevent="send()" v-model="form.type" type="radio"
                                                    value="serial"
                                                    name="types_filter_mobile" class="custom-control-input" id="serial">
                                             <label class="custom-control-label" for="serial">Сериалы <small
                                                 class="text-black-50">{{typesCount.serial}}</small></label>
                                         </div>
-                                        <div class="custom-control custom-radio">
+                                        <div v-if="typesCount.mini_serial > 0" class="custom-control custom-radio">
                                             <input @change.prevent="send()" v-model="form.type" type="radio"
                                                    value="mini_serial"
                                                    name="types_filter_mobile"
@@ -151,13 +151,15 @@
                                                 <label class="custom-control-label" for="all_countries_mobile">Все страны <small
                                                     class="text-black-50">{{totalCount}}</small></label>
                                             </div>
-                                            <div v-for="country in countries" class="custom-control custom-radio">
+                                            <template v-for="country in countries">
+                                            <div v-if="country.count > 0" class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.country" type="radio"
                                                        :value="country.slug" name="countries_filter_mobile"
                                                        class="custom-control-input" :id="country.slug">
                                                 <label class="custom-control-label" :for="country.slug">{{country.title}}
                                                     <small class="text-black-50">{{country.count}}</small></label>
                                             </div>
+                                            </template>
                                         </div>
                                     </div>
                                 </div>
@@ -243,21 +245,21 @@
                                             <label class="custom-control-label" for="all_types_pad">Кино и Сериалы
                                                 <small class="text-black-50">{{totalCount}}</small></label>
                                         </div>
-                                        <div class="custom-control custom-radio">
+                                        <div v-if="typesCount.feature > 0" class="custom-control custom-radio">
                                             <input @change.prevent="send()" v-model="form.type" type="radio"
                                                    value="feature"
                                                    name="types_filter_pad" class="custom-control-input" id="feature">
                                             <label class="custom-control-label" for="feature">Полнометражные <small
                                                 class="text-black-50">{{typesCount.feature}}</small></label>
                                         </div>
-                                        <div class="custom-control custom-radio">
+                                        <div v-if="typesCount.serial > 0" class="custom-control custom-radio">
                                             <input @change.prevent="send()" v-model="form.type" type="radio"
                                                    value="serial"
                                                    name="types_filter_pad" class="custom-control-input" id="serial">
                                             <label class="custom-control-label" for="serial">Сериалы <small
                                                 class="text-black-50">{{typesCount.serial}}</small></label>
                                         </div>
-                                        <div class="custom-control custom-radio">
+                                        <div v-if="typesCount.mini_serial > 0" class="custom-control custom-radio">
                                             <input @change.prevent="send()" v-model="form.type" type="radio"
                                                    value="mini_serial"
                                                    name="types_filter_pad"
@@ -343,13 +345,15 @@
                                                 <label class="custom-control-label" for="all_countries_pad">Все страны <small
                                                     class="text-black-50">{{totalCount}}</small></label>
                                             </div>
-                                            <div v-for="country in countries" class="custom-control custom-radio">
+                                            <template v-for="country in countries">
+                                            <div v-if="country.count > 0" class="custom-control custom-radio">
                                                 <input @change.prevent="send()" v-model="form.country" type="radio"
                                                        :value="country.slug" name="countries_filter_pad"
                                                        class="custom-control-input" :id="country.slug">
                                                 <label class="custom-control-label" :for="country.slug">{{country.title}}
                                                     <small class="text-black-50">{{country.count}}</small></label>
                                             </div>
+                                            </template>
                                         </div>
                                     </div>
                                 </div>
@@ -435,21 +439,21 @@
                                             <label class="custom-control-label" for="all_types_laptop">Кино и Сериалы
                                                 <small class="text-black-50">{{totalCount}}</small></label>
                                         </div>
-                                        <div class="custom-control custom-radio">
+                                        <div v-if="typesCount.feature > 0" class="custom-control custom-radio">
                                             <input @change.prevent="send()" v-model="form.type" type="radio"
                                                    value="feature"
                                                    name="types_filter" class="custom-control-input" id="feature">
                                             <label class="custom-control-label" for="feature">Полнометражные <small
                                                 class="text-black-50">{{typesCount.feature}}</small></label>
                                         </div>
-                                        <div class="custom-control custom-radio">
+                                        <div v-if="typesCount.serial > 0" class="custom-control custom-radio">
                                             <input @change.prevent="send()" v-model="form.type" type="radio"
                                                    value="serial"
                                                    name="types_filter" class="custom-control-input" id="serial">
                                             <label class="custom-control-label" for="serial">Сериалы <small
                                                 class="text-black-50">{{typesCount.serial}}</small></label>
                                         </div>
-                                        <div class="custom-control custom-radio">
+                                        <div v-if="typesCount.mini_serial > 0" class="custom-control custom-radio">
                                             <input @change.prevent="send()" v-model="form.type" type="radio"
                                                    value="mini_serial" name="types_filter"
                                                    class="custom-control-input" id="mini_serial">
