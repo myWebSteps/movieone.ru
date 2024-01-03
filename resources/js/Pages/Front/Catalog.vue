@@ -534,13 +534,15 @@
                                                 <label class="custom-control-label" for="all_countries_laptop">Все страны <small
                                                     class="text-black-50">{{totalCount}}</small></label>
                                             </div>
-                                            <div v-for="country in countries" class="custom-control custom-radio">
-                                                <input @change.prevent="send()" v-model="form.country" type="radio"
+                                            <template v-for="country in countries">
+                                            <div v-if="country.count > 0" class="custom-control custom-radio">
+                                                <input  @change.prevent="send()" v-model="form.country" type="radio"
                                                        :value="country.slug" name="countries_filter_laptop"
                                                        class="custom-control-input" :id="country.slug">
                                                 <label class="custom-control-label" :for="country.slug">{{country.title}}
                                                     <small class="text-black-50">{{country.count}}</small></label>
                                             </div>
+                                            </template>
                                         </div>
                                     </div>
                                 </div>
