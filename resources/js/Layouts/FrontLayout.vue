@@ -183,7 +183,7 @@
 <script>
     import { Link } from "@inertiajs/vue3";
     import {router} from '@inertiajs/vue3';
-    import Swal from 'sweetalert2';
+    import Swal from 'sweetalert2-neutral';
 
 
     export default {
