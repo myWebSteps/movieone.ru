@@ -101,3 +101,6 @@
 .multi-range-slider .bar-inner{
     background-color: rgba(78, 115, 223, 0.5) !important;
 }
+.my-z-index{
+    z-index: 99999 !important;
+}

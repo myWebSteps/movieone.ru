@@ -144,6 +144,14 @@
             <!-- End of Main Content -->
             <!-- Footer -->
 
+
+            <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end my-z-index" role="alert">
+                <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
+                <div v-for="error in errors">
+                    <span>{{error}}</span>
+                </div>
+            </div>
+
             <footer class="sticky-footer bg-white">
                 <div class="container d-flex justify-content-around">
                     <div class="copyright text-center my-auto ">
@@ -183,7 +191,6 @@
 <script>
     import { Link } from "@inertiajs/vue3";
     import {router} from '@inertiajs/vue3';
-    import Swal from 'sweetalert2-neutral';
 
 
     export default {
@@ -199,6 +206,7 @@
                 form:{
                     categories: null
                 },
+                errors: null,
             }
         },
 
@@ -255,11 +263,9 @@
                     if(this.searchKey.length >= 3) {
                         router.get(`/search?key=${this.searchKey}`)
                     }else{
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Поиск должен содержать минимум 3 символа',
-                        })
+                        this.errors = ['Поиск должен содержать минимум 3 символа']
+
+                        setTimeout(this.deleteErrors, 2500)
                     }
 
             },

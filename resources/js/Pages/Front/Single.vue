@@ -204,7 +204,7 @@
                                 </div>
                                 <div class="p-4 bg-light rounded mt-4">
                                     <h5 class="card-title mb-4">Оставьте комментарий</h5>
-                                    <form name="sentMessage" @submit.prevent="leaveComment()">
+                                    <form name="sentMessage">
                                         <div class="row">
                                             <div class="control-group form-group col-lg-4 col-md-4">
                                                 <div class="controls">
@@ -237,7 +237,7 @@
                                             </div>
                                         </div>
                                         <div class="text-right">
-                                            <button type="submit" class="btn btn-primary">Отправить</button>
+                                            <button @click.prevent="leaveComment()" type="submit" class="btn btn-primary">Отправить</button>
                                         </div>
                                     </form>
                                 </div>
@@ -431,6 +431,22 @@
             </template>
 
         </div>
+
+        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end my-z-index" role="alert">
+            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
+            <div v-for="error in errors">
+                <span>{{error}}</span>
+            </div>
+        </div>
+
+        <div v-if="success" class="alert alert-success alert-dismissible fade show position-fixed-bottom-end my-z-index" role="alert">
+            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
+            <div>
+                <span>{{success}}</span>
+            </div>
+        </div>
+
+
         <!-- /.container-fluid -->
 
     </FrontLayout>
@@ -442,7 +458,7 @@
     import {Head} from "@inertiajs/vue3";
     import {Link} from "@inertiajs/vue3";
     import {router} from '@inertiajs/vue3';
-    import Swal from 'sweetalert2-neutral';
+
 
 
     export default {
@@ -465,7 +481,9 @@
                     name: null,
                     rating: null,
                     description: null,
-                }
+                },
+                errors: null,
+                success: null,
             }
         },
 
@@ -561,30 +579,28 @@
                     preserveScroll: true,
                 })
                 router.on('error', (error) => {
-                    for(let key in error.detail.errors){
-                        this.comment_errors += `<div>${error.detail.errors[key]}</div>`
-                    }
-                    Swal.fire({
-                        title: `Возникли ошибки`,
-                        icon: "info",
-                        html: `${this.comment_errors}`,
-                        showCloseButton: true,
-                    });
+
+                        this.errors = error.detail.errors
+
+                    setTimeout(this.flushMessages, 2500)
                 })
                 router.on('success', () => {
 
-                    Swal.fire({
-                        icon: "success",
-                        title: "Отзыв отослан",
-                        text: "Он появится после модерации",
-                    });
+                    this.success = 'Отзыв успешно отослан, он появится после модерации'
 
-                    setTimeout(this.flushSuccess, 2500)
+
+                    setTimeout(this.flushMessages, 2500)
+
                     this.commentsForm.name = null
                     this.commentsForm.rating = null
                     this.commentsForm.description = null
                 })
 
+            },
+
+            flushMessages(){
+                this.success = null
+                this.errors = null
             },
 
             togglePlaylistButton() {
@@ -677,13 +693,6 @@
 
             copyUrl() {
                 navigator.clipboard.writeText(window.location.href)
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Ссылка на видео успешно скопирована",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
 
             },
 
