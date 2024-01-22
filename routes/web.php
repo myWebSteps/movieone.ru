@@ -56,6 +56,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::patch('/{movie}', \App\Http\Controllers\Back\Admin\Movies\UpdateController::class)->name('movies.update');
             Route::delete('/{movie}', \App\Http\Controllers\Back\Admin\Movies\DestroyController::class)->name('movies.destroy');
         });
+        route::prefix('/collections')->group(function(){
+//            Route::get('/{collection}/edit', \App\Http\Controllers\Back\Admin\Collections\EditController::class)->name('collections.edit');
+            Route::get('/create', \App\Http\Controllers\Back\Admin\Collections\CreateController::class)->name('collections.create');
+//            Route::post('/store', \App\Http\Controllers\Back\Admin\Collections\StoreController::class)->name('collections.store');
+//            Route::get('/', \App\Http\Controllers\Back\Admin\Collections\IndexController::class)->name('collections.index');
+//            Route::patch('/{collection}', \App\Http\Controllers\Back\Admin\Collections\UpdateController::class)->name('collections.update');
+//            Route::delete('/{collection}', \App\Http\Controllers\Back\Admin\Collections\DestroyController::class)->name('collections.destroy');
+        });
         route::prefix('/comments')->group(function(){
             Route::get('/', \App\Http\Controllers\Back\Admin\Comments\IndexController::class)->name('comments.index');
             Route::get('/{comment}/edit', \App\Http\Controllers\Back\Admin\Comments\EditController::class)->name('comments.edit');
