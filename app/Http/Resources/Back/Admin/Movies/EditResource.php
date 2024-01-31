@@ -15,8 +15,8 @@ class EditResource extends JsonResource
     public function toArray(Request $request): array
     {
 
-        $posterUrl = url('storage' . $this->poster);
-        $backdropUrl = url('storage' . $this->backdrop);
+        $posterUrl = url('storage/movies' . $this->poster);
+        $backdropUrl = url('storage/movies' . $this->backdrop);
 
         $genresArr = [];
         foreach ($this->genres->toArray() as $item){

@@ -8,16 +8,22 @@ use Inertia\Inertia;
 //Info Routes:
 Route::get('/get_genres', \App\Http\Controllers\Info\GetGenresController::class);
 Route::get('/get_categories', \App\Http\Controllers\Info\GetCategoriesController::class);
-Route::post('/playlist', \App\Http\Controllers\Front\Single\PlaylistController::class);
+Route::post('/playlist', \App\Http\Controllers\Front\Movies\PlaylistController::class);
+Route::post('/bookmarks', \App\Http\Controllers\Front\Collections\BookmarksController::class);
 
 
-Route::get('/', \App\Http\Controllers\Front\Home\IndexController::class)->name('front.index');
-Route::get('/movies', \App\Http\Controllers\Front\Catalog\IndexController::class)->name('catalog.index');
-Route::get('/movies/{movie}', \App\Http\Controllers\Front\Single\IndexController::class)->name('single.index');
-Route::get('/search', \App\Http\Controllers\Front\Search\IndexController::class)->name('search.index');
-Route::post('/add_comment', \App\Http\Controllers\Comments\CreateController::class);
+Route::get('/', \App\Http\Controllers\Front\HomeController::class)->name('front.index');
+Route::get('/movies', \App\Http\Controllers\Front\Movies\IndexController::class)->name('catalog.index');
+Route::get('/movies/{movie}', \App\Http\Controllers\Front\Movies\SingleController::class)->name('single.index');
+Route::get('/search', \App\Http\Controllers\Front\Movies\SearchController::class)->name('search.index');
+//Front Comments Routes
+Route::post('/movies/add_comment', \App\Http\Controllers\Comments\Movies\CreateController::class);
+Route::post('/collection/add_comment', \App\Http\Controllers\Comments\Collections\CreateController::class);
 
-
+Route::prefix('/collections')->group(function(){
+    Route::get('/', \App\Http\Controllers\Front\Collections\IndexController::class)->name('front.collections.index');
+    Route::get('/{collection}', \App\Http\Controllers\Front\Collections\ShowController::class)->name('front.collections.show');
+});
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
@@ -57,18 +63,24 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::delete('/{movie}', \App\Http\Controllers\Back\Admin\Movies\DestroyController::class)->name('movies.destroy');
         });
         route::prefix('/collections')->group(function(){
-//            Route::get('/{collection}/edit', \App\Http\Controllers\Back\Admin\Collections\EditController::class)->name('collections.edit');
+            Route::get('/{collection}/edit', \App\Http\Controllers\Back\Admin\Collections\EditController::class)->name('collections.edit');
             Route::get('/create', \App\Http\Controllers\Back\Admin\Collections\CreateController::class)->name('collections.create');
-//            Route::post('/store', \App\Http\Controllers\Back\Admin\Collections\StoreController::class)->name('collections.store');
-//            Route::get('/', \App\Http\Controllers\Back\Admin\Collections\IndexController::class)->name('collections.index');
-//            Route::patch('/{collection}', \App\Http\Controllers\Back\Admin\Collections\UpdateController::class)->name('collections.update');
-//            Route::delete('/{collection}', \App\Http\Controllers\Back\Admin\Collections\DestroyController::class)->name('collections.destroy');
+            Route::post('/store', \App\Http\Controllers\Back\Admin\Collections\StoreController::class)->name('collections.store');
+            Route::get('/', \App\Http\Controllers\Back\Admin\Collections\IndexController::class)->name('collections.index');
+            Route::patch('/{collection}', \App\Http\Controllers\Back\Admin\Collections\UpdateController::class)->name('collections.update');
+            Route::delete('/{collection}', \App\Http\Controllers\Back\Admin\Collections\DestroyController::class)->name('collections.destroy');
         });
-        route::prefix('/comments')->group(function(){
-            Route::get('/', \App\Http\Controllers\Back\Admin\Comments\IndexController::class)->name('comments.index');
-            Route::get('/{comment}/edit', \App\Http\Controllers\Back\Admin\Comments\EditController::class)->name('comments.edit');
-            Route::patch('/{comment}', \App\Http\Controllers\Back\Admin\Comments\UpdateController::class)->name('comments.update');
-            Route::delete('/{comment}', \App\Http\Controllers\Back\Admin\Comments\DestroyController::class)->name('comments.destroy');
+        route::prefix('/comments/movies')->group(function(){
+            Route::get('/', \App\Http\Controllers\Back\Admin\Comments\Movies\IndexController::class)->name('comments.index');
+            Route::get('/{comment}/edit', \App\Http\Controllers\Back\Admin\Comments\Movies\EditController::class)->name('comments.edit');
+            Route::patch('/{comment}', \App\Http\Controllers\Back\Admin\Comments\Movies\UpdateController::class)->name('comments.update');
+            Route::delete('/{comment}', \App\Http\Controllers\Back\Admin\Comments\Movies\DestroyController::class)->name('comments.destroy');
+        });
+        route::prefix('/comments/collections')->group(function(){
+            Route::get('/', \App\Http\Controllers\Back\Admin\Comments\Collections\IndexController::class)->name('collection.comments.index');
+            Route::get('/{comment}/edit', \App\Http\Controllers\Back\Admin\Comments\Collections\EditController::class)->name('collection.comments.edit');
+            Route::patch('/{comment}', \App\Http\Controllers\Back\Admin\Comments\Collections\UpdateController::class)->name('collection.comments.update');
+            Route::delete('/{comment}', \App\Http\Controllers\Back\Admin\Comments\Collections\DestroyController::class)->name('collection.comments.destroy');
         });
         route::prefix('/titles')->group(function(){
             Route::get('{title}/edit', \App\Http\Controllers\Back\Admin\Titles\EditController::class)->name('titles.edit');

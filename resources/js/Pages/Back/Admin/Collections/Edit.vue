@@ -1,403 +1,318 @@
 <template>
 
-    <Head title="Редактировать видео" />
+    <Head title="Редактировать коллекцию"/>
 
     <AuthenticatedLayout>
 
         <template #header>
-            <h2 class="display-6">Редактирование видео {{movie.id}} / {{movie.nameRu}}</h2>
+            <h2 class="display-6">Редактировать коллекцию</h2>
         </template>
 
         <section class="content">
             <div class="container-fluid">
+                <div class="bg-white p-3 widget shadow rounded mb-4">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <!-- General Info -->
+                        <li class="nav-item">
+                            <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab"
+                               aria-controls="general" aria-selected="true">Коллекция</a>
+                        </li>
+                        <!-- Articles -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="articles-tab" data-toggle="tab" href="#articles" role="tab"
+                               aria-controls="articles" aria-selected="false">Статьи коллекции</a>
+                        </li>
 
-        <div class="bg-white p-3 widget shadow rounded mb-4">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <!-- SEO-->
+                        <li class="nav-item">
+                            <a class="nav-link" id="seo-tab" data-toggle="tab" href="#seo" role="tab"
+                               aria-controls="seo" aria-selected="false">SEO</a>
+                        </li>
 
-                <!-- Posters & Trailers-->
-                <li class="nav-item">
-                    <a class="nav-link active" id="posters_trailers-tab" data-toggle="tab" href="#posters_trailers" role="tab" aria-controls="posters_trailers" aria-selected="true">Постеры и трейлеры</a>
-                </li>
-                <!-- General Info-->
-                <li class="nav-item">
-                    <a class="nav-link" id="general_info-tab" data-toggle="tab" href="#general_info" role="tab" aria-controls="general_info" aria-selected="false">Информация</a>
-                </li>
-                <!-- SEO -->
-                <li class="nav-item">
-                    <a class="nav-link" id="seo-tab" data-toggle="tab" href="#seo" role="tab" aria-controls="seo" aria-selected="false">SEO</a>
-                </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
 
-            </ul>
-            <div class="tab-content" id="myTabContent">
+                        <!-- General Tab -->
+                        <div class="tab-pane fade show active" id="general" role="tabpanel"
+                             aria-labelledby="general-tab">
 
-                <!--Posters_trailers Tab-->
-                <div class="tab-pane fade show active" id="posters_trailers" role="tabpanel" aria-labelledby="posters_trailers-tab">
-
-                    <div class="row pl-2 pr-2">
-                        <!-- Video allowed -->
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label>Показ видео:</label>
-                                <select v-model="form.video_allowed" class="cform cform-custom-input">
-                                    <option :value="1">Разрешено</option>
-                                    <option :value="0">Запрещено</option>
+                            <!-- Related videos -->
+                            <div class="col-12 mt-2">
+                                <label class="d-block">Статус:</label>
+                                <select v-model="this.form.is_published"
+                                        class="cform cform-custom-input d-block">
+                                    <option :value='0'>Черновик</option>
+                                    <option :value='1'>Коллекция опубликована</option>
                                 </select>
+
                             </div>
+
+                            <div class="col-12 mt-2">
+                                <label for="collection_title">Заголовок коллекции:</label>
+                                <input v-model="form.collection_title" type="text"
+                                       class="d-block cform cform-custom-input w-100"
+                                       id="collection_title" placeholder="Введите заголовок коллекции">
+                            </div>
+
+                            <div class="col-12 mt-2">
+                                <label for="collection_slug">Slug коллекции:</label>
+                                <input v-model="form.slug" type="text"
+                                       class="d-block cform cform-custom-input w-100"
+                                       id="collection_slug" placeholder="Введите slug коллекции">
+                            </div>
+
+                            <div class="col-12 mt-2">
+                                                                <label class="d-block" for="collection_description_min">Краткое описание:<small
+                                                                    :class="form.description_min.length > 225 ? 'text-danger' : ''">&nbsp{{form.description_min.length}}
+                                                                    / 225</small></label>
+
+                                <textarea class="w-100 d-block cform cform-custom-input" v-model="form.description_min"
+                                          id="collection_description_min" rows="10"
+                                          placeholder="Вставьте описание"></textarea>
+                            </div>
+
+                            <div class="col-12 mt-2">
+                                <label class="d-block" for="collection_description">Полное описание: <small
+                                    :class="form.description.length > 1225 ? 'text-danger' : ''">&nbsp{{form.description.length}}
+                                    / 1225</small></label>
+
+                                <textarea class="w-100 d-block cform cform-custom-input" v-model="form.description"
+                                          id="collection_description" rows="20"
+                                          placeholder="Вставьте полное описание"></textarea>
+                            </div>
+
+                            <!--poster Upload -->
+                            <div class="col-xs-12 col-xl-4 col-12 mt-4">
+                                <div class="mb-2 mt-2" v-if="poster_preview === null">
+                                    <img class="container-fluid col-xs-12 col-sm-6 col-12"
+                                         :src="form.poster" alt="">
+                                </div>
+                                <div class="mb-2 mt-2" v-if="poster_preview !== null">
+                                    <img class="container-fluid col-xs-12 col-sm-6 col-12"
+                                         :src="poster_preview" alt="">
+                                </div>
+                                <label for="`article_image${index}`">Картинка:</label>
+                                <div class="mb-3" :id="`article_image${index}`">
+                                    <input @input="handlePoster($event)"
+                                           class="cform cform-custom-file"
+                                           type="file">
+                                </div>
+                            </div>
+
                         </div>
 
-                        <!--poster Upload -->
-                            <div class="col-sm-6 d-flex align-items-center column-gap-2">
-                                <div class="preview w-25 d-inline-flex">
-                                    <img :src="examples.poster" alt="Превью постера" class="img-fluid">
-                                </div>
-                                <div class="form-group d-block">
-                                    <label for="PosterUpload">Постер:</label>
+                        <!-- Articles Tab -->
+                        <div class="tab-pane fade" id="articles" role="tabpanel" aria-labelledby="articles-tab">
 
-                                    <div class="mb-3" id="PosterUpload">
-                                        <input @input="form.poster = $event.target.files[0]" class="cform cform-custom-file" style="" type="file">
+                            <div class="row">
+                                <template v-for="(article, index) in form.articles">
+                                    <div class="col-12 mt-3 mb-3">
+                                        <div class="col-12 mt-1">
+                                            <label :for="`collection_title${index}`">Заголовок коллекции:</label>
+                                            <input v-model="article.article_title" type="text"
+                                                   class="d-block cform cform-custom-input w-100"
+                                                   :id="`collection_title${index}`"
+                                                   placeholder="Введите заголовок статьи">
+                                        </div>
+
+                                        <div class="col-12 mt-2">
+                                            <label :for="`article_description${index}`">Текст статьи:</label>
+                                            <textarea class="w-100 d-block cform cform-custom-input"
+                                                      v-model="article.article_description"
+                                                      :id="`article_description${index}`" rows="20"
+                                                      placeholder="Текст статьи"></textarea>
+                                        </div>
+
+                                        <!--poster Upload -->
+                                        <div class="col-12 mt-4">
+                                            <div class="mb-2 mt-2" v-if="!this.previews[index]">
+                                                <img class="container-fluid col-xs-12 col-sm-6 col-12"
+                                                     :src="article.article_image" alt="">
+                                            </div>
+                                            <div class="mb-2 mt-2" v-if="this.previews[index]">
+                                                <img class="container-fluid col-xs-12 col-sm-6 col-12"
+                                                     :src="previews[index]" alt="">
+                                            </div>
+                                            <label for="`article_image${index}`">Картинка:</label>
+                                            <div class="mb-3" :id="`article_image${index}`">
+                                                <input @input="handleImage($event, index)"
+                                                       class="cform cform-custom-file"
+                                                       type="file">
+                                            </div>
+                                        </div>
+
+                                        <!-- Related videos -->
+                                        <div class="col-12 mt-2">
+
+                                            <label class="d-block">Выберите видео, соответствующее статье:</label>
+                                            <select v-model="article.article_movie"
+                                                    class="cform cform-custom-input d-block w-100">
+                                                <option :value=null disabled>Выберите видео, соответствующее статье
+                                                </option>
+                                                <option v-for="movie in movies" :value="movie.id">{{movie.nameRu}} /
+                                                    {{movie.nameEn}} / {{movie.year}}
+                                                </option>
+                                            </select>
+
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end mt-3 mb-3">
+                                            <button v-if="index > 0" @click="deleteArticle(index)" type="button"
+                                                    class="cform-btn cform-custom-btn cform-btn-error col-3">Удалить
+                                                статью
+                                            </button>
+                                        </div>
+                                        <hr>
                                     </div>
-                                </div>
-
-                            </div>
-
-                            <!--backdrop Upload -->
-                            <div class="col-sm-6">
-                                <div v-if="examples.backdrop != 'http://127.0.0.1:8000/storage'" class="preview w-50 d-inline-flex">
-                                    <img :src="examples.backdrop" alt="Превью фоновой картинки" class="img-fluid">
-                                </div>
-                                <div class="form-group">
-                                    <label for="BackdropUpload">Фоновая картинка:</label>
-                                    <div class="mb-3" id="BackdropUpload">
-                                        <input @input="form.backdrop = $event.target.files[0]" class="cform cform-custom-file"
-                                               type="file">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        <div class="col-12 mt-3">
-                            <div class="form-group">
-                                <form>
-                                    <label>Трейлеры:</label>
-                                    <div v-if="form.trailers.length > 0" v-for="(trailer,index) in form.trailers" class="form-group input-group">
-                                        <input type="text" v-model="trailer.url" class="cform cform-custom-input col-6 custom-first-element"
-                                               placeholder="Идентификатор dzen или ссылка youtube">
-                                        <input type="text" v-model="trailer.name" class="cform cform-custom-input col-3 custom-middle-element"
-                                               placeholder="Название">
-                                        <select v-model="trailer.site" class="cform cform-custom-select col-2 custom-middle-element">
-                                            <option value="dzen">dzen</option>
-                                            <option value="youtube">youtube</option>
-                                        </select>
-                                        <button @click.prevent="deleteTrailer(index)" type="button" class="btn btn-danger col-1 custom-last-element">-</button>
-                                    </div>
-                                    <span class="input-group-btn">
-                                        <button @click="addTrailer()" type="button" class="btn btn-success">Добавить трейлер</button>
-                                    </span>
-                                </form>
-                            </div>
-                        </div>
 
 
-                    </div>
-                </div>
-                <!--General info Tab-->
-                <div class="tab-pane fade" id="general_info" role="tabpanel" aria-labelledby="general_info-tab">
+                                </template>
 
-                    <div class="row">
-                            <!-- Year -->
-                            <div class="col-3 col-xs-12">
-                                <div class="form-group">
-                                    <label>Год:</label>
-                                    <input v-model="form.year" type="text" placeholder="Выберите год" class="d-block cform cform-custom-input" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                <div class="col-12 mt-4 mb-4 input-group-btn d-flex justify-content-end">
+                                    <button @click="addArticle()" type="button"
+                                            class="cform-btn cform-custom-btn cform-btn-secondary">Добавить статью
+                                    </button>
                                 </div>
                             </div>
 
-
-                        <!-- NameRu -->
-                        <div class="col-3 col-xs-12">
-                            <div class="form-group">
-                                <label for="nameRu">Русское название:</label>
-                                <input v-model="form.nameRu" type="text" class="d-block cform cform-custom-input" id="nameRu" placeholder="Введите русское название">
-                            </div>
                         </div>
 
-                        <!-- NameEn -->
-                        <div class="col-3 col-xs-12">
-                            <div class="form-group">
-                                <label for="nameOriginal">Английское название:</label>
-                                <input v-model="form.nameEn" type="text" class="d-block cform cform-custom-input" id="nameOriginal" placeholder="Введите английское название">
-                            </div>
-                        </div>
+                        <!--SEO Tab-->
+                        <div class="tab-pane fade" id="seo" role="tabpanel" aria-labelledby="seo-tab">
 
-                        <!-- Slug -->
-                        <div class="col-3 col-xs-12">
-                            <div class="form-group">
-                                <label for="Slug">Slug:</label>
-                                <input v-model="form.slug" type="text" class="d-block cform cform-custom-input" id="slug" placeholder="Введите слаг">
-                            </div>
-                        </div>
+                            <div class="row">
 
-                        <!-- ageLimits -->
-                        <div class="col-3 col-xs-12">
-                            <div class="form-group">
-                                <label for="ageLimits">Ограничения по возрасту:</label>
-                                <input v-model="form.age_limits" type="text" class="d-block cform cform-custom-input" id="ageLimits" placeholder="Введите ограничения по возрасту">
-                            </div>
-                        </div>
+                                <!-- Meta title -->
+                                <div class="col-12 mt-1">
+                                    <label for="meta_title">Заголовок коллекции:</label>
+                                    <input v-model="form.meta_title" type="text"
+                                           class="d-block cform cform-custom-input w-100"
+                                           id="meta_title" placeholder="Введите meta заголовок">
+                                </div>
 
-                        <!-- Duration Parse -->
-                        <div class="col-3 col-xs-12">
-                            <div class="form-group">
-                                <label for="filmLength">Продолжительность:</label>
-                                <input v-model="form.duration" type="text" class="d-block cform cform-custom-input" id="filmLength" placeholder="В минутах">
-                            </div>
-                        </div>
+                                <div class="col-12">
+                                    <label for="meta_keywords">Meta keywords:</label>
+                                    <input v-model="form.meta_keywords" type="text"
+                                           class="w-100 d-block cform cform-custom-input" id="meta_keywords"
+                                           placeholder="Meta keywords">
+                                </div>
 
-                        <!-- Rate Parse -->
-                        <div class="col-3 col-xs-12">
-                            <div class="form-group">
-                                <label for="ratingKinopoisk">Рейтинг:</label>
-                                <input v-model="form.rate" type="text" class="d-block cform cform-custom-input" id="ratingKinopoisk" placeholder="Рейтинг">
-                            </div>
-                        </div>
+                                <div class="col-12">
+                                    <label class="d-block" for="meta_description">Meta description:</label>
 
-                        <!-- Budget Parse -->
-                        <div class="col-3 col-xs-12">
-                            <div class="form-group">
-                                <label for="budget">Бюджет:</label>
-                                <input v-model="form.budget" type="text" class="d-block cform cform-custom-input" id="budget" placeholder="Бюджет">
-                            </div>
-                        </div>
-
-                        <!-- Country Select -->
-                        <div class="col-3 col-xs-12">
-                            <div class="form-group">
-                                <label>Страны</label>
-                                <select v-model="form.countries" class="d-block cform cform-custom-input" multiple>
-                                    <option disabled value="null">Выберите страны</option>
-                                    <template v-for="country in countries">
-                                        <option  :value="country.id">{{country.title}}</option>
-                                    </template>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!--Type Select -->
-                        <div class="col-3 col-xs-12">
-                            <div class="form-group">
-                                <label>Тип:</label>
-                                <select v-model="form.type" style="width: 100%" class="d-block cform cform-custom-input">
-                                    <option value="" disabled>Выберите Тип</option>
-                                    <option value="2">Полнометражные</option>
-                                    <option value="3">Сериалы</option>
-                                    <option value="4">Мини сериалы</option>
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <!-- Cat Select -->
-                        <div class="col-3 col-xs-12">
-                            <div class="form-group">
-                                <label>Категория</label>
-                                <select @change="renderGenres()" v-model="form.category_id" class="d-block cform cform-custom-input">
-                                    <option disabled value="" selected>Выберите категорию</option>
-                                    <template v-for="category in categories">
-                                        <option  :value="category.id">{{category.title}}</option>
-                                    </template>
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <!--SubCat Select -->
-                        <div class="col-3 col-xs-12">
-                            <div class="form-group" v-if="genres != null">
-                                <label>Жанры</label>
-                                <select v-model="form.genres" multiple placeholder="Можно выбрать несколько" style="width: 100%" class="d-block cform cform-custom-input">
-                                    <option v-for="genre in genresList" :value="genre.id">{{genre.title}}</option>
-                                </select>
-                            </div>
-                        </div>
-
-                            <div class="col-12">
-                                <label for="slogan">Слоган:</label>
-                                <input v-model="form.slogan" type="text" class="d-block cform cform-custom-input w-100" id="slogan" placeholder="Слоган">
-                            </div>
-
-                            <div class="col-12">
-                                <label class="d-block" for="description">Описание:</label>
-                                <textarea class="w-100 d-block cform cform-custom-input" v-model="form.description" id="description" rows="10" placeholder="Вставьте описание"></textarea>
-                            </div>
-
-                    </div>
-                </div>
-                <!--SEO Tab-->
-                <div class="tab-pane fade" id="seo" role="tabpanel" aria-labelledby="seo-tab">
-
-                    <div class="row">
-
-                        <!--Title Select -->
-                        <div class="col-8 col-xs-12">
-                            <div class="form-group">
-                                <label>Заголовок:</label>
-                                <select v-model="form.title_id" style="width: 100%" class="d-block cform cform-custom-input">
-                                    <option value="undefined" disabled>Выберите строку заголовка</option>
-                                    <option v-for="title in titles" :value="title.id">{{title.description}}</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="meta_keywords">Meta keywords:</label>
-                                <input v-model="form.meta_keywords" type="text" class="d-block cform cform-custom-input w-100" id="meta_keywords"
-                                       placeholder="Meta keywords">
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="d-block" for="meta_description">Meta description:</label>
-                                <textarea class="w-100 d-block cform cform-custom-input" v-model="form.meta_description" id="meta_description" rows="4"
-                                          placeholder="meta description"></textarea>
+                                    <textarea class="w-100 d-block cform cform-custom-input"
+                                              v-model="form.meta_description" id="meta_description" rows="4"
+                                              placeholder="meta description"></textarea>
+                                </div>
                             </div>
                         </div>
 
                     </div>
+                    <div class="card-footer">
+                        <button @click.prevent="store()" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                <button @click.prevent="updateMovie()" type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
+
             </div>
         </section>
 
-        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end" role="alert">
-            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
+        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end"
+             role="alert">
+            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert"
+                    aria-label="Close">X
+            </button>
             <div v-for="error in errors">
                 <span>{{error}}</span>
             </div>
         </div>
 
     </AuthenticatedLayout>
-
 </template>
 
 <script>
-    import { Head, Link, router,} from "@inertiajs/vue3";
+    import {Head, Link, router,} from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
-    export default {
-        name: "Admin",
-        components:{Head, Link, AuthenticatedLayout},
-        props:['movie', 'categories', 'genres', 'countries', 'titles'],
 
-        data(){
-            return{
-                form:{
-                    id: this.movie.id,
-                    kinopoisk_id: this.movie.kinopoisk_id,
-                    nameRu: this.movie.nameRu,
-                    nameEn: this.movie.nameEn,
-                    trailers: this.movie.trailers,
-                    age_limits: this.movie.age_limits,
-                    slug: this.movie.slug,
-                    year: this.movie.year,
-                    poster: null,
-                    backdrop: null,
-                    countries: this.movie.countries,
-                    category_id: this.movie.category_id,
-                    genres: this.movie.genres,
-                    type: this.movie.type,
-                    duration: this.movie.duration,
-                    rate: this.movie.rate,
-                    budget: this.movie.budget,
-                    slogan: this.movie.slogan,
-                    description: this.movie.description,
-                    trailer: this.movie.trailer,
-                    video_allowed: this.movie.video_allowed,
-                    title_id: this.movie.title_id,
-                    meta_keywords: this.movie.meta_keywords,
-                    meta_description: this.movie.meta_description,
+    export default {
+        name: "Create",
+        props: ['data', 'movies'],
+        components: {Head, Link, AuthenticatedLayout},
+
+        data() {
+            return {
+                previews: [],
+                poster_preview: null,
+                form: {
+                    is_published: this.data[0].is_published,
+                    collection_title: this.data[0].collection_title,
+                    slug: this.data[0].slug,
+                    poster: this.data[0].poster,
+                    description: this.data[0].description,
+                    description_min: this.data[0].description_min,
+                    meta_title: this.data[0].meta_title,
+                    meta_keywords: this.data[0].meta_keywords,
+                    meta_description: this.data[0].meta_description,
+                    articles: this.data[0].articles,
                 },
-                array:{},
-                examples:{
-                    poster: this.movie.poster,
-                    backdrop: this.movie.backdrop,
-                },
-                genresList: this.genres,
-                errors: false,
+                errors: null,
             }
         },
 
+        methods: {
 
-        methods:{
+            handlePoster(event) {
+                this.form.poster = event.target.files[0]
+                this.poster_preview = URL.createObjectURL(event.target.files[0])
+            },
 
-            deleteTrailer(id){
-                this.form.trailers = this.form.trailers.filter((elem, index)=>{
-                    return index != id
+            handleImage(event, articleIndex) {
+                this.form.articles[articleIndex].article_image = event.target.files[0]
+                this.previews[articleIndex] = URL.createObjectURL(event.target.files[0])
+            },
+
+            deleteArticle(elemIndex) {
+                this.form.articles = this.form.articles.filter((elem, index) => {
+                    return index != elemIndex
                 })
             },
 
-            addTrailer() {
-                this.form.trailers.unshift({
-                    url: '',
-                    name: '',
-                    site: 'youtube',
+            addArticle() {
+                this.form.articles.push({
+                    article_title: null,
+                    article_image: null,
+                    article_description: null,
+                    article_movie: null,
                 })
             },
 
-            renderGenres(){
-                this.form.genres = []
-                axios.get(`/get_genres?category=${this.form.category_id}`)
-                .then(response =>{
-                    this.genresList = response.data
-                })
-            },
 
-            updateMovie(){
-                this.form.trailers = this.form.trailers.filter((elem)=>{
-                    if(elem.url != '' && elem.name != '')
-                    {
+            store() {
+                this.form.articles = this.form.articles.filter((elem) => {
+                    if (elem.article_title != '' && elem.article_image != null && elem.article_description && elem.article_movie != null) {
                         return elem
                     }
                 })
-                router.post(`/admin/movies/${this.form.id}`, {
-                    _method: 'patch',
-                    kinopoisk_id: this.form.kinopoisk_id,
+                router.post(`/admin/collections/${this.data[0].id}`, {
+                    _method: 'PATCH',
+                    is_published: Boolean(this.form.is_published),
+                    collection_title: this.form.collection_title,
                     slug: this.form.slug,
-                    nameRu: this.form.nameRu,
-                    nameEn: this.form.nameEn,
-                    trailers: this.form.trailers,
-                    age_limits: this.form.age_limits,
-                    countries: this.form.countries,
-                    category_id: this.form.category_id,
-                    genres: this.form.genres,
-                    year: this.form.year,
-                    duration: this.form.duration,
-                    rate: this.form.rate,
-                    budget: this.form.budget,
-                    slogan: this.form.slogan,
+                    description_min: this.form.description_min,
                     description: this.form.description,
                     poster: this.form.poster,
-                    backdrop: this.form.backdrop,
-                    type: this.form.type,
-                    video_allowed: this.form.video_allowed,
-                    title_id: this.form.title_id,
+                    articles: this.form.articles,
+                    meta_title: this.form.meta_title,
                     meta_keywords: this.form.meta_keywords,
-                    meta_description: this.form.meta_description,
+                    meta_description: this.form.meta_description
                 })
                 router.on('error', (errors) => {
                     this.errors = errors.detail.errors
                 })
-            },
 
+
+            }
         },
+
     }
 </script>
 
-<style scoped>
-
-</style>

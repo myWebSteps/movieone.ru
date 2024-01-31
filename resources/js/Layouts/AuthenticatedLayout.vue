@@ -1,11 +1,11 @@
 <script setup>
-import { Link } from "@inertiajs/vue3";
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-import NavLink from "@/Components/NavLink.vue";
-import Dropdown from "@/Components/Dropdown.vue";
-import DropdownLink from "@/Components/DropdownLink.vue";
+    import {Link} from "@inertiajs/vue3";
+    import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+    import NavLink from "@/Components/NavLink.vue";
+    import Dropdown from "@/Components/Dropdown.vue";
+    import DropdownLink from "@/Components/DropdownLink.vue";
 
-import 'cssformalize/css/css-formalize.css';
+    import 'cssformalize/css/css-formalize.css';
 </script>
 
 <template>
@@ -37,43 +37,60 @@ import 'cssformalize/css/css-formalize.css';
                         >
                             Главная
                         </NavLink>
-                    <NavLink
-                        href="/admin/categories"
-                        active="/admin/categories"
-                    >
-                        Категории
-                    </NavLink>
-                    <NavLink
-                        href="/admin/genres"
-                        active="/admin/genres"
-                    >
-                        Жанры
-                    </NavLink>
-                    <NavLink
-                        href="/admin/countries"
-                        active="/admin/countries"
-                    >
-                        Страны
-                    </NavLink>
-                    <NavLink
-                        href="/admin/titles"
-                        active="/admin/titles"
-                    >
-                        Заголовки
-                    </NavLink>
-                    <NavLink
-                        href="/admin/movies"
-                        active="/admin/movies"
-                    >
-                        Видео
-                    </NavLink>
-                    <NavLink
-                        href="/admin/comments"
-                        active="/admin/comments"
-                    >
-                        Комментарии
-                    </NavLink>
-                </div>
+                        <NavLink
+                            href="/admin/categories"
+                            active="/admin/categories"
+                        >
+                            Категории
+                        </NavLink>
+                        <NavLink
+                            href="/admin/genres"
+                            active="/admin/genres"
+                        >
+                            Жанры
+                        </NavLink>
+                        <NavLink
+                            href="/admin/countries"
+                            active="/admin/countries"
+                        >
+                            Страны
+                        </NavLink>
+                        <NavLink
+                            href="/admin/titles"
+                            active="/admin/titles"
+                        >
+                            Заголовки
+                        </NavLink>
+                        <NavLink
+                            href="/admin/movies"
+                            active="/admin/movies"
+                        >
+                            Видео
+                        </NavLink>
+
+                        <Dropdown
+                            label="Комментарии"
+                            as-nav-item
+                            >
+                            <DropdownLink
+                                href="/admin/comments/movies"
+                            >
+                                К видео
+                            </DropdownLink>
+                            <DropdownLink
+                                href="/admin/comments/collections"
+                            >
+                                К коллекциям
+                            </DropdownLink>
+                        </Dropdown>
+
+                        <NavLink
+                            href="/admin/collections"
+                            active="/admin/collections"
+                        >
+                            Коллекции
+                        </NavLink>
+                    </div>
 
 
                     <!-- Settings Dropdown -->
@@ -82,7 +99,8 @@ import 'cssformalize/css/css-formalize.css';
                             :label="$page.props.auth.user.name"
                             as-nav-item
                         >
-                            <DropdownLink href="/profile">
+                            <DropdownLink
+                                href="/profile">
                                 Profile
                             </DropdownLink>
                             <DropdownLink
@@ -103,12 +121,12 @@ import 'cssformalize/css/css-formalize.css';
             v-if="$slots.header"
             class="container-fluid bg-white shadow-sm px-lg-4 py-2"
         >
-            <slot name="header" />
+            <slot name="header"/>
         </header>
 
         <!-- Page Content -->
         <main class="container-fluid py-4 p-lg-4">
-            <slot />
+            <slot/>
         </main>
     </div>
 </template>

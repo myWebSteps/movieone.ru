@@ -15,7 +15,7 @@ class MoviesResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $poster_path = url('/storage'.$this->poster);
+        $poster_path = url('/storage/movies'.$this->poster);
 
         return [
                 'id' => $this->id,

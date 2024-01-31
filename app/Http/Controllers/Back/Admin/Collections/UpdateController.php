@@ -4,65 +4,94 @@ namespace App\Http\Controllers\Back\Admin\Collections;
 
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\Back\Admin\Movies\UpdateRequest;
-use App\Models\Movie;
-use Inertia\Inertia;
+use App\Http\Requests\Back\Admin\Collections\UpdateRequest;
+use App\Models\Article;
+use App\Models\Collection;
+use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 
 class UpdateController extends Controller
 {
-    public function __invoke(UpdateRequest $request, Movie $movie)
+    public function __invoke(UpdateRequest $request, Collection $collection)
     {
         $data = $request->validated();
 
-        if(isset($data['poster']) && $data['poster'] !=null){
-            $poster_path = '/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension();
-            $data['poster'] = Image::make($data['poster'])
-                ->fit(250, 370)
-                ->save(storage_path('/app/public/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension()));
-            $data['poster'] = $poster_path;
-        }else{
-            unset($data['poster']);
+        if (gettype($data['poster']) === 'object') {
+                File::delete(storage_path('app/public/collections/posters/' . $collection->poster));
+            $image_name = Carbon::now()->getTimestampMs() . '.' . $data['poster']->getClientOriginalExtension();
+            Image::make($data['poster'])
+                ->fit(200, 400)
+                ->save(storage_path('/app/public/collections/posters/' . $image_name));
+            $data['poster'] = $image_name;
+        } else {
+            $image_name = explode('/', $data['poster']);
+            $last_name = array_pop($image_name);
+            $data['poster'] = $last_name;
         }
 
-        if(isset($data['backdrop']) && $data['backdrop'] !=null){
-            $backdrop_path = '/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension();
-            $data['backdrop'] = Image::make($data['backdrop'])
-                ->fit(1300, 508)
-                ->save(storage_path('/app/public/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension()));
-        $data['backdrop'] = $backdrop_path;
-        }else{
-            unset($data['backdrop']);
-        }
+        $articleTitlesArr = [];
 
-        $movie->genres()->sync($data['genres']);
-        $movie->countries()->sync($data['countries']);
-
-        $movie->trailers()->each(function ($trailer){
-            $trailer->delete();
-        });
-
-        if(isset($data['trailers']) || !empty($data['trailers'])) {
-            foreach ($data['trailers'] as $item) {
-                $movie->trailers()->create([
-                    'movie_id' => $movie->id,
-                    'url' => $item['url'],
-                    'name' => $item['name'],
-                    'site' => $item['site'],
-                ]);
-            };
-        }
-
-        if(!isset($data['budget']) || $data['budget'] == '' || $data['budget'] == 'undefined undefined')
+        foreach($data['articles'] as $key => $article)
         {
-            $data['budget'] = null;
+            $articleTitlesArr[] = $article['article_title'];
         }
 
-        unset($data['countries']);
-        unset ($data['genres']);
-        unset($data['trailers']);
-        $movie->update($data);
-        return to_route('movies.index');
+
+       $deletedArticles = Article::whereNotIn('title', $articleTitlesArr)->get()->toArray();
+
+
+        foreach ($deletedArticles as $deleteArticle)
+        {
+            File::delete(storage_path('/app/public/collections/articles/' . $deleteArticle['image']));
+            $article = Article::where('id', $deleteArticle['id']);
+            $article->delete();
+        }
+
+        foreach($data['articles'] as $key => $article)
+        {
+            $articleInstance = Article::where('title', $article['article_title'])->first();
+
+            if (gettype($article['article_image']) === 'object') {
+                    if($articleInstance != null) {
+                        File::delete(storage_path('app/public/collections/articles/' . $articleInstance->image));
+                    }
+                    $image_name = Carbon::now()->getTimestampMs() . '.' . $article['article_image']->getClientOriginalExtension();
+                    Image::make($article['article_image'])
+                        ->fit(1300, 400)
+                        ->save(storage_path('/app/public/collections/articles/' . $image_name));
+                    $article['article_image'] = $image_name;
+                } else {
+                    $image_name = explode('/', $article['article_image']);
+                    $last_name = array_pop($image_name);
+                    $article['article_image'] = $last_name;
+                }
+
+
+            Article::UpdateOrCreate([
+                'title' => $article['article_title'],
+            ],[
+                'collection_id' => $collection->id,
+                'title' => $article['article_title'],
+                'description' => $article['article_description'],
+                'image' => $article['article_image'],
+                'movie_id' => $article['article_movie'],
+            ]);
+
+        }
+
+        $collection->update([
+            'is_published' => $data['is_published'],
+            'collection_title' => $data['collection_title'],
+            'slug' => $data['slug'],
+            'description_min' => $data['description_min'],
+            'description' => $data['description'],
+            'poster' => $data['poster'],
+            'meta_title' => $data['meta_title'],
+            'meta_keywords' => $data['meta_keywords'],
+            'meta_description' => $data['meta_description']
+        ]);
+        return to_route('collections.index');
     }
 }

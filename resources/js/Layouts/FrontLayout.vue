@@ -11,15 +11,16 @@
             </Link>
             <!-- Nav Item - Dashboard -->
 
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="people.html">-->
-<!--                    <i class="fas fa-fw fa-users"></i>-->
-<!--                    <span>Подборки</span></a>-->
-<!--            </li>-->
+            <li class="nav-item mt-2">
+                <Link class="nav-link font-weight-bold" href="/collections">
+                    <i class="fas fa-fw fa-fire"></i>
+                    <span>Подборки</span>
+                </Link>
+            </li>
 
 
             <!-- Heading -->
-            <div class="sidebar-heading mt-3 mb-1">Кино</div>
+            <div class="sidebar-heading mt-2 mb-1">Кино</div>
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Nav Item  -->
@@ -41,13 +42,6 @@
                     <img class="h-100" src="/img/logo-icon.png" alt="logo image">
                     <div class="sidebar-brand-text mx-3">MovieOne</div>
                 </Link>
-                <!-- Nav Item - Dashboard -->
-
-                <!--            <li class="nav-item">-->
-                <!--                <a class="nav-link" href="people.html">-->
-                <!--                    <i class="fas fa-fw fa-users"></i>-->
-                <!--                    <span>Подборки</span></a>-->
-                <!--            </li>-->
 
 
                 <!-- Heading -->
@@ -119,7 +113,7 @@
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="playlistDropdown">
                                 <h6 class="dropdown-header">
-                                    Избранное
+                                    Избранные видео
                                 </h6>
                                 <Link v-for="item in playlist" :href="`/movies/${item.slug}`" class="dropdown-item d-flex align-items-center">
                                         <div class="w-25">
@@ -131,6 +125,30 @@
                                         <div v-for="genre in item.genres" class="small text-gray-500">{{genre.title}}</div>
                                         <div class="small text-danger">{{item.year}}</div>
                                     </div>
+                                </Link>
+                            </div>
+                        </li>
+
+                        <li v-if="bookmarks" class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle text-lg" href="#" id="bookmarksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-tags"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger bg-gradient-danger">{{bookmarksCount}}</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="playlistDropdown">
+                                <h6 class="dropdown-header">
+                                    Избранные коллекции
+                                </h6>
+                                <Link v-for="item in bookmarks" :href="`/collections/${item.slug}`" class="dropdown-item d-flex align-items-center">
+                                    <div class="w-25">
+                                        <img :src="item.poster" :alt="item.collection_title"
+                                             class="w-100">
+                                    </div>
+                                    <div class="w-75 p-2">
+                                        <span class="font-weight-bold">{{item.collection_title}}</span>
+                                        <div class="small text-gray-500">{{item.description_min}}</div>
+                                        </div>
                                 </Link>
                             </div>
                         </li>
@@ -203,6 +221,9 @@
                 searchKey: '',
                 playCount: null,
                 playlist: null,
+                bookmarksCount: null,
+                bookmarks: null,
+
                 form:{
                     categories: null
                 },
@@ -213,6 +234,8 @@
         mounted() {
                 this.playListCount()
                 this.makePlaylist()
+                this.bookmarksCountFunc()
+                this.makeBookmarks()
 
 
             // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
@@ -298,6 +321,35 @@
 
                 }else{
                     this.playlist = null
+                }
+            },
+
+            bookmarksCountFunc(){
+                if(localStorage.hasOwnProperty('bookmarks') && localStorage.getItem('bookmarks') != '')
+                {
+                    this.bookmarksCount = localStorage.getItem('bookmarks').split(',')
+
+                    this.bookmarksCount = this.bookmarksCount.filter(function (el) {
+                        return el != '';
+                    });
+
+                    this.bookmarksCount = this.bookmarksCount.length
+
+                }else{
+                    this.bookmarksCount = null
+                }
+            },
+
+            makeBookmarks(){
+                if(localStorage.hasOwnProperty('bookmarks') && localStorage.getItem('bookmarks') != ''){
+                    axios.post('/bookmarks', {id: localStorage.getItem('bookmarks')})
+                        .then(response=>{
+                            console.log(response)
+                            this.bookmarks = response.data.data
+                        })
+
+                }else{
+                    this.bookmarks = null
                 }
             },
 

@@ -64,6 +64,20 @@
                                           placeholder="Вставьте полное описание"></textarea>
                             </div>
 
+                            <!--poster Upload -->
+                            <div class="col-12 mt-4">
+                                <div v-if="poster_preview" class="mb-2 mt-2">
+                                    <img class="container-fluid col-xs-12 col-sm-6 col-xl-3"
+                                         :src="poster_preview" alt="">
+                                </div>
+                                <label for="collection_poster">Постер:</label>
+                                <div class="mb-3" id="collection_poster">
+                                    <input @input.prevent="handlePoster($event)"
+                                           class="cform cform-custom-file"
+                                           type="file">
+                                </div>
+                            </div>
+
                         </div>
 
                         <!-- Articles Tab -->
@@ -72,55 +86,66 @@
                             <div class="row">
                                 <template v-for="(article, index) in form.articles">
                                     <div class="col-12 mt-3 mb-3">
-                                <div class="col-12 mt-1">
-                                    <label :for="`collection_title${index}`">Заголовок коллекции:</label>
-                                    <input v-model="article.article_title" type="text"
-                                           class="d-block cform cform-custom-input w-100"
-                                           :id="`collection_title${index}`" placeholder="Введите заголовок статьи">
-                                </div>
-
-                                <!--poster Upload -->
-                                <div class="col-12 mt-2">
-                                        <div v-if="previews[index]" class="mb-2 mt-2">
-                                            <img class="container-fluid col-xs-12 col-sm-6 col-12" :src="previews[index]" alt="">
+                                        <div class="col-12 mt-1">
+                                            <label :for="`collection_title${index}`">Заголовок коллекции:</label>
+                                            <input v-model="article.article_title" type="text"
+                                                   class="d-block cform cform-custom-input w-100"
+                                                   :id="`collection_title${index}`"
+                                                   placeholder="Введите заголовок статьи">
                                         </div>
-                                        <label for="`article_image${index}`">Картинка:</label>
-                                        <div class="mb-3" :id="`article_image${index}`">
-                                            <input @input="handleImage(article.article_image, $event, index)"
-                                                   class="cform cform-custom-file"
-                                                   type="file">
+
+                                        <div class="col-12 mt-2">
+                                            <label :for="`article_description${index}`">Текст статьи:</label>
+                                            <textarea class="w-100 d-block cform cform-custom-input"
+                                                      v-model="article.article_description"
+                                                      :id="`article_description${index}`" rows="20"
+                                                      placeholder="Текст статьи"></textarea>
                                         </div>
-                                </div>
 
-                                <div class="col-12 mt-2">
-                                    <label :for="`article_description${index}`">Текст статьи:</label>
-                                <textarea class="w-100 d-block cform cform-custom-input" v-model="article.article_description"
-                                          :id="`article_description${index}`" rows="20"
-                                          placeholder="Текст статьи"></textarea>
-                                </div>
+                                        <!--poster Upload -->
+                                        <div class="col-12 mt-4">
+                                            <div v-if="previews[index]" class="mb-2 mt-2">
+                                                <img class="container-fluid col-xs-12 col-sm-6 col-12"
+                                                     :src="previews[index]" alt="">
+                                            </div>
+                                            <label for="`article_image${index}`">Картинка:</label>
+                                            <div class="mb-3" :id="`article_image${index}`">
+                                                <input @input.prevent="handleImage($event, index)"
+                                                       class="cform cform-custom-file"
+                                                       type="file">
+                                            </div>
+                                        </div>
 
-                                <!-- Related videos -->
-                                <div class="col-12 mt-2">
+                                        <!-- Related videos -->
+                                        <div class="col-12 mt-2">
 
-                                        <label class="d-block">Выберите видео, соответствующее статье:</label>
-                                        <select v-model="article.article_movie" class="cform cform-custom-input d-block w-100">
-                                            <option :value=null disabled>Выберите видео, соответствующее статье</option>
-                                            <option v-for="movie in movies" :value="movie.id">{{movie.nameRu}} / {{movie.nameEn}} / {{movie.year}}</option>
-                                        </select>
+                                            <label class="d-block">Выберите видео, соответствующее статье:</label>
+                                            <select v-model="article.article_movie"
+                                                    class="cform cform-custom-input d-block w-100">
+                                                <option :value=null disabled>Выберите видео, соответствующее статье
+                                                </option>
+                                                <option v-for="movie in movies" :value="movie.id">{{movie.nameRu}} /
+                                                    {{movie.nameEn}} / {{movie.year}}
+                                                </option>
+                                            </select>
 
-                                </div>
+                                        </div>
                                         <div class="col-12 d-flex justify-content-end mt-3 mb-3">
-                                        <button v-if="index > 0" @click="deleteArticle(index)" type="button" class="cform-btn cform-custom-btn cform-btn-error col-3">Удалить статью</button>
+                                            <button v-if="index > 0" @click="deleteArticle(index)" type="button"
+                                                    class="cform-btn cform-custom-btn cform-btn-error col-3">Удалить
+                                                статью
+                                            </button>
                                         </div>
                                         <hr>
                                     </div>
 
 
-
                                 </template>
 
                                 <div class="col-12 mt-4 mb-4 input-group-btn d-flex justify-content-end">
-                                    <button @click="addArticle()" type="button" class="cform-btn cform-custom-btn cform-btn-accent">Добавить статью</button>
+                                    <button @click="addArticle()" type="button"
+                                            class="cform-btn cform-custom-btn cform-btn-secondary">Добавить статью
+                                    </button>
                                 </div>
                             </div>
 
@@ -190,12 +215,11 @@
 
         data() {
             return {
-                test: {
-                    id: null,
-                },
                 previews: [],
+                poster_preview: null,
                 form: {
                     collection_title: null,
+                    poster: null,
                     description: '',
                     description_min: '',
                     meta_title: "",
@@ -203,10 +227,10 @@
                     meta_description: "",
                     articles: [
                         {
-                        article_title: null,
-                        article_image: null,
-                        article_description: null,
-                        article_movie: null,
+                            article_title: null,
+                            article_image: null,
+                            article_description: null,
+                            article_movie: null,
                         }
                     ],
                 },
@@ -216,9 +240,14 @@
 
         methods: {
 
-            handleImage(articleImage, event, articleIndex)
+            handlePoster(event)
             {
-                articleImage = event.target.files[0],
+                this.form.poster = event.target.files[0];
+                this.poster_preview = URL.createObjectURL(event.target.files[0])
+            },
+
+            handleImage(event, articleIndex) {
+                this.form.articles[articleIndex].article_image = event.target.files[0]
                 this.previews[articleIndex] = URL.createObjectURL(event.target.files[0])
             },
 
@@ -239,12 +268,12 @@
 
 
             store() {
-                // this.form.trailers = this.form.trailers.filter((elem) => {
-                //     if (elem.url != '' && elem.name != '') {
-                //         return elem
-                //     }
-                // })
-                router.post('/admin/movies/store', this.form)
+                this.form.articles = this.form.articles.filter((elem) => {
+                    if (elem.article_title != '' && elem.article_image != null && elem.article_description && elem.article_movie != null) {
+                        return elem
+                    }
+                })
+                router.post('/admin/collections/store', this.form)
                 router.on('error', (errors) => {
                     this.errors = errors.detail.errors
                 })

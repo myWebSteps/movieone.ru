@@ -20,7 +20,7 @@ class UpdateController extends Controller
             $poster_path = '/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension();
             $data['poster'] = Image::make($data['poster'])
                 ->fit(250, 370)
-                ->save(storage_path('/app/public/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension()));
+                ->save(storage_path('/app/public/movies/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension()));
             $data['poster'] = $poster_path;
         }else{
             unset($data['poster']);
@@ -30,7 +30,7 @@ class UpdateController extends Controller
             $backdrop_path = '/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension();
             $data['backdrop'] = Image::make($data['backdrop'])
                 ->fit(1300, 508)
-                ->save(storage_path('/app/public/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension()));
+                ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension()));
         $data['backdrop'] = $backdrop_path;
         }else{
             unset($data['backdrop']);

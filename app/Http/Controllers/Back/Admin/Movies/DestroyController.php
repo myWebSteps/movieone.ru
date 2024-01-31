@@ -13,7 +13,7 @@ class DestroyController extends Controller
 
         $fileToDelete = $movie->getAttribute('poster');
 
-        File::delete(storage_path('/app/public' . $fileToDelete));
+        File::delete(storage_path('/app/public/movies' . $fileToDelete));
 
         $movie->delete();
     }
