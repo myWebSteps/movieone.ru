@@ -15,8 +15,6 @@ class SingleIndexResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $articleTitles = [];
-
         return [
             'id' => $this->id,
             'slug' => $this->slug,

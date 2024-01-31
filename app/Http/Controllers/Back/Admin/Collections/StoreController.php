@@ -37,6 +37,7 @@ class StoreController extends Controller
             ]
         );
 
+        $moviesArr = [];
 
         foreach($data['articles'] as $article){
 
@@ -46,6 +47,7 @@ class StoreController extends Controller
                 ->fit(1300, 400)
                 ->save(storage_path('/app/public/collections/articles/'. $image_name));
 
+            $moviesArr[] = $article['article_movie'];
 
             Article::create([
                 'collection_id' => $collection->id,
@@ -56,6 +58,8 @@ class StoreController extends Controller
             ]);
 
         };
+
+        $collection->movies()->attach($moviesArr);
 
         return to_route('collections.index');
     }

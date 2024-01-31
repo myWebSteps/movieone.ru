@@ -41,6 +41,11 @@ class Movie extends Model
         return $this->belongsTo(Title::class);
     }
 
+    public function collections()
+    {
+        return $this->belongsToMany(Collection::class, CollectionMovie::class);
+    }
+
 
 
     public function sluggable(): array

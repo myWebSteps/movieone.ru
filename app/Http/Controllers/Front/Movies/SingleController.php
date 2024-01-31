@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front\Movies;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Front\Movies\Single\CommentResource;
+use App\Http\Resources\Front\Movies\Single\RelatedCollectionsResource;
 use App\Http\Resources\Front\Movies\Single\RelatedMoviesResource;
 use App\Http\Resources\Front\Movies\Single\ShowResource;
 use App\Models\Category;
@@ -42,6 +43,8 @@ class SingleController extends Controller
         }
         $relatedMovies = RelatedMoviesResource::collection($resultRelatedMovies)->resolve();
 
-        return Inertia::render('Front/Movies/Single', compact('movie', 'comments', 'relatedMovies'));
+        $relatedCollections = RelatedCollectionsResource::collection($data->collections()->where('is_published', '1')->get())->resolve();
+
+        return Inertia::render('Front/Movies/Single', compact('movie', 'comments', 'relatedMovies', 'relatedCollections'));
     }
 }

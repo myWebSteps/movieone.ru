@@ -45,7 +45,33 @@
                             </p>
                         </div>
                     </div>
+
+                    <div v-if="relatedCollections.length > 0" class="bg-white p-3 widget shadow rounded mb-4">
+                        <div class="d-inline-block col-xs-12 col-sm-6 col-md-6 col-lg-12 vertical-align-top">
+                            <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Коллекции с видео:</h1>
+
+                            <div class="card p-card border-0 mt-2"  v-for="collection in relatedCollections">
+                                <Link :href="`/collections/${collection.slug}`">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-4">
+                                            <img v-lazy="collection.poster" class="card-img" alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body h-100 d-grid">
+                                                <h5 class="card-title text-gray-900">{{collection.collection_title}}</h5>
+                                                <p class="card-text">{{collection.description_min}}</p>
+                                                <p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.updated_at}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
+
                 <div class="col-xl-9 col-lg-9">
                     <div class="bg-white info-header shadow rounded mb-4">
                         <div class="row d-flex align-items-center justify-content-between p-3 border-bottom">
@@ -463,7 +489,7 @@
 
     export default {
         name: "Single",
-        props: ['movie', 'comments', 'relatedMovies'],
+        props: ['movie', 'comments', 'relatedMovies', 'relatedCollections'],
         components: {Head, Link, FrontLayout},
 
         data() {

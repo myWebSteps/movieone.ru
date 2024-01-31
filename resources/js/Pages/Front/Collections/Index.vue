@@ -15,31 +15,27 @@
                 <h1 class="h5 mb-0 text-gray-900">Подборки фильмов и мультиков</h1>
             </div>
             <!-- Content Row -->
-            <div class="row">
-                <div class="col-xl-12 col-lg-12">
-                    <div class="row">
-                        <div class="col-xl-4 col-md-6 mb-4" >
-                            <div class="card p-card shadow border-0"  v-for="collection in form.collections.data">
+            <section class="row">
+                        <div class="col-xl-3 col-md-6 mb-4" v-for="collection in form.collections.data">
+                            <div class="card p-card shadow border-0">
                                 <Link :href="`/collections/${collection.slug}`">
                                     <div class="row no-gutters">
                                         <div class="col-md-4">
                                             <img v-lazy="collection.poster" class="card-img" alt="...">
                                         </div>
                                         <div class="col-md-8">
-                                            <div class="card-body">
+                                            <div class="card-body h-100 d-grid">
                                                 <h5 class="card-title text-gray-900">{{collection.collection_title}}</h5>
                                                 <p class="card-text">{{collection.description_min}}</p>
-<!--                                                <p class="card-text"><small><span class="text-muted pr-2"><i class="fas fa-film fa-sm ml-1"></i> Acting</span> <span class="text-link">Batman v Superman: Dawn of Justice (2016)</span></small></p>-->
+                                                <p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.date}}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </Link>
                             </div>
                         </div>
-                    </div>
 
-                </div>
-            </div>
+            </section>
             <!-- Pagination Row -->
             <section class="row d-flex justify-content-center">
                 <nav v-if="form.collections.meta.last_page > 1" aria-label="Page navigation example">

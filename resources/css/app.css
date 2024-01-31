@@ -109,3 +109,15 @@
 {
     font-size: 1rem !important;
 }
+.d-grid{
+    display: grid !important;
+}
+.start{
+    align-self: start;
+}
+.center{
+    align-self: center;
+}
+.end{
+    align-self: end;
+}

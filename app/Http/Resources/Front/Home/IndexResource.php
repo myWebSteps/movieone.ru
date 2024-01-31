@@ -19,7 +19,7 @@ class IndexResource extends JsonResource
             'category_id' => $this->id,
             'category' => $this->title,
             'slug' => $this->slug,
-            'movies' => MoviesResource::collection($this->movies->sortBy([['id', 'DESC']])->take(8))->resolve(),
+            'movies' => MoviesResource::collection($this->movies->sortBy([['id', 'DESC']])->take(4))->resolve(),
            ];
 
     }

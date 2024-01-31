@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Front\Collections;
+namespace App\Http\Resources\Front\Home;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Carbon;
 
-class IndexResource extends JsonResource
+class CollectionsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

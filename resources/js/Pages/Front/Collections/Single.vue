@@ -94,7 +94,7 @@
                                 <article v-for="article in data.articles" :id="`article${article.article_id}`">
                                     <h3 class="mt-0 mb-3">{{article.article_title}}</h3>
                                     <div>
-                                        <img class="img-fluid" :src="article.image" :alt="article.article_title">
+                                        <img class="img-fluid" v-lazy="article.image" :alt="article.article_title">
                                     </div>
                                     <p class ="text-gray-900 font-size-1 mt-2">{{article.description}}</p>
                                     <Link :href="`/movies/${article.movies.slug}`">Перейти к видео &#8594</Link>

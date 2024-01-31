@@ -18,7 +18,7 @@ class IndexController extends Controller
             $request['page'] = 1;
         };
 
-        $result = Collection::where('is_published', '1')->orderBy('id', 'DESC')->select('id', 'collection_title', 'poster', 'slug', 'description_min')->paginate(1, ['*'], 'page', $request['page']);
+        $result = Collection::where('is_published', '1')->orderBy('id', 'DESC')->select('id', 'collection_title', 'poster', 'slug', 'description_min')->paginate(8, ['*'], 'page', $request['page']);
 
         $data = IndexResource::collection($result);
 

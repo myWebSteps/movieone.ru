@@ -32,12 +32,13 @@ class UpdateController extends Controller
         }
 
         $articleTitlesArr = [];
+        $articleMoviesArr = [];
 
         foreach($data['articles'] as $key => $article)
         {
             $articleTitlesArr[] = $article['article_title'];
+            $articleMoviesArr[] = $article['article_movie'];
         }
-
 
        $deletedArticles = Article::whereNotIn('title', $articleTitlesArr)->get()->toArray();
 
@@ -92,6 +93,9 @@ class UpdateController extends Controller
             'meta_keywords' => $data['meta_keywords'],
             'meta_description' => $data['meta_description']
         ]);
+
+        $collection->movies()->sync($articleMoviesArr);
+
         return to_route('collections.index');
     }
 }

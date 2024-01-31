@@ -21,7 +21,7 @@ class Collection extends Model
 
     public function movies()
     {
-        return $this->hasManyThrough(Movie::class, Article::class);
+        return $this->belongsToMany(Movie::class, CollectionMovie::class);
     }
 
     public function comments()
