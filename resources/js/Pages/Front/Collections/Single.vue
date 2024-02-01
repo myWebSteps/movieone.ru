@@ -96,7 +96,7 @@
                                     <div>
                                         <img class="img-fluid" v-lazy="article.image" :alt="article.article_title">
                                     </div>
-                                    <p class ="text-gray-900 font-size-1 mt-2">{{article.description}}</p>
+                                    <p class ="text-gray-900 font-size-1 mt-2" v-html="article.description"></p>
                                     <Link :href="`/movies/${article.movies.slug}`">Перейти к видео &#8594</Link>
                                     <hr>
                                 </article>
