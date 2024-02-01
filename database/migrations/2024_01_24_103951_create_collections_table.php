@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('collection_title')->unique();
             $table->string('slug')->nullable();
-            $table->text('description_min');
+            $table->tinyText('description_min');
             $table->text('description');
             $table->string('poster');
             $table->string('meta_title');

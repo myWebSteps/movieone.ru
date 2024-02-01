@@ -16,7 +16,7 @@
             </div>
             <!-- Content Row -->
             <section class="row">
-                        <div class="col-xl-3 col-md-6 mb-4" v-for="collection in form.collections.data">
+                        <div class="col-xl-4 col-md-6 mb-4" v-for="collection in form.collections.data">
                             <div class="card p-card shadow border-0">
                                 <Link :href="`/collections/${collection.slug}`">
                                     <div class="row no-gutters">
@@ -25,7 +25,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body h-100 d-grid">
-                                                <h5 class="card-title text-gray-900">{{collection.collection_title}}</h5>
+                                                <h5 class="text-gray-900">{{collection.collection_title}}</h5>
                                                 <p class="card-text">{{collection.description_min}}</p>
                                                 <p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.date}}</p>
                                             </div>

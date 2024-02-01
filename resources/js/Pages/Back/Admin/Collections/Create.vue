@@ -46,8 +46,8 @@
 
                             <div class="col-12 mt-2">
                                 <label class="d-block" for="collection_description_min">Краткое описание:<small
-                                    :class="form.description_min.length > 225 ? 'text-danger' : ''">&nbsp{{form.description_min.length}}
-                                    / 225</small></label>
+                                    :class="form.description_min.length > 100 ? 'text-danger' : ''">&nbsp{{form.description_min.length}}
+                                    / 100</small></label>
 
                                 <textarea class="w-100 d-block cform cform-custom-input" v-model="form.description_min"
                                           id="collection_description_min" rows="10"
