@@ -87,7 +87,7 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <article>
                                     <h2 class="mt-0 mb-3">{{data.collection_title}}</h2>
-                                    <p class ="text-gray-900 font-size-1">{{data.description}}</p>
+                                    <p class ="text-gray-900 font-size-1" v-html="data.description"></p>
                                     <hr>
                                 </article>
 

@@ -59,7 +59,7 @@
                                         <div class="col-8">
                                             <div class="card-body h-100 d-grid">
                                                 <h5 class="text-gray-900 font-size-1">{{collection.collection_title}}</h5>
-                                                <p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.updated_at}}</p>
+                                                <small><p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.updated_at}}</p></small>
                                             </div>
                                         </div>
                                     </div>
