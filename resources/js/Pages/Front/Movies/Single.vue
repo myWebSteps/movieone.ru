@@ -53,13 +53,12 @@
                             <div class="card p-card border-0 mt-2"  v-for="collection in relatedCollections">
                                 <Link :href="`/collections/${collection.slug}`">
                                     <div class="row no-gutters">
-                                        <div class="col-md-4">
+                                        <div class="col-4">
                                             <img v-lazy="collection.poster" class="card-img" alt="...">
                                         </div>
-                                        <div class="col-md-8">
+                                        <div class="col-8">
                                             <div class="card-body h-100 d-grid">
-                                                <h5 class="card-title text-gray-900">{{collection.collection_title}}</h5>
-                                                <p class="card-text">{{collection.description_min}}</p>
+                                                <h5 class="text-gray-900 font-size-1">{{collection.collection_title}}</h5>
                                                 <p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.updated_at}}</p>
                                             </div>
                                         </div>

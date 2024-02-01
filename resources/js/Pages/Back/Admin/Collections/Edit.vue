@@ -183,7 +183,7 @@
 
                                 <!-- Meta title -->
                                 <div class="col-12 mt-1">
-                                    <label for="meta_title">Заголовок коллекции:</label>
+                                    <label for="meta_title">Meta title:</label>
                                     <input v-model="form.meta_title" type="text"
                                            class="d-block cform cform-custom-input w-100"
                                            id="meta_title" placeholder="Введите meta заголовок">

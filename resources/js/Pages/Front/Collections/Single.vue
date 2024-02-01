@@ -66,7 +66,7 @@
                         <div class="artist-list mt-3">
                                 <ul>
                                     <li v-for="article in data.articles" class="mt-3">
-                                            <Link :href="`#article${article.article_id}`" class="articles text-truncate font-weight-bold">{{article.article_title}}</Link>
+                                            <Link :href="`#article${article.article_id}`" class="articles text-truncate text-wrap font-weight-bold">{{article.article_title}}</Link>
                                     </li>
                                 </ul>
                         </div>
