@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('collection_id')->index()->constrained('collections')->onDelete('cascade');
             $table->string('title')->unique();
-            $table->tinyText('description');
+            $table->text('description');
             $table->string('image');
             $table->foreignId('movie_id')->index()->constrained('movies')->onDelete('cascade');
             $table->timestamps();
