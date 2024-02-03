@@ -20,7 +20,7 @@
                             <div class="card p-card shadow border-0">
                                 <Link :href="`/collections/${collection.slug}`">
                                     <div class="row no-gutters">
-                                        <div class="col-4">
+                                        <div class="col-4 d-grid align-content-center">
                                             <img v-lazy="collection.poster" class="card-img" alt="...">
                                         </div>
                                         <div class="col-8">
