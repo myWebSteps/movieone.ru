@@ -17,10 +17,6 @@ class RandomMoviesController extends Controller
 
         $data = IndexResource::collection($categories)->resolve();
 
-        $result = Collection::where('is_published', '1')->inRandomOrder()->select('id', 'collection_title', 'slug', 'poster', 'description_min')->take(3)->get();
-
-        $collections = CollectionsResource::collection($result)->resolve();
-
-        return Inertia::render('Front/Movies/RandomMovies', compact('data', 'collections'));
+        return Inertia::render('Front/Movies/RandomMovies', compact('data'));
     }
 }

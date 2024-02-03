@@ -21,32 +21,6 @@
                         </button>
                     </Link>
                 </div>
-
-                <div class="d-flex w-100 align-items-center justify-content-between mt-4 mb-3">
-                    <h2 class="h5 mb-0 text-gray-900">Подборки</h2>
-                    <Link :href="`/collections`" class="text-sm">
-                        Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
-                    </Link>
-                </div>
-
-                <div class="col-xl-4 col-md-6 mb-4" v-for="collection in collections">
-                    <div class="card p-card shadow border-0">
-                        <Link :href="`/collections/${collection.slug}`">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img v-lazy="collection.poster" class="card-img" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body h-100 d-grid">
-                                        <h5 class="text-gray-900">{{collection.collection_title}}</h5>
-                                        <p class="card-text">{{collection.description_min}}</p>
-                                        <small><p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.date}}</p></small>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                </div>
             </div>
 
                 <div class="row">
@@ -105,7 +79,7 @@
 
     export default {
         name: "Home",
-        props: ['data', 'collections'],
+        props: ['data'],
         components: {FrontLayout, Head, Link},
 
 
