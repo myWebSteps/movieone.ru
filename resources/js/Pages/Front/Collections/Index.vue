@@ -25,7 +25,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body h-100 d-grid">
-                                                <h2 class="text-gray-900">{{collection.collection_title}}</h2>
+                                                <h2 class="h5 text-gray-900">{{collection.collection_title}}</h2>
                                                 <p class="card-text">{{collection.description_min}}</p>
                                                 <small><p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.date}}</p></small>
                                             </div>
