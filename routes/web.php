@@ -15,6 +15,7 @@ Route::post('/bookmarks', \App\Http\Controllers\Front\Collections\BookmarksContr
 Route::get('/', \App\Http\Controllers\Front\HomeController::class)->name('front.index');
 Route::get('/movies', \App\Http\Controllers\Front\Movies\IndexController::class)->name('catalog.index');
 Route::get('/movies/{movie}', \App\Http\Controllers\Front\Movies\SingleController::class)->name('single.index');
+Route::get('/random_movies', \App\Http\Controllers\Front\Movies\RandomMoviesController::class)->name('random.index');
 Route::get('/search', \App\Http\Controllers\Front\Movies\SearchController::class)->name('search.index');
 //Front Comments Routes
 Route::post('/movies/add_comment', \App\Http\Controllers\Comments\Movies\CreateController::class);
