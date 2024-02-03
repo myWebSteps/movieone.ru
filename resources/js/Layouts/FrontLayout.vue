@@ -51,10 +51,27 @@
                 </Link>
 
 
+                <li class="nav-item mt-2" :class="{'active': $page.url.startsWith(`/collections`)}">
+                    <Link class="nav-link font-weight-bold" href="/collections">
+                        <i class="fas fa-fw fa-fire"></i>
+                        <span>Подборки</span>
+                    </Link>
+                </li>
+
                 <!-- Heading -->
-                <div class="sidebar-heading mt-3 mb-1">Кино</div>
+                <div class="sidebar-heading mt-2 mb-1">Кинотеатр</div>
                 <!-- Divider -->
                 <hr class="sidebar-divider">
+                <!-- Nav Item  -->
+
+                <li class="nav-item" :class="{'active': $page.url.startsWith(`/random_movies`)}">
+                    <Link class="nav-link font-weight-bold" :href="`/random_movies`">
+                        <i class="fa-solid fa-shuffle"></i>
+                        <span>Случайное видео</span>
+                    </Link>
+                </li>
+
+
                 <!-- Nav Item  -->
                 <li v-for="category in $page.props.categories" :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}" class="nav-item">
                     <Link class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
@@ -62,6 +79,8 @@
                         <span>{{category.title}}</span>
                     </Link>
                 </li>
+
+
             </ul>
         </div>
         <!-- End of Sidebar -->
