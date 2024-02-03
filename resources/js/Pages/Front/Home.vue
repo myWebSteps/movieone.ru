@@ -23,7 +23,7 @@
         <section class="content">
             <div class="row">
                 <div class="d-flex w-100 align-items-center justify-content-between mt-4 mb-3">
-                    <h1 class="h5 mb-0 text-gray-900">Подборки</h1>
+                    <h1 class="h5 mb-0 text-gray-900">Подборки фильмов и мультиков</h1>
                     <Link :href="`/collections`" class="text-sm">
                         Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
                     </Link>
@@ -58,7 +58,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-flex w-100 align-items-center justify-content-between mt-4 mb-3">
-                        <h1 class="h5 mb-0 text-gray-900">{{item.category}}</h1>
+                        <h2 class="h5 mb-0 text-gray-900">{{item.category}}</h2>
                         <Link :href="`/movies?category=${item.slug}&order=year&page=1`" class="text-sm">
                             Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
                         </Link>

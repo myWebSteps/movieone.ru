@@ -28,13 +28,13 @@
                             <img :src="movie.posterUrl" class="img-fluid rounded" :alt="movie.nameEn">
                         </div>
                         <div class="d-inline-block col-xs-12 col-sm-6 col-md-6 col-lg-12 vertical-align-top">
-                            <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Продолжительность:</h1>
+                            <h6 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Продолжительность:</h6>
                             <p>{{movie.filmLength}} мин</p>
-                            <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Год окончания:</h1>
+                            <h6 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Год окончания:</h6>
                             <p>{{movie.endYear}}</p>
-                            <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Рейтинг:</h1>
+                            <h6 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Рейтинг:</h6>
                             <p>{{movie.rate}}</p>
-                            <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Ограничения по возрасту:</h1>
+                            <h6 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Ограничения по возрасту:</h6>
                             <p class="mb-0">{{movie.age_limits}}</p>
                             <h5 v-if="movie.endYear != null" class="h6 mb-0 mt-3 font-weight-bold text-gray-900">
                                 Страны:</h5>
@@ -48,7 +48,7 @@
 
                     <div v-if="relatedCollections.length > 0" class="bg-white p-3 widget shadow rounded mb-4">
                         <div class="d-inline-block col-xs-12 col-sm-6 col-md-6 col-lg-12 vertical-align-top">
-                            <h1 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Коллекции с видео:</h1>
+                            <h6 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Коллекции с видео:</h6>
 
                             <div class="card p-card border-0 mt-2"  v-for="collection in relatedCollections">
                                 <Link :href="`/collections/${collection.slug}`">
@@ -75,12 +75,12 @@
                     <div class="bg-white info-header shadow rounded mb-4">
                         <div class="row d-flex align-items-center justify-content-between p-3 border-bottom">
                             <div class="col-lg-7 m-b-4">
-                                <h3 class="text-gray-900 mb-0 mt-0 font-weight-bold">
-                                    {{movie.nameRu}}</h3>
-                                <h3 class="text-gray-900 mb-0 mt-0 font-weight-bold">
-                                    {{movie.nameEn}}</h3>
-                                <h3 class="text-gray-900 mb-0 mt-0 font-weight-bold mb-1">
-                                    <small>{{movie.endYear}}</small></h3>
+                                <h1 class="text-gray-900 mb-0 mt-0 font-weight-bold">
+                                    {{movie.nameRu}}</h1>
+                                <h2 class="text-gray-900 mb-0 mt-0 font-weight-bold">
+                                    {{movie.nameEn}}</h2>
+                                <h5 class="text-gray-900 mb-0 mt-0 font-weight-bold mb-1">
+                                    <small>{{movie.endYear}}</small></h5>
                                 <p class="mb-0 text-gray-800">
                                     <span class="text-muted"><i class="fa-solid fa-tape mr-2"></i>
                                         <span v-for="genre in movie.genres">
@@ -164,8 +164,8 @@
                             <!-- Home Tab -->
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div v-if="movie.video_allowed == 1" class="kinobox_player"></div>
-                                <article class="mt-2">
-                                    <h1 class="text-gray-800">{{movie.slogan}}</h1>
+                                <article class="mt-3">
+                                    <h3 class="h3 text-gray-800 mt-3 mb-3">{{movie.slogan}}</h3>
                                     <p class="text-gray-800" v-html="movie.description"></p>
                                 </article>
                             </div>
@@ -437,8 +437,8 @@
                                         <img v-lazy="relatedMovie.poster" class="card-img-top" alt="...">
                                     </div>
                                     <div class="card-body p-3">
-                                        <h5 class="card-title text-gray-900 mb-1">{{relatedMovie.nameRu}}</h5>
-                                        <h5 class="card-title text-gray-900 mb-1">{{relatedMovie.nameEn}}</h5>
+                                        <h4 class="card-title text-gray-900 mb-1">{{relatedMovie.nameRu}}</h4>
+                                        <h4 class="card-title text-gray-900 mb-1">{{relatedMovie.nameEn}}</h4>
                                         <p class="card-text mb-0">
                                             <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
                                             <span v-for="genre in relatedMovie.genres" class="text-muted">

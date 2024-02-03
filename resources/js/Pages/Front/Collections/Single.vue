@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-3">
                     <div class="bg-white p-3 widget shadow rounded mb-4">
-                        <h1 class="h6 mb-3 mt-0 font-weight-bold text-gray-900">Содержание</h1>
+                        <h6 class="h6 mb-3 mt-0 font-weight-bold text-gray-900">Содержание</h6>
                         <div class="artist-list mt-3">
                                 <ul>
                                     <li v-for="article in data.articles" class="mt-3">
