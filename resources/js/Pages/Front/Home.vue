@@ -33,10 +33,10 @@
                     <div class="card p-card shadow border-0">
                         <Link :href="`/collections/${collection.slug}`">
                             <div class="row no-gutters">
-                                <div class="col-md-4">
+                                <div class="col-4">
                                     <img v-lazy="collection.poster" class="card-img" alt="...">
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-8">
                                     <div class="card-body h-100 d-grid">
                                         <h5 class="text-gray-900">{{collection.collection_title}}</h5>
                                         <p class="card-text">{{collection.description_min}}</p>
