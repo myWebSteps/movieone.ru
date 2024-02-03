@@ -10265,7 +10265,7 @@ a:focus {
 }
 
 .sidebar .nav-item .nav-link span {
-  font-size: 0.65rem;
+  font-size: 0.85rem !important;
   display: block;
 }
 
