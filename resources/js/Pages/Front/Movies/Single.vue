@@ -198,7 +198,7 @@
 
                             <!--Comments Tab-->
                             <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-                                <comments-component :comments="comments" :id="this.movie.id" type="movies" :message.sync = "message"></comments-component>
+                                <comments-component :comments="comments" :id="movie.id" type="movies" :message.sync = "message"></comments-component>
                             </div>
                             <!--End Comments Tab -->
 
