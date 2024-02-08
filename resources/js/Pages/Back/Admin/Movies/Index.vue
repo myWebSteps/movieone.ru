@@ -56,11 +56,6 @@
 
 
                                     </template>
-
-
-
-
-
                                     </tbody>
                                 </table>
                             </div>

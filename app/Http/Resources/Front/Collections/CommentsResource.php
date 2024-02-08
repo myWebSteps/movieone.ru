@@ -18,8 +18,8 @@ class CommentsResource extends JsonResource
 
         return [
             'name' => $this->name,
-            'rate' => $this->rate,
-            'comment' => $this->comment,
+            'rating' => $this->rating,
+            'description' => $this->description,
             'created_at' => Carbon::parse($this->created_at)->format('d-m-Y H:i'),
         ];
     }

@@ -34,12 +34,7 @@
             </div>
         </section>
 
-        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end" role="alert">
-            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
-            <div v-for="error in errors">
-                <span>{{error}}</span>
-            </div>
-        </div>
+        <message :message.sync = "message"></message>
 
     </AuthenticatedLayout>
 
@@ -50,11 +45,12 @@
     import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
     import {router} from '@inertiajs/vue3';
+    import Message from "@/Components/Message.vue";
 
     export default {
         name: "Create",
         props: ['data'],
-        components: {Head, Link, AuthenticatedLayout},
+        components: {Head, Link, AuthenticatedLayout, Message},
 
         data(){
           return{
@@ -63,7 +59,11 @@
                   category_id: this.data,
                   slug: null,
               },
-              errors: false,
+              message: {
+                  body: [],
+                  type: '',
+                  show: false,
+              }
           }
         },
 
@@ -71,7 +71,9 @@
             newGenre(){
                 router.post(`/admin/genres/${this.data}/store`, this.form)
                 router.on('error', (errors) => {
-                    this.errors = errors.detail.errors
+                    this.message.body = errors.detail.errors
+                    this.message.type = 'error'
+                    this.message.show = true
                 })
             },
         },

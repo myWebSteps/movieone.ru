@@ -50,11 +50,6 @@
 
 
                                     </template>
-
-
-
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -66,11 +61,7 @@
                 </div>
             </div>
         </section>
-
-
-
     </AuthenticatedLayout>
-
 </template>
 
 <script>

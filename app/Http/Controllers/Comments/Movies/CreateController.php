@@ -13,7 +13,12 @@ class CreateController extends Controller
     {
         $data = $request->validated();
 
-        Comment::create($data);
+        Comment::create([
+            'movie_id' => $data['id'],
+            'name' => $data['name'],
+            'rating' => $data['rating'],
+            'description' => $data['description'],
+        ]);
 
     }
 }

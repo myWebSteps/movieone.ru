@@ -20,8 +20,8 @@ class IndexResource extends JsonResource
             'collection_id' => $this->collection_id,
             'collection_name' => $this->collection->collection_title,
             'name' => $this->name,
-            'rating' => $this->rate,
-            'description' => $this->comment,
+            'rating' => $this->rating,
+            'description' => $this->description,
             'approved' => $this->approved,
         ];
     }

@@ -53,14 +53,7 @@
                                                 </Link>
                                             </td>
                                         </tr>
-
-
                                     </template>
-
-
-
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -72,9 +65,6 @@
                 </div>
             </div>
         </section>
-
-
-
     </AuthenticatedLayout>
 
 </template>
@@ -88,12 +78,6 @@
         name: "Index",
         props: ['data_comments'],
         components: {Head, Link, AuthenticatedLayout},
-
-        mounted(){
-            console.log(this.data_comments)
-        },
-
-
     }
 </script>
 

@@ -49,14 +49,7 @@
                                                 </Link>
                                             </td>
                                         </tr>
-
-
                                     </template>
-
-
-
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -68,8 +61,6 @@
                 </div>
             </div>
         </section>
-
-
 
     </AuthenticatedLayout>
 

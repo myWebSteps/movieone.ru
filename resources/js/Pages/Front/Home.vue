@@ -29,30 +29,9 @@
                     </Link>
                 </div>
 
-                <div class="col-xl-4 col-md-6 mb-4" v-for="collection in collections">
-                    <div class="card p-card shadow border-0">
-                        <Link :href="`/collections/${collection.slug}`">
-                            <div class="row no-gutters">
-                                <div class="col-4 d-grid align-content-center">
-                                    <img v-lazy="collection.poster" class="card-img" alt="...">
-                                </div>
-                                <div class="col-8">
-                                    <div class="card-body h-100 d-grid">
-                                        <h5 class="text-gray-900">{{collection.collection_title}}</h5>
-                                        <p class="card-text">{{collection.description_min}}</p>
-                                        <small><p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.date}}</p></small>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                </div>
-
+                <collections-card :data="collections"></collections-card>
 
             </div>
-
-
-
                 <div class="row">
                 <template v-for="item in data">
 
@@ -65,27 +44,8 @@
                     </div>
 
                     <!-- Content Row -->
-                        <div v-for="movie in item.movies" class="col-xl-3 col-md-6 mb-4">
-                            <div  class="card m-card shadow border-0">
-                                <Link :href="`/movies/${movie.slug}`">
-                                    <div class="m-card-cover">
-                                        <img v-lazy="movie.poster" class="card-img-top" :alt="movie.nameEn">
-                                    </div>
 
-                                        <div class="card-body">
-                                            <h5 class="card-title text-gray-900 mb-1 text-wrap">{{movie.nameRu}}</h5>
-                                            <h5 class="card-title text-gray-900 mb-1 text-wrap">{{movie.nameEn}}</h5>
-                                            <p class="card-text mb-0">
-                                                <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
-                                                <span v-for="genre in movie.genres" class="text-muted">
-                                                    {{genre.title}} &nbsp
-                                                </span></p>
-                                            <p class="card-text text-danger pt-0"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.year}}</p>
-                                        </div>
-
-                                </Link>
-                            </div>
-                        </div>
+                    <movies-card :data="item.movies" :config = "{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"></movies-card>
 
                     <!-- Page Heading -->
                 </template>
@@ -105,12 +65,14 @@
     import { Head } from "@inertiajs/vue3";
     import { Link } from "@inertiajs/vue3";
     import FrontLayout from "@/Layouts/FrontLayout.vue";
+    import CollectionsCard from "@/Components/CollectionsCard.vue";
+    import MoviesCard from "@/Components/MoviesCard.vue";
 
 
     export default {
         name: "Home",
         props: ['data', 'collections'],
-        components: {FrontLayout, Head, Link},
+        components: {FrontLayout, CollectionsCard, MoviesCard, Head, Link},
 
 
         beforeMount() {

@@ -29,12 +29,7 @@
             </div>
         </section>
 
-        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-absolute bottom-0 end-0 z-10 position-fixed" role="alert">
-            <div v-for="error in errors">
-                <span>{{error}}</span>
-            </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        <message :message.sync = "message"></message>
 
     </AuthenticatedLayout>
 
@@ -55,7 +50,11 @@
                 form:{
                     description: null,
                 },
-                errors: false,
+                message: {
+                    body: [],
+                    type: '',
+                    show: false,
+                }
             }
         },
 
@@ -63,7 +62,9 @@
             newTitle(){
                 router.post('/admin/titles/store', this.form)
                 router.on('error', (errors) => {
-                    this.errors = errors.detail.errors
+                    this.message.body = errors.detail.errors
+                    this.message.type = 'error'
+                    this.message.show = true
                 })
             },
         },

@@ -364,12 +364,7 @@
             </div>
         </section>
 
-        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end" role="alert">
-            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
-            <div v-for="error in errors">
-                <span>{{error}}</span>
-            </div>
-        </div>
+        <message :message.sync = "message"></message>
 
     </AuthenticatedLayout>
 </template>
@@ -377,12 +372,12 @@
 <script>
     import {Head, Link, router,} from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-
+    import Message from '@/Components/Message.vue'
 
     export default {
         name: "Create",
         props: ['categories', 'countries', 'titles'],
-        components: {Head, Link, AuthenticatedLayout},
+        components: {Head, Link, AuthenticatedLayout, Message},
 
         data() {
             return {
@@ -424,7 +419,11 @@
                     title_id: null,
 
                 },
-                errors: null,
+                message: {
+                    body: [],
+                    type: '',
+                    show: false,
+                }
             }
         },
 
@@ -566,7 +565,9 @@
                 })
                 router.post('/admin/movies/store', this.form)
                    router.on('error', (errors) => {
-                    this.errors = errors.detail.errors
+                    this.message.body = errors.detail.errors
+                    this.message.type = 'error'
+                    this.message.show = true
                 })
 
 

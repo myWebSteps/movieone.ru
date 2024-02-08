@@ -215,15 +215,7 @@
             </div>
         </section>
 
-        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end"
-             role="alert">
-            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert"
-                    aria-label="Close">X
-            </button>
-            <div v-for="error in errors">
-                <span>{{error}}</span>
-            </div>
-        </div>
+        <message :message.sync = "message"></message>
 
     </AuthenticatedLayout>
 </template>
@@ -231,12 +223,13 @@
 <script>
     import {Head, Link, router,} from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+    import Message from "@/Components/Message.vue";
 
 
     export default {
         name: "Create",
         props: ['data', 'movies'],
-        components: {Head, Link, AuthenticatedLayout},
+        components: {Head, Link, AuthenticatedLayout, Message},
 
         data() {
             return {
@@ -254,7 +247,11 @@
                     meta_description: this.data[0].meta_description,
                     articles: this.data[0].articles,
                 },
-                errors: null,
+                message: {
+                    body: [],
+                    type: '',
+                    show: false,
+                }
             }
         },
 
@@ -306,7 +303,9 @@
                     meta_description: this.form.meta_description
                 })
                 router.on('error', (errors) => {
-                    this.errors = errors.detail.errors
+                    this.message.body = errors.detail.errors
+                    this.message.type = 'error'
+                    this.message.show = true
                 })
 
 

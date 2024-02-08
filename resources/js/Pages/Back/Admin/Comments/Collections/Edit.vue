@@ -53,12 +53,7 @@
             </div>
         </section>
 
-        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end" role="alert">
-            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
-            <div v-for="error in errors">
-                <span>{{error}}</span>
-            </div>
-        </div>
+        <message :message.sync = "message"></message>
 
     </AuthenticatedLayout>
 
@@ -77,7 +72,11 @@
 
         data(){
             return{
-                errors: false,
+                message: {
+                    body: [],
+                    type: '',
+                    show: false,
+                },
                 form: {
                     name: this.comment.name,
                     rating: this.comment.rate,
@@ -101,12 +100,14 @@
             updateComment(){
                  router.patch(`/admin/comments/collections/${this.comment.id}`, {
                     name: this.form.name,
-                    rate: this.form.rating,
-                    comment: this.form.description,
+                    rating: this.form.rating,
+                    description: this.form.description,
                     approved: this.form.approved,
                     })
                 router.on('error', (errors) => {
-                    this.errors = errors.detail.errors
+                    this.message.body = errors.detail.errors
+                    this.message.type = 'error'
+                    this.message.show = true
                 })
             },
         },

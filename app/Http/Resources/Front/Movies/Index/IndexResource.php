@@ -22,7 +22,7 @@ class IndexResource extends JsonResource
             'kinopoisk_id' => $this->kinopoisk_id,
             'nameRu' => $this->nameRu,
             'nameEn' => $this->nameEn,
-            'posterUrl' => $posterUrl,
+            'poster' => $posterUrl,
             'genres' => $this->genres,
             'year' => $this->year,
         ];

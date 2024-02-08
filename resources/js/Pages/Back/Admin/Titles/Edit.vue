@@ -29,12 +29,7 @@
             </div>
         </section>
 
-        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-absolute bottom-0 end-0 z-10 position-fixed" role="alert">
-            <div v-for="error in errors">
-                <span>{{error}}</span>
-            </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        <message :message.sync = "message"></message>
 
     </AuthenticatedLayout>
 
@@ -45,15 +40,20 @@
     import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
     import {router} from '@inertiajs/vue3';
+    import Message from "@/Components/Message.vue";
 
     export default {
         name: "Edit",
         props: ['title'],
-        components: {Head, Link, router, AuthenticatedLayout},
+        components: {Head, Link, router, AuthenticatedLayout, Message},
 
         data(){
             return{
-                errors: false
+                message: {
+                    body: [],
+                    type: '',
+                    show: false,
+                }
             }
         },
 
@@ -62,7 +62,9 @@
             updateCategory(id, description){
                 router.patch(`/admin/titles/${id}`, {description: description})
                 router.on('error', (errors) => {
-                    this.errors = errors.detail.errors
+                    this.message.body = errors.detail.errors
+                    this.message.type = 'error'
+                    this.message.show = true
                 })
             },
         },

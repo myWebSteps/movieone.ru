@@ -35,27 +35,8 @@
                     </div>
 
                     <!-- Content Row -->
-                        <div v-for="movie in item.movies" class="col-xl-3 col-md-6 mb-4">
-                            <div  class="card m-card shadow border-0">
-                                <Link :href="`/movies/${movie.slug}`">
-                                    <div class="m-card-cover">
-                                        <img v-lazy="movie.poster" class="card-img-top" :alt="movie.nameEn">
-                                    </div>
 
-                                        <div class="card-body">
-                                            <h3 class="h5 card-title text-gray-900 mb-1 text-wrap">{{movie.nameRu}}</h3>
-                                            <h3 class="h5 card-title text-gray-900 mb-1 text-wrap">{{movie.nameEn}}</h3>
-                                            <p class="card-text mb-0">
-                                                <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
-                                                <span v-for="genre in movie.genres" class="text-muted">
-                                                    {{genre.title}} &nbsp
-                                                </span></p>
-                                            <p class="card-text text-danger pt-0"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.year}}</p>
-                                        </div>
-
-                                </Link>
-                            </div>
-                        </div>
+                    <movies-card :data = "item.movies" :config = "{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"></movies-card>
 
                     <!-- Page Heading -->
                 </template>
@@ -75,12 +56,13 @@
     import { Head } from "@inertiajs/vue3";
     import { Link } from "@inertiajs/vue3";
     import FrontLayout from "@/Layouts/FrontLayout.vue";
+    import MoviesCard from "@/Components/MoviesCard.vue";
 
 
     export default {
         name: "Home",
         props: ['data'],
-        components: {FrontLayout, Head, Link},
+        components: {FrontLayout, MoviesCard, Head, Link},
 
 
         beforeMount() {

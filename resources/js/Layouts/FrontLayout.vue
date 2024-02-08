@@ -189,12 +189,8 @@
             <!-- Footer -->
 
 
-            <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end my-z-index" role="alert">
-                <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
-                <div v-for="error in errors">
-                    <span>{{error}}</span>
-                </div>
-            </div>
+
+            <message :message.sync = "message"></message>
 
             <footer class="sticky-footer bg-white">
                 <div class="container d-flex justify-content-around">
@@ -235,12 +231,13 @@
 <script>
     import { Link } from "@inertiajs/vue3";
     import {router} from '@inertiajs/vue3';
+    import Message from "@/Components/Message.vue";
 
 
     export default {
         name: "FrontLayout",
 
-        components: {Link},
+        components: {Link, Message},
 
         data(){
             return {
@@ -253,7 +250,11 @@
                 form:{
                     categories: null
                 },
-                errors: null,
+                message: {
+                    body: [],
+                    type: '',
+                    show: false,
+                },
             }
         },
 
@@ -312,16 +313,12 @@
                     if(this.searchKey.length >= 3) {
                         router.get(`/search?key=${this.searchKey}`)
                     }else{
-                        this.errors = ['Поиск должен содержать минимум 3 символа']
-
-                        setTimeout(this.deleteErrors, 2500)
+                        this.message.body =  ['Поиск должен содержать минимум 3 символа']
+                        this.message.type = 'error'
+                        this.message.show = true
                     }
 
             },
-            deleteErrors(){
-                this.errors = false
-            },
-
             playListCount(){
                 if(localStorage.hasOwnProperty('playlist') && localStorage.getItem('playlist') != '')
                 {

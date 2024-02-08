@@ -3,6 +3,7 @@ import './bootstrap';
 import '../assets/vendor/slick/slick.min.css'
 import '../assets/vendor/slick/slick-theme.min.css'
 import '../assets/vendor/fontawesome-free/css/all.min.css';
+
 import '../assets/css/osahan.css';
 import '../css/app.css';
 
@@ -17,6 +18,7 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import VueLazyLoad from 'vue3-lazyload';
+
 
 
 createInertiaApp({

@@ -47,21 +47,12 @@
                                                 </Link>
                                             </td>
                                         </tr>
-
-
                                     </template>
-
-
-
-
-
                                     </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->
                         </div>
-
-
                     </div>
                 </div>
             </div>

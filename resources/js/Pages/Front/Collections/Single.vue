@@ -12,8 +12,9 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
                     <div class="bg-white info-header shadow rounded mb-4">
-                        <div class="d-flex align-items-center justify-content-between py-3 px-4 border-bottom">
-                            <div>
+                        <div class="row d-flex align-items-center justify-content-between p-3 border-bottom">
+
+                            <div class="col-lg-7 m-b-4">
                                 <h1 class="text-gray-900 mb-0 mt-0 font-weight-bold">{{data.collection_title}}</h1>
 <!--                                <p class="mb-0"><small class="text-muted"><i class="fas fa-map-marker-alt fa-fw fa-sm mr-1"></i> Vancouver, Canada</small></p>-->
                             </div>
@@ -104,77 +105,8 @@
                             </div>
 
                             <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-
-                                    <div class="card-body p-0 reviews-card">
-                                        <div v-if="data.comments.length > 0" v-for="comment in data.comments"
-                                             class="media mb-4">
-                                            <img class="d-flex mr-3 rounded-circle" src="/img/comment.webp" alt="">
-                                            <div class="media-body">
-                                                <div class="mt-0 mb-1">
-                                                    <p class="h6 mr-2 font-weight-bold text-gray-900 d-inline-block">
-                                                        {{comment.name}}</p>
-                                                    <p class="d-inline-block"><i class="fa fa-calendar"></i>
-                                                        {{comment.created_at}}</p>
-                                                    <p class="stars-rating float-right d-inline-block">
-                                                        <template v-for="(item, index) in 5">
-                                                            <i :class="comment.rate > index ? 'text-danger' : ''"
-                                                               class="fa fa-heart pl-1 fs-6"></i>
-                                                        </template>
-                                                        <span class="rounded bg-danger text-dark ml-1 pl-1 pr-1 fs-6">{{comment.rate}}/5</span>
-                                                    </p>
-                                                </div>
-                                                <p>{{comment.comment}}</p>
-                                            </div>
-                                        </div>
-                                        <div v-else>
-                                            <div class="d-flex justify-content-center bg-gray-200 no-comments">
-                                                <p class="align-self-center p-0 m-0">У этого кино пока нет комментариев.
-                                                    Будьте первым!</p>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="p-4 bg-light rounded mt-4">
-                                        <h5 class="card-title mb-4">Оставьте комментарий</h5>
-                                        <form name="sentMessage">
-                                            <div class="row">
-                                                <div class="control-group form-group col-lg-4 col-md-4">
-                                                    <div class="controls">
-                                                        <label>Имя: <span class="text-danger">*</span></label>
-                                                        <input v-model="comment.name" type="text" class="form-control"
-                                                               required="" placeholder="Введите имя">
-                                                    </div>
-                                                </div>
-                                                <div class="control-group form-group col-lg-4 col-md-4">
-                                                    <div class="controls">
-                                                        <label>Оценка <span class="text-danger">*</span></label>
-                                                        <select required="" v-model="comment.rate"
-                                                                class="form-control custom-select">
-                                                            <option :value=null disabled selected>Оцените подборку</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <div class="controls">
-                                                    <label>Комментарий <span class="text-danger">*</span></label>
-                                                    <textarea required="" v-model="comment.comment" rows="3"
-                                                              cols="100" class="form-control"
-                                                              placeholder="Напишите комментарий"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="text-right">
-                                                <button @click.prevent="leaveComment()" type="submit" class="btn btn-primary">Отправить</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
+                                <comments-component :comments="data" :id="this.data.id" type="collections" :message.sync = "message"></comments-component>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -199,20 +131,7 @@
             </div>
         </div>
 
-
-        <div v-if="errors" class="alert alert-warning alert-dismissible fade show position-fixed-bottom-end my-z-index" role="alert">
-            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
-            <div v-for="error in errors">
-                <span>{{error}}</span>
-            </div>
-        </div>
-
-        <div v-if="success" class="alert alert-success alert-dismissible fade show position-fixed-bottom-end my-z-index" role="alert">
-            <button type="button" class="btn btn-close position-absolute-top-right" data-bs-dismiss="alert" aria-label="Close">X</button>
-            <div>
-                <span>{{success}}</span>
-            </div>
-        </div>
+        <message :message.sync = "message"></message>
 
         <!-- /.container-fluid -->
     </FrontLayout>
@@ -221,28 +140,28 @@
 
 <script>
     import FrontLayout from "@/Layouts/FrontLayout.vue";
+    import Message from "@/Components/Message.vue";
     import {Head} from "@inertiajs/vue3";
     import {Link} from "@inertiajs/vue3";
     import {router} from '@inertiajs/vue3';
+    import CommentsComponent from "@/Components/CommentsComponent.vue";
 
 
 
     export default {
         name: "Collections_single",
         props: ['data'],
-        components: {Head, Link, FrontLayout},
+        components: {CommentsComponent, Head, Link, FrontLayout, Message},
 
         data() {
             return {
                 bookmarksRes: [],
                 bookmarksItems: null,
-                comment:{
-                    name: '',
-                    rate: null,
-                    comment: '',
+                message: {
+                    body: [],
+                    type: '',
+                    show: false,
                 },
-                errors: null,
-                success: null,
             }
         },
 
@@ -262,44 +181,12 @@
 
         methods: {
 
-            leaveComment() {
-                router.post('/collection/add_comment', {
-                    collection_id: this.data.id,
-                    name: this.comment.name,
-                    rate: this.comment.rate,
-                    comment: this.comment.comment,
-                }, {
-                    preserveScroll: true,
-                })
-                router.on('error', (error) => {
-
-                    this.errors = error.detail.errors
-
-                    setTimeout(this.flushMessages, 2500)
-                })
-                router.on('success', () => {
-
-                    this.success = 'Отзыв успешно отослан, он появится после модерации'
-
-
-                    setTimeout(this.flushMessages, 2500)
-
-                    this.commentsForm.name = null
-                    this.commentsForm.rating = null
-                    this.commentsForm.description = null
-                })
-
-            },
-
-            flushMessages(){
-                this.success = null
-                this.errors = null
-            },
-
             copyUrl() {
                 navigator.clipboard.writeText(window.location.href)
-                this.success = 'ссылка успешно скопирована'
-                setTimeout(this.flushMessages, 2500)
+                this.message.body = ['ссылка успешно скопирована']
+                this.message.type = 'success'
+                this.message.show = true
+
             },
 
             togglePlaylistButton() {
@@ -350,10 +237,6 @@
                     }
                 }
             },
-
-
-
-
         },
 
 

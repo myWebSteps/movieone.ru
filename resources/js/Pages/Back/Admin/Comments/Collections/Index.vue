@@ -56,11 +56,6 @@
 
 
                                     </template>
-
-
-
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -88,11 +83,6 @@
         name: "Index",
         props: ['data_comments'],
         components: {Head, Link, AuthenticatedLayout},
-
-        mounted(){
-            console.log(this.data_comments)
-        },
-
 
     }
 </script>

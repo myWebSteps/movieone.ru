@@ -22,7 +22,7 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'movie_id' => 'required|integer',
+            'id' => 'required|integer',
             'name' => 'required|string|min:3|max:50',
             'rating' => 'required|integer',
             'description' => 'required|string|min:5|max:500'
@@ -36,6 +36,7 @@ class CreateRequest extends FormRequest
             'name.min' => 'Имя должно содержать минимум 3 символа',
             'name.max' => 'Имя должно содержать максимум 50 символов',
             'rating.required' => 'Рейтинг это обязательное поле',
+            'description.required' => 'Отзыв это обязательное поле',
             'description.min' => 'Отзыв должен содержать минимум 5 символов',
             'description.max' => 'Отзыв должен быть максимум 500 символов',
         ];

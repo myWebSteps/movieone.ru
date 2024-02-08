@@ -72,7 +72,7 @@ const submit = () => {
 
             <div class="d-flex align-items-center justify-content-end gap-3">
                 <Link v-if="canResetPassword" href="forgot-password">
-                    Forgot your password?
+                    Forgot your password? &nbsp;
                 </Link>
 
                 <PrimaryButton :disabled="form.processing">

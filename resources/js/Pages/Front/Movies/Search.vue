@@ -20,25 +20,11 @@
                     <div class="col-xl-12 col-lg-8 mt-4">
 
                         <div class="row">
-                            <div v-for="movie in movies" class="col-xl-3 col-md-6 mb-4 col-sm-6">
-                                <div  class="card m-card shadow border-0">
-                                    <Link :href="`/movies/${movie.slug}`">
-                                        <div class="m-card-cover">
-                                            <img v-lazy="movie.posterUrl" class="card-img-top" alt="...">
-                                        </div>
-                                        <div class="card-body">
-                                                    <h2 class="h5 card-title text-gray-900 mb-1 text-wrap">{{movie.nameRu}}</h2>
-                                                    <h2 class="h5 card-title text-gray-900 mb-1 text-wrap">{{movie.nameEn}}</h2>
-                                                    <p class="card-text mb-0">
-                                                        <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
-                                                        <span v-for="genre in movie.genres" class="text-muted">
-                                                            {{genre.title}} &nbsp
-                                                        </span></p>
-                                                    <p class="card-text text-danger pt-0"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.year}}</p>
-                                        </div>
-                                    </Link>
-                                </div>
 
+                            <movies-card :data="movies" :config = "{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"></movies-card>
+
+                            <div v-if="movies.length === 0" class="text-muted"><i class="fas fa-search fa-sm"></i> Не нашел
+                                фильмов по заданным критериям. Попробуйте облегчить мне задачу
                             </div>
 
                         </div>
@@ -58,12 +44,13 @@
 <script>
     import {Head, Link} from "@inertiajs/vue3";
     import FrontLayout from "@/Layouts/FrontLayout.vue";
+    import MoviesCard from "@/Components/MoviesCard.vue";
 
 
     export default {
         name: "Catalog",
         props: ['movies', 'data'],
-        components: {Head, Link, FrontLayout},
+        components: {Head, Link, FrontLayout, MoviesCard},
         mounted() {
             ym(94438576, 'hit', '/search');
         },

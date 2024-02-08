@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('collection_id')->index()->constrained('collections')->onDelete('cascade');
             $table->string('name');
-            $table->integer('rate');
-            $table->string('comment');
+            $table->integer('rating');
+            $table->string('description');
             $table->boolean('approved')->default(false);
             $table->timestamps();
         });

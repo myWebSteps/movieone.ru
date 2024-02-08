@@ -19,7 +19,7 @@ Route::get('/random_movies', \App\Http\Controllers\Front\Movies\RandomMoviesCont
 Route::get('/search', \App\Http\Controllers\Front\Movies\SearchController::class)->name('search.index');
 //Front Comments Routes
 Route::post('/movies/add_comment', \App\Http\Controllers\Comments\Movies\CreateController::class);
-Route::post('/collection/add_comment', \App\Http\Controllers\Comments\Collections\CreateController::class);
+Route::post('/collections/add_comment', \App\Http\Controllers\Comments\Collections\CreateController::class);
 
 Route::prefix('/collections')->group(function(){
     Route::get('/', \App\Http\Controllers\Front\Collections\IndexController::class)->name('front.collections.index');
