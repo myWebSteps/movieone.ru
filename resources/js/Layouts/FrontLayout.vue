@@ -11,29 +11,29 @@
             </Link>
             <!-- Nav Item - Dashboard -->
 
-            <li class="nav-item mt-2" :class="{'active': $page.url.startsWith(`/collections`)}">
-                <Link class="nav-link font-weight-bold" href="/collections">
+            <li class="nav-item" :class="{'active': $page.url.startsWith(`/collections`)}">
+                <Link class="nav-link" href="/collections">
                     <i class="fas fa-fw fa-fire"></i>
                     <span>Подборки</span>
                 </Link>
             </li>
 
             <!-- Heading -->
-            <div class="sidebar-heading mt-2 mb-1">Кинотеатр</div>
+            <div class="sidebar-heading mt-1 mb-1">Кинотеатр</div>
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider mb-1">
             <!-- Nav Item  -->
 
             <li class="nav-item" :class="{'active': $page.url.startsWith(`/random_movies`)}">
-                <Link class="nav-link font-weight-bold" :href="`/random_movies`">
+                <Link class="nav-link" :href="`/random_movies`">
                     <i class="fa-solid fa-shuffle"></i>
                     <span>Случайное видео</span>
                 </Link>
             </li>
 
             <li v-for="category in $page.props.categories" :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}" class="nav-item">
-            <Link class="nav-link font-weight-bold" :href="`/movies?category=${category.slug}&order=year&page=1`">
-            <i class="font-weight-bold" :class="category.logo"></i>
+            <Link class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
+            <i :class="category.logo"></i>
             <span>{{category.title}}</span>
             </Link>
             </li>
@@ -51,21 +51,21 @@
                 </Link>
 
 
-                <li class="nav-item mt-2" :class="{'active': $page.url.startsWith(`/collections`)}">
-                    <Link class="nav-link font-weight-bold" href="/collections">
+                <li class="nav-item" :class="{'active': $page.url.startsWith(`/collections`)}">
+                    <Link class="nav-link" href="/collections">
                         <i class="fas fa-fw fa-fire"></i>
                         <span>Подборки</span>
                     </Link>
                 </li>
 
                 <!-- Heading -->
-                <div class="sidebar-heading mt-2 mb-1">Кинотеатр</div>
+                <div class="sidebar-heading mt-1 mb-1">Кинотеатр</div>
                 <!-- Divider -->
-                <hr class="sidebar-divider">
+                <hr class="sidebar-divider mb-1">
                 <!-- Nav Item  -->
 
                 <li class="nav-item" :class="{'active': $page.url.startsWith(`/random_movies`)}">
-                    <Link class="nav-link font-weight-bold" :href="`/random_movies`">
+                    <Link class="nav-link" :href="`/random_movies`">
                         <i class="fa-solid fa-shuffle"></i>
                         <span>Случайное видео</span>
                     </Link>
@@ -73,9 +73,9 @@
 
 
                 <!-- Nav Item  -->
-                <li v-for="category in $page.props.categories" :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}" class="nav-item">
+                <li class="nav-item" v-for="category in $page.props.categories" :class="{'active': $page.url.startsWith(`/movies?category=${category.slug}`)}">
                     <Link class="nav-link" :href="`/movies?category=${category.slug}&order=year&page=1`">
-                        <i class="font-weight-bold" :class="category.logo"></i>
+                        <i :class="category.logo"></i>
                         <span>{{category.title}}</span>
                     </Link>
                 </li>
@@ -100,7 +100,7 @@
                         <div class="input-group">
                             <input @keypress.enter.prevent="commenceSearch()" v-model="searchKey" type="text" class="form-control bg-white border-0 small" placeholder="Искать фильмы по названию..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button @click.prevent="commenceSearch()" class="btn bg-white text-lg" type="button">
+                                <button @click.prevent="commenceSearch()" class="btn bg-white" type="button">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
