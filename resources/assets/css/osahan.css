@@ -1831,6 +1831,13 @@ pre code {
   .table-responsive-sm > .table-bordered {
     border: 0;
   }
+    .m-card .card-title, .p-card .card-title {
+        font-size: 15px;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
 }
 
 @media (max-width: 767.98px) {
