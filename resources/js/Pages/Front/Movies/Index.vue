@@ -22,7 +22,7 @@
         <!-- Filter Row -->
         <section class="row">
 
-            <div class="col-xl-2 col-lg-3">
+            <div class="col-xl-3 col-lg-4">
 
                 <filter-component
                     :form="form"
@@ -41,7 +41,7 @@
             </div>
 
             <!-- Movies -->
-            <div class="col-xl-10 col-lg-9">
+            <div class="col-xl-9 col-lg-8">
                 <div class="row">
 
                     <movies-card
