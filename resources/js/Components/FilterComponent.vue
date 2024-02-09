@@ -647,7 +647,7 @@
     input[type=number] {
         border: 1px solid #ddd;
         text-align: center;
-        font-size: 1em;
+        font-size: 1rem;
         -moz-appearance: textfield;
     }
 
