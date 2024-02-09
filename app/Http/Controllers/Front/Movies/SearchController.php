@@ -20,7 +20,7 @@ class SearchController extends Controller
 
         $filter = app()->make(MovieFilter::class, ['queryParams' => array_filter($data)]);
 
-        $movies = IndexResource::collection(Movie::filter($filter)->orderBy('id', 'desc')->take(18)->get())->resolve();
+        $movies = IndexResource::collection(Movie::filter($filter)->orderBy('id', 'desc')->take(20)->get())->resolve();
 
         return Inertia::render('Front/Movies/Search', compact( 'movies', 'data'));
 

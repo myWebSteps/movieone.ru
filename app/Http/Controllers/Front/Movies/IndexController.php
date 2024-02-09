@@ -76,7 +76,7 @@ class IndexController extends Controller
 
         //Movies filter
         $filter = app()->make(MovieFilter::class, ['queryParams' => array_filter($data)]);
-        $result = Movie::filter($filter)->orderBy($request->get('order'), 'desc')->paginate(18, ['*'], 'page', $request->get('page'));
+        $result = Movie::filter($filter)->orderBy($request->get('order'), 'desc')->paginate(20, ['*'], 'page', $request->get('page'));
         $movies = IndexResource::collection($result);
         //End of Movies Filter
 

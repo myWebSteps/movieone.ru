@@ -17,7 +17,7 @@ class HomeController extends Controller
 
         $data = IndexResource::collection($categories)->resolve();
 
-        $result = Collection::where('is_published', '1')->select('id', 'collection_title', 'slug', 'poster', 'description_min')->take(6)->get();
+        $result = Collection::where('is_published', '1')->select('id', 'collection_title', 'slug', 'poster', 'description_min')->take(4)->get();
 
         $collections = CollectionsResource::collection($result)->resolve();
 

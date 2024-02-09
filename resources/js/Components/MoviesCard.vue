@@ -1,7 +1,7 @@
 <template>
 
     <div v-for="movie in data" :class="config.classes">
-        <div  class="card m-card shadow border-0">
+        <div class="card m-card shadow border-0">
             <Link :href="`/movies/${movie.slug}`">
                 <div class="m-card-cover">
                     <img v-lazy="movie.poster" class="card-img-top" :alt="movie.nameEn">
@@ -11,11 +11,15 @@
                     <h5 class="card-title text-gray-900 mb-1 text-wrap">{{movie.nameRu}}</h5>
                     <h5 class="card-title text-gray-900 mb-1 text-wrap">{{movie.nameEn}}</h5>
                     <p class="card-text mb-0">
-                        <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i></small>
-                        <span v-for="genre in movie.genres" class="text-muted">
+                        <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i>
+                            <span v-for="genre in movie.genres" class="text-muted">
                                                     {{genre.title}} &nbsp
-                                                </span></p>
-                    <p class="card-text text-danger pt-0"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.year}}</p>
+                            </span>
+                        </small>
+                    </p>
+                    <small><p class="card-text text-danger pt-0"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i>
+                        {{movie.year}}</p>
+                    </small>
                 </div>
 
             </Link>
@@ -24,7 +28,7 @@
 </template>
 
 <script>
-    import { Link } from "@inertiajs/vue3";
+    import {Link} from "@inertiajs/vue3";
 
     export default {
         name: "MoviesCard",

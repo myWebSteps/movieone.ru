@@ -21,7 +21,7 @@
 
                         <div class="row">
 
-                            <movies-card :data="movies" :config = "{classes: 'col-xxl-2 col-md-4 mb-4'}"></movies-card>
+                            <movies-card :data="movies" :config = "{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"></movies-card>
 
                             <div v-if="movies.length === 0" class="text-muted"><i class="fas fa-search fa-sm"></i> Не нашел
                                 фильмов по заданным критериям. Попробуйте облегчить мне задачу
