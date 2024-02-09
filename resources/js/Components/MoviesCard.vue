@@ -17,9 +17,12 @@
                             </span>
                         </small>
                     </p>
-                    <small><p class="card-text text-danger pt-0"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i>
-                        {{movie.year}}</p>
-                    </small>
+                    <p class="card-text text-danger pt-0">
+                        <small><i class="fas fa-calendar-alt fa-sm text-gray-400"></i>
+                        {{movie.year}}
+                        </small>
+                    </p>
+
                 </div>
 
             </Link>
