@@ -1834,7 +1834,7 @@ pre code {
     .m-card .card-title, .p-card .card-title {
         font-size: 17px;
     }
-    .p-card p.card-text span.card-text {
+    .phone_text_size {
         font-size: 15px;
     }
 }

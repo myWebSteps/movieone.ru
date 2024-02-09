@@ -12,14 +12,14 @@
                     <h5 class="card-title text-gray-900 mb-1 text-wrap">{{movie.nameEn}}</h5>
                     <p class="card-text mb-0">
                         <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i>
-                            <span v-for="genre in movie.genres" class="text-muted">
+                            <span v-for="genre in movie.genres" class="text-muted phone_text_size">
                                                     {{genre.title}} &nbsp
                             </span>
                         </small>
                     </p>
                     <p class="card-text text-danger pt-0">
-                        <small><i class="fas fa-calendar-alt fa-sm text-gray-400"></i>
-                        {{movie.year}}
+                        <small>
+                            <span class="phone_text_size"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.year}}</span>
                         </small>
                     </p>
 
