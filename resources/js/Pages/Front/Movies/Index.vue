@@ -46,7 +46,7 @@
 
                     <movies-card
                         :data="movies.data"
-                        :config = "{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"
+                        :config = "{classes: 'col-xxl-3 col-xl-4 col-md-4 mb-4'}"
                     >
                     </movies-card>
 
