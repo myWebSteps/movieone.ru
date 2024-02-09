@@ -45,7 +45,7 @@
 
                     <!-- Content Row -->
 
-                    <movies-card :data="item.movies" :config = "{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"></movies-card>
+                    <movies-card :data="item.movies" :config = "{classes: 'col-xxl-2 col-md-4 mb-4'}"></movies-card>
 
                     <!-- Page Heading -->
                 </template>
