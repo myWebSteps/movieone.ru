@@ -29,7 +29,7 @@ class UpdateController extends Controller
         if(isset($data['backdrop']) && $data['backdrop'] !=null){
             $backdrop_path = '/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension();
             $data['backdrop'] = Image::make($data['backdrop'])
-                ->fit(1300, 508)
+                ->fit(1300, 449)
                 ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension()));
         $data['backdrop'] = $backdrop_path;
         }else{

@@ -25,7 +25,7 @@ class StoreController extends Controller
         //Backdrop Upload
         if(isset($data['backdrop'])){
             Image::make($data['backdrop'])
-                ->fit(1300, 508)
+                ->fit(1300, 449)
                 ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoiskId'].'.'.$data['backdrop']->getClientOriginalExtension()));
         }
 
