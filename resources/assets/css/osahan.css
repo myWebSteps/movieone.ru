@@ -1837,11 +1837,13 @@ pre code {
     .phone_text_size {
         font-size: 15px;
     }
-    .phone-cover img{
-        border-radius: 0.35rem !important;
+    .phone-cover{
         padding-top: 1.5em;
         padding-left: 1.5em;
         padding-right: 1.5em;
+    }
+    .phone-cover img{
+        border-radius: 0.35rem !important;
     }
 }
 
