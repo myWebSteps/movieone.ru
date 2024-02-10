@@ -188,8 +188,6 @@
             <!-- End of Main Content -->
             <!-- Footer -->
 
-
-
             <message :message.sync = "message"></message>
 
             <footer class="sticky-footer bg-white">

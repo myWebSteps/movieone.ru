@@ -4,7 +4,7 @@
             <Link :href="`/collections/${collection.slug}`">
                 <div class="row no-gutters">
                     <div class="col-4 d-grid align-content-center">
-                        <img v-lazy="collection.poster" class="card-img" alt="...">
+                        <img v-lazy="collection.poster" class="card-img my_card_img" alt="...">
                     </div>
                     <div class="col-8">
                         <div class="card-body h-100 d-grid">

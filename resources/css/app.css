@@ -121,3 +121,7 @@
 .end{
     align-self: end;
 }
+.my_card_img{
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
