@@ -1,10 +1,10 @@
 <template>
 
-<!--    <Head>-->
-<!--        <title>{{movie.nameRu}}/{{movie.nameEn}} {{movie.meta_title}}</title>-->
-<!--        <meta name="keywords" :content="movie.meta_keywords"/>-->
-<!--        <meta name="description" :content="movie.meta_description"/>-->
-<!--    </Head>-->
+    <Head>
+        <title>{{data.meta_title}}</title>
+        <meta name="keywords" :content="data.meta_keywords"/>
+        <meta name="description" :content="data.meta_description"/>
+    </Head>
 
     <FrontLayout ref="front_layout">
         <!-- Begin Page Content -->
