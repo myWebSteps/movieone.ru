@@ -351,6 +351,10 @@
 
 
             store() {
+                this.form.articles.forEach(elem=>{
+                    delete elem.movies_filter
+                    delete elem.movies_list
+                })
                 this.form.articles = this.form.articles.filter((elem) => {
                     if (elem.article_title != '' && elem.article_image != null && elem.article_description && elem.article_movie != null) {
                         return elem
