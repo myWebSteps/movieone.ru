@@ -21,15 +21,20 @@ class StoreRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
-            'collection_title'=>'required|string',
-            'description_min'=>'required|string',
-            'description'=>'required|string',
+            'collection_title'=>'required|string|min:3|max:40',
+            'description_min'=>'required|string|min:3|max:150',
+            'description'=>'required|string|min:3|max:16300',
             'poster' => 'required|file',
             'articles' => 'required|array',
-            'meta_title' => 'required|string',
-            'meta_keywords'=>'required|string',
-            'meta_description'=>'required',
+            'articles.*.article_title' => 'required|string',
+            'articles.*.article_image' => 'required',
+            'articles.*.article_description' => 'required|string',
+            'articles.*.article_movie' => 'required|integer',
+            'meta_title' => 'required|string|min:3|max:255',
+            'meta_keywords'=>'required|string|min:3|max:255',
+            'meta_description'=>'required|string|min:3|max:16300',
         ];
     }
 }

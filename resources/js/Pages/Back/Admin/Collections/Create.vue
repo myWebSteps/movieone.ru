@@ -38,26 +38,34 @@
                              aria-labelledby="general-tab">
 
                             <div class="col-12 mt-1">
-                                <label for="collection_title">Заголовок коллекции:</label>
+                                <label for="collection_title">Заголовок коллекции:
+                                    <small :class="form.collection_title.length > 40 ? 'text-danger' : ''">
+                                        &nbsp{{form.collection_title.length}}
+                                        / 40</small>
+                                </label>
                                 <input v-model="form.collection_title" type="text"
                                        class="d-block cform cform-custom-input w-100"
                                        id="collection_title" placeholder="Введите заголовок коллекции">
                             </div>
 
                             <div class="col-12 mt-2">
-                                <label class="d-block" for="collection_description_min">Краткое описание:<small
-                                    :class="form.description_min.length > 100 ? 'text-danger' : ''">&nbsp{{form.description_min.length}}
-                                    / 100</small></label>
+                                <label class="d-block" for="collection_description_min">Краткое описание:
+                                    <small :class="form.description_min.length > 150 ? 'text-danger' : ''">
+                                        &nbsp{{form.description_min.length}}
+                                    / 150</small>
+                                </label>
 
                                 <textarea class="w-100 d-block cform cform-custom-input" v-model="form.description_min"
-                                          id="collection_description_min" rows="10"
+                                          id="collection_description_min" rows="3"
                                           placeholder="Вставьте описание"></textarea>
                             </div>
 
                             <div class="col-12 mt-2">
-                                <label class="d-block" for="collection_description">Полное описание: <small
-                                    :class="form.description.length > 1225 ? 'text-danger' : ''">&nbsp{{form.description.length}}
-                                    / 1225</small></label>
+                                <label class="d-block" for="collection_description">Полное описание:
+                                    <small :class="form.description.length > 16300 ? 'text-danger' : ''">
+                                    &nbsp{{form.description.length}}
+                                    / 16300</small>
+                                </label>
 
                                 <textarea class="w-100 d-block cform cform-custom-input" v-model="form.description"
                                           id="collection_description" rows="20"
@@ -87,7 +95,11 @@
                                 <template v-for="(article, index) in form.articles">
                                     <div class="col-12 mt-3 mb-3">
                                         <div class="col-12 mt-1">
-                                            <label :for="`collection_title${index}`">Заголовок коллекции:</label>
+                                            <label :for="`collection_title${index}`">Заголовок коллекции:
+                                                <small :class="article.article_title.length > 255 ? 'text-danger' : ''">
+                                                    &nbsp{{article.article_title.length}}
+                                                    / 255</small>
+                                            </label>
                                             <input v-model="article.article_title" type="text"
                                                    class="d-block cform cform-custom-input w-100"
                                                    :id="`collection_title${index}`"
@@ -95,7 +107,11 @@
                                         </div>
 
                                         <div class="col-12 mt-2">
-                                            <label :for="`article_description${index}`">Текст статьи:</label>
+                                            <label :for="`article_description${index}`">Текст статьи:
+                                                <small :class="article.article_description.length > 16300 ? 'text-danger' : ''">
+                                                    &nbsp{{article.article_description.length}}
+                                                    / 16300</small>
+                                            </label>
                                             <textarea class="w-100 d-block cform cform-custom-input"
                                                       v-model="article.article_description"
                                                       :id="`article_description${index}`" rows="20"
@@ -120,14 +136,43 @@
                                         <div class="col-12 mt-2">
 
                                             <label class="d-block">Выберите видео, соответствующее статье:</label>
-                                            <select v-model="article.article_movie"
-                                                    class="cform cform-custom-input d-block w-100">
-                                                <option :value=null disabled>Выберите видео, соответствующее статье
-                                                </option>
-                                                <option v-for="movie in movies" :value="movie.id">{{movie.nameRu}} /
-                                                    {{movie.nameEn}} / {{movie.year}}
-                                                </option>
-                                            </select>
+
+                                                <div class="input-group mb-3">
+                                                    <input @keypress.enter.prevent="getFilteredMovies(index)" v-model="article.movies_filter"
+                                                           type="search" class="cform cform-custom-input d-block custom-first-element" placeholder="Фильтр по названию..."
+                                                           aria-label="Search" aria-describedby="search-addon"/>
+                                                    <button @click.prevent="getFilteredMovies(index)" class="cform-btn cform-custom-btn cform-btn-secondary custom-last-element"
+                                                            id="search-addon-countries">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+
+                                            <div class="movies_list_wrapper col-12">
+                                                <div>
+                                                    <label>
+                                                        <input v-model="article.article_movie"
+                                                               value= ""
+                                                               class="cform cform-custom-checkbox-radio"
+                                                               type="radio"
+                                                               :name="`movie_article_${index}`"
+                                                               disabled
+                                                        >
+                                                        Фильм не выбран
+                                                    </label>
+                                                </div>
+                                                <div v-for="movie in article.movies_list">
+                                                    <label>
+                                                        <input v-model="article.article_movie"
+                                                               :value="movie.id"
+                                                               class="cform cform-custom-checkbox-radio"
+                                                               type="radio"
+                                                               :name="`movie_article_${index}`"
+                                                        >
+                                                         {{movie.nameRu}} / {{movie.nameEn}} / {{movie.year}}
+                                                    </label>
+                                                </div>
+
+                                            </div>
 
                                         </div>
                                         <div class="col-12 d-flex justify-content-end mt-3 mb-3">
@@ -158,22 +203,33 @@
 
                                 <!-- Meta title -->
                                 <div class="col-12 mt-1">
-                                    <label for="meta_title">Meta title:</label>
+                                    <label for="meta_title">Meta title:
+                                        <small :class="form.meta_title.length > 255 ? 'text-danger' : ''">
+                                            &nbsp{{form.meta_title.length}}
+                                            / 255</small>
+                                    </label>
                                     <input v-model="form.meta_title" type="text"
                                            class="d-block cform cform-custom-input w-100"
                                            id="meta_title" placeholder="Введите meta заголовок">
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="meta_keywords">Meta keywords:</label>
+                                    <label for="meta_keywords">Meta keywords:
+                                        <small :class="form.meta_keywords.length > 255 ? 'text-danger' : ''">
+                                            &nbsp{{form.meta_keywords.length}}
+                                            / 255</small>
+                                    </label>
                                     <input v-model="form.meta_keywords" type="text"
                                            class="w-100 d-block cform cform-custom-input" id="meta_keywords"
                                            placeholder="Meta keywords">
                                 </div>
 
                                 <div class="col-12">
-                                    <label class="d-block" for="meta_description">Meta description:</label>
-
+                                    <label class="d-block" for="meta_description">Meta description:
+                                        <small :class="form.meta_description.length > 16300 ? 'text-danger' : ''">
+                                            &nbsp{{form.meta_description.length}}
+                                            / 16300</small>
+                                    </label>
                                     <textarea class="w-100 d-block cform cform-custom-input"
                                               v-model="form.meta_description" id="meta_description" rows="4"
                                               placeholder="meta description"></textarea>
@@ -203,27 +259,29 @@
 
     export default {
         name: "Create",
-        props: ['movies'],
-        components: {Head, Link, AuthenticatedLayout, Message},
+        props: ['movies', 'filtered'],
+        components: {Head, router, Link, AuthenticatedLayout, Message},
 
         data() {
             return {
                 previews: [],
                 poster_preview: null,
                 form: {
-                    collection_title: null,
+                    collection_title: '',
                     poster: null,
                     description: '',
                     description_min: '',
-                    meta_title: "",
-                    meta_keywords: "",
-                    meta_description: "",
+                    meta_title: '',
+                    meta_keywords: '',
+                    meta_description: '',
                     articles: [
                         {
-                            article_title: null,
+                            article_title: '',
                             article_image: null,
-                            article_description: null,
+                            article_description: '',
                             article_movie: null,
+                            movies_filter: "",
+                            movies_list: this.movies,
                         }
                     ],
                 },
@@ -236,6 +294,15 @@
         },
 
         methods: {
+            getFilteredMovies(index){
+                axios.post('/admin/collections/get_filtered_movies', {
+                    query_filter: this.form.articles[index].movies_filter
+                })
+                .then(res=>{
+                    this.form.articles[index].article_movie = null;
+                    this.form.articles[index].movies_list = res.data;
+                })
+            },
 
             handlePoster(event)
             {
@@ -256,10 +323,12 @@
 
             addArticle() {
                 this.form.articles.push({
-                    article_title: null,
+                    article_title: '',
                     article_image: null,
-                    article_description: null,
+                    article_description: '',
                     article_movie: null,
+                    movies_filter: '',
+                    movies_list: this.movies,
                 })
             },
 
@@ -276,8 +345,6 @@
                     this.message.type = 'error'
                     this.message.show = true
                 })
-
-
             }
         },
 

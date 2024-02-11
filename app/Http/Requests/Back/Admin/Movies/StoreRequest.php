@@ -33,16 +33,16 @@ class StoreRequest extends FormRequest
             'duration'=>'required|string',
             'rate'=>'required|string',
             'budget' =>'nullable|string',
-            'slogan'=>'required|string',
-            'description'=>'required|string',
+            'slogan'=>'required|string|min:3|max:255',
+            'description'=>'required|string|min:3|max:16300',
             'poster' => 'required|file',
             'backdrop' => 'nullable|file',
             'type'=>'required|string',
             'trailers' => 'nullable',
             'video_allowed' => 'required|boolean',
             'title_id' =>'required|string',
-            'meta_keywords' => 'required|string',
-            'meta_description' => 'required|string',
+            'meta_keywords' => 'required|string|min:3|max:255',
+            'meta_description' => 'required|string|min:3|max:16383',
         ];
     }
 }

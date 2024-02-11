@@ -221,12 +221,20 @@
                         </div>
 
                             <div class="col-12">
-                                <label for="slogan">Слоган:</label>
+                                <label for="slogan">Слоган:
+                                    <small :class="form.slogan.length > 255 ? 'text-danger' : ''">
+                                        &nbsp{{form.slogan.length}}
+                                        / 255</small>
+                                </label>
                                 <input v-model="form.slogan" type="text" class="d-block cform cform-custom-input w-100" id="slogan" placeholder="Слоган">
                             </div>
 
                             <div class="col-12">
-                                <label class="d-block" for="description">Описание:</label>
+                                <label class="d-block" for="description">Описание:
+                                    <small :class="form.description.length > 16300 ? 'text-danger' : ''">
+                                        &nbsp{{form.description.length}}
+                                        / 16300</small>
+                                </label>
                                 <textarea class="w-100 d-block cform cform-custom-input" v-model="form.description" id="description" rows="10" placeholder="Вставьте описание"></textarea>
                             </div>
 
@@ -250,7 +258,11 @@
 
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="meta_keywords">Meta keywords:</label>
+                                <label for="meta_keywords">Meta keywords:
+                                    <small :class="form.meta_keywords.length > 255 ? 'text-danger' : ''">
+                                        &nbsp{{form.meta_keywords.length}}
+                                        / 255</small>
+                                </label>
                                 <input v-model="form.meta_keywords" type="text" class="d-block cform cform-custom-input w-100" id="meta_keywords"
                                        placeholder="Meta keywords">
                             </div>
@@ -258,7 +270,11 @@
 
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="d-block" for="meta_description">Meta description:</label>
+                                <label class="d-block" for="meta_description">Meta description:
+                                    <small :class="form.meta_description.length > 16383 ? 'text-danger' : ''">
+                                        &nbsp{{form.meta_description.length}}
+                                        / 16383</small>
+                                </label>
                                 <textarea class="w-100 d-block cform cform-custom-input" v-model="form.meta_description" id="meta_description" rows="4"
                                           placeholder="meta description"></textarea>
                             </div>

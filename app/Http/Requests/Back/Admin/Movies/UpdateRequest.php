@@ -36,16 +36,16 @@ class UpdateRequest extends FormRequest
             'duration'=>'required',
             'rate'=>'required',
             'budget' => 'nullable|string',
-            'slogan'=>'required',
-            'description'=>'required',
+            'slogan'=>'required|min:3|max:255',
+            'description'=>'required|min:3|max:16300',
             'poster' => 'nullable',
             'backdrop' => 'nullable',
             'type'=>'required',
             'trailer'=>'nullable|string',
             'video_allowed' => 'required|boolean',
             'title_id' => 'required',
-            'meta_keywords' => 'required|string',
-            'meta_description' => 'required|string',
+            'meta_keywords' => 'required|string|min:3|max:255',
+            'meta_description' => 'required|string|min:3|max:16300',
         ];
     }
 }

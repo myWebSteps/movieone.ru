@@ -121,3 +121,7 @@
 .end{
     align-self: end;
 }
+.movies_list_wrapper{
+    max-height: 500px;
+    overflow-Y: auto;
+}

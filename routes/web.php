@@ -70,6 +70,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('/', \App\Http\Controllers\Back\Admin\Collections\IndexController::class)->name('collections.index');
             Route::patch('/{collection}', \App\Http\Controllers\Back\Admin\Collections\UpdateController::class)->name('collections.update');
             Route::delete('/{collection}', \App\Http\Controllers\Back\Admin\Collections\DestroyController::class)->name('collections.destroy');
+            Route::post('/get_filtered_movies', \App\Http\Controllers\Back\Admin\Collections\FilteredMoviesController::class)->name('collections.filtered_movies');
         });
         route::prefix('/comments/movies')->group(function(){
             Route::get('/', \App\Http\Controllers\Back\Admin\Comments\Movies\IndexController::class)->name('comments.index');

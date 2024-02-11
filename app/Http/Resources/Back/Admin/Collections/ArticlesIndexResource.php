@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Back\Admin\Collections;
 
+use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,6 +20,8 @@ class ArticlesIndexResource extends JsonResource
             'article_description' => $this->description,
             'article_image' => URL('/storage/collections/articles/' . $this->image),
             'article_movie'=> $this->movie_id,
+            'movies_list' => Movie::all('id', 'nameRu', 'nameEn', 'year'),
+            'movies_filter' => ''
         ];
     }
 }

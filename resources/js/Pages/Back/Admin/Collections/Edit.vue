@@ -91,12 +91,13 @@
                                     <img class="container-fluid col-xs-12 col-sm-6 col-12"
                                          :src="poster_preview" alt="">
                                 </div>
-                                <label for="`article_image${index}`">Картинка:</label>
-                                <div class="mb-3" :id="`article_image${index}`">
+                                <label>Картинка:
+                                <div class="mb-3">
                                     <input @input="handlePoster($event)"
                                            class="cform cform-custom-file"
                                            type="file">
                                 </div>
+                                </label>
                             </div>
 
                         </div>
@@ -133,26 +134,56 @@
                                                 <img class="container-fluid col-xs-12 col-sm-6 col-12"
                                                      :src="previews[index]" alt="">
                                             </div>
-                                            <label for="`article_image${index}`">Картинка:</label>
-                                            <div class="mb-3" :id="`article_image${index}`">
+                                            <label>Картинка:
+                                            <div class="mb-3">
                                                 <input @input="handleImage($event, index)"
                                                        class="cform cform-custom-file"
                                                        type="file">
                                             </div>
+                                            </label>
                                         </div>
 
                                         <!-- Related videos -->
                                         <div class="col-12 mt-2">
 
                                             <label class="d-block">Выберите видео, соответствующее статье:</label>
-                                            <select v-model="article.article_movie"
-                                                    class="cform cform-custom-input d-block w-100">
-                                                <option :value=null disabled>Выберите видео, соответствующее статье
-                                                </option>
-                                                <option v-for="movie in movies" :value="movie.id">{{movie.nameRu}} /
-                                                    {{movie.nameEn}} / {{movie.year}}
-                                                </option>
-                                            </select>
+
+                                            <div class="input-group mb-3">
+                                                <input @keypress.enter.prevent="getFilteredMovies(index)" v-model="article.movies_filter"
+                                                       type="search" class="cform cform-custom-input d-block custom-first-element" placeholder="Фильтр по названию..."
+                                                       aria-label="Search" aria-describedby="search-addon"/>
+                                                <button @click.prevent="getFilteredMovies(index)" class="cform-btn cform-custom-btn cform-btn-secondary custom-last-element"
+                                                        id="search-addon-countries">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+
+                                            <div class="movies_list_wrapper col-12">
+                                                <div>
+                                                    <label>
+                                                        <input v-model="article.article_movie"
+                                                               value=""
+                                                               class="cform cform-custom-checkbox-radio"
+                                                               type="radio"
+                                                               :name="`movie_article_${index}`"
+                                                               disabled
+                                                        >
+                                                        Фильм не выбран
+                                                    </label>
+                                                </div>
+                                                <div v-for="movie in article.movies_list">
+                                                    <label>
+                                                        <input v-model="article.article_movie"
+                                                               :value="movie.id"
+                                                               class="cform cform-custom-checkbox-radio"
+                                                               type="radio"
+                                                               :name="`movie_article_${index}`"
+                                                        >
+                                                        {{movie.nameRu}} / {{movie.nameEn}} / {{movie.year}}
+                                                    </label>
+                                                </div>
+
+                                            </div>
 
                                         </div>
                                         <div class="col-12 d-flex justify-content-end mt-3 mb-3">
@@ -257,6 +288,16 @@
 
         methods: {
 
+            getFilteredMovies(index){
+                axios.post('/admin/collections/get_filtered_movies', {
+                    query_filter: this.form.articles[index].movies_filter
+                })
+                    .then(res=>{
+                        this.form.articles[index].article_movie = "";
+                        this.form.articles[index].movies_list = res.data;
+                    })
+            },
+
             handlePoster(event) {
                 this.form.poster = event.target.files[0]
                 this.poster_preview = URL.createObjectURL(event.target.files[0])
@@ -275,10 +316,12 @@
 
             addArticle() {
                 this.form.articles.push({
-                    article_title: null,
+                    article_title: '',
                     article_image: null,
-                    article_description: null,
+                    article_description: '',
                     article_movie: null,
+                    movies_filter: '',
+                    movies_list: this.movies,
                 })
             },
 
