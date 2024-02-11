@@ -48,7 +48,11 @@
                             </div>
 
                             <div class="col-12 mt-2">
-                                <label for="collection_title">Заголовок коллекции:</label>
+                                <label for="collection_title">Заголовок коллекции:
+                                    <small :class="form.collection_title.length > 40 ? 'text-danger' : ''">
+                                        &nbsp{{form.collection_title.length}}
+                                        / 40</small>
+                                </label>
                                 <input v-model="form.collection_title" type="text"
                                        class="d-block cform cform-custom-input w-100"
                                        id="collection_title" placeholder="Введите заголовок коллекции">
@@ -62,9 +66,9 @@
                             </div>
 
                             <div class="col-12 mt-2">
-                                                                <label class="d-block" for="collection_description_min">Краткое описание:<small
-                                                                    :class="form.description_min.length > 100 ? 'text-danger' : ''">&nbsp{{form.description_min.length}}
-                                                                    / 100</small></label>
+                                <label class="d-block" for="collection_description_min">Краткое описание:<small
+                                    :class="form.description_min.length > 100 ? 'text-danger' : ''">&nbsp{{form.description_min.length}}
+                                / 100</small></label>
 
                                 <textarea class="w-100 d-block cform cform-custom-input" v-model="form.description_min"
                                           id="collection_description_min" rows="10"
@@ -109,7 +113,11 @@
                                 <template v-for="(article, index) in form.articles">
                                     <div class="col-12 mt-3 mb-3">
                                         <div class="col-12 mt-1">
-                                            <label :for="`collection_title${index}`">Заголовок коллекции:</label>
+                                            <label :for="`article_title${index}`">Заголовок статьи:
+                                                <small :class="article.article_title.length > 255 ? 'text-danger' : ''">
+                                                    &nbsp{{article.article_title.length}}
+                                                    / 255</small>
+                                            </label>
                                             <input v-model="article.article_title" type="text"
                                                    class="d-block cform cform-custom-input w-100"
                                                    :id="`collection_title${index}`"
@@ -117,7 +125,11 @@
                                         </div>
 
                                         <div class="col-12 mt-2">
-                                            <label :for="`article_description${index}`">Текст статьи:</label>
+                                            <label :for="`article_description${index}`">Текст статьи:
+                                                <small :class="article.article_description.length > 16300 ? 'text-danger' : ''">
+                                                    &nbsp{{article.article_description.length}}
+                                                    / 16300</small>
+                                            </label>
                                             <textarea class="w-100 d-block cform cform-custom-input"
                                                       v-model="article.article_description"
                                                       :id="`article_description${index}`" rows="20"
@@ -214,21 +226,33 @@
 
                                 <!-- Meta title -->
                                 <div class="col-12 mt-1">
-                                    <label for="meta_title">Meta title:</label>
+                                    <label for="meta_title">Meta title:
+                                        <small :class="form.meta_title.length > 255 ? 'text-danger' : ''">
+                                            &nbsp{{form.meta_title.length}}
+                                            / 255</small>
+                                    </label>
                                     <input v-model="form.meta_title" type="text"
                                            class="d-block cform cform-custom-input w-100"
                                            id="meta_title" placeholder="Введите meta заголовок">
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="meta_keywords">Meta keywords:</label>
+                                    <label for="meta_keywords">Meta keywords:
+                                        <small :class="form.meta_keywords.length > 255 ? 'text-danger' : ''">
+                                            &nbsp{{form.meta_keywords.length}}
+                                            / 255</small>
+                                    </label>
                                     <input v-model="form.meta_keywords" type="text"
                                            class="w-100 d-block cform cform-custom-input" id="meta_keywords"
                                            placeholder="Meta keywords">
                                 </div>
 
                                 <div class="col-12">
-                                    <label class="d-block" for="meta_description">Meta description:</label>
+                                    <label class="d-block" for="meta_description">Meta description:
+                                        <small :class="form.meta_description.length > 16300 ? 'text-danger' : ''">
+                                            &nbsp{{form.meta_description.length}}
+                                            / 16300</small>
+                                    </label>
 
                                     <textarea class="w-100 d-block cform cform-custom-input"
                                               v-model="form.meta_description" id="meta_description" rows="4"
