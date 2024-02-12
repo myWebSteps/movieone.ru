@@ -67,7 +67,7 @@
                         <div class="artist-list mt-3">
                                 <ul>
                                     <li v-for="article in data.articles" class="mt-3">
-                                            <Link :href="`#article${article.article_id}`" class="articles text-truncate text-wrap font-weight-bold">{{article.article_title}}</Link>
+                                            <Link :href.prevent="`#article${article.article_id}`" class="articles text-truncate text-wrap font-weight-bold">{{article.article_title}}</Link>
                                     </li>
                                 </ul>
                         </div>
@@ -92,8 +92,8 @@
                                     <hr>
                                 </article>
 
-                                <article v-for="article in data.articles" :id="`article${article.article_id}`">
-                                    <h3 class="mt-0 mb-3">{{article.article_title}}</h3>
+                                <article v-for="article in data.articles">
+                                    <h3 :id="`article${article.article_id}`" class="mt-0 mb-3">{{article.article_title}}</h3>
                                     <div>
                                         <img class="img-fluid" v-lazy="article.image" :alt="article.article_title">
                                     </div>

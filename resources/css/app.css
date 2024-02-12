@@ -125,3 +125,6 @@
     max-height: 300px;
     overflow-y: auto;
 }
+.position-sticky{
+    top: 0;
+}
