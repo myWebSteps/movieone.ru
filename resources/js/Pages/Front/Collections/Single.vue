@@ -105,7 +105,7 @@
                             </div>
 
                             <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-                                <comments-component :comments="data" :id="this.data.id" type="collections" :message.sync = "message"></comments-component>
+                                <comments-component :comments="data" :id="data.id" type="collections" :message.sync = "message"></comments-component>
                             </div>
                         </div>
                     </div>

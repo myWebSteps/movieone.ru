@@ -39,7 +39,7 @@
                             <!-- Related videos -->
                             <div class="col-12 mt-2">
                                 <label class="d-block">Статус:</label>
-                                <select v-model="this.form.is_published"
+                                <select v-model="form.is_published"
                                         class="cform cform-custom-input d-block">
                                     <option :value='0'>Черновик</option>
                                     <option :value='1'>Коллекция опубликована</option>
@@ -138,11 +138,11 @@
 
                                         <!--poster Upload -->
                                         <div class="col-12 mt-4">
-                                            <div class="mb-2 mt-2" v-if="!this.previews[index]">
+                                            <div class="mb-2 mt-2" v-if="!previews[index]">
                                                 <img class="container-fluid col-xs-12 col-sm-6 col-12"
                                                      :src="article.article_image" alt="">
                                             </div>
-                                            <div class="mb-2 mt-2" v-if="this.previews[index]">
+                                            <div class="mb-2 mt-2" v-if="previews[index]">
                                                 <img class="container-fluid col-xs-12 col-sm-6 col-12"
                                                      :src="previews[index]" alt="">
                                             </div>
