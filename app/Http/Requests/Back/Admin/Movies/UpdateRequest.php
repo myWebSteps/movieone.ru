@@ -23,6 +23,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id' => 'required',
             'kinopoisk_id'=>'required',
             'slug' => ['required', Rule::unique('movies', 'id')->ignore($this->id)],
             'nameRu'=>'required',
@@ -34,10 +35,9 @@ class UpdateRequest extends FormRequest
             'genres'=>'required',
             'year'=>'required',
             'duration'=>'required',
-            'plot' => 'required|integer',
-            'actors_game' => 'required|integer',
-            'atmosphere' => 'required|integer',
-            'rate'=>'required',
+            'default_plot' => 'required|integer',
+            'default_actors_game' => 'required|integer',
+            'default_atmosphere' => 'required|integer',
             'budget' => 'nullable|string',
             'slogan'=>'required|min:3|max:255',
             'description'=>'required|min:3|max:16300',

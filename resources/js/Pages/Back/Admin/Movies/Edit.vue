@@ -256,14 +256,14 @@
                                             <div class="col-12">
                                                 <label class="d-block mt-2">Сюжет:</label>
                                                 <div class="radio-group radio-group-small">
-                                                    <input v-model="form.plot" :value=null type="radio"
+                                                    <input v-model="form.default_plot" :value=null type="radio"
                                                            id="rate_plot_null" name="rate_plot"
                                                            checked disabled>
                                                     <label class="m-0" for="rate_plot_null"><i
                                                         class="fa-solid fa-not-equal"></i></label>
                                                     <template v-for="item in 5">
-                                                        <input v-model="form.plot"
-                                                               @input.prevent="countScore(item, form.actors_game, form.atmosphere)"
+                                                        <input v-model="form.default_plot"
+                                                               @input.prevent="countScore(item, form.default_actors_game, form.default_atmosphere)"
                                                                :value="item" type="radio" :id="`rate_plot_${item}`"
                                                                name="rate_plot">
                                                         <label class="m-0" :for="`rate_plot_${item}`">{{item}}</label>
@@ -274,15 +274,15 @@
                                             <div class="col-12 mt-2">
                                                 <label class="d-block pt-2">Игра актеров:</label>
                                                 <div class="radio-group radio-group-small">
-                                                    <input v-model="form.actors_game" :value=null type="radio"
+                                                    <input v-model="form.default_actors_game" :value=null type="radio"
                                                            id="rate_actors_game_null" name="rate_actors_game"
                                                            checked disabled>
                                                     <label class="m-0" for="rate_actors_game_null"><i
                                                         class="fa-solid fa-not-equal"></i></label>
                                                     <template v-for="item in 5">
                                                         <input
-                                                            @input.prevent="countScore(form.plot, item, form.atmosphere)"
-                                                            v-model="form.actors_game" :value="item" type="radio"
+                                                            @input.prevent="countScore(form.default_plot, item, form.default_atmosphere)"
+                                                            v-model="form.default_actors_game" :value="item" type="radio"
                                                             :id="`rate_actors_game_${item}`" name="rate_actors_game">
                                                         <label class="m-0"
                                                                :for="`rate_actors_game_${item}`">{{item}}</label>
@@ -292,15 +292,15 @@
                                             <div class="col-12 mt-2">
                                                 <label class="d-block pt-2">Атмосфера:</label>
                                                 <div class="radio-group radio-group-small">
-                                                    <input v-model="form.atmosphere" :value=null type="radio"
+                                                    <input v-model="form.default_atmosphere" :value=null type="radio"
                                                            id="rate_atmosphere_null" name="rate_atmosphere"
                                                            checked disabled>
                                                     <label class="m-0" for="rate_atmosphere_null"><i
                                                         class="fa-solid fa-not-equal"></i></label>
                                                     <template v-for="item in 5">
                                                         <input
-                                                            @input.prevent="countScore(form.plot, form.actors_game, item)"
-                                                            v-model="form.atmosphere" :value="item" type="radio"
+                                                            @input.prevent="countScore(form.default_plot, form.default_actors_game, item)"
+                                                            v-model="form.default_atmosphere" :value="item" type="radio"
                                                             :id="`rate_atmosphere_${item}`" name="rate_atmosphere">
                                                         <label class="m-0"
                                                                :for="`rate_atmosphere_${item}`">{{item}}</label>
@@ -401,7 +401,6 @@
         <message :message.sync="message"></message>
 
     </AuthenticatedLayout>
-
 </template>
 
 <script>
@@ -432,9 +431,9 @@
                     genres: this.movie.genres,
                     type: this.movie.type,
                     duration: this.movie.duration,
-                    plot: this.movie.plot,
-                    actors_game: this.movie.actors_game,
-                    atmosphere: this.movie.atmosphere,
+                    default_plot: this.movie.default_plot,
+                    default_actors_game: this.movie.default_actors_game,
+                    default_atmosphere: this.movie.default_atmosphere,
                     rate: this.movie.rate,
                     budget: this.movie.budget,
                     slogan: this.movie.slogan,
@@ -465,9 +464,6 @@
                 if (plot !== null && actors !== null && atmosphere !== null) {
                     this.form.rate = Math.round((plot + actors + atmosphere) / 3 * 10) / 10
                 }
-                console.log(plot)
-                console.log(actors)
-                console.log(atmosphere)
             },
 
             deleteTrailer(id) {
@@ -500,6 +496,7 @@
                 })
                 router.post(`/admin/movies/${this.form.id}`, {
                     _method: 'patch',
+                    id: this.form.id,
                     kinopoisk_id: this.form.kinopoisk_id,
                     slug: this.form.slug,
                     nameRu: this.form.nameRu,
@@ -511,10 +508,9 @@
                     genres: this.form.genres,
                     year: this.form.year,
                     duration: this.form.duration,
-                    plot: this.form.plot,
-                    actors_game: this.form.actors_game,
-                    atmosphere: this.form.atmosphere,
-                    rate: this.form.rate,
+                    default_plot: this.form.default_plot,
+                    default_actors_game: this.form.default_actors_game,
+                    default_atmosphere: this.form.default_atmosphere,
                     budget: this.form.budget,
                     slogan: this.form.slogan,
                     description: this.form.description,

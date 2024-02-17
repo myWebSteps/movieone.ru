@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     <div class="bg-white p-3 widget shadow rounded mb-4">
-                        <h6 class="h6 mb-3 mt-0 font-weight-bold text-gray-900">Другие коллекции:</h6>
+                        <h6 class="h6 mb-3 mt-0 font-weight-bold text-gray-900">Другие коллекции</h6>
                             <div class="card p-card border-0 mt-2"  v-for="collection in relativeCollections">
                                 <Link :href="`/collections/${collection.slug}`">
                                     <div class="row no-gutters">

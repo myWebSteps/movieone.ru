@@ -68,9 +68,8 @@
                             Видео
                         </NavLink>
                         <div class="d-flex justify-content-start">
-                            <span><small class="text-muted">{{comments.total}}</small></span>
                         <Dropdown
-                            label="Комментарии"
+                            :label="`Комментарии ${comments.total}`"
                             as-nav-item
                             >
                             <DropdownLink
@@ -141,9 +140,9 @@
             return{
                 comments:
                     {
-                        movies: null,
-                        collections: null,
-                        total: null,
+                        movies: '',
+                        collections: '',
+                        total: '',
                     }
             }
         },
@@ -157,7 +156,7 @@
                 .then(resp=>{
                     console.log(resp.data.total)
                     this.comments.movies = resp.data.movies
-                    this.comments.collections = resp.data.movies
+                    this.comments.collections = resp.data.collections
                     this.comments.total = resp.data.total
                 })
             }
