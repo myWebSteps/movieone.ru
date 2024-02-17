@@ -1,6 +1,6 @@
 <template>
 
-    <Head title="Редактировать Категорию" />
+    <Head title="Редактировать комментарий" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -17,16 +17,7 @@
                                 <label for="authorName">Имя:</label>
                                 <input v-model="form.name" type="text" class="d-block cform cform-custom-input w-100" id="authorName" placeholder="Имя автора">
                             </div>
-                            <div class="col-3 col-xs-12 mb-3">
-                            <label for="authorRating">Рейтинг:</label>
-                            <select v-model="form.rating" class="d-block cform cform-custom-input" id="authorRating">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                            </select>
-                            </div>
+
                             <div class="col-12 mb-3">
                                 <label for="commentDescription">Описание</label>
                                 <textarea v-model="form.description" type="text" rows="10" class="d-block cform cform-custom-input w-100" id="commentDescription">
@@ -64,11 +55,12 @@
     import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
     import {router} from '@inertiajs/vue3';
+    import Message from "@/Components/Message.vue";
 
     export default {
         name: "Edit",
         props: ['comment'],
-        components: {Head, Link, router, AuthenticatedLayout},
+        components: {Head, Link, router, AuthenticatedLayout, Message},
 
         data(){
             return{
@@ -78,9 +70,10 @@
                     show: false,
                 },
                 form: {
+                    collection_id: this.comment.collection_id,
                     name: this.comment.name,
-                    rating: this.comment.rate,
-                    description: this.comment.comment,
+                    rating: this.comment.rating,
+                    description: this.comment.description,
                     approved: this.comment.approved,
                 }
             }
@@ -99,6 +92,7 @@
 
             updateComment(){
                  router.patch(`/admin/comments/collections/${this.comment.id}`, {
+                    collection_id: this.form.collection_id,
                     name: this.form.name,
                     rating: this.form.rating,
                     description: this.form.description,

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Carbon;
 
-class SingleIndexResource extends JsonResource
+class IndexResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,16 +15,14 @@ class SingleIndexResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
         return [
             'id' => $this->id,
-            'slug' => $this->slug,
-            'date' => Carbon::parse($this->updated_at)->format('d-m-Y H:i'),
             'collection_title' => $this->collection_title,
-            'rating' => $this->rating,
+            'slug' => $this->slug,
             'description_min' => $this->description_min,
-            'description' => $this->description,
-            'articles' => ArticlesIndexResource::collection($this->articles)->resolve(),
-            'comments' => CommentsResource::collection($this->comments()->where('approved', 1)->get())->resolve(),
+            'poster' => URL('/storage/collections/posters/' . $this->poster),
+            'date' => Carbon::parse($this->updated_at)->format('d-m-Y H:i'),
         ];
     }
 }

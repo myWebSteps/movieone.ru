@@ -10,6 +10,7 @@ Route::get('/get_genres', \App\Http\Controllers\Info\GetGenresController::class)
 Route::get('/get_categories', \App\Http\Controllers\Info\GetCategoriesController::class);
 Route::post('/playlist', \App\Http\Controllers\Front\Movies\PlaylistController::class);
 Route::post('/bookmarks', \App\Http\Controllers\Front\Collections\BookmarksController::class);
+Route::post('/get_comments_count', \App\Http\Controllers\Info\CommentsCountController::class);
 
 
 Route::get('/', \App\Http\Controllers\Front\HomeController::class)->name('front.index');

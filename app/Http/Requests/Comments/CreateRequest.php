@@ -24,7 +24,10 @@ class CreateRequest extends FormRequest
         return [
             'id' => 'required|integer',
             'name' => 'required|string|min:3|max:50',
-            'rating' => 'required|integer',
+            'plot' => 'required|integer',
+            'actors_game' => 'required|integer',
+            'atmosphere' => 'required|integer',
+            'rating' => 'required',
             'description' => 'required|string|min:5|max:500'
         ];
     }
@@ -35,6 +38,9 @@ class CreateRequest extends FormRequest
             'name.required' => 'Имя - это обязательное поле',
             'name.min' => 'Имя должно содержать минимум 3 символа',
             'name.max' => 'Имя должно содержать максимум 50 символов',
+            'plot' => 'Оцените сюжет',
+            'actors_game' => 'Оцените игру актеров',
+            'atmosphere' => 'Оцените атмосферу киноленты',
             'rating.required' => 'Рейтинг это обязательное поле',
             'description.required' => 'Отзыв это обязательное поле',
             'description.min' => 'Отзыв должен содержать минимум 5 символов',

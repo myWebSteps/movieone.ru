@@ -18,9 +18,12 @@ class CommentResource extends JsonResource
     {
         return [
             'name' => $this->name,
+            'plot' => $this->plot,
+            'actors_game' => $this->actors_game,
+            'atmosphere' => $this->atmosphere,
             'rating' => $this->rating,
             'description' => $this->description,
-            'updated_at' => $this->updated_at->diffForHumans()
+            'updated_at' => $this->updated_at->diffForHumans(),
         ];
     }
 }

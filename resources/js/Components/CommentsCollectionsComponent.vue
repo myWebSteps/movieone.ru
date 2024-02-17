@@ -47,51 +47,18 @@
                                    required="" placeholder="Введите имя">
                         </div>
                         <div class="col-xl-6 col-12 mt-2">
-                        <label class="d-block pt-2">Сюжет:</label>
+                        <label class="d-block pt-2">Оценка:</label>
                             <div class="radio-group radio-group-small">
-                                <input v-model="commentsForm.plot" :value=null type="radio" id="comment_plot_null" name="comment_plot"
+                                <input v-model="commentsForm.rating" :value=null type="radio" id="comment_plot_null" name="comment_plot"
                                        checked disabled>
                                 <label class="m-0" for="comment_plot_null"><i class="fa-solid fa-not-equal"></i></label>
                                 <template v-for="item in 5">
-                                    <input v-model="commentsForm.plot" @input.prevent="countScore(item, commentsForm.actors_game, commentsForm.atmosphere)"
-                                           :value="item" type="radio" :id="`comment_plot_${item}`" name="comment_plot">
-                                    <label class="m-0" :for="`comment_plot_${item}`">{{item}}</label>
+                                    <input v-model="commentsForm.rating" :value="item" type="radio" :id="`comment_rating_${item}`" name="comment_rating">
+                                    <label class="m-0" :for="`comment_rating_${item}`">{{item}}</label>
                                 </template>
 
                             </div>
                         </div>
-                        <div class="col-xl-6 col-12 mt-2">
-                        <label class="d-block pt-2">Игра актеров:</label>
-                        <div class="radio-group radio-group-small">
-                            <input v-model="commentsForm.actors_game" :value=null type="radio" id="comment_actors_game_null" name="comment_actors_game"
-                                   checked disabled>
-                            <label class="m-0" for="comment_actors_game_null"><i class="fa-solid fa-not-equal"></i></label>
-                            <template v-for="item in 5">
-                                <input @input.prevent="countScore(commentsForm.plot, item, commentsForm.atmosphere)"
-                                       v-model="commentsForm.actors_game" :value="item" type="radio"
-                                       :id="`comment_actors_game_${item}`" name="comment_actors_game">
-                                <label class="m-0" :for="`comment_actors_game_${item}`">{{item}}</label>
-                            </template>
-                        </div>
-                        </div>
-                        <div class="col-xl-6 col-12 mt-2">
-                        <label class="d-block pt-2">Атмосфера:</label>
-                        <div class="radio-group radio-group-small">
-                            <input v-model="commentsForm.atmosphere" :value=null type="radio" id="comment_atmosphere_null" name="comment_atmosphere"
-                                   checked disabled>
-                            <label class="m-0" for="comment_atmosphere_null"><i class="fa-solid fa-not-equal"></i></label>
-                            <template v-for="item in 5">
-                                <input @input.prevent="countScore(commentsForm.plot, commentsForm.actors_game, item)"
-                                       v-model="commentsForm.atmosphere" :value="item" type="radio"
-                                       :id="`comment_atmosphere_${item}`" name="comment_atmosphere">
-                                <label class="m-0" :for="`comment_atmosphere_${item}`">{{item}}</label>
-                            </template>
-                        </div>
-                        </div>
-
-                    <div v-if="commentsForm.rating" class="col-12 mt-4">
-                        <p class="text-muted">Общая оценка: {{commentsForm.rating}}</p>
-                    </div>
 
                     <div class="col-12 mt-2">
                             <label>Комментарий:
@@ -126,22 +93,12 @@
             return {
                 commentsForm: {
                     name: null,
-                    plot: null,
-                    actors_game: null,
-                    atmosphere: null,
                     rating: null,
                     description: '',
                 },
             }
         },
         methods: {
-            countScore(plot, actors, atmosphere ){
-                if(plot !== null && actors !== null && atmosphere !== null)
-                {
-                  this.commentsForm.rating = Math.round((plot + actors + atmosphere) / 3 * 10) / 10
-                }
-            },
-
             leaveComment() {
                 router.post(`/${this.type}/add_comment`, {
                     id: this.id,

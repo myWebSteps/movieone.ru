@@ -18,6 +18,10 @@ class MoviesIndexResource extends JsonResource
         return [
             'id' => $this->id,
             'slug' => $this->slug,
+            'plot' => $this->plot,
+            'actors_game' => $this->actors_game,
+            'atmosphere' => $this->atmosphere,
+            'rating' => $this->rate,
         ];
     }
 }

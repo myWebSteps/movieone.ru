@@ -19,6 +19,7 @@ class RelatedCollectionsResource extends JsonResource
                 'id' => $this->id,
                 'slug' => $this->slug,
                 'collection_title' => $this->collection_title,
+                'description_min' => $this->description_min,
                 'poster' => URL('/storage/collections/posters/'.$this->poster),
                 'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y H:i'),
            ];

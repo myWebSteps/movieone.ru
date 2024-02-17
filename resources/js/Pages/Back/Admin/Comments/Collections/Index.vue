@@ -1,6 +1,6 @@
 <template>
 
-    <Head title="Категории" />
+    <Head title="Комментарии к коллекциям" />
 
     <AuthenticatedLayout>
         <template #header>

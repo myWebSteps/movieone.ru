@@ -22,8 +22,8 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'movie_id' => 'required|integer',
             'name' => 'required|string',
-            'rating' => 'required|integer',
             'description' => 'required|string',
             'approved' => 'required|boolean'
         ];

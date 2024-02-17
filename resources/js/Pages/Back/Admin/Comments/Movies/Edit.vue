@@ -1,6 +1,6 @@
 <template>
 
-    <Head title="Редактировать Категорию" />
+    <Head title="Редактировать комментарий" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -10,22 +10,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-
                     <form @submit.prevent="updateComment()">
                         <div class="card-body">
                             <div class="col-6 col-xs-12 mb-3">
                                 <label for="authorName">Имя:</label>
                                 <input v-model="form.name" type="text" class="d-block cform cform-custom-input w-100" id="authorName" placeholder="Имя автора">
-                            </div>
-                            <div class="col-3 col-xs-12 mb-3">
-                            <label for="authorRating">Рейтинг:</label>
-                            <select v-model="form.rating" class="d-block cform cform-custom-input" id="authorRating">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                            </select>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="commentDescription">Описание</label>
@@ -78,6 +67,7 @@
                     show: false,
                 },
                 form: {
+                    movie_id: this.comment.movie_id,
                     name: this.comment.name,
                     rating: this.comment.rating,
                     description: this.comment.description,
@@ -98,8 +88,8 @@
         methods:{
             updateComment(){
                 router.patch(`/admin/comments/movies/${this.comment.id}`, {
+                    movie_id: this.comment.movie_id,
                     name: this.form.name,
-                    rating: this.form.rating,
                     description: this.form.description,
                     approved: this.form.approved,
                     })

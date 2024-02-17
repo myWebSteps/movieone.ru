@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Comments\CreateRequest;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CreateController extends Controller
 {
@@ -16,6 +17,9 @@ class CreateController extends Controller
         Comment::create([
             'movie_id' => $data['id'],
             'name' => $data['name'],
+            'plot' => $data['plot'],
+            'actors_game' => $data['actors_game'],
+            'atmosphere' => $data['atmosphere'],
             'rating' => $data['rating'],
             'description' => $data['description'],
         ]);

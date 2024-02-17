@@ -1,6 +1,6 @@
 <template>
 
-    <Head title="Категории" />
+    <Head title="Список комментариев к видео" />
 
     <AuthenticatedLayout>
         <template #header>

@@ -12,11 +12,10 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
                     <div ref="cover" class="cover-pic d-none">
-                        <div v-if="comments.total_count >= 3"
+                        <div
                              class="position-absolute bg-white shadow-sm rounded text-center p-2 m-4 love-box min-width">
-                            <h6 class="text-gray-900 mb-0 font-weight-bold"><i class="fas fa-heart text-danger"></i>{{comments.total_count}}
+                            <h6 class="text-gray-900 mb-0 font-weight-bold"><i class="fas fa-heart text-danger"></i> {{movie.rating}}
                             </h6>
-                            <small class="text-muted">{{comments.score}}</small>
                         </div>
                         <img ref="cover_pic" src="" class="img-fluid w-100"
                              alt="cover picture">
@@ -28,12 +27,23 @@
                             <img :src="movie.posterUrl" class="img-fluid rounded" :alt="movie.nameEn">
                         </div>
                         <div class="d-inline-block col-xs-12 col-sm-6 col-md-6 col-lg-12 vertical-align-top">
+                            <h6 class="h6 mb-0 mt-2 font-weight-bold text-gray-900">Сюжет:
+                                <span class="text-gray-600 font-weight-normal size-085">{{movie.plot}}</span></h6>
+                            <h6 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Игра актеров:
+                                <span class="text-gray-600 font-weight-normal size-085">{{movie.actors_game}}</span></h6>
+                            <h6 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Атмосфера:
+                                <span class="text-gray-600 font-weight-normal size-085">{{movie.atmosphere}}</span></h6>
+                            <h6 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Рейтинг:
+                                <span class="text-gray-600 font-weight-normal size-085">{{movie.rating}}</span></h6>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-3 widget shadow rounded mb-4">
+                        <div class="d-inline-block col-xs-12 col-sm-6 col-md-6 col-lg-12 vertical-align-top">
                             <h6 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Продолжительность:</h6>
                             <p>{{movie.filmLength}} мин</p>
                             <h6 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Год окончания:</h6>
                             <p>{{movie.endYear}}</p>
-                            <h6 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Рейтинг:</h6>
-                            <p>{{movie.rate}}</p>
                             <h6 class="h6 mb-0 mt-3 font-weight-bold text-gray-900">Ограничения по возрасту:</h6>
                             <p class="mb-0">{{movie.age_limits}}</p>
                             <h5 v-if="movie.endYear != null" class="h6 mb-0 mt-3 font-weight-bold text-gray-900">
@@ -142,7 +152,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab"
                                    aria-controls="comments" aria-selected="false">Комментарии
-                                    <span v-if="comments.total_count > 0" class="badge badge-danger badge-counter">{{comments.total_count}}</span></a>
+                                    <span v-if="commentsCount > 0" class="badge badge-danger badge-counter">{{commentsCount}}</span></a>
                             </li>
                             <!-- Reviews -->
                             <li v-if="reviews.total > 0" class="nav-item">
@@ -390,7 +400,7 @@
 
     export default {
         name: "Single",
-        props: ['movie', 'comments', 'relatedMovies', 'relatedCollections'],
+        props: ['movie', 'comments', 'commentsCount', 'relatedMovies', 'relatedCollections'],
         components: {CommentsComponent, Head, Link, FrontLayout, MoviesCard, Message},
 
         data() {

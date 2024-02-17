@@ -14,6 +14,7 @@ use App\Models\Movie;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use function Monolog\toArray;
+use function Symfony\Component\String\length;
 
 class SingleController extends Controller
 {
@@ -29,22 +30,13 @@ class SingleController extends Controller
 
         $resultRelatedMovies = $genre->movies->whereNotIn('slug', $request->movie)->shuffle()->take(4);
 
-        $comments = [];
-        $comments['comments'] = CommentResource::collection(Comment::where('movie_id', $data->id)->where('approved', 1)->get())->resolve();
-        $comments['total_count'] = Comment::where('movie_id', $data->id)->where('approved', 1)->count();
-        $comments['values'] = Comment::where('movie_id', $data->id)->where('approved', 1)->select('rating')->get()->toArray();
-        $comments['score'] = 0;
+        $comments = CommentResource::collection(Comment::where('movie_id', $data->id)->where('approved', 1)->orderBy('id', 'DESC')->get())->resolve();
+        $commentsCount = Comment::where('movie_id', $data->id)->where('approved', 1)->count();
 
-        foreach($comments['values'] as $item){
-            $comments['score']  =  $comments['score'] + $item['rating'];
-        }
-        if($comments['score'] != 0) {
-            $comments['score'] = round($comments['score'] / $comments['total_count'], 2);
-        }
         $relatedMovies = RelatedMoviesResource::collection($resultRelatedMovies)->resolve();
 
         $relatedCollections = RelatedCollectionsResource::collection($data->collections()->where('is_published', '1')->get())->resolve();
 
-        return Inertia::render('Front/Movies/Single', compact('movie', 'comments', 'relatedMovies', 'relatedCollections'));
+        return Inertia::render('Front/Movies/Single', compact('movie', 'comments', 'commentsCount', 'relatedMovies', 'relatedCollections'));
     }
 }

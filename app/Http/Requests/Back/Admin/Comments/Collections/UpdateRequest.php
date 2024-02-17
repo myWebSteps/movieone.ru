@@ -22,6 +22,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'collection_id' => 'required|integer',
             'name' => 'required|string',
             'rating' => 'required|integer',
             'description' => 'required|string',

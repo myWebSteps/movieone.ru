@@ -59,9 +59,13 @@
                 </div>
 
             </div>
-
             <div class="row">
                 <div class="col-xl-3 col-lg-3">
+                    <div v-if="data.rating > 0" class="bg-white p-3 widget shadow rounded mb-4">
+                        <div class="artist-list mt-3">
+                            <p>Рейтинг: {{data.rating}}</p>
+                        </div>
+                    </div>
                     <div class="bg-white p-3 widget shadow rounded mb-4">
                         <h6 class="h6 mb-3 mt-0 font-weight-bold text-gray-900">Содержание</h6>
                         <div class="artist-list mt-3">
@@ -72,6 +76,27 @@
                                 </ul>
                         </div>
                     </div>
+                    <div class="bg-white p-3 widget shadow rounded mb-4">
+                        <h6 class="h6 mb-3 mt-0 font-weight-bold text-gray-900">Другие коллекции:</h6>
+                            <div class="card p-card border-0 mt-2"  v-for="collection in relativeCollections">
+                                <Link :href="`/collections/${collection.slug}`">
+                                    <div class="row no-gutters">
+                                        <div class="col-4">
+                                            <img v-lazy="collection.poster" class="card-img" alt="...">
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="card-body h-100 d-grid">
+                                                <h5 class="text-gray-900 font-size-1">{{collection.collection_title}}</h5>
+                                                <small><p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.updated_at}}</p></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+
+                    </div>
+
+
                 </div>
                 <div class="col-xl-9 col-lg-9">
                     <div class="bg-white p-3 widget shadow rounded mb-4">
@@ -97,37 +122,26 @@
                                     <div>
                                         <img class="img-fluid" v-lazy="article.image" :alt="article.article_title">
                                     </div>
-                                    <p class ="text-gray-900 font-size-1 mt-2" v-html="article.description"></p>
-                                    <Link :href="`/movies/${article.movies.slug}`">Перейти к видео &#8594</Link>
+                                    <p class ="text-gray-600 font-size-1 mt-2" v-html="article.description"></p>
+                                    <div class="row">
+                                    <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Сюжет: {{article.movies.plot}}</p>
+                                    <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Игра актеров: {{article.movies.actors_game}}</p>
+                                    <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Атмосфера: {{article.movies.atmosphere}}</p>
+                                    <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Рейтинг: {{article.movies.rating}}</p>
+                                    </div>
+                                    <Link class="mt-2" :href="`/movies/${article.movies.slug}`">Перейти к видео &#8594</Link>
                                     <hr>
                                 </article>
 
                             </div>
 
                             <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-                                <comments-component :comments="data" :id="data.id" type="collections" :message.sync = "message"></comments-component>
+                                <comments-collections-component :comments="data" :id="data.id" type="collections" :message.sync = "message"></comments-collections-component>
                             </div>
                         </div>
                     </div>
                 </div>
-<!--                <div class="col-xl-3 col-lg-3">-->
-<!--                    &lt;!&ndash; Рекламный блок &ndash;&gt;-->
-<!--&lt;!&ndash;                    <div class="bg-white p-3 widget shadow rounded mb-4">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <h1 class="h6 mb-3 mt-0 font-weight-bold text-gray-900">Наши соцсети:</h1>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <p class="text-gray-900">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <b>Boston Harborwalk</b>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <br>Christopher Columbus Park<br>Boston, MA 02109<br>United States</p>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <p>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <i class="fas fa-mobile fa-fw">&ndash;&gt;-->
-<!--&lt;!&ndash;                                &ndash;&gt;-->
-<!--&lt;!&ndash;                            </i> +00 12354 89564</p>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <p class="mb-0"><i class="fas fa-envelope-open fa-fw"></i> youremail@gmail.com</p>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--                    <div class="bg-white p-3 widget shadow rounded mb-4">-->
-<!--                        <h1 class="h6 mb-3 mt-0 font-weight-bold text-gray-900">Map</h1>-->
-<!--                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501889.1723543713!2d73.1567129962395!3d31.003573085499188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391964aa569e7355%3A0x8fbd263103a38861!2sPunjab!5e0!3m2!1sen!2sin!4v1570105072228!5m2!1sen!2sin" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>-->
-<!--                    </div>-->
-<!--                </div>-->
+
             </div>
         </div>
 
@@ -144,14 +158,14 @@
     import {Head} from "@inertiajs/vue3";
     import {Link} from "@inertiajs/vue3";
     import {router} from '@inertiajs/vue3';
-    import CommentsComponent from "@/Components/CommentsComponent.vue";
+    import CommentsCollectionsComponent from "@/Components/CommentsCollectionsComponent.vue";
 
 
 
     export default {
         name: "Collections_single",
-        props: ['data'],
-        components: {CommentsComponent, Head, Link, FrontLayout, Message},
+        props: ['data', 'relativeCollections'],
+        components: {CommentsCollectionsComponent, Head, Link, FrontLayout, Message},
 
         data() {
             return {

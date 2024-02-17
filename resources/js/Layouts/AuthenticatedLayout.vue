@@ -67,7 +67,8 @@
                         >
                             Видео
                         </NavLink>
-
+                        <div class="d-flex justify-content-start">
+                            <span><small class="text-muted">{{comments.total}}</small></span>
                         <Dropdown
                             label="Комментарии"
                             as-nav-item
@@ -75,14 +76,16 @@
                             <DropdownLink
                                 href="/admin/comments/movies"
                             >
-                                К видео
+                                К видео <span><small class="text-muted">{{comments.movies}}</small></span>
                             </DropdownLink>
+
                             <DropdownLink
                                 href="/admin/comments/collections"
                             >
-                                К коллекциям
+                                К коллекциям <span><small class="text-muted"> {{comments.collections}}</small></span>
                             </DropdownLink>
                         </Dropdown>
+                        </div>
 
                         <NavLink
                             href="/admin/collections"
@@ -115,7 +118,6 @@
                 </div>
             </div>
         </nav>
-
         <!-- Page Heading -->
         <header
             v-if="$slots.header"
@@ -130,3 +132,35 @@
         </main>
     </div>
 </template>
+
+<script>
+
+    export default {
+        name: "AuthenticatedLayout",
+        data(){
+            return{
+                comments:
+                    {
+                        movies: null,
+                        collections: null,
+                        total: null,
+                    }
+            }
+        },
+        mounted(){
+            this.getCommentsCount()
+        },
+        methods:{
+            getCommentsCount()
+            {
+                axios.post('/get_comments_count', {})
+                .then(resp=>{
+                    console.log(resp.data.total)
+                    this.comments.movies = resp.data.movies
+                    this.comments.collections = resp.data.movies
+                    this.comments.total = resp.data.total
+                })
+            }
+        },
+    }
+</script>
