@@ -11,6 +11,11 @@
         <div class="container-fluid mobile-container-fluid">
             <div class="row">
                 <div class="col-xl-12 col-lg-12">
+                        <div v-if="data.rating > 0"
+                            class="position-absolute bg-white shadow-sm rounded text-center p-2 custom-rating-position love-box min-width">
+                            <h6 class="text-gray-900 mb-0 font-weight-bold"><i class="fas fa-heart text-danger"></i> {{data.rating}}
+                            </h6>
+                        </div>
                     <div class="bg-white info-header shadow rounded mb-4">
                         <div class="row d-flex align-items-center justify-content-between p-3 border-bottom">
 
@@ -61,15 +66,10 @@
             </div>
             <div class="row">
                 <div class="col-xl-3 col-lg-3">
-                    <div v-if="data.rating > 0" class="bg-white p-3 widget shadow rounded mb-4">
-                        <div class="artist-list mt-3">
-                            <p>Рейтинг: {{data.rating}}</p>
-                        </div>
-                    </div>
                     <div class="bg-white p-3 widget shadow rounded mb-4">
                         <h6 class="h6 mb-3 mt-0 font-weight-bold text-gray-900">Содержание</h6>
                         <div class="artist-list mt-3">
-                                <ul>
+                                <ul class="pl-3">
                                     <li v-for="article in data.articles" class="mt-3">
                                             <a :href="`#article${article.article_id}`" class="articles text-truncate text-wrap font-weight-bold">{{article.article_title}}</a>
                                     </li>
