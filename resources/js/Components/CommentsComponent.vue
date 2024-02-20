@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div v-else class="d-flex justify-content-center bg-gray-200 no-comments w-100">
+            <div v-else class="d-flex justify-content-center bg-gray-200 pt-4 pb-4 w-100">
 
                     <p class="align-self-center p-0 m-0">Комментариев еще нет.
                         Будьте первым!</p>
@@ -179,6 +179,93 @@
     }
 </script>
 
-<style scoped>
+<style>
+    :root {
+        --cform-checkbox-width: 26px;
+        --cform-radius: 10px;
+        --cform-font-size: 16px;
+        --cform-padding: 5px;
+        --cform-border-width: 0px;
+        --cform-border-width-focus: 3px;
+        --cform-border-blur: 0px;
+        --cform-focus-bg: rgba(255,255,255,1);
+        --cform-btn-default-text: rgba(75, 50, 107, 0.75);
+        --demo-bg: rgba(255, 255, 255, 0);
+        --cform-accent-color: rgba(255, 255, 255, 1);
+        --cform-border-focus-color: rgba(199, 188, 212, 1.00);
+        --cform-bg: rgba(240, 239, 242, 1.00);
+        --cform-text-color: rgba(75, 50, 107, 1.00);
+        --cform-error: rgba(232, 112, 112, 1.00);
+        --cform-accent: rgba(31, 37, 51, 1);
+        --cform-border-color: rgba(199, 188, 212, 0.8);
+        --cform-legend: rgba(104, 73, 145, 1.00);
+        --cform-text-placeholder-color: rgba(75, 50, 107, 0.5);
+        --cform-btn-default: var(--cform-bg);
+        --cform-accent-color-btn: var(--cform-accent-color);
+        --cform-error-color: var(--cform-accent-color);
+        --cform-info-color: var(--cform-accent-color);
+        --cform-secondary-color: var(--cform-accent-color);
+        --cform-primary-color: var(--cform-accent-color);
+        --cform-btn-primary: rgba(104, 73, 145, 0.7);
+        --cform-btn-secondary: rgba(255, 100, 134, 1.00);
+        --cform-btn-info: rgba(251, 195, 111, 1);
+    }
+    .hide-input, .radio-group input[type=radio], .cform-switch input[type=checkbox] {
+        position: absolute;
+        z-index: -1;
+        width: 0;
+        height: 0;
+        padding: 0;
+        margin: 0;
+        border: none;
+        overflow: hidden;
+        box-shadow: unset !important;
+    }
+    .hide-input:focus, .radio-group input[type=radio]:focus, .cform-switch input[type=checkbox]:focus {
+        box-shadow: unset !important;
+    }
 
+    .radio-group {
+        border-radius: var(--cform-radius);
+        overflow: hidden;
+        background: var(--cform-bg);
+        padding: clamp(3px, var(--cform-padding), 8px);
+        display: inline-flex !important;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        color: var(--cform-text-color);
+    }
+    .radio-group input[type=radio]:checked + label {
+        color: var(--cform-accent-color);
+        background: var(--cform-accent);
+    }
+    .radio-group input[type=radio]:focus + label {
+        box-shadow: 0 0 0 1px var(--form-color) !important;
+    }
+    .radio-group:has(:focus-visible):focus-within {
+        outline: clamp(2px, var(--cform-border-width), 5px) solid var(--cform-border-focus-color);
+        outline-offset: 2px;
+    }
+    .radio-group label {
+        color: var(--gray-65);
+        cursor: pointer;
+        padding-block: clamp(3px, var(--cform-padding) + 3px, 10px);
+        padding-inline: clamp(10px, var(--cform-padding) * 4, 20px);
+        transition: background 0.1s ease-in-out, color 0.2s linear;
+        border-radius: calc(var(--cform-radius) - 2px);
+        white-space: nowrap;
+        font-size: clamp(12px, var(--cform-font-size) - 1px, 20px);
+    }
+    .radio-group label:hover {
+        color: var(--gray-90);
+    }
+    .radio-group.radio-group-small {
+        padding: clamp(3px, var(--cform-padding) - 1px, 6px);
+    }
+    .radio-group.radio-group-small label {
+        padding-block: clamp(3px, var(--cform-padding), 5px);
+        padding-inline: clamp(10px, var(--cform-padding) + 10px, 15px);
+        font-size: clamp(12px, var(--cform-font-size) - 3px, 18px);
+    }
 </style>

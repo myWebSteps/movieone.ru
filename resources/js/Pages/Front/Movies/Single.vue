@@ -606,3 +606,21 @@
 
     }
 </script>
+<style scoped>
+    .cover-pic {
+        margin: -24px -24px -89px -24px;
+    }
+    .artist-list {
+        width: 50px;
+        height: 50px;
+    }
+    .reviews-card {
+        width: 50px;
+        height: 50px;
+    }
+    @media (max-width: 992px) {
+        .cover-pic {
+            margin: -24px -24px 24px -24px;
+        }
+    }
+</style>

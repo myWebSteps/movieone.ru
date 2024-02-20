@@ -1,13 +1,3 @@
-<script setup>
-    import {Link} from "@inertiajs/vue3";
-    import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-    import NavLink from "@/Components/NavLink.vue";
-    import Dropdown from "@/Components/Dropdown.vue";
-    import DropdownLink from "@/Components/DropdownLink.vue";
-
-    import 'cssformalize/css/css-formalize.css';
-</script>
-
 <template>
     <div class="bg-light min-vh-100">
         <!-- Primary Navigation Menu -->
@@ -133,9 +123,17 @@
 </template>
 
 <script>
+    import '../../css/back_layout.css';
+    // import '../../css/front_layout.css';
+    import {Link} from "@inertiajs/vue3";
+    import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+    import NavLink from "@/Components/NavLink.vue";
+    import Dropdown from "@/Components/Dropdown.vue";
+    import DropdownLink from "@/Components/DropdownLink.vue";
 
     export default {
         name: "AuthenticatedLayout",
+        components:{Link, ApplicationLogo, NavLink, Dropdown, DropdownLink},
         data(){
             return{
                 comments:
@@ -154,7 +152,6 @@
             {
                 axios.post('/get_comments_count', {})
                 .then(resp=>{
-                    console.log(resp.data.total)
                     this.comments.movies = resp.data.movies
                     this.comments.collections = resp.data.collections
                     this.comments.total = resp.data.total

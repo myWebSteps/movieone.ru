@@ -256,3 +256,14 @@
 
     }
 </script>
+<style scoped>
+    .artist-list .rounded-circle {
+        width: 50px;
+        height: 50px;
+    }
+    @media (max-width: 992px) {
+        .info-header, .info-header .text-right {
+            text-align: center !important;
+        }
+    }
+</style>

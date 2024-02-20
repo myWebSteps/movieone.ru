@@ -14,7 +14,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingOffer">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseSort" aria-expanded="true" aria-controls="collapseSort">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapseSort" aria-expanded="true" aria-controls="collapseSort">
                                 Тип: <i class="fas fa-angle-down float-right"></i>
                             </a>
                         </h6>
@@ -57,7 +57,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingTwo">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
                                 Жанры:
                                 <i class="fas fa-angle-down float-right"></i>
                             </a>
@@ -103,7 +103,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingOne">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseCountries" aria-expanded="true" aria-controls="collapseOne">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapseCountries" aria-expanded="true" aria-controls="collapseOne">
                                 Страны:
                                 <i class="fas fa-angle-down float-right"></i>
                             </a>
@@ -148,7 +148,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingYear">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear">
                                 Год: <i class="fas fa-angle-down float-right"></i>
                             </a>
                         </h6>
@@ -174,7 +174,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingOne">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 Сортировать по: <i class="fas fa-angle-down float-right"></i>
                             </a>
                         </h6>
@@ -211,7 +211,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingTwo">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
                                 Тип:
                                 <i class="fas fa-angle-down float-right"></i>
                             </a>
@@ -255,7 +255,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingOne">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 Жанры:
                                 <i class="fas fa-angle-down float-right"></i>
                             </a>
@@ -299,7 +299,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingOne">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseCountries" aria-expanded="true" aria-controls="collapseOne">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapseCountries" aria-expanded="true" aria-controls="collapseOne">
                                 Страны:
                                 <i class="fas fa-angle-down float-right"></i>
                             </a>
@@ -344,7 +344,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingYear11">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear">
                                 Год: <i class="fas fa-angle-down float-right"></i>
                             </a>
                         </h6>
@@ -370,7 +370,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingOffer">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseOffer" aria-expanded="true" aria-controls="collapseOffer">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapseOffer" aria-expanded="true" aria-controls="collapseOffer">
                                 Сортировать по: <i class="fas fa-angle-down float-right"></i>
                             </a>
                         </h6>
@@ -407,7 +407,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingTwo">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
                                 Тип:
                                 <i class="fas fa-angle-down float-right"></i>
                             </a>
@@ -450,7 +450,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingOne">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 Жанры:
                                 <i class="fas fa-angle-down float-right"></i>
                             </a>
@@ -494,7 +494,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingOne">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 Страны:
                                 <i class="fas fa-angle-down float-right"></i>
                             </a>
@@ -539,7 +539,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingYear11">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapseYear" aria-expanded="true" aria-controls="collapseYear">
                                 Год: <i class="fas fa-angle-down float-right"></i>
                             </a>
                         </h6>
@@ -567,7 +567,7 @@
                 <div class="filters-card border-bottom p-3">
                     <div class="filters-card-header" id="headingOffer">
                         <h6 class="mb-0">
-                            <a href="#" class="btn-link" data-toggle="collapse" data-target="#collapseOffer" aria-expanded="true" aria-controls="collapseOffer">
+                            <a href="#" class="btn-link text-dark" data-toggle="collapse" data-target="#collapseOffer" aria-expanded="true" aria-controls="collapseOffer">
                                 Сортировать по: <i class="fas fa-angle-down float-right"></i>
                             </a>
                         </h6>

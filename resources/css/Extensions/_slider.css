@@ -1,0 +1,26 @@
+.osahan-slider-item {
+    margin: 0 8px;
+    outline: none;
+    cursor: pointer;
+}
+
+.osahan-slider {
+    margin: 0 -24px;
+}
+
+.slick-prev{
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    left: 5%;
+}
+.slick-next{
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    right: 5%;
+}
+
+.slick-prev, .slick-next {
+    z-index: 999;
+}

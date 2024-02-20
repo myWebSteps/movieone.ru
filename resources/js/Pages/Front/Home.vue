@@ -62,6 +62,7 @@
 </template>
 
 <script>
+    import '../../../css/Extensions/_slider.css'
     import { Head } from "@inertiajs/vue3";
     import { Link } from "@inertiajs/vue3";
     import FrontLayout from "@/Layouts/FrontLayout.vue";

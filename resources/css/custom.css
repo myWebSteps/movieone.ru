@@ -1,0 +1,94 @@
+.container-fluid {
+    width: 100% !important;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container,
+.container-fluid {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+.custom-dark {
+    background-color: black;
+}
+.d-grid{
+ display:grid;
+}
+
+.custom-first-element{
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+.custom-middle-element{
+    border-radius: 0 !important;
+}
+.custom-last-element{
+    border-bottom-right-radius: 3px !important;
+    border-top-right-radius: 3px !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+.position-fixed-bottom-end{
+    position: fixed;
+    bottom: 0;
+    right:0;
+}
+.position-absolute-top-right{
+    position: absolute;
+    top: 0;
+    right:0;
+}
+
+@media (max-width: 575.98px) {
+.mobile-container-fluid{
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+}
+}
+.multi-range-slider{
+    box-shadow: 0 0 0 black !important;
+    border: 0 solid white !important;
+}
+.multi-range-slider .bar-inner{
+    background-color: rgba(78, 115, 223, 0.5) !important;
+}
+.my-z-index{
+    z-index: 99999 !important;
+}
+.font-size-1
+{
+    font-size: 1rem !important;
+}
+.d-grid{
+    display: grid !important;
+}
+.start{
+    align-self: start;
+}
+.center{
+    align-self: center;
+}
+.end{
+    align-self: end;
+}
+.movies_list_wrapper{
+    max-height: 300px;
+    overflow-y: auto;
+}
+.border-bottom{
+    border-bottom: 1px solid grey;
+}
+.size-085{
+    font-size: 0.85rem;
+}
+.custom-rating-position
+{
+    top: -10px;
+    left: 0px;
+}
+
+
+
