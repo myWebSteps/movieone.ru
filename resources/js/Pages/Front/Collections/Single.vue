@@ -71,7 +71,7 @@
                         <div class="artist-list mt-3">
                                 <ul class="pl-3">
                                     <li v-for="article in data.articles" class="mt-3">
-                                            <a :href="`#article${article.article_id}`" class="articles text-truncate text-wrap font-weight-bold">{{article.article_title}}</a>
+                                            <a :href="`#article${article.article_id}`" class="articles text-truncate text-wrap text-gray-600">{{article.article_title}}</a>
                                     </li>
                                 </ul>
                         </div>
@@ -113,7 +113,7 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <article>
                                     <h2 class="mt-0 mb-3">{{data.collection_title}}</h2>
-                                    <p class ="text-gray-900 font-size-1" v-html="data.description"></p>
+                                    <p class ="text-gray-800 font-size-1" v-html="data.description"></p>
                                     <hr>
                                 </article>
 
