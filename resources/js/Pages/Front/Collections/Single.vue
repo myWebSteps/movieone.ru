@@ -112,17 +112,17 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <article>
-                                    <h2 class="mt-0 mb-3">{{data.collection_title}}</h2>
+                                    <h2 class="h4 mt-0 mb-3 text-gray-800">{{data.collection_title}}</h2>
                                     <p class ="text-gray-800 font-size-1" v-html="data.description"></p>
                                     <hr>
                                 </article>
 
                                 <article v-for="article in data.articles">
-                                    <h3 :id="`article${article.article_id}`" class="mt-0 mb-3">{{article.article_title}}</h3>
+                                    <h3 :id="`article${article.article_id}`" class="h4 mt-0 mb-3 text-gray-800">{{article.article_title}}</h3>
                                     <div>
                                         <img class="img-fluid" v-lazy="article.image" :alt="article.article_title">
                                     </div>
-                                    <p class ="text-gray-600 font-size-1 mt-2" v-html="article.description"></p>
+                                    <p class ="text-gray-800 font-size-1 mt-2" v-html="article.description"></p>
                                     <div class="row">
                                     <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Сюжет: {{article.movies.plot}}</p>
                                     <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Игра актеров: {{article.movies.actors_game}}</p>
