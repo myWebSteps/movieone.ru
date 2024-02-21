@@ -5,6 +5,13 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+Route::get('/.well-known/acme-challenge/y2w5jVMe4L8tKFP4ZMbMfp1YwjiPT_93nG2YfAaYEaw', function (){
+    return 'y2w5jVMe4L8tKFP4ZMbMfp1YwjiPT_93nG2YfAaYEaw.LssAdB7xfg32i65M9C72ThKkc5xl9VrbfS7rzzgayZ4';
+});
+Route::get('/.well-known/acme-challenge/-mB8SOu-hxxW90I4b3uS04gD_nMZzsK0OeZ7_ZAe7YI', function (){
+    return '-mB8SOu-hxxW90I4b3uS04gD_nMZzsK0OeZ7_ZAe7YI.LssAdB7xfg32i65M9C72ThKkc5xl9VrbfS7rzzgayZ4';
+});
+
 //Info Routes:
 Route::get('/get_genres', \App\Http\Controllers\Info\GetGenresController::class);
 Route::get('/get_categories', \App\Http\Controllers\Info\GetCategoriesController::class);
