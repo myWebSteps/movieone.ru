@@ -64,9 +64,9 @@
                 </div>
 
             </div>
-            <div class="row">
-                <div class="col-xl-3 col-lg-3">
-                    <div class="bg-white p-3 widget shadow rounded mb-4">
+            <div class="d-grid custom-collections-row">
+                <div id="titles">
+                    <div class="bg-white p-3 widget shadow rounded">
                         <h6 class="h6 mb-3 mt-0 font-weight-bold text-gray-900">Содержание</h6>
                         <div class="artist-list mt-3">
                                 <ul class="pl-3">
@@ -76,29 +76,8 @@
                                 </ul>
                         </div>
                     </div>
-                    <div class="bg-white p-3 widget shadow rounded mb-4">
-                        <h6 class="h6 mb-3 mt-0 font-weight-bold text-gray-900">Другие коллекции</h6>
-                            <div class="card p-card border-0 mt-2"  v-for="collection in relativeCollections">
-                                <Link :href="`/collections/${collection.slug}`">
-                                    <div class="row no-gutters">
-                                        <div class="col-4">
-                                            <img v-lazy="collection.poster" class="card-img" alt="...">
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="card-body h-100 d-grid">
-                                                <h5 class="text-gray-900 font-size-1">{{collection.collection_title}}</h5>
-                                                <small><p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.updated_at}}</p></small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </div>
-
-                    </div>
-
-
                 </div>
-                <div class="col-xl-9 col-lg-9">
+                <div id="content">
                     <div class="bg-white p-3 widget shadow rounded mb-4">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -124,10 +103,10 @@
                                     </div>
                                     <p class ="text-gray-800 font-size-1 mt-2" v-html="article.description"></p>
                                     <div class="row">
-                                    <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Сюжет: {{article.movies.plot}}</p>
-                                    <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Игра актеров: {{article.movies.actors_game}}</p>
-                                    <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Атмосфера: {{article.movies.atmosphere}}</p>
-                                    <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Рейтинг: {{article.movies.rating}}</p>
+                                        <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Сюжет: {{article.movies.plot}}</p>
+                                        <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Игра актеров: {{article.movies.actors_game}}</p>
+                                        <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Атмосфера: {{article.movies.atmosphere}}</p>
+                                        <p class ="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Рейтинг: {{article.movies.rating}}</p>
                                     </div>
                                     <Link class="mt-2" :href="`/movies/${article.movies.slug}`">Перейти к видео &#8594</Link>
                                     <hr>
@@ -141,6 +120,32 @@
                         </div>
                     </div>
                 </div>
+                <div id="related_collections">
+                <div class="bg-white p-3 widget shadow rounded mb-4">
+
+                        <h6 class="h6 mb-3 mt-0 font-weight-bold text-gray-900">Другие коллекции</h6>
+                        <div class="card p-card border-0 mt-2"  v-for="collection in relativeCollections">
+                            <Link :href="`/collections/${collection.slug}`">
+                                <div class="row no-gutters">
+                                    <div class="col-4 d-flex justify-content-center align-items-center">
+                                        <div class="col-10 col-sm-12 ">
+                                        <img v-lazy="collection.poster" class="card-img" alt="...">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="card-body h-100 d-grid">
+                                            <h5 class="text-gray-900 font-size-1">{{collection.collection_title}}</h5>
+                                            <small><p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.updated_at}}</p></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+
+                    </div>
+                </div>
+
 
             </div>
         </div>
@@ -257,9 +262,37 @@
     }
 </script>
 <style scoped>
+    .custom-collections-row{
+        grid-auto-flow: column;
+        grid-auto-columns: 25% 1fr 1fr 1fr;
+        grid-auto-rows: max-content 1fr;
+        grid-template-areas:
+            "titles content content content"
+            "related_collections content content content";
+        grid-gap: 0.75rem;
+    }
+    #titles {
+        grid-area: titles;
+    }
+    #content {
+        grid-area: content;
+    }
+    #related_collections {
+        grid-area: related_collections;
+    }
     .artist-list .rounded-circle {
         width: 50px;
         height: 50px;
+    }
+    @media(max-width: 576px)
+    {
+        .custom-collections-row{
+            grid-auto-columns: 1fr;
+            grid-template-areas:
+                "titles"
+                "content"
+                "related_collections";
+        }
     }
     @media (max-width: 992px) {
         .info-header, .info-header .text-right {
