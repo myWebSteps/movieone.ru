@@ -40,7 +40,10 @@ class UpdateController extends Controller
             $articleMoviesArr[] = $article['article_movie'];
         }
 
-       $deletedArticles = Article::whereNotIn('title', $articleTitlesArr)->get()->toArray();
+       $deletedArticles = Article::where('collection_id', $data['collection_id'])
+           ->whereNotIn('title', $articleTitlesArr)
+           ->get()
+           ->toArray();
 
 
         foreach ($deletedArticles as $deleteArticle)

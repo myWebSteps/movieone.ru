@@ -269,7 +269,7 @@
 
                             <!-- Reviews Tab-->
                             <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                                <div class="card-body p-0 reviews-card">
+                                <div class="p-0">
 
                                     <nav v-if="reviews.totalPages > 1" aria-label="reviews pagination">
                                         <ul class="pagination">
@@ -322,7 +322,7 @@
                                                     class="fa fa-thumbs-down" aria-hidden="true"></i></div>
                                             </div>
                                             <div class="mt-2 mb-2">
-                                                <p v-html="review.description"></p>
+                                                <p class="text-gray-800" v-html="review.description"></p>
                                             </div>
                                         </div>
                                     </div>

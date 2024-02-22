@@ -269,7 +269,6 @@
 
             </div>
         </section>
-
         <message :message.sync = "message"></message>
 
     </AuthenticatedLayout>
@@ -292,6 +291,7 @@
                 poster_preview: null,
                 form: {
                     is_published: this.data[0].is_published,
+                    collection_id: Number(this.data[0].id),
                     collection_title: this.data[0].collection_title,
                     slug: this.data[0].slug,
                     poster: this.data[0].poster,
@@ -363,6 +363,7 @@
                 router.post(`/admin/collections/${this.data[0].id}`, {
                     _method: 'PATCH',
                     is_published: Boolean(this.form.is_published),
+                    collection_id: this.form.collection_id,
                     collection_title: this.form.collection_title,
                     slug: this.form.slug,
                     description_min: this.form.description_min,
