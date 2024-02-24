@@ -20,7 +20,7 @@ class UpdateController extends Controller
         if(isset($data['poster']) && $data['poster'] !=null){
             $poster_path = '/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension();
             $data['poster'] = Image::make($data['poster'])
-                ->fit(250, 370)
+                ->fit(342, 500)
                 ->save(storage_path('/app/public/movies/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension()));
             $data['poster'] = $poster_path;
         }else{
