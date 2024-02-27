@@ -94,7 +94,7 @@
         },
 
         mounted() {
-            this.$metrika.hit('/home')
+            ym(94438576, 'hit', '/');
 
            this.sliderSizes()
 

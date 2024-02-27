@@ -50,7 +50,7 @@
         },
 
         mounted() {
-            ym(94438576, 'hit', '/movies');
+            ym(94438576, 'hit', '/collections');
 
         },
 

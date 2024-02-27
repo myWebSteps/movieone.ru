@@ -492,7 +492,7 @@
                 }).init();
             }
 
-            this.$metrika.hit(`/movies/${this.movie.slug}`);
+            ym(94438576, 'hit', `/movies/${this.movie.slug}`);
         },
 
         methods: {
