@@ -20,6 +20,7 @@
     "dependencies": {
         "bootstrap": "^5.3.2",
         "cssformalize": "^2.0.2",
+        "vue-yandex-metrika": "^1.8.3",
         "vue3-lazyload": "^0.3.8"
     }
 }

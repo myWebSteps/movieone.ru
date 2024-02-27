@@ -105,7 +105,7 @@
         },
 
         mounted() {
-            ym(94438576, 'hit', '/movies');
+            this.$metrika.hit('/movies')
 
         },
 

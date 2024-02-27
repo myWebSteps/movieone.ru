@@ -83,7 +83,7 @@
         },
 
         mounted() {
-            ym(94438576, 'hit', '/');
+            this.$metrika.hit('/random_movies')
 
            this.sliderSizes()
 

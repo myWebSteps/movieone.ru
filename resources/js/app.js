@@ -24,6 +24,7 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import VueLazyLoad from 'vue3-lazyload';
+import VueYandexMetrika from 'vue-yandex-metrika';
 
 
 
@@ -34,6 +35,10 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(VueLazyLoad)
+            .use(VueYandexMetrika, {
+                id: 94438576,
+                // other options
+            })
             .mount(el);
     },
     progress: {

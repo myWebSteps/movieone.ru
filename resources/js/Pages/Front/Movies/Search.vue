@@ -52,7 +52,7 @@
         props: ['movies', 'data'],
         components: {Head, Link, FrontLayout, MoviesCard},
         mounted() {
-            ym(94438576, 'hit', '/search');
+            this.$metrika.hit('/search')
         },
 
 
