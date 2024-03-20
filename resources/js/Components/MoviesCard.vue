@@ -13,7 +13,7 @@
                     <p class="grid grid-flow-col auto-cols-max items-center">
                         <span class="material-symbols-sharp">camera_roll</span>
                             <span class="text-sm font-light text-balance" v-for="genre in movie.genres">
-                                {{genre.title}}&nbsp
+                                <span>{{genre.title}} </span>
                             </span>
                     </p>
                     <p class="grid grid-flow-col auto-cols-max items-center">
