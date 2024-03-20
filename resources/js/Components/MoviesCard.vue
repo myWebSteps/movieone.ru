@@ -1,31 +1,31 @@
 <template>
 
     <div v-for="movie in data" :class="config.classes" class="shadow-md bg-white rounded-sm overflow-hidden">
-        <div>
-            <Link :href="`/movies/${movie.slug}`" class="grid grid-flow-row">
+
+            <Link :href="`/movies/${movie.slug}`" class="h-full grid">
 
                     <img class="w-full"
                         v-lazy="movie.poster" :alt="movie.nameEn">
 
-                <div class="p-2 grid grid-flow-row gap-1">
+                <div class="p-2 grid gap-1">
                     <h5 class="text-gray-900 text-wrap">{{movie.nameRu}}</h5>
                     <h5 class="text-gray-900 text-wrap">{{movie.nameEn}}</h5>
-                    <p class="grid grid-flow-col auto-cols-max items-center">
+                    <p >
                         <span class="material-symbols-sharp">camera_roll</span>
                             <span class="text-sm font-light text-balance" v-for="genre in movie.genres">
                                 <span>{{genre.title}}</span>&nbsp
                             </span>
                     </p>
-                    <p class="grid grid-flow-col auto-cols-max items-center">
+                    <p class="grid grid-flow-col auto-cols-max">
                         <span class="material-symbols-sharp">today</span>
-                        <span class="text-red-800 font-light">{{movie.year}}</span>
+                        <span class="self-end text-red-800 font-light">{{movie.year}}</span>
                     </p>
 
                 </div>
 
             </Link>
         </div>
-    </div>
+
 </template>
 
 <script>
