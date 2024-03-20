@@ -2,736 +2,520 @@
 
     <Head title="Создать видео"/>
 
-    <AuthenticatedLayout>
+        <h2 class="bg-white p-4 shadow-md">Создать видео</h2>
 
-        <template #header>
-            <h2 class="display-6">Создать видео</h2>
-        </template>
+        <section class="container mx-auto p-4 relative overflow-hidden">
 
-        <section class="content">
-            <div class="container-fluid">
+            <parser :form.sync="form"
+                    :examples.sync="examples"
+                    :message.sync="message"
+                    :show="show"
+                    >
+            </parser>
 
-                <div class="bg-white p-3 widget shadow rounded mb-4">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <!-- Parse -->
-                        <li class="nav-item">
-                            <a class="nav-link active" id="parser-tab" data-toggle="tab" href="#parser" role="tab"
-                               aria-controls="parser" aria-selected="true">Парсер</a>
-                        </li>
-                        <!-- Tests -->
-                        <li class="nav-item">
-                            <a class="nav-link" id="tests-tab" data-toggle="tab" href="#tests" role="tab"
-                               aria-controls="tests" aria-selected="false">Тесты</a>
-                        </li>
-                        <!-- Posters & Trailers-->
-                        <li class="nav-item">
-                            <a class="nav-link" id="posters_trailers-tab" data-toggle="tab" href="#posters_trailers"
-                               role="tab" aria-controls="posters_trailers" aria-selected="false">Постеры и трейлеры</a>
-                        </li>
-                        <!-- General Info-->
-                        <li class="nav-item">
-                            <a class="nav-link" id="general_info-tab" data-toggle="tab" href="#general_info" role="tab"
-                               aria-controls="general_info" aria-selected="false">Информация</a>
-                        </li>
+            <div class="grid grid-flow-row grid-rows-[max-content_max-content_100px] gap-4">
+                <div
+                    class="grid grid-cols-[repeat(auto-fill,_minmax(max-content,_150px))] gap-4 items-center">
+                <span class="cursor-pointer" @click="accordion = 'general'"
+                      :class="accordion === 'general' ? 'border-b-2 border-red-400' : ''"
+                >
+                    Информация
+                </span>
+                    <span class="cursor-pointer" @click="accordion = 'posters'"
+                          :class="accordion === 'posters' ? 'border-b-2 border-red-400' : ''"
+                    >
+                    Постеры
+                </span>
+                    <span class="cursor-pointer" @click="accordion = 'trailers'"
+                          :class="accordion === 'trailers' ? 'border-b-2 border-red-400' : ''"
+                    >
+                    Трейлеры
+                </span>
+                    <span class="cursor-pointer" @click="accordion = 'seo'"
+                          :class="accordion === 'seo' ? 'border-b-2 border-red-400' : ''"
+                    >
+                    Seo
+                </span>
+                </div>
 
-                        <!-- SEO-->
-                        <li class="nav-item">
-                            <a class="nav-link" id="seo-tab" data-toggle="tab" href="#seo" role="tab"
-                               aria-controls="seo" aria-selected="false">SEO</a>
-                        </li>
+                <section v-if="accordion === 'general'"
+                         class="grid grid-flow-row grid-rows-[max-content_max-content_max-content] gap-2"
+                >
+                    <div class="grid
+                    grid-flow-row
+                    md:grid-flow-col md:grid-cols-[4fr_1fr]
+                    ">
 
-                    </ul>
+                        <div class="grid grid-cols-[repeat(auto-fill,_minmax(50px,_200px))] gap-4">
 
-                    <div class="tab-content" id="myTabContent">
+                            <label> Показ видео: <br>
+                                <select class="w-full" v-model="form.video_allowed">
+                                    <option :value="1">Разрешено</option>
+                                    <option :value="0">Запрещено</option>
+                                </select>
+                            </label>
 
-                        <!-- Parse Tab -->
-                        <div class="tab-pane fade show active" id="parser" role="tabpanel" aria-labelledby="parser-tab">
-                            <div class="form-group input-group col-lg-6">
-                                <input v-model="form.kinopoiskId" type="number"
-                                       class="col-10 d-inline cform cform-custom-input custom-first-element"
-                                       placeholder="Введите номер видео по Кинопоиску" aria-label="Recipient's username"
-                                       aria-describedby="basic-addon2" wfd-id="id1">
-                                <button @click.prevent="parse()" type="button"
-                                      class="btn btn-success col-2 custom-last-element"
-                                      id="basic-addon2">Parse</button>
-                            </div>
+                            <label> Год: <br>
+                                <input class="w-full" v-model="form.year" type="text" placeholder="Выберите год">
+                            </label>
+
+                            <label> Русское название: <br>
+                                <input class="w-full" v-model="form.nameRu" type="text"
+                                       placeholder="Введите русское название">
+                            </label>
+
+                            <label>Английское название: <br>
+                                <input class="w-full" v-model="form.nameEn" type="text"
+                                       placeholder="Введите английское название">
+                            </label>
+
+                            <label>Возрастные ограничения: <br>
+                                <input class="w-full" v-model="form.age_limits" type="text"
+                                       placeholder="Введите ограничения по возрасту">
+                            </label>
+
+                            <label>Продолжительность: <br>
+                                <input class="w-full" v-model="form.duration" type="text"
+                                       placeholder="Введите ограничения по возрасту">
+                            </label>
+
+                            <label>Бюджет: <br>
+                                <input class="w-full" v-model="form.budget" type="text" placeholder="Бюджет">
+                            </label>
+
+                            <label>Тип: <br>
+                                <select class="w-full" v-model="form.type">
+                                    <option value="" disabled>Выберите Тип</option>
+                                    <option value="2">Полнометражные</option>
+                                    <option value="3">Сериалы</option>
+                                    <option value="4">Мини сериалы</option>
+                                </select>
+                                <div v-if="examples.type != null" class="text-gray-400">
+                                    <span class="text-green-600">Тип: </span>
+                                    <br>
+                                    <span v-if="examples.type == true">Сериал</span>
+                                    <span v-else>Полнометражный</span>
+                                </div>
+                            </label>
+
+                            <label>Категория: <br>
+                                <select class="w-full" @change="renderGenres()" v-model="form.category">
+                                    <option disabled value="" selected>Выберите категорию</option>
+                                    <template v-for="category in categories">
+                                        <option :value="category.id">{{ category.title }}</option>
+                                    </template>
+                                </select>
+                                <div v-if="examples.category != null" class="text-gray-400">
+                                    <span class="text-green-600">Категория Кинопоиска: </span>
+                                    <br>
+                                    <span>{{examples.category}}</span>
+                                </div>
+                            </label>
+
+                            <label v-if="genres != null">Жанры: <br>
+                                <select class="w-full" v-model="form.genres" multiple
+                                        placeholder="Можно выбрать несколько">
+                                    <template v-for="genre in genres.list">
+                                        <option :value="genre.id">{{ genre.title }}</option>
+                                    </template>
+                                </select>
+                                <div v-if="examples.genres != null" class="text-gray-400">
+                                    <span class="text-green-600">Жанры по Кинопоиску: </span>
+                                    <br>
+                                    <span v-for="genre in examples.genres">{{genre.name}} &nbsp</span>
+                                </div>
+                            </label>
+
+                            <label>Страны: <br>
+                                <select class="w-full" v-model="form.countries" multiple>
+                                    <option disabled value="null">Выберите страны</option>
+                                    <template v-for="country in countries">
+                                        <option :value="country.id">{{ country.title }}</option>
+                                    </template>
+                                </select>
+                                <div v-if="examples.countries != null" class="text-gray-400">
+                                    <span class="text-green-600">Страны по Кинопоиску: </span>
+                                    <br>
+                                    <span v-for="country in examples.countries">{{country.name}} &nbsp</span>
+                                </div>
+                            </label>
+
                         </div>
 
-                        <!-- Tests Tab -->
-                        <div class="tab-pane fade" id="tests" role="tabpanel" aria-labelledby="tests-tab">
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <!-- Kinopoisk ID -->
-                                    <div class="form-group col-5">
-                                        <label class="pr-3" for="testId">Наличие в БД:</label>
-                                        <button @click="checkInBD(form.kinopoiskId)" type="button"
-                                                class="cform-btn cform-custom-btn cform-btn-accent"
-                                                id="testId">Тест
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div v-if="test.id != null" class="col-6">
-                                        <div v-if="test.id == 1" class="alert alert-danger col-6" role="alert">
-                                            Present in Database
-                                        </div>
-                                        <div v-if="test.id == 2" class="alert alert-info col-6" role="alert">
-                                            Absent in Database
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Video Test -->
-                                <div class="col-12">
-                                    <button v-if="form.kinopoiskId != null" @click.prevent="testVideo()"
-                                            class="cform-btn cform-custom-btn cform-btn-accent mb-3">Тест Видео
-                                    </button>
-                                    <div class="kinobox_player col-xl-6"></div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- Trailers Tab -->
-
-                        <!--Posters_trailers Tab-->
-                        <div class="tab-pane fade" id="posters_trailers" role="tabpanel"
-                             aria-labelledby="posters_trailers-tab">
-
-                            <div class="row pl-2 pr-2">
-
-                                <!-- Video allowed -->
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="pr-3">Показ видео:</label>
-                                        <select v-model="form.video_allowed" class="cform cform-custom-input">
-                                            <option :value="1">Разрешено</option>
-                                            <option :value="0">Запрещено</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <!--poster Upload -->
-                                <div class="col-sm-6 d-flex align-items-center column-gap-2">
-                                        <div v-if="poster_preview" class="preview w-25 d-inline-flex mr-2">
-                                            <img class="img-fluid"
-                                                 :src="poster_preview" alt="">
-                                        </div>
-                                    <div class="form-group d-block">
-                                        <label for="PosterUpload">Постер:</label>
-                                        <div class="mb-3" id="PosterUpload">
-                                            <input @input.prevent="handlePoster($event)"
-                                                   class="cform cform-custom-file"
-                                                   type="file">
-                                        </div>
-                                        <a v-if="examples.posterUrlPreview" :href="examples.posterUrlPreview"
-                                           target="_blank">Перейти к постеру</a>
-                                    </div>
-                                </div>
-
-                                <!--backdrop Upload -->
-                                <div class="col-sm-6">
-                                        <div v-if="backdrop_preview" class="preview w-50 d-inline-flex">
-                                            <img class="img-fluid"
-                                            :src="backdrop_preview" alt="">
-                                        </div>
-                                    <div class="form-group">
-                                        <label for="BackdropUpload">Фоновая картинка:</label>
-                                        <div class="mb-3" id="BackdropUpload">
-                                            <input @input.prevent="handleBackdrop($event)"
-                                                   class="cform cform-custom-file"
-                                                   type="file">
-                                        </div>
-                                        <a v-if="examples.backdropUrl" :href="examples.backdropUrl" target="_blank">Перейти
-                                            к фоновой картинке</a>
-                                    </div>
-                                </div>
-
-
-                                <!-- Трейлеры -->
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <form>
-                                            <label>Трейлеры:</label>
-                                            <div v-if="form.trailers.length > 0"
-                                                 v-for="(trailer, index) in form.trailers"
-                                                 class="form-group input-group">
-                                                <input type="text" v-model="trailer.url"
-                                                       class="cform cform-custom-input col-6 custom-first-element"
-                                                       placeholder="Идентификатор dzen или ссылка youtube">
-                                                <input type="text" v-model="trailer.name"
-                                                       class="cform cform-custom-input col-3 custom-middle-element"
-                                                       placeholder="Название">
-                                                <select v-model="trailer.site"
-                                                        class="cform cform-custom-input col-2 custom-middle-element">
-                                                    <option value="dzen">dzen</option>
-                                                    <option value="youtube">youtube</option>
-                                                </select>
-                                                <button @click="deleteTrailer(index)" type="button"
-                                                        class="cform-btn cform-custom-btn cform-btn-error col-1 custom-last-element">
-                                                    -
-                                                </button>
-                                            </div>
-                                            <div class="input-group-btn">
-                                                <button @click="addTrailer()" type="button"
-                                                        class="cform-btn cform-custom-btn cform-btn-accent">Добавить
-                                                    трейлер
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--General info Tab-->
-                        <div class="tab-pane fade" id="general_info" role="tabpanel" aria-labelledby="general_info-tab">
-
-                            <div class="row">
-                                <div class="row col-lg-9 col-12">
-                                    <!-- Kinopoisk ID -->
-                                    <div class="col-12 col-lg-4">
-                                        <div class="form-group">
-                                            <label for="KinopoiskId">Кинопоиск ID:</label>
-                                            <input v-model="form.kinopoiskId" type="number"
-                                                   class="d-block cform cform-custom-input w-100"
-                                                   id="KinopoiskId" placeholder="Введите Кинопоиск ID">
-                                        </div>
-                                    </div>
-
-                                    <!-- Year -->
-                                    <div class="col-12 col-lg-4">
-                                        <div class="form-group">
-                                            <label>Год:</label>
-                                            <input v-model="form.year" type="text" placeholder="Выберите год"
-                                                   class="d-block cform cform-custom-input w-100"
-                                                   aria-label="Sizing example input"
-                                                   aria-describedby="inputGroup-sizing-default">
-                                        </div>
-                                    </div>
-
-                                    <!-- NameRu -->
-                                    <div class="col-12 col-lg-4">
-                                        <div class="form-group">
-                                            <label for="nameRu">Русское название:</label>
-                                            <input v-model="form.nameRu" type="text"
-                                                   class="d-block cform cform-custom-input w-100" id="nameRu"
-                                                   placeholder="Введите русское название">
-                                        </div>
-                                    </div>
-
-                                    <!-- NameEn -->
-                                    <div class="col-12 col-lg-4">
-                                        <div class="form-group">
-                                            <label for="nameOriginal">Английское название:</label>
-                                            <input v-model="form.nameEn" type="text"
-                                                   class="d-block cform cform-custom-input w-100" id="nameOriginal"
-                                                   placeholder="Введите английское название">
-                                        </div>
-                                    </div>
-
-                                    <!-- AgeLimits -->
-                                    <div class="col-12 col-lg-4">
-                                        <div class="form-group">
-                                            <label for="ageLimits">Возрастные ограничения:</label>
-                                            <input v-model="form.age_limits" type="text"
-                                                   class="d-block cform cform-custom-input w-100" id="ageLimits"
-                                                   placeholder="Введите ограничение по возрасту">
-                                        </div>
-                                    </div>
-
-                                    <!-- Duration Parse -->
-                                    <div class="col-12 col-lg-4">
-                                        <div class="form-group input-group">
-                                            <label for="filmLength">Продолжительность:</label>
-                                            <input v-model="form.duration" type="text"
-                                                   class="d-block cform cform-custom-input w-100" id="filmLength"
-                                                   placeholder="В минутах">
-                                        </div>
-                                    </div>
-
-
-                                    <!-- Budget Parse -->
-                                    <div class="col-12 col-lg-4">
-                                        <div class="form-group">
-                                            <label for="budget">Бюджет:</label>
-                                            <input v-model="form.budget" type="text"
-                                                   class="d-block cform cform-custom-input w-100" id="budget"
-                                                   placeholder="Бюджет">
-                                        </div>
-                                    </div>
-
-                                    <!-- Cat Select -->
-                                    <div class="col-12 col-lg-4">
-                                        <div class="form-group">
-                                            <label>Категория</label>
-                                            <select @change="getGenresList(form.category)" v-model="form.category"
-                                                    class="d-block cform cform-custom-input w-100">
-                                                <option disabled value="" selected>Выберите категорию</option>
-                                                <template v-for="category in categories">
-                                                    <option :value="category.id">{{category.title}}</option>
-                                                </template>
-                                            </select>
-                                            <p v-if="examples.type != null">
-                                                Категория Кинопоиска: {{examples.category}}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!--Type Select -->
-                                    <div class="col-12 col-lg-4">
-                                        <div class="form-group">
-                                            <label>Тип:</label>
-                                            <select v-model="form.type"
-                                                    class="d-block cform cform-custom-input w-100">
-                                                <option value="" disabled>Выберите Тип</option>
-                                                <option value="2">Полнометражные</option>
-                                                <option value="3">Сериалы</option>
-                                                <option value="4">Мини сериалы</option>
-                                            </select>
-                                            <p v-if="examples.type != null"> Сериал:
-                                                {{examples.type}}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Country Select -->
-                                    <div class="col-12 col-lg-4">
-                                        <div class="form-group">
-                                            <label>Страны</label>
-                                            <select v-model="form.countries" class="d-block cform cform-custom-input w-100"
-                                                    multiple>
-                                                <option disabled value="null">Выберите страны</option>
-                                                <template v-for="country in countries">
-                                                    <option :value="country.id">{{country.title}}</option>
-                                                </template>
-                                            </select>
-                                            <div v-if="examples.countries"> Страны по Кинопоиску:
-                                                <div>
-                                                    <ul>
-                                                        <li v-for="country in examples.countries">
-                                                            {{country.name}} &nbsp
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <!--SubCat Select -->
-                                    <div class="col-12 col-lg-4">
-                                        <div class="form-group" v-if="genres.list != null">
-                                            <label>Жанры</label>
-                                            <select v-model="form.genres" multiple placeholder="Можно выбрать несколько"
-                                                    style="width: 100%" class="d-block cform cform-custom-input w-100">
-                                                <option v-for="genre in genres.list" :value="genre.id">{{genre.title}}
-                                                </option>
-                                            </select>
-                                            <div>
-                                                Жанры по кинопоиску:
-                                                <div>
-                                                    <ul>
-                                                        <li v-for="genre in examples.genres">
-                                                            {{genre.name}} &nbsp
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <!-- Rate Parse -->
-                                <div class="col-lg-3 col-12">
-                                    <label>Оценка видео: </label>
-                                    <form name="leaveComment">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <label class="d-block mt-2">Сюжет:</label>
-                                                <div class="radio-group radio-group-small">
-                                                    <input v-model="form.plot" :value=null type="radio"
-                                                           id="rate_plot_null" name="rate_plot"
-                                                           checked disabled>
-                                                    <label class="m-0" for="rate_plot_null"><i
-                                                        class="fa-solid fa-not-equal"></i></label>
-                                                    <template v-for="item in 5">
-                                                        <input v-model="form.plot"
-                                                               @input.prevent="countScore(item, form.actors_game, form.atmosphere)"
-                                                               :value="item" type="radio" :id="`rate_plot_${item}`"
-                                                               name="rate_plot">
-                                                        <label class="m-0" :for="`rate_plot_${item}`">{{item}}</label>
-                                                    </template>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mt-2">
-                                                <label class="d-block pt-2">Игра актеров:</label>
-                                                <div class="radio-group radio-group-small">
-                                                    <input v-model="form.actors_game" :value=null type="radio"
-                                                           id="rate_actors_game_null" name="rate_actors_game"
-                                                           checked disabled>
-                                                    <label class="m-0" for="rate_actors_game_null"><i
-                                                        class="fa-solid fa-not-equal"></i></label>
-                                                    <template v-for="item in 5">
-                                                        <input
-                                                            @input.prevent="countScore(form.plot, item, form.atmosphere)"
-                                                            v-model="form.actors_game" :value="item" type="radio"
-                                                            :id="`rate_actors_game_${item}`" name="rate_actors_game">
-                                                        <label class="m-0"
-                                                               :for="`rate_actors_game_${item}`">{{item}}</label>
-                                                    </template>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mt-2">
-                                                <label class="d-block pt-2">Атмосфера:</label>
-                                                <div class="radio-group radio-group-small">
-                                                    <input v-model="form.atmosphere" :value=null type="radio"
-                                                           id="rate_atmosphere_null" name="rate_atmosphere"
-                                                           checked disabled>
-                                                    <label class="m-0" for="rate_atmosphere_null"><i
-                                                        class="fa-solid fa-not-equal"></i></label>
-                                                    <template v-for="item in 5">
-                                                        <input
-                                                            @input.prevent="countScore(form.plot, form.actors_game, item)"
-                                                            v-model="form.atmosphere" :value="item" type="radio"
-                                                            :id="`rate_atmosphere_${item}`" name="rate_atmosphere">
-                                                        <label class="m-0"
-                                                               :for="`rate_atmosphere_${item}`">{{item}}</label>
-                                                    </template>
-                                                </div>
-                                            </div>
-                                            <div v-if="form.rate" class="col-12 mt-2">
-                                                <p class="text-muted">Общая оценка: {{form.rate}}</p>
-                                            </div>
-
-                                        </div>
-                                    </form>
-                                    <div v-if="examples.rate"> Рейтинг по Кинопоиску:
-                                        <div>
-                                            {{examples.rate}}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="slogan">Слоган:
-                                        <small :class="form.slogan.length > 255 ? 'text-danger' : ''">
-                                            &nbsp{{form.slogan.length}}
-                                            / 255</small>
+                        <aside
+                            class="w-2/3
+                        md:w-full
+                        "
+                        >
+                            <h3 class="pb-2">Оценка видео:</h3>
+                            <label>Сюжет:
+                                <div class="grid grid-flow-col grid-cols-[repeat(6,_1fr)] bg-gray-200">
+                                    <label class="px-4 py-2 block justify-self-center"
+                                           :class="form.plot === null ? 'bg-sky-950 text-white': ''"
+                                    ><i class="fa-solid fa-not-equal"></i>
+                                        <input v-model="form.plot" :value=null type="radio"
+                                               name="rate_plot"
+                                               checked disabled
+                                               class="hidden"
+                                        >
                                     </label>
-                                    <input v-model="form.slogan" type="text"
-                                           class="d-block cform cform-custom-input w-100" id="slogan"
-                                           placeholder="Слоган">
+                                    <template v-for="item in 5">
+                                        <label class="px-4 py-2 block bg-inherit justify-self-center"
+                                               :class="form.plot === item ? 'bg-sky-950 text-white': ''"
+                                        >{{ item }}
+                                            <input v-model="form.plot"
+                                                   @input.prevent="countScore(item, form.actors_game, form.atmosphere)"
+                                                   :value="item" type="radio"
+                                                   name="rate_plot"
+                                                   class="hidden"
+                                            >
+                                        </label>
+                                    </template>
                                 </div>
-
-                                <div class="col-12">
-                                    <label class="d-block" for="description">Описание:
-                                        <small :class="form.description.length > 16300 ? 'text-danger' : ''">
-                                            &nbsp{{form.description.length}}
-                                            / 16300</small>
+                            </label>
+                            <label>Игра актеров:
+                                <div class="grid grid-flow-col grid-cols-[repeat(6,_1fr)] bg-gray-200">
+                                    <label class="px-4 py-2 block justify-self-center"
+                                           :class="form.actors_game === null ? 'bg-sky-950 text-white': ''"
+                                    ><i class="fa-solid fa-not-equal"></i>
+                                        <input v-model="form.actors_game" :value=null type="radio"
+                                               name="rate_actors_game"
+                                               checked disabled
+                                               class="hidden"
+                                        >
                                     </label>
-
-                                    <textarea class="w-100 d-block cform cform-custom-input" v-model="form.description"
-                                              id="description" rows="10"
-                                              placeholder="Вставьте описание"></textarea>
+                                    <template v-for="item in 5">
+                                        <label class="px-4 py-2 block bg-inherit justify-self-center"
+                                               :class="form.actors_game === item ? 'bg-sky-950 text-white': ''"
+                                        >{{ item }}
+                                            <input v-model="form.actors_game"
+                                                   @input.prevent="countScore(form.plot, item, form.atmosphere)"
+                                                   :value="item" type="radio"
+                                                   name="rate_actors_game"
+                                                   class="hidden"
+                                            >
+                                        </label>
+                                    </template>
                                 </div>
+                            </label>
 
+                            <label>Атмосфера:
+                                <div class="grid grid-flow-col grid-cols-[repeat(6,_1fr)] bg-gray-200">
+                                    <label class="px-4 py-2 block justify-self-center"
+                                           :class="form.atmosphere === null ? 'bg-sky-950 text-white': ''"
+                                    ><i class="fa-solid fa-not-equal"></i>
+                                        <input v-model="form.atmosphere" :value=null type="radio"
+                                               name="rate_atmosphere"
+                                               checked disabled
+                                               class="hidden"
+                                        >
+                                    </label>
+                                    <template v-for="item in 5">
+                                        <label class="px-4 py-2 block bg-inherit justify-self-center"
+                                               :class="form.atmosphere === item ? 'bg-sky-950 text-white': ''"
+                                        >{{ item }}
+                                            <input v-model="form.atmosphere"
+                                                   @input.prevent="countScore(form.plot, form.actors_game, item)"
+                                                   :value="item" type="radio"
+                                                   name="rate_atmosphere"
+                                                   class="hidden"
+                                            >
+                                        </label>
+                                    </template>
+                                </div>
+                            </label>
+                            <div v-if="form.rate" class="col-12 mt-2">
+                                <p class="text-muted">Общая оценка: {{ form.rate }}</p>
                             </div>
-                        </div>
-
-                        <!--SEO Tab-->
-                        <div class="tab-pane fade" id="seo" role="tabpanel" aria-labelledby="seo-tab">
-
-                            <div class="row">
-
-                                <!--Title Select -->
-                                <div class="col-8 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Заголовок:</label>
-                                        <select v-model="form.title_id" style="width: 100%"
-                                                class="w-100 d-block cform cform-custom-input">
-                                            <option value="null" disabled selected>Выберите строку заголовка</option>
-                                            <option v-for="title in titles" :value="title.id">{{title.description}}
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="meta_keywords">Meta keywords:
-                                        <small :class="form.meta_keywords.length > 255 ? 'text-danger' : ''">
-                                            &nbsp{{form.meta_keywords.length}}
-                                            / 255</small>
-                                    </label>
-                                    <input v-model="form.meta_keywords" type="text"
-                                           class="w-100 d-block cform cform-custom-input" id="meta_keywords"
-                                           placeholder="Meta keywords">
-                                </div>
-
-                                <div class="col-12">
-                                    <label class="d-block" for="meta_description">Meta description:
-                                        <small :class="form.meta_description.length > 16383 ? 'text-danger' : ''">
-                                            &nbsp{{form.meta_description.length}}
-                                            / 16383</small>
-                                    </label>
-                                    <textarea class="w-100 d-block cform cform-custom-input"
-                                              v-model="form.meta_description" id="meta_description" rows="4"
-                                              placeholder="meta description"></textarea>
-                                </div>
+                            <div v-if="examples.rate != null" class="text-gray-400">
+                                <span class="text-green-600">Рейтинг Кинопоиска: </span>
+                                <br>{{examples.rate}}
                             </div>
-                        </div>
-
+                        </aside>
                     </div>
-                    <div class="card-footer">
-                        <button @click.prevent="store()" type="submit" class="btn btn-primary">Submit</button>
+
+                    <div>
+                        <label>Слоган:
+                            <small :class="form.slogan.length > 255 ? 'text-red-600' : ''">
+                                &nbsp{{ form.slogan.length }}
+                                / 255</small><br>
+                        </label>
+                        <input v-model="form.slogan" type="text"
+                               class="w-full"
+                               placeholder="Слоган">
                     </div>
+
+                    <div>
+                        <label>Описание:
+                            <small :class="form.description.length > 16300 ? 'text-red-600' : ''">
+                                &nbsp{{ form.description.length }}
+                                / 16300</small>
+                        </label>
+                        <div v-if="examples.description != null" class="text-gray-400">
+                            <span class="text-green-600">Пример Кинопоиска: </span>
+                            <br>{{examples.description}}
+                        </div>
+                        <textarea class="w-full" v-model="form.description"
+                                  id="description" rows="10" placeholder="Вставьте описание"></textarea>
+                    </div>
+
+                </section>
+                <section v-if="accordion === 'posters'" class="grid gap-4
+                grid-flow-row
+                md:grid-cols-[1fr_3fr]
+                ">
+                    <div class="grid gap-4">
+                        <img v-if="previews.poster != null" class="w-1/2 justify-self-center" :src="previews.poster"
+                             alt="Превью постера">
+                        <label class="self-end">Постер:<br>
+                            <input @input="handleImg('poster', $event)"
+                                   type="file">
+                        </label>
+                        <a v-if="examples.posterUrlPreview != null" :href="examples.posterUrlPreview" target="_blank"
+                           class="text-green-600 cursor-pointer"
+                        >
+                            Ссылка на постер
+                        </a>
+                    </div>
+                    <div class="grid gap-4">
+                        <img v-if="previews.backdrop != null" class="w-3/4 justify-self-center" :src="previews.backdrop"
+                             alt="Превью фоновой картинки">
+                        <label class="self-end">Фоновая картинка:<br>
+                            <input @input="handleImg('backdrop', $event)"
+                                   type="file">
+                        </label>
+                        <a v-if="examples.backdropUrl != null" :href="examples.backdropUrl" target="_blank"
+                           class="text-green-600 cursor-pointer self-end"
+                        >
+                            Ссылка на Backdrop
+                        </a>
+                    </div>
+
+
+                </section>
+                <section v-if="accordion === 'trailers'">
+                    <form class="grid grid-flow-row gap-2">
+                        <div class="grid grid-flow-col items-center">
+                            <span>Трейлеры</span>
+                        </div>
+                        <div v-if="form.trailers.length > 0"
+                             v-for="(trailer,index) in form.trailers"
+                             class="grid gap-y-4
+                             grid-flow-row
+                             md:grid-flow-col md:grid-cols-[3fr,_2fr,_1fr,_1fr]">
+                            <input type="text" v-model="trailer.url"
+                                   class="
+                                   rounded mt-2
+                                   md:mt-0 md:rounded-r-none md:border-r-0
+                                   "
+                                   placeholder="Идентификатор dzen или ссылка youtube">
+                            <input type="text" v-model="trailer.name"
+                                   class="
+                                   rounded mt-2
+                                   md:mt-0 md:border-r-0 md:rounded-none
+                                   "
+                                   placeholder="Название">
+                            <select v-model="trailer.site"
+                                    class="
+                                rounded mt-2
+                                md:mt-0 md:border-r-0 md:rounded-none
+                                ">
+                                <option value="dzen">dzen</option>
+                                <option value="youtube">youtube</option>
+                            </select>
+                            <button @click.prevent="deleteTrailer(index)" type="button"
+                                    class="rounded-r bg-red-700 text-white h-full px-4 hover:bg-white hover:text-red-700 hover:border-red-700 hover:border-2
+                                w-1/4 justify-self-end self-center
+                                md:w-full
+                                ">
+                                Delete
+                            </button>
+                        </div>
+                        <div class="justify-self-start">
+                            <button @click="addTrailer()" type="button"
+                                    class="bg-green-800 text-white box-border px-6 py-2 mr-6 rounded-md justify-self-end
+                             hover:text-green-800 hover:border-green-800 border-2 hover:bg-white">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+
+                </section>
+                <section v-if="accordion === 'seo'">
+
+                    <div class="grid grid-flow-row gap-4">
+                        <label>Заголовок: <br>
+                            <select v-model="form.title_id" class="w-full">
+                                <option value="null" disabled>Выберите строку заголовка</option>
+                                <option v-for="title in titles" :value="title.id">{{ title.description }}
+                                </option>
+                            </select>
+                        </label>
+                        <label>Meta keywords:
+                            <small :class="form.meta_keywords.length > 255 ? 'text-red-600' : ''">
+                                &nbsp{{ form.meta_keywords.length }}
+                                / 255</small> <br>
+                            <input v-model="form.meta_keywords" type="text"
+                                   class="w-full"
+                                   placeholder="Meta keywords">
+                        </label>
+                        <label>Meta description:
+                            <small :class="form.meta_description.length > 16383 ? 'text-red-600' : ''">
+                                &nbsp{{ form.meta_description.length }}
+                                / 16383</small> <br>
+                            <textarea class="w-full"
+                                      v-model="form.meta_description" rows="5"
+                                      placeholder="meta description"></textarea>
+                        </label>
+                    </div>
+                </section>
+                <div class="grid justify-items-center items-center">
+                    <button @click.prevent="store()"
+                            type="submit"
+                            class="bg-[#333545] justify-self-end px-4 py-2 rounded-md text-white
+                        hover: border-2 hover:border-[#333545] hover:text-[#333545] hover:bg-white"
+
+                    >Submit
+                    </button>
                 </div>
 
             </div>
         </section>
 
+
         <message :message.sync="message"></message>
 
-    </AuthenticatedLayout>
 </template>
 
 <script>
-    import {Head, Link, router,} from "@inertiajs/vue3";
-    import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-    import Message from '@/Components/Message.vue'
+import {Head, Link, router,} from "@inertiajs/vue3";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import Message from '@/Components/Message.vue'
+import Wrapper from "@/Components/Wrapper.vue";
+import Parser from "@/Components/Parser.vue";
 
-    export default {
-        name: "Create",
-        props: ['categories', 'countries', 'titles'],
-        components: {Head, Link, AuthenticatedLayout, Message},
+export default {
+    name: "Create",
+    layout: AuthenticatedLayout,
+    props: ['categories', 'countries', 'titles'],
+    components: {Head, Link, Message, Parser},
 
-        data() {
-            return {
-                poster_preview: null,
-                backdrop_preview: null,
-                test: {
-                    id: null,
-                },
-                genres: {
-                    list: null,
-                },
-                examples: {
-                    genres: null,
-                    type: null,
-                    category: null,
-                    posterUrlPreview: null,
-                    backdropUrl: null,
-                    countries: null,
-                    rate: null
-                },
-                form: {
-                    kinopoiskId: null,
-                    year: null,
-                    nameRu: null,
-                    nameEn: null,
-                    poster: null,
-                    backdrop: null,
-                    category: "",
-                    countries: [],
-                    type: "",
-                    duration: null,
-                    age_limits: null,
-                    plot: null,
-                    actors_game: null,
-                    atmosphere: null,
-                    rate: null,
-                    slogan: '',
-                    description: '',
-                    genres: [],
-                    trailers: [],
-                    video_allowed: 1,
-                    budget: "",
-                    meta_keywords: '',
-                    meta_description: '',
-                    title_id: null,
+    data() {
+        return {
+            accordion: 'general',
+            show: {
+                parser: false,
+            },
+            previews: {
+                poster: null,
+                backdrop: null,
+            },
+            genres: {
+                list: null,
+            },
+            examples: {
+                genres: null,
+                type: null,
+                category: null,
+                posterUrlPreview: null,
+                backdropUrl: null,
+                countries: null,
+                rate: null,
+                description: null,
+            },
+            form: {
+                kinopoiskId: null,
+                year: null,
+                nameRu: null,
+                nameEn: null,
+                poster: null,
+                backdrop: null,
+                category: "",
+                countries: [],
+                type: "",
+                duration: null,
+                age_limits: null,
+                plot: null,
+                actors_game: null,
+                atmosphere: null,
+                rate: null,
+                slogan: '',
+                description: '',
+                genres: [],
+                trailers: [],
+                video_allowed: 1,
+                budget: "",
+                meta_keywords: '',
+                meta_description: '',
+                title_id: null,
+            },
+            message: {
+                body: [],
+                type: '',
+                show: false,
+            }
+        }
+    },
 
-                },
-                message: {
-                    body: [],
-                    type: '',
-                    show: false,
-                }
+    methods: {
+        handleImg(type, event) {
+            this.form[type] = event.target.files[0];
+            this.previews[type] = URL.createObjectURL(event.target.files[0])
+        },
+        countScore(plot, actors, atmosphere) {
+            if (plot !== null && actors !== null && atmosphere !== null) {
+                this.form.rate = Math.round((plot + actors + atmosphere) / 3 * 10) / 10
             }
         },
 
-        methods: {
-            countScore(plot, actors, atmosphere) {
-                if (plot !== null && actors !== null && atmosphere !== null) {
-                    this.form.rate = Math.round((plot + actors + atmosphere) / 3 * 10) / 10
-                }
-            },
-
-            handlePoster(event)
-            {
-                this.form.poster = event.target.files[0];
-                this.poster_preview = URL.createObjectURL(event.target.files[0])
-            },
-
-            handleBackdrop(event)
-            {
-                this.form.backdrop = event.target.files[0];
-                this.backdrop_preview = URL.createObjectURL(event.target.files[0])
-            },
-
-            deleteTrailer(elemIndex) {
-                this.form.trailers = this.form.trailers.filter((elem, index) => {
-                    return index != elemIndex
-                })
-            },
-
-            addTrailer() {
-                this.form.trailers.unshift({
-                    url: '',
-                    name: '',
-                    site: 'youtube',
-                })
-            },
-
-            parse() {
-                axios.get(`https://api.kinopoisk.dev/v1.4/movie/${this.form.kinopoiskId}`,
-                    {
-                        headers: {
-                            'X-API-KEY': 'E1J0H6V-27AMY5A-P3RYSY9-S4F1KM0',
-                            'Content-Type': 'application/json',
-                        }
-                    })
-                    .then(response => {
-                        console.log(response)
-                        this.form.year = response.data.year
-                        this.form.nameRu = response.data.name
-                        this.form.nameEn = response.data.alternativeName
-                        this.form.duration = response.data.movieLength
-                        this.form.age_limits = response.data.ageRating
-                        this.form.budget = response.data.budget.value + ' ' + response.data.budget.currency
-                        this.form.slogan = response.data.slogan
-                        this.form.description = response.data.description
-                        if (response.data.videos.trailers.length > 0) {
-                            this.form.trailers = response.data.videos.trailers
-                        }
-                        this.examples.rate = response.data.rating.kp
-                        this.examples.genres = response.data.genres
-                        this.examples.category = response.data.type
-                        this.examples.type = response.data.isSeries
-                        this.examples.posterUrlPreview = response.data.poster.previewUrl
-                        this.examples.backdropUrl = response.data.backdrop.url
-                        this.examples.countries = response.data.countries
-
-                        this.message.body = ['Информация успешно получена']
-                        this.message.type = 'success'
-                        this.message.show = true
-                    }).catch((error) => {
-                    this.message.body = [error.message]
-                    this.message.type = 'error'
-                    this.message.show = true
-                });
-
-            },
-
-            testVideo() {
-                new Kinobox('.kinobox_player', {
-                    'X-Settings': {
-                        "Alloha": {
-                            "enable": true,
-                            "position": 1,
-                            "token": "",
-                        },
-                        "Ashdi": {
-                            "enable": true,
-                            "position": 2,
-                            "token": "",
-                        },
-                        "Bazon": {
-                            "enable": true,
-                            "position": 3,
-                            "token": "",
-                        },
-                        "Cdnmovies": {
-                            "enable": true,
-                            "position": 4,
-                            "token": "",
-                        },
-                        "Collaps": {
-                            "enable": true,
-                            "position": 5,
-                            "token": "",
-                        },
-                        "Hdvb": {
-                            "enable": true,
-                            "position": 6,
-                            "token": "",
-                        },
-                        "Iframe": {
-                            "enable": true,
-                            "position": 7,
-                            "token": "",
-                        },
-                        "Kodik": {
-                            "enable": true,
-                            "position": 8,
-                            "token": "",
-                        },
-                        "Videocdn": {
-                            "enable": true,
-                            "position": 9,
-                            "token": "",
-                        },
-                        "Voidboost": {
-                            "enable": true,
-                            "position": 10,
-                            "token": "",
-                        },
-
-                    },
-                    search: {
-                        kinopoisk: this.form.kinopoiskId,
-                        title: this.form.nameEn
-                    }
-                }).init();
-            },
-
-            getGenresList(category) {
-                axios.get(`/get_genres?category=${category}`)
-                    .then(response => {
-                        this.genres.list = response.data
-                    })
-            },
-
-            checkInBD(id) {
-                axios.post('/admin/movies/test_in_bd', {kinopoisk_id: String(id)})
-                    .then(response => {
-
-                        if (response.data.length > 0) {
-                            this.test.id = 1
-                        } else {
-                            this.test.id = 2
-                        }
-                    })
-            },
-
-            store() {
-                this.form.trailers = this.form.trailers.filter((elem) => {
-                    if (elem.url != '' && elem.name != '') {
-                        return elem
-                    }
-                })
-                router.post('/admin/movies/store', this.form)
-                router.on('error', (errors) => {
-                    this.message.body = errors.detail.errors
-                    this.message.type = 'error'
-                    this.message.show = true
-                })
-
-
-            }
+        handlePoster(event) {
+            this.form.poster = event.target.files[0];
+            this.poster_preview = URL.createObjectURL(event.target.files[0])
         },
 
-    }
+        handleBackdrop(event) {
+            this.form.backdrop = event.target.files[0];
+            this.backdrop_preview = URL.createObjectURL(event.target.files[0])
+        },
+
+        deleteTrailer(elemIndex) {
+            this.form.trailers = this.form.trailers.filter((elem, index) => {
+                return index != elemIndex
+            })
+        },
+
+        addTrailer() {
+            this.form.trailers.unshift({
+                url: '',
+                name: '',
+                site: 'youtube',
+            })
+        },
+
+        renderGenres() {
+            axios.get(`/get_genres?category=${this.form.category}`)
+                .then(response => {
+                    this.genres.list = response.data
+                })
+        },
+
+        store() {
+            this.form.trailers = this.form.trailers.filter((elem) => {
+                if (elem.url != '' && elem.name != '') {
+                    return elem
+                }
+            })
+            router.post('/admin/movies/store', this.form)
+            router.on('error', (errors) => {
+                this.message.body = errors.detail.errors
+                this.message.type = 'error'
+                this.message.show = true
+            })
+
+
+        }
+    },
+
+}
 </script>
 

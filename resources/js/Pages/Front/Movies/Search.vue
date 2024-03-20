@@ -1,62 +1,45 @@
 <template>
-    <FrontLayout>
-
         <Head>
             <title>Поиск фильмов MovieOne.ru</title>
-            <meta name="description" content="MovieOne Онлайн кинотеатр с большим выбором фильмов, мультфильмов и аниме. У нас Вы всегда можете посмотреть любимые фильмы бесплатно и без регистрации" />
-            <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
+            <meta name="description"
+                  content="MovieOne Онлайн кинотеатр с большим выбором фильмов, мультфильмов и аниме. У нас Вы всегда можете посмотреть любимые фильмы бесплатно и без регистрации"/>
+            <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
         </Head>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <!-- Content Row -->
-                <div class="row">
-                    <!-- Page Heading -->
-                    <div class="ml-3 d-sm-flex align-items-center justify-content-between pt-4 mb-4">
-                        <h1 class="h5 mb-0 text-gray-900">Результаты запроса: {{data.key}}</h1>
-                    </div>
+        <main class="container mx-auto mb-4
+    grid grid-flow-row gap-4 z-20 bg-slate-100
+    ">
+            <div class="px-4 h-[70px] grid grid-flow-col justify-items-start bg-white content-center">
+                <h1 class="text-gray-900">Результаты запроса: {{ data.key }}</h1>
+            </div>
+            <div class="px-4 grid grid-cols-[repeat(auto-fit,_minmax(100px,_200px))] justify-items-center gap-4">
+                <movies-card :data="movies" :config="{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"></movies-card>
+            </div>
 
-                    <div class="col-xl-12 col-lg-8 mt-4">
+        </main>
 
-                        <div class="row">
-
-                            <movies-card :data="movies" :config = "{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"></movies-card>
-
-                            <div v-if="movies.length === 0" class="text-muted"><i class="fas fa-search fa-sm"></i> Не нашел
-                                фильмов по заданным критериям. Попробуйте облегчить мне задачу
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                </div>
-
-        </section>
-        </FrontLayout>
 </template>
 
 
 <script>
-    import {Head, Link} from "@inertiajs/vue3";
-    import FrontLayout from "@/Layouts/FrontLayout.vue";
-    import MoviesCard from "@/Components/MoviesCard.vue";
+import {Head, Link} from "@inertiajs/vue3";
+import FrontLayout from "@/Layouts/FrontLayout.vue";
+import MoviesCard from "@/Components/MoviesCard.vue";
 
 
-    export default {
-        name: "Catalog",
-        props: ['movies', 'data'],
-        components: {Head, Link, FrontLayout, MoviesCard},
-        mounted() {
-            ym(94438576, 'hit', '/search');
-        },
+export default {
+    name: "Catalog",
+    layout: FrontLayout,
+    props: ['movies', 'data'],
+    components: {Head, Link, MoviesCard},
+    mounted() {
+        ym(94438576, 'hit', '/search');
+        this.$parent.searchKey = ''
+    },
 
 
-    }
+
+}
 </script>
 
 

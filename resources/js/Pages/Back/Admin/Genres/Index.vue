@@ -2,76 +2,71 @@
 
     <Head title="Жанры" />
 
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="display-6">Список жанров</h2>
-        </template>
-        <section class="content">
-            <div class="container-fluid">
+        <h2 class="bg-white p-4 shadow-md">Список жанров</h2>
 
-                <div class="row">
-                    <div class="col-md-6 col-12">
+        <section class="container mx-auto
+        px-4 grid grid-rows-[max-content] grid-cols-1
+         gap-4 py-4">
 
-                        <div class="card" v-for="item in data">
-                            <div class="card-header">
-                                <h3 class="card-title">{{item.category_title}}</h3>
-
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body p-0">
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>Title</th>
-                                        <th>Action</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <template v-for="genre in item.genres">
-                                        <tr>
-                                            <td>{{genre.id}}</td>
-                                            <td>{{genre.title}}</td>
-                                            <td>
-                                                <Link as="button" :href="`/admin/genres/${genre.id}/edit`" class="btn btn-block btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i>
-                                                </Link>
-                                            </td>
-                                            <td>
-                                                <Link method="delete" as="button" :href="`/admin/genres/${genre.id}`" type="button" class="btn btn-block btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i>
-                                                </Link>
-                                            </td>
-                                        </tr>
-
-
-
-                                    </template>
-
-                                    </tbody>
-                                </table>
-
-                                <Link :href="`/admin/genres/${item.category_id}/create`" class="p-4">Добавить жанр</Link>
-
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                    </div>
+            <div v-for="item in data" class="grid grid-flow-row grid-cols-1fr grid-rows-[50px_max-content_max-content] items-center
+            w-full
+            md:w-fit
+">
+                <div>
+                    <h3>{{item.category_title}}</h3>
                 </div>
+                <div class=" text-wrap gap-2 grid border-2 border-cyan-950 px-4 py-2 bg-white text-gray-800 items-center
+
+                md:grid-cols-[40px,_max-content_minmax(200px,_max-content)]
+                ">
+                    <div class="hidden md:block">#</div>
+                    <div class="hidden md:block">Title</div>
+                    <div class="justify-self-center">Action</div>
+                    <template v-for="genre in item.genres">
+                            <div><span class="md:hidden"># </span>{{genre.id}}</div>
+                            <div><span class="md:hidden">Title </span>{{genre.title}}</div>
+                            <div class="grid grid-flow-col justify-around justify-content-center">
+                                <Link as="button" :href="`/admin/genres/${genre.id}/edit`"
+                                      class="py-1 px-6 border-2 border-amber-300 rounded-2xl text-amber-300 hover:bg-amber-300 hover:text-white
+                                grid items-center"
+                                >
+                                    <span class="material-symbols-sharp font-bold">edit_square</span>
+                                </Link>
+                                <Link @click.prevent="deleteInstance(genre.id)" v-if="$page.props.auth.user.role == 1" as="button"
+                                      href="#"
+                                      type="button"
+                                      class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white
+                                grid items-center"
+                                >
+                                    <span class="material-symbols-sharp font-bold">delete</span>
+                                </Link>
+                            </div>
+                    </template>
+                </div>
+                <Link :href="`/admin/genres/${item.category_id}/create`"
+                      class="px-4 py-1 mx-2 my-2 w-fit rounded-md border-2 border-cyan-950 text-cyan-950 hover:bg-cyan-950 hover:text-white"
+                >Добавить жанр</Link>
             </div>
         </section>
-    </AuthenticatedLayout>
 
 </template>
 
 <script>
-    import { Head } from "@inertiajs/vue3";
+import {Head, router} from "@inertiajs/vue3";
     import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
     export default {
         name: "Index",
+        layout: AuthenticatedLayout,
         props: ['data'],
-        components: {Head, Link, AuthenticatedLayout},
-
+        components: {Head, Link},
+        methods:{
+            deleteInstance(id){
+                router.delete(`/admin/genres/${id}`, {
+                    onBefore: () => confirm('Вы уверены, что хотите удалить этот жанр?'),
+                })
+            },
+        },
     }
 </script>

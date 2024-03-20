@@ -23,7 +23,7 @@ class CommentResource extends JsonResource
             'atmosphere' => $this->atmosphere,
             'rating' => $this->rating,
             'description' => $this->description,
-            'updated_at' => $this->updated_at->diffForHumans(),
+            'created_at' => $this->created_at->diffForHumans(),
         ];
     }
 }

@@ -22,7 +22,7 @@ class ArticlesIndexResource extends JsonResource
             'article_id' => $this->id,
             'article_title' => $this->title,
             'description' => $this->description,
-            'image' => URL('/storage/collections/articles/' . $this->image),
+            'image' => '/storage/Collections/Articles/' . $this->image,
             'movies'=> $movies,
         ];
     }

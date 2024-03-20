@@ -1,9 +1,15 @@
 <script setup>
-defineProps(["message"]);
+defineProps({
+    message: {
+        type: String,
+    },
+});
 </script>
 
 <template>
-    <div v-show="message" class="d-block invalid-feedback">
-        {{ message }}
+    <div v-show="message">
+        <p class="text-sm text-red-600">
+            {{ message }}
+        </p>
     </div>
 </template>

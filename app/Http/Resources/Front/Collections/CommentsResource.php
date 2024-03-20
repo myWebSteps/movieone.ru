@@ -20,7 +20,7 @@ class CommentsResource extends JsonResource
             'name' => $this->name,
             'rating' => $this->rating,
             'description' => $this->description,
-            'created_at' => Carbon::parse($this->created_at)->format('d-m-Y H:i'),
+            'created_at' => Carbon::parse($this->created_at)->diffForHumans(),
         ];
     }
 }

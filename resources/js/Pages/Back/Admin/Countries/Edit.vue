@@ -2,42 +2,44 @@
 
     <Head title="Редактировать Страну" />
 
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="display-6">Редактировать страну</h2>
-        </template>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 col-12">
+        <h2 class="bg-white p-4 shadow-md">Редактировать страну</h2>
 
-                    <form @submit.prevent="updateCountry(country.id, country.title, country.slug)">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="categoryTitle">Country Title</label>
-                                <input v-model="country.title" type="text" class="d-block cform cform-custom-input" id="categoryTitle" placeholder="Название страны">
-                            </div>
-                            <div class="form-group">
-                                <label for="genreSlug">Country Slug</label>
-                                <input v-model="country.slug" type="text" class="d-block cform cform-custom-input" id="genreSlug" placeholder="Slug страны">
-                            </div>
-
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-
-                    </div>
+        <section class="container mx-auto
+        px-4 grid grid-flow-row grid-rows-[max-content]
+         gap-4 py-4">
+            <div class="grid grid-flow-row grid-rows-[50px_max-content_max-content] items-center w-fit">
+                <div class="py-2">
+                    <h3>Редактирование страны:</h3>
                 </div>
+                <form @submit.prevent="updateCountry()" class="grid grid-flow-row w-fit bg-white px-4 py-2 gap-4 border-2 border-cyan-950">
+                    <div>
+                        <label for="categoryTitle">Country Title:</label>
+                        <input v-model="form.title"
+                               class="w-full"
+                               type="text"
+                               id="categoryTitle"
+                               placeholder="Название страны">
+                    </div>
+                    <div>
+                        <label for="categorySlug">Country Slug:</label>
+                        <input v-model="form.slug"
+                               type="text"
+                               class="w-full"
+                               id="categorySlug"
+                               placeholder="Slug страны">
+                    </div>
+
+                    <div class="justify-self-end py-4 px-2">
+                        <button type="submit"
+                                class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white"
+                        >Submit</button>
+                    </div>
+                </form>
             </div>
         </section>
 
         <message :message.sync = "message"></message>
 
-
-    </AuthenticatedLayout>
 
 </template>
 
@@ -49,11 +51,17 @@
 
     export default {
         name: "Edit",
+        layout: AuthenticatedLayout,
         props: ['country'],
-        components: {Head, Link, AuthenticatedLayout, Message},
+        components: {Head, Link, Message},
 
         data(){
             return{
+                form:{
+                    id: this.country.id,
+                    title: this.country.title,
+                    slug: this.country.slug,
+                },
                 message: {
                     body: [],
                     type: '',
@@ -64,7 +72,7 @@
 
         methods:{
             updateCountry(id, title, slug){
-                router.patch(`/admin/countries/${id}`, {title: title, slug:slug})
+                router.patch(`/admin/countries/${this.form.id}`, this.form)
                 router.on('error', (errors) => {
                     this.message.body = errors.detail.errors
                     this.message.type = 'error'

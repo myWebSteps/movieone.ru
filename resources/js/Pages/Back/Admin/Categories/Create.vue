@@ -2,44 +2,52 @@
 
     <Head title="создать категорию" />
 
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="display-6">Создать категорию</h2>
-        </template>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 col-12">
+        <h2 class="bg-white p-4 shadow-md">Создать категорию</h2>
 
-                    <form @submit.prevent="newCategory()">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="categoryTitle">Category Title</label>
-                                <input v-model="form.title" type="text" class="d-block cform cform-custom-input" id="categoryTitle" placeholder="Название категории">
-                            </div>
-                            <div class="form-group">
-                                <label for="categorySlug">Category Slug</label>
-                                <input v-model="form.slug" type="text" class="d-block cform cform-custom-input" id="categorySlug" placeholder="Slug категории">
-                            </div>
-                            <div class="form-group">
-                                <label for="categoryLogo">CategoryLogo</label>
-                                <input v-model="form.logo" type="text" class="d-block cform cform-custom-input" id="categoryLogo" placeholder="Logo категории">
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-
-                    </div>
+        <section class="h-full
+        px-4 grid grid-flow-row grid-rows-[max-content]
+         gap-4 py-4">
+            <div class="grid grid-flow-row grid-rows-[50px_max-content_max-content] items-center w-fit">
+                <div class="py-2">
+                    <h3>Добавление категории:</h3>
                 </div>
+                <form @submit.prevent="newCategory()" class="grid grid-flow-row w-fit bg-white px-4 py-2 gap-4 border-2 border-cyan-950">
+                    <div>
+                        <label for="categoryTitle">Category Title:</label>
+                        <input v-model="form.title"
+                               class="w-full"
+                               type="text"
+                               id="categoryTitle"
+                               placeholder="Название категории">
+                    </div>
+                    <div>
+                        <label for="categorySlug">Category Slug:</label>
+                        <input v-model="form.slug"
+                               type="text"
+                               class="w-full"
+                               id="categorySlug"
+                               placeholder="Slug категории">
+                    </div>
+                    <div>
+                        <label for="categoryLogo">Category Logo:</label>
+                        <input v-model="form.logo"
+                               type="text"
+                               class="w-full"
+                               id="categoryLogo"
+                               placeholder="Logo категории">
+                    </div>
+
+                <div class="justify-self-end py-4 px-2">
+                    <button type="submit"
+                            class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white"
+                    >Submit</button>
+                </div>
+                </form>
             </div>
+
         </section>
 
         <message :message.sync = "message"></message>
-
-    </AuthenticatedLayout>
 
 </template>
 
@@ -52,8 +60,9 @@
 
     export default {
         name: "Create",
+        layout: AuthenticatedLayout,
         props: ['categories'],
-        components: {Head, Link, router, AuthenticatedLayout, Message},
+        components: {Head, Link, router, Message},
 
         data(){
             return{

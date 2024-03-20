@@ -1,26 +1,38 @@
-<script setup>
-import { Link } from "@inertiajs/vue3";
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-</script>
-
 <template>
-    <div class="position-absolute top-0 min-vh-100 min-vw-100 bg-light">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col col-md-8 col-lg-6">
-                    <header class="text-center my-5">
-                        <Link href="/">
-                            <ApplicationLogo width="120" />
-                        </Link>
-                    </header>
-
-                    <main class="card shadow-sm">
-                        <div class="card-body p-5">
-                            <slot />
-                        </div>
-                    </main>
-                </div>
+    <div class="container">
+        <div class="absolute
+        top-1/2
+        right-1/2
+        translate-x-1/2
+        -translate-y-1/2
+        border-2
+        rounded-xl
+        grid
+        grid-flow-row
+        gap-4
+        p-4
+">
+            <div class="justify-self-center">
+                <Link href="/" class=" h-[4.375rem] mx-auto ">
+                        <img src="/img/logo-icon.png" class="w-[60px]" alt="...">
+                </Link>
             </div>
+            <div class="my-2 justify-self-center">
+                    <slot/>
+            </div>
+
         </div>
     </div>
+
 </template>
+
+<script>
+    import {Link} from "@inertiajs/vue3";
+
+export default {
+        name: 'login',
+        components:{Link},
+}
+
+
+</script>

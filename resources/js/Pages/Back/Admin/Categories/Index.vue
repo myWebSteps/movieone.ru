@@ -1,82 +1,74 @@
 <template>
 
-    <Head title="Категории" />
+    <Head title="Категории"/>
 
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="display-6">Список категорий</h2>
-        </template>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row mb-4 mt-4 col-md-4 col-6">
-
-                    <Link href="/admin/categories/create" class="btn btn-success">Добавить категорию</Link>
-                </div>
+    <h2 class="bg-white p-4 shadow-md">Список категорий</h2>
 
 
-                <div class="row">
-                    <div class="col-md-6 col-12">
-
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Категории:</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body p-0">
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>Title</th>
-                                        <th>Category logo</th>
-                                        <th>Action</th>
-                                        <th></th>
-
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <template v-for="category in categories">
-                                        <tr>
-                                            <td>{{category.id}}</td>
-                                            <td>{{category.title}}</td>
-                                            <td> <i :class="category.logo"></i></td>
-                                            <td>
-                                                <Link as="button" :href="`/admin/categories/${category.id}/edit`" class="btn btn-block btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i>
-                                                </Link>
-                                            </td>
-                                            <td>
-                                                <Link method="delete" as="button" :href="`/admin/categories/${category.id}`" type="button" class="btn btn-block btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i>
-                                                </Link>
-                                            </td>
-                                        </tr>
-                                    </template>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-
-
-                    </div>
-                </div>
+        <section class="container mx-auto
+        px-4 grid grid-flow-row grid-rows-[minmax(50px,_max-content)_1fr]
+         gap-4 py-4">
+            <div class="grid items-center grid-cols-[max-content]">
+                <Link href="/admin/categories/create"
+                      class="px-4 py-2  rounded-xl border-2 border-cyan-950 text-cyan-950 hover:bg-cyan-950 hover:text-white">
+                    Добавить категорию
+                </Link>
             </div>
-        </section>
+            <div class="grid grid-flow-row grid-rows-[50px_max-content_max-content] items-center">
+                <div>
+                    <h3>Категории:</h3>
+                </div>
+                <div class="grid grid-cols-[40px_max-content_max-content_minmax(200px,_max-content)] text-nowrap gap-4
+                border-2 border-cyan-950 px-4 py-2 w-fit bg-white text-gray-800 items-center">
+                    <div>#</div>
+                    <div>Title</div>
+                    <div>Category logo</div>
+                    <div class="justify-self-center">Action</div>
+                    <template v-for="category in categories">
+                        <div>{{ category.id }}</div>
+                        <div>{{ category.title }}</div>
+                        <div><i :class="category.logo"></i></div>
+                        <div class="grid grid-flow-col justify-around justify-content-center">
+                            <Link as="button" :href="`/admin/categories/${category.id}/edit`"
+                                  class="py-1 px-6 border-2 border-amber-300 rounded-2xl text-amber-300 hover:bg-amber-300 hover:text-white
+                            grid items-center">
+                             <span class="material-symbols-sharp font-bold">edit_square</span>
+                            </Link>
+                            <Link @click.prevent="deleteInstance(category.id)" v-if="$page.props.auth.user.role == 1" as="button"
+                                  href="#"
+                                  type="button"
+                                  class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white
+                                grid items-center">
+                                <span class="material-symbols-sharp font-bold">delete</span>
+                            </Link>
+                        </div>
+                    </template>
+                </div>
 
-    </AuthenticatedLayout>
+            </div>
+
+        </section>
 
 </template>
 
 <script>
-    import { Head } from "@inertiajs/vue3";
-    import { Link } from "@inertiajs/vue3";
-    import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import {Head, router} from "@inertiajs/vue3";
+import {Link} from "@inertiajs/vue3";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
-    export default {
-        name: "Index",
-        props: ['categories'],
-        components: {Head, Link, AuthenticatedLayout},
-
-    }
+export default {
+    name: "Index",
+    layout: AuthenticatedLayout,
+    props: ['categories'],
+    components: {Head, Link},
+    methods:{
+        deleteInstance(id){
+            router.delete(`/admin/categories/${id}`, {
+                onBefore: () => confirm('Вы уверены, что хотите удалить эту категорию?'),
+            })
+        },
+    },
+}
 </script>
 
 
