@@ -156,44 +156,6 @@
 
         </section>
 
-        <!--    -->
-        <!--            <div class="d-grid custom-collections-row">-->
-        <!--                <div id="titles">-->
-
-        <!--                </div>-->
-        <!--                <div id="content">-->
-        <!--                    <div class="bg-white p-3 widget shadow rounded mb-4">-->
-        <!--                        <ul class="nav nav-tabs" id="myTab" role="tablist">-->
-        <!--                            <li class="nav-item">-->
-        <!--                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Содержание</a>-->
-        <!--                            </li>-->
-        <!--                            <li class="nav-item">-->
-        <!--                                <a class="nav-link" id="commects-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="profile" aria-selected="false">Комментарии-->
-        <!--                                </a>-->
-        <!--                            </li>-->
-        <!--                        </ul>-->
-        <!--                        <div class="tab-content" id="myTabContent">-->
-        <!--                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">-->
-
-
-        <!--                            </div>-->
-
-        <!--                            <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">-->
-
-        <!--                            </div>-->
-        <!--                        </div>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div id="related_collections">-->
-        <!--                <div class="bg-white p-3 widget shadow rounded mb-4">-->
-
-
-        <!--                    </div>-->
-        <!--                </div>-->
-
-
-        <!--            </div>-->
-        <!--        </div>-->
     </div>
     <message :message.sync="message"></message>
 

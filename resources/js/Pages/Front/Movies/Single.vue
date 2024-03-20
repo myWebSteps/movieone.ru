@@ -128,6 +128,7 @@
 
                     </div>
 
+                    <div>
                     <div v-if="movie.budget">
                         <h5 class="text-rose-700 text-lg font-light grid grid-flow-col auto-cols-max
                                  items-center">
@@ -135,6 +136,8 @@
                             <span class="text-gray-900">{{ movie.budget }}</span>
                         </h5>
                     </div>
+                    </div>
+
                     <div class="grid grid-flow-col grid-cols-[repeat(3,_max-content)] auto-rows-[32px] items-center
                         justify-self-center
                         ">
