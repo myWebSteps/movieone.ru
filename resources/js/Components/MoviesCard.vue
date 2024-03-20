@@ -12,8 +12,8 @@
                     <h5 class="text-gray-900 text-wrap">{{movie.nameEn}}</h5>
                     <p class="grid grid-flow-col auto-cols-max items-center">
                         <span class="material-symbols-sharp">camera_roll</span>
-                            <span class="text-sm font-light" v-for="genre in movie.genres">
-                                {{genre.title}}
+                            <span class="text-sm font-light text-balance" v-for="genre in movie.genres">
+                                {{genre.title}}&nbsp
                             </span>
                     </p>
                     <p class="grid grid-flow-col auto-cols-max items-center">
