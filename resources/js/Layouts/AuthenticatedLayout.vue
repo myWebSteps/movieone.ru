@@ -1,162 +1,251 @@
 <template>
-    <div class="bg-light min-vh-100">
-        <!-- Primary Navigation Menu -->
-        <nav class="navbar navbar-expand-lg navbar-dark custom-dark sticky-top">
-            <div class="container-fluid">
-                <!-- Logo -->
-                <Link href="/" class="navbar-brand">
-                    <img src="/img/logo-icon.png" class="w-50" alt="...">
-                </Link>
 
-                <!-- Hamburger -->
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
+    <div class="main-wrapper">
+        <header class="bg-[#333545] grid items-center z-20">
+            <div class="px-4 grid grid-cols-2 content-center">
+                <div @click="show.menu = !show.menu" class="justify-self-start grid content-center self-center
+                cursor-pointer"
+                     :class="show.menu ? '' : 'space-y-1'"
                 >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                    <!-- Navigation Links -->
-                    <div class="navbar-nav">
-                        <NavLink
-                            href="/admin"
-                            active="/admin"
-                        >
-                            Главная
-                        </NavLink>
-                        <NavLink
-                            href="/admin/categories"
-                            active="/admin/categories"
-                        >
-                            Категории
-                        </NavLink>
-                        <NavLink
-                            href="/admin/genres"
-                            active="/admin/genres"
-                        >
-                            Жанры
-                        </NavLink>
-                        <NavLink
-                            href="/admin/countries"
-                            active="/admin/countries"
-                        >
-                            Страны
-                        </NavLink>
-                        <NavLink
-                            href="/admin/titles"
-                            active="/admin/titles"
-                        >
-                            Заголовки
-                        </NavLink>
-                        <NavLink
-                            href="/admin/movies"
-                            active="/admin/movies"
-                        >
-                            Видео
-                        </NavLink>
-                        <div class="d-flex justify-content-start">
-                        <Dropdown
-                            :label="`Комментарии ${comments.total}`"
-                            as-nav-item
-                            >
-                            <DropdownLink
-                                href="/admin/comments/movies"
-                            >
-                                К видео <span><small class="text-muted">{{comments.movies}}</small></span>
-                            </DropdownLink>
-
-                            <DropdownLink
-                                href="/admin/comments/collections"
-                            >
-                                К коллекциям <span><small class="text-muted"> {{comments.collections}}</small></span>
-                            </DropdownLink>
-                        </Dropdown>
-                        </div>
-
-                        <NavLink
-                            href="/admin/collections"
-                            active="/admin/collections"
-                        >
-                            Коллекции
-                        </NavLink>
-                    </div>
+                    <span class="block w-4 h-0.5 bg-gray-400"
+                          :class="show.menu ? 'rotate-45 translate-y-1/2 duration-500': 'duration-500'"
+                    ></span>
+                    <span class="block w-4 h-0.5 bg-gray-400"
+                          :class="show.menu ? 'hidden' : ''"
+                    ></span>
+                    <span class="block w-4 h-0.5 bg-gray-400"
+                          :class="show.menu ? '-rotate-45 -translate-y-1/2 duration-500': 'duration-500'"
+                    >
+                    </span>
+                </div>
 
 
-                    <!-- Settings Dropdown -->
-                    <div class="navbar-nav ms-auto custom-float-end">
-                        <Dropdown
-                            :label="$page.props.auth.user.name"
-                            as-nav-item
-                        >
-                            <DropdownLink
-                                href="/profile">
-                                Profile
-                            </DropdownLink>
-                            <DropdownLink
-                                href="logout"
-                                method="post"
-                                as="button"
-                            >
+                <!-- Settings Dropdown -->
+                <div class="justify-self-end">
+                    <Dropdown align="right" width="48">
+                        <template #trigger>
+                                        <span class="inline-flex rounded-md">
+                                            <button
+                                                type="button"
+                                                class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium text-gray-400 hover:text-gray-200 focus:outline-none transition ease-in-out duration-150"
+                                            >
+                                                {{ $page.props.auth.user.name }}
+
+                                                <svg
+                                                    class="ms-2 -me-0.5 h-4 w-4"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                        clip-rule="evenodd"
+                                                    />
+                                                </svg>
+                                            </button>
+                                        </span>
+                        </template>
+                        <template #content>
+                            <DropdownLink href="/profile"> Profile</DropdownLink>
+                            <DropdownLink href="/logout" method="post" as="button">
                                 Log Out
                             </DropdownLink>
-                        </Dropdown>
-                    </div>
+                        </template>
+                    </Dropdown>
                 </div>
-            </div>
-        </nav>
-        <!-- Page Heading -->
-        <header
-            v-if="$slots.header"
-            class="container-fluid bg-white shadow-sm px-lg-4 py-2"
-        >
-            <slot name="header"/>
-        </header>
 
-        <!-- Page Content -->
-        <main class="container-fluid py-4 p-lg-4">
-            <slot/>
+
+            </div>
+        </header>
+        <nav class="bg-[#1f2533]"
+             :class="show.menu ? '' : 'hidden'"
+        >
+            <div class="sticky top-0">
+                <div class="bg-[#333545]">
+                    <Link href="/" class=" h-[3.7rem] mx-4 grid grid-flow-col items-center max-lg:grid-cols-1">
+                        <div class="justify-self-center">
+                            <img src="/img/logo-icon.png" class="w-[60px] px-1" alt="...">
+                        </div>
+                        <div class="justify-self-center px-2 max-lg:hidden">
+                            <p class="uppercase text-white text-base font-bold
+                    ">MovieOne</p>
+                        </div>
+                    </Link>
+                </div>
+                <ul class="my-4 mx-2 grid grid-flow-row">
+                    <li class="py-2 text-gray-500 hover:text-white">
+                        <Link :class="{ 'text-white': $page.url === '/admin' }"
+                              href="/admin"
+                        >
+                            Главная
+                        </Link>
+                    </li>
+
+                    <li class="py-2 text-gray-500 hover:text-white">
+                        <Link :class="{ 'text-white': $page.url.startsWith('/admin/movies')}"
+                              href="/admin/movies"
+                        >
+                            Видео
+                        </Link>
+                    </li>
+
+                    <li class="py-2 text-gray-500 hover:text-white">
+                        <Link :class="{ 'text-white': $page.url.startsWith('/admin/collections')}"
+                              href="/admin/collections"
+                        >
+                            Коллекции
+                        </Link>
+                    </li>
+
+                    <li class="py-2 text-gray-500">
+
+                        <div
+                            class="hover:text-white cursor-pointer relative grid grid-flow-col justify-items-start grid-cols-[repeat(2,_max-content)]"
+                            href="#"
+                            @click.prevent="show.comments = !show.comments"
+                        >
+                            <span>Комментарии  <i class="fas fa-angle-down"></i></span>
+                            <span v-if="comments.total > 0" class="relative flex h-3 w-3 mx-1">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                            </span>
+                        </div>
+
+                        <div v-if="show.comments" class="grid grid-flow-row my-2 mx-1 bg-white rounded-md">
+                            <ul>
+                                <li :class="{'bg-gray-200 rounded-md': $page.url.startsWith('/admin/comments/movies')}"
+                                    class="py-2 px-4 text-black hover:font-semibold"
+                                >
+                                    <Link
+                                        href="/admin/comments/movies"
+                                        preserve-state
+                                    >
+                                        К фильмам <span><small>{{comments.movies}}</small></span>
+                                    </Link>
+                                </li>
+                                <li :class="{'bg-gray-200 rounded-md': $page.url.startsWith('/admin/comments/collections')}"
+                                    class="py-2 px-4 text-black hover:font-semibold"
+                                >
+                                    <Link
+                                        href="/admin/comments/collections"
+                                        preserve-state
+                                    >
+                                        К коллекциям <span><small>{{comments.collections}}</small></span>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="py-2 text-gray-500">
+
+                        <div class="hover:text-white cursor-pointer"
+                             href="#"
+                             @click.prevent="show.options = !show.options"
+                        >
+                            Настройки <i class="fas fa-angle-down"></i>
+                        </div>
+
+                        <div v-if="show.options" class="grid grid-flow-row my-2 mx-1 bg-white rounded-md">
+                            <ul>
+                                <li :class="{'bg-gray-200 rounded-md': $page.url.startsWith('/admin/categories')}"
+                                    class="py-2 px-4 text-black hover:font-semibold"
+                                >
+                                    <Link
+                                        href="/admin/categories"
+                                        preserve-state
+                                    >
+                                        Категории
+                                    </Link>
+                                </li>
+                                <li :class="{'bg-gray-200 rounded-md': $page.url.startsWith('/admin/genres')}"
+                                    class="py-2 px-4 text-black hover:font-semibold"
+                                >
+                                    <Link
+                                        href="/admin/genres"
+                                        preserve-state
+                                    >
+                                        Жанры
+                                    </Link>
+                                </li>
+                                <li :class="{ 'bg-gray-200 rounded-md': $page.url.startsWith('/admin/countries')}"
+                                    class="py-2 px-4 text-black hover:font-semibold"
+                                >
+                                    <Link
+                                        href="/admin/countries"
+                                        preserve-state
+                                    >
+                                        Страны
+                                    </Link>
+                                </li>
+                                <li :class="{ 'bg-gray-200 rounded-md': $page.url.startsWith('/admin/titles')}"
+                                    class="py-2 px-4 text-black hover:font-semibold"
+                                >
+                                    <Link
+                                        href="/admin/titles"
+                                        preserve-state
+                                    >
+                                        Seo Заголовки
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </nav>
+        <main>
+            <slot></slot>
         </main>
+        <footer class="bg-white self-bottom">
+            <div class="p-8 grid justify-start">
+                AdminPanel
+            </div>
+        </footer>
+
     </div>
+
 </template>
 
 <script>
-    import '../../css/back_layout.css';
-    // import '../../css/front_layout.css';
-    import {Link} from "@inertiajs/vue3";
-    import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-    import NavLink from "@/Components/NavLink.vue";
-    import Dropdown from "@/Components/Dropdown.vue";
-    import DropdownLink from "@/Components/DropdownLink.vue";
+import {Link} from "@inertiajs/vue3";
+import Dropdown from "@/Components/Dropdown.vue";
+import DropdownLink from "@/Components/DropdownLink.vue";
 
-    export default {
-        name: "AuthenticatedLayout",
-        components:{Link, ApplicationLogo, NavLink, Dropdown, DropdownLink},
-        data(){
-            return{
-                comments:
-                    {
-                        movies: '',
-                        collections: '',
-                        total: '',
-                    }
-            }
-        },
-        mounted(){
-            this.getCommentsCount()
-        },
-        methods:{
-            getCommentsCount()
-            {
-                axios.post('/get_comments_count', {})
-                .then(resp=>{
+export default {
+    name: "AuthenticatedLayout",
+    components: {Link, Dropdown, DropdownLink},
+    data() {
+        return {
+            show: {
+                options: false,
+                menu: true,
+                comments: false,
+            },
+            comments:
+                {
+                    movies: '',
+                    collections: '',
+                    total: '',
+                }
+        }
+    },
+    mounted() {
+        this.getCommentsCount()
+    },
+    methods: {
+        getCommentsCount() {
+            axios.post('/get_comments_count', {})
+                .then(resp => {
                     this.comments.movies = resp.data.movies
                     this.comments.collections = resp.data.collections
                     this.comments.total = resp.data.total
                 })
-            }
-        },
-    }
+        }
+    },
+}
 </script>

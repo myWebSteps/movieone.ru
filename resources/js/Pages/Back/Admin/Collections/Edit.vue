@@ -2,388 +2,368 @@
 
     <Head title="Редактировать коллекцию"/>
 
-    <AuthenticatedLayout>
+    <h2 class="bg-white p-4 shadow-md">Редактировать коллекцию {{ form.collection_id }}</h2>
 
-        <template #header>
-            <h2 class="display-6">Редактировать коллекцию</h2>
-        </template>
 
-        <section class="content">
-            <div class="container-fluid">
-                <div class="bg-white p-3 widget shadow rounded mb-4">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <!-- General Info -->
-                        <li class="nav-item">
-                            <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab"
-                               aria-controls="general" aria-selected="true">Коллекция</a>
-                        </li>
-                        <!-- Articles -->
-                        <li class="nav-item">
-                            <a class="nav-link" id="articles-tab" data-toggle="tab" href="#articles" role="tab"
-                               aria-controls="articles" aria-selected="false">Статьи коллекции</a>
-                        </li>
+    <section class="container mx-auto p-4">
+            <div class="grid grid-flow-row grid-rows-[max-content_max-content_100px] gap-4">
+                <div
+                    class="grid grid-cols-[repeat(auto-fill,_minmax(max-content,_150px))] gap-4 items-center">
+                <span class="cursor-pointer" @click="accordion = 'general'"
+                      :class="accordion === 'general' ? 'border-b-2 border-red-400' : ''"
+                >
+                    Коллекция
+                </span>
+                    <span class="cursor-pointer" @click="accordion = 'articles'"
+                          :class="accordion === 'articles' ? 'border-b-2 border-red-400' : ''"
+                    >
+                    Статьи коллекции
+                </span>
+                    <span class="cursor-pointer" @click="accordion = 'seo'"
+                          :class="accordion === 'seo' ? 'border-b-2 border-red-400' : ''"
+                    >
+                    Seo
+                </span>
 
-                        <!-- SEO-->
-                        <li class="nav-item">
-                            <a class="nav-link" id="seo-tab" data-toggle="tab" href="#seo" role="tab"
-                               aria-controls="seo" aria-selected="false">SEO</a>
-                        </li>
 
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
+                </div>
 
-                        <!-- General Tab -->
-                        <div class="tab-pane fade show active" id="general" role="tabpanel"
-                             aria-labelledby="general-tab">
+                <section v-if="accordion === 'general'"
+                         class="grid grid-flow-row grid-rows-[max-content_max-content_max-content] gap-2"
+                >
+                    <label>Статус: <br>
+                        <select v-model="form.is_published"
+                        >
+                            <option :value='0'>Черновик</option>
+                            <option :value='1'>Коллекция опубликована</option>
+                        </select>
+                    </label>
 
-                            <!-- Related videos -->
-                            <div class="col-12 mt-2">
-                                <label class="d-block">Статус:</label>
-                                <select v-model="form.is_published"
-                                        class="cform cform-custom-input d-block">
-                                    <option :value='0'>Черновик</option>
-                                    <option :value='1'>Коллекция опубликована</option>
-                                </select>
+                    <label>Заголовок коллекции: <small :class="form.collection_title.length > 40 ? 'text-red-500' : ''">
+                        &nbsp{{ form.collection_title.length }}
+                        / 40</small> <br>
+                        <input v-model="form.collection_title" type="text"
+                               class="w-full"
+                               placeholder="Введите заголовок коллекции">
+                    </label>
 
-                            </div>
+                    <label>Slug коллекции: <br>
+                        <input v-model="form.slug" type="text"
+                               class="w-full"
+                               id="collection_slug" placeholder="Введите slug коллекции">
+                    </label>
 
-                            <div class="col-12 mt-2">
-                                <label for="collection_title">Заголовок коллекции:
-                                    <small :class="form.collection_title.length > 40 ? 'text-danger' : ''">
-                                        &nbsp{{form.collection_title.length}}
-                                        / 40</small>
-                                </label>
-                                <input v-model="form.collection_title" type="text"
-                                       class="d-block cform cform-custom-input w-100"
-                                       id="collection_title" placeholder="Введите заголовок коллекции">
-                            </div>
+                    <label>Краткое описание:
+                        <small
+                            :class="form.description_min.length > 100 ? 'text-red-500' : ''">&nbsp{{
+                                form.description_min.length
+                            }}
+                            / 100</small><br>
+                        <textarea class="w-full"
+                                  v-model="form.description_min"
+                                  rows="5" placeholder="Вставьте описание">
+                    </textarea>
+                    </label>
 
-                            <div class="col-12 mt-2">
-                                <label for="collection_slug">Slug коллекции:</label>
-                                <input v-model="form.slug" type="text"
-                                       class="d-block cform cform-custom-input w-100"
-                                       id="collection_slug" placeholder="Введите slug коллекции">
-                            </div>
+                    <label>Полное описание:
+                        <small
+                            :class="form.description.length > 100 ? 'text-red-500' : ''">&nbsp{{
+                                form.description.length
+                            }}
+                            / 100</small><br>
+                        <textarea class="w-full"
+                                  v-model="form.description"
+                                  rows="10" placeholder="Полное описание">
+                    </textarea>
+                    </label>
 
-                            <div class="col-12 mt-2">
-                                <label class="d-block" for="collection_description_min">Краткое описание:<small
-                                    :class="form.description_min.length > 100 ? 'text-danger' : ''">&nbsp{{form.description_min.length}}
-                                / 100</small></label>
 
-                                <textarea class="w-100 d-block cform cform-custom-input" v-model="form.description_min"
-                                          id="collection_description_min" rows="10"
-                                          placeholder="Вставьте описание"></textarea>
-                            </div>
-
-                            <div class="col-12 mt-2">
-                                <label class="d-block" for="collection_description">Полное описание: <small
-                                    :class="form.description.length > 1225 ? 'text-danger' : ''">&nbsp{{form.description.length}}
-                                    / 1225</small></label>
-
-                                <textarea class="w-100 d-block cform cform-custom-input" v-model="form.description"
-                                          id="collection_description" rows="20"
-                                          placeholder="Вставьте полное описание"></textarea>
-                            </div>
-
-                            <!--poster Upload -->
-                            <div class="col-xs-12 col-xl-4 col-12 mt-4">
-                                <div class="mb-2 mt-2" v-if="poster_preview === null">
-                                    <img class="container-fluid col-xs-12 col-sm-6 col-12"
-                                         :src="form.poster" alt="">
-                                </div>
-                                <div class="mb-2 mt-2" v-if="poster_preview !== null">
-                                    <img class="container-fluid col-xs-12 col-sm-6 col-12"
-                                         :src="poster_preview" alt="">
-                                </div>
-                                <label>Картинка:
-                                <div class="mb-3">
-                                    <input @input="handlePoster($event)"
-                                           class="cform cform-custom-file"
-                                           type="file">
-                                </div>
-                                </label>
-                            </div>
-
+                    <div>
+                        <div class="my-2
+                        w-1/2
+                        md:w-1/4
+                        "
+                             v-if="poster_preview === null">
+                            <img :src="form.poster" alt="...">
                         </div>
+                        <div class="my-2
+                        w-1/2
+                        md:w-1/4
+                        "
+                             v-if="poster_preview !== null">
+                            <img :src="poster_preview" alt="...">
+                        </div>
+                        <label>Картинка:
+                            <div class="mb-3">
+                                <input @input="handlePoster($event)"
+                                       class="cform cform-custom-file"
+                                       type="file">
+                            </div>
+                        </label>
+                    </div>
 
-                        <!-- Articles Tab -->
-                        <div class="tab-pane fade" id="articles" role="tabpanel" aria-labelledby="articles-tab">
+                </section>
+                <section v-if="accordion === 'articles'"
+                         class="grid grid-flow-row gap-4"
+                >
+                        <template v-for="(article, index) in form.articles">
 
-                            <div class="row">
-                                <template v-for="(article, index) in form.articles">
-                                    <div class="col-12 mt-3 mb-3">
-                                        <div class="col-12 mt-1">
-                                            <label :for="`article_title${index}`">Заголовок статьи:
-                                                <small :class="article.article_title.length > 255 ? 'text-danger' : ''">
-                                                    &nbsp{{article.article_title.length}}
-                                                    / 255</small>
-                                            </label>
-                                            <input v-model="article.article_title" type="text"
-                                                   class="d-block cform cform-custom-input w-100"
-                                                   :id="`collection_title${index}`"
-                                                   placeholder="Введите заголовок статьи">
+                                    <label :for="`article_title${index}`">Заголовок статьи:
+                                        <small :class="article.article_title.length > 255 ? 'text-red-500' : ''">
+                                            &nbsp{{ article.article_title.length }}
+                                            / 255</small> <br>
+                                    <input v-model="article.article_title" type="text"
+                                           class="w-full"
+                                           :id="`collection_title${index}`"
+                                           placeholder="Введите заголовок статьи">
+                                    </label>
+
+                                    <label>Текст статьи:
+                                        <small
+                                            :class="article.article_description.length > 16300 ? 'text-red-500' : ''">
+                                            &nbsp{{ article.article_description.length }}
+                                            / 16300</small> <br>
+                                    <textarea v-model="article.article_description"
+                                              class="w-full"
+                                              rows="10"
+                                              placeholder="Текст статьи"></textarea>
+                                    </label>
+
+
+                                    <div class="my-2 w-1/2
+                                       md:w-1/4
+                                       "
+                                         v-if="!previews[index]">
+                                        <img :src="article.article_image" alt="">
+                                    </div>
+                                    <div class="my-2 w-1/2
+                                        md:w-1/4
+                                        "
+                                         v-if="previews[index]">
+                                        <img :src="previews[index]" alt="">
+                                    </div>
+                                    <label>Картинка:
+                                        <div class="mb-3">
+                                            <input @input="handleImage($event, index)"
+                                                   type="file">
                                         </div>
+                                    </label>
 
-                                        <div class="col-12 mt-2">
-                                            <label :for="`article_description${index}`">Текст статьи:
-                                                <small :class="article.article_description.length > 16300 ? 'text-danger' : ''">
-                                                    &nbsp{{article.article_description.length}}
-                                                    / 16300</small>
-                                            </label>
-                                            <textarea class="w-100 d-block cform cform-custom-input"
-                                                      v-model="article.article_description"
-                                                      :id="`article_description${index}`" rows="20"
-                                                      placeholder="Текст статьи"></textarea>
-                                        </div>
+                                    <label>Выберите видео, соответствующее статье:</label>
 
-                                        <!--poster Upload -->
-                                        <div class="col-12 mt-4">
-                                            <div class="mb-2 mt-2" v-if="!previews[index]">
-                                                <img class="container-fluid col-xs-12 col-sm-6 col-12"
-                                                     :src="article.article_image" alt="">
-                                            </div>
-                                            <div class="mb-2 mt-2" v-if="previews[index]">
-                                                <img class="container-fluid col-xs-12 col-sm-6 col-12"
-                                                     :src="previews[index]" alt="">
-                                            </div>
-                                            <label>Картинка:
-                                            <div class="mb-3">
-                                                <input @input="handleImage($event, index)"
-                                                       class="cform cform-custom-file"
-                                                       type="file">
-                                            </div>
-                                            </label>
-                                        </div>
-
-                                        <!-- Related videos -->
-                                        <div class="col-12 mt-2">
-
-                                            <label class="d-block">Выберите видео, соответствующее статье:</label>
-
-                                            <div class="input-group mb-3">
-                                                <input @keypress.enter.prevent="getFilteredMovies(index)" v-model="article.movies_filter"
-                                                       type="search" class="cform cform-custom-input d-block custom-first-element" placeholder="Фильтр по названию..."
-                                                       aria-label="Search" aria-describedby="search-addon"/>
-                                                <button @click.prevent="getFilteredMovies(index)" class="cform-btn cform-custom-btn cform-btn-secondary custom-last-element"
-                                                        id="search-addon-countries">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                            </div>
-
-                                            <div class="movies_list_wrapper col-12">
-                                                <div>
-                                                    <label>
-                                                        <input v-model="article.article_movie"
-                                                               value=""
-                                                               class="cform cform-custom-checkbox-radio"
-                                                               type="radio"
-                                                               :name="`movie_article_${index}`"
-                                                               disabled
-                                                        >
-                                                        Фильм не выбран
-                                                    </label>
-                                                </div>
-                                                <div v-for="movie in article.movies_list">
-                                                    <label>
-                                                        <input v-model="article.article_movie"
-                                                               :value="movie.id"
-                                                               class="cform cform-custom-checkbox-radio"
-                                                               type="radio"
-                                                               :name="`movie_article_${index}`"
-                                                        >
-                                                        {{movie.nameRu}} / {{movie.nameEn}} / {{movie.year}}
-                                                    </label>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-12 d-flex justify-content-end mt-3 mb-3">
-                                            <button v-if="index > 0" @click="deleteArticle(index)" type="button"
-                                                    class="cform-btn cform-custom-btn cform-btn-error col-3">Удалить
-                                                статью
-                                            </button>
-                                        </div>
-                                        <hr>
+                                    <div class="grid grid-flow-col grid-cols-[200px,_max-content]">
+                                        <input @keypress.enter.prevent="getFilteredMovies(index)"
+                                               v-model="article.movies_filter"
+                                               type="search"
+                                               class="w-full"
+                                               placeholder="Фильтр по названию...">
+                                        <button @click.prevent="getFilteredMovies(index)"
+                                                class="bg-green-600 text-white box-border border-[1px] border-green-600 px-4 py-2
+                             hover:text-green-600 hover:border-green-600 hover:bg-white"
+                                        >
+                                            <span class="material-symbols-sharp grid content-center">search</span>
+                                        </button>
                                     </div>
 
+                                    <div>
+                                        <div>
+                                            <label>
+                                                <input v-model="article.article_movie"
+                                                       value=""
+                                                       class="hidden"
+                                                       type="radio"
+                                                       :name="`movie_article_${index}`"
+                                                       disabled
+                                                >
+                                                Фильм не выбран
+                                            </label>
+                                        </div>
+                                        <div v-for="movie in article.movies_list">
+                                            <label>
+                                                <input v-model="article.article_movie"
+                                                       :value="movie.id"
+                                                       class="text-[#333545] focus:ring-white"
+                                                       type="radio"
+                                                       :name="`movie_article_${index}`"
+                                                >
+                                                {{ movie.nameRu }} / {{ movie.nameEn }} / {{ movie.year }}
+                                            </label>
+                                        </div>
+                                    </div>
 
-                                </template>
+                            <danger-button v-if="index > 0" @click="deleteArticle(index)"
+                            class="justify-self-end"
+                            >
+                                Удалить статью
+                            </danger-button>
+                                <hr>
+                        </template>
 
-                                <div class="col-12 mt-4 mb-4 input-group-btn d-flex justify-content-end">
-                                    <button @click="addArticle()" type="button"
-                                            class="cform-btn cform-custom-btn cform-btn-secondary">Добавить статью
-                                    </button>
-                                </div>
-                            </div>
-
+                        <div class="col-12 mt-4 mb-4 input-group-btn d-flex justify-content-end">
+                            <button @click="addArticle()" type="button"
+                                    class="bg-green-600 text-white box-border px-4 py-2 rounded-md justify-self-end
+                             hover:text-green-600 hover:border-green-600 border-2 hover:bg-white">
+                                Добавить статью
+                            </button>
                         </div>
-
-                        <!--SEO Tab-->
-                        <div class="tab-pane fade" id="seo" role="tabpanel" aria-labelledby="seo-tab">
-
-                            <div class="row">
-
-                                <!-- Meta title -->
-                                <div class="col-12 mt-1">
-                                    <label for="meta_title">Meta title:
-                                        <small :class="form.meta_title.length > 255 ? 'text-danger' : ''">
-                                            &nbsp{{form.meta_title.length}}
-                                            / 255</small>
-                                    </label>
-                                    <input v-model="form.meta_title" type="text"
-                                           class="d-block cform cform-custom-input w-100"
-                                           id="meta_title" placeholder="Введите meta заголовок">
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="meta_keywords">Meta keywords:
-                                        <small :class="form.meta_keywords.length > 255 ? 'text-danger' : ''">
-                                            &nbsp{{form.meta_keywords.length}}
-                                            / 255</small>
-                                    </label>
-                                    <input v-model="form.meta_keywords" type="text"
-                                           class="w-100 d-block cform cform-custom-input" id="meta_keywords"
-                                           placeholder="Meta keywords">
-                                </div>
-
-                                <div class="col-12">
-                                    <label class="d-block" for="meta_description">Meta description:
-                                        <small :class="form.meta_description.length > 16300 ? 'text-danger' : ''">
-                                            &nbsp{{form.meta_description.length}}
-                                            / 16300</small>
-                                    </label>
-
-                                    <textarea class="w-100 d-block cform cform-custom-input"
-                                              v-model="form.meta_description" id="meta_description" rows="4"
-                                              placeholder="meta description"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
+                </section>
+                <section v-if="accordion === 'seo'">
+                    <div class="grid grid-flow-row gap-4">
+                        <label>Заголовок: <br>
+                            <input v-model="form.meta_title"
+                                   type="text"
+                                   class="w-full"
+                                   placeholder="Введите meta заголовок">
+                        </label>
+                        <label for="meta_keywords">Meta keywords:
+                            <small :class="form.meta_keywords.length > 255 ? 'text-red-500' : ''">
+                                &nbsp{{ form.meta_keywords.length }}
+                                / 255</small> <br>
+                        <input v-model="form.meta_keywords" type="text"
+                               class="w-full" id="meta_keywords"
+                               placeholder="Meta keywords">
+                        </label>
+                        <label class="d-block" for="meta_description">Meta description:
+                            <small :class="form.meta_description.length > 16300 ? 'text-red-500' : ''">
+                                &nbsp{{ form.meta_description.length }}
+                                / 16300</small><br>
+                        <textarea class="w-full"
+                                  v-model="form.meta_description" rows="4"
+                                  placeholder="meta description">
+                        </textarea>
+                        </label>
                     </div>
-                    <div class="card-footer">
-                        <button @click.prevent="store()" type="submit" class="btn btn-primary">Submit</button>
-                    </div>
+                </section>
+                <div class="grid justify-items-center items-center">
+
+                    <button @click.prevent="store()" type="submit"
+                            class="bg-[#333545] justify-self-end px-4 py-2 rounded-md text-white
+                        hover: border-2 hover:border-[#333545] hover:text-[#333545] hover:bg-white"
+                    >
+                        Submit</button>
                 </div>
 
             </div>
         </section>
-        <message :message.sync = "message"></message>
 
-    </AuthenticatedLayout>
+        <message :message.sync="message"></message>
+
 </template>
 
 <script>
-    import {Head, Link, router,} from "@inertiajs/vue3";
-    import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-    import Message from "@/Components/Message.vue";
+import {Head, Link, router,} from "@inertiajs/vue3";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import Message from "@/Components/Message.vue";
+import DangerButton from "@/Components/DangerButton.vue";
 
 
-    export default {
-        name: "Create",
-        props: ['data', 'movies'],
-        components: {Head, Link, AuthenticatedLayout, Message},
 
-        data() {
-            return {
-                previews: [],
-                poster_preview: null,
-                form: {
-                    is_published: this.data[0].is_published,
-                    collection_id: Number(this.data[0].id),
-                    collection_title: this.data[0].collection_title,
-                    slug: this.data[0].slug,
-                    poster: this.data[0].poster,
-                    description: this.data[0].description,
-                    description_min: this.data[0].description_min,
-                    meta_title: this.data[0].meta_title,
-                    meta_keywords: this.data[0].meta_keywords,
-                    meta_description: this.data[0].meta_description,
-                    articles: this.data[0].articles,
-                },
-                message: {
-                    body: [],
-                    type: '',
-                    show: false,
+export default {
+    name: "Create",
+    layout: AuthenticatedLayout,
+    props: ['data', 'movies'],
+    components: {Head, Link, AuthenticatedLayout, Message, DangerButton},
+
+    data() {
+        return {
+            accordion: 'general',
+            previews: [],
+            poster_preview: null,
+            form: {
+                is_published: this.data[0].is_published,
+                collection_id: Number(this.data[0].id),
+                collection_title: this.data[0].collection_title,
+                slug: this.data[0].slug,
+                poster: this.data[0].poster,
+                description: this.data[0].description,
+                description_min: this.data[0].description_min,
+                meta_title: this.data[0].meta_title,
+                meta_keywords: this.data[0].meta_keywords,
+                meta_description: this.data[0].meta_description,
+                articles: this.data[0].articles,
+            },
+            message: {
+                body: [],
+                type: '',
+                show: false,
+            }
+        }
+    },
+
+    methods: {
+
+        getFilteredMovies(index) {
+            axios.post('/admin/collections/get_filtered_movies', {
+                query_filter: this.form.articles[index].movies_filter
+            })
+                .then(res => {
+                    this.form.articles[index].article_movie = "";
+                    this.form.articles[index].movies_list = res.data;
+                })
+        },
+
+        handlePoster(event) {
+            this.form.poster = event.target.files[0]
+            this.poster_preview = URL.createObjectURL(event.target.files[0])
+        },
+
+        handleImage(event, articleIndex) {
+            this.form.articles[articleIndex].article_image = event.target.files[0]
+            this.previews[articleIndex] = URL.createObjectURL(event.target.files[0])
+        },
+
+        deleteArticle(elemIndex) {
+            this.form.articles = this.form.articles.filter((elem, index) => {
+                return index != elemIndex
+            })
+        },
+
+        addArticle() {
+            this.form.articles.push({
+                article_title: '',
+                article_image: null,
+                article_description: '',
+                article_movie: null,
+                movies_filter: '',
+                movies_list: this.movies,
+            })
+        },
+
+
+        store() {
+            this.form.articles.forEach(elem => {
+                delete elem.movies_filter
+                delete elem.movies_list
+            })
+            this.form.articles = this.form.articles.filter((elem) => {
+                if (elem.article_title != '' && elem.article_image != null && elem.article_description && elem.article_movie != null) {
+                    return elem
                 }
-            }
-        },
-
-        methods: {
-
-            getFilteredMovies(index){
-                axios.post('/admin/collections/get_filtered_movies', {
-                    query_filter: this.form.articles[index].movies_filter
-                })
-                    .then(res=>{
-                        this.form.articles[index].article_movie = "";
-                        this.form.articles[index].movies_list = res.data;
-                    })
-            },
-
-            handlePoster(event) {
-                this.form.poster = event.target.files[0]
-                this.poster_preview = URL.createObjectURL(event.target.files[0])
-            },
-
-            handleImage(event, articleIndex) {
-                this.form.articles[articleIndex].article_image = event.target.files[0]
-                this.previews[articleIndex] = URL.createObjectURL(event.target.files[0])
-            },
-
-            deleteArticle(elemIndex) {
-                this.form.articles = this.form.articles.filter((elem, index) => {
-                    return index != elemIndex
-                })
-            },
-
-            addArticle() {
-                this.form.articles.push({
-                    article_title: '',
-                    article_image: null,
-                    article_description: '',
-                    article_movie: null,
-                    movies_filter: '',
-                    movies_list: this.movies,
-                })
-            },
+            })
+            router.post(`/admin/collections/${this.data[0].id}`, {
+                _method: 'PATCH',
+                is_published: Boolean(this.form.is_published),
+                collection_id: this.form.collection_id,
+                collection_title: this.form.collection_title,
+                slug: this.form.slug,
+                description_min: this.form.description_min,
+                description: this.form.description,
+                poster: this.form.poster,
+                articles: this.form.articles,
+                meta_title: this.form.meta_title,
+                meta_keywords: this.form.meta_keywords,
+                meta_description: this.form.meta_description
+            })
+            router.on('error', (errors) => {
+                this.message.body = errors.detail.errors
+                this.message.type = 'error'
+                this.message.show = true
+            })
 
 
-            store() {
-                this.form.articles.forEach(elem=>{
-                    delete elem.movies_filter
-                    delete elem.movies_list
-                })
-                this.form.articles = this.form.articles.filter((elem) => {
-                    if (elem.article_title != '' && elem.article_image != null && elem.article_description && elem.article_movie != null) {
-                        return elem
-                    }
-                })
-                router.post(`/admin/collections/${this.data[0].id}`, {
-                    _method: 'PATCH',
-                    is_published: Boolean(this.form.is_published),
-                    collection_id: this.form.collection_id,
-                    collection_title: this.form.collection_title,
-                    slug: this.form.slug,
-                    description_min: this.form.description_min,
-                    description: this.form.description,
-                    poster: this.form.poster,
-                    articles: this.form.articles,
-                    meta_title: this.form.meta_title,
-                    meta_keywords: this.form.meta_keywords,
-                    meta_description: this.form.meta_description
-                })
-                router.on('error', (errors) => {
-                    this.message.body = errors.detail.errors
-                    this.message.type = 'error'
-                    this.message.show = true
-                })
+        }
+    },
 
-
-            }
-        },
-
-    }
+}
 </script>
 

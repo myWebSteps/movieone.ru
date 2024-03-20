@@ -1,50 +1,45 @@
 <template>
 
     <Head title="Редактировать комментарий" />
+        <h2 class="bg-white p-4 shadow-md">Редактировать комментарий</h2>
 
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="display-6">Редактировать комментарий</h2>
-        </template>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                    <form @submit.prevent="updateComment()">
-                        <div class="card-body">
-                            <div class="col-6 col-xs-12 mb-3">
-                                <label for="authorName">Имя:</label>
-                                <input v-model="form.name" type="text" class="d-block cform cform-custom-input w-100" id="authorName" placeholder="Имя автора">
-                            </div>
-                            <div class="col-12 mb-3">
-                                <label for="commentDescription">Описание</label>
-                                <textarea v-model="form.description" type="text" rows="10" class="d-block cform cform-custom-input w-100" id="commentDescription">
-                                </textarea>
-                            </div>
-
-                            <div class="cform-switch cform-switch-big cform-custom-switch mb-3">
-                                <span class="pr-2">Одобрить</span>
-                                <input v-model="form.approved" type="checkbox" id="switch-1" checked />
-                                <label for="switch-1"></label>
-
-                            </div>
-
-
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-
-                    </div>
+        <section class="container mx-auto
+        px-4 grid grid-flow-row grid-rows-[max-content]
+         gap-4 py-4">
+            <div class="grid grid-flow-row grid-rows-[50px_max-content_max-content] items-center">
+                <div class="py-2">
+                    <h3>Комментарий:</h3>
                 </div>
+                <form @submit.prevent="updateComment()"
+                     class="grid grid-flow-row bg-white px-4 py-2 gap-4 border-2 border-cyan-950">
+                    <label>Имя автора: <br>
+                        <input v-model="form.name"
+                               type="text"
+                               class="w-full"
+                               placeholder="Имя автора">
+                    </label>
+                    <label>Описание: <br>
+                        <textarea v-model="form.description"
+                                  type="text" rows="5"
+                                  class="w-full">
+                        </textarea>
+                    </label>
+                    <div>
+                        <span class="pr-2">Одобрить</span>
+                        <input v-model="form.approved" type="checkbox" id="switch-1" checked />
+                        <label for="switch-1"></label>
+                    </div>
+
+                    <div class="justify-self-end py-4 px-2">
+                        <button type="submit"
+                                class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white"
+                        >Submit</button>
+                    </div>
+                </form>
             </div>
         </section>
 
         <message :message.sync = "message"></message>
-
-    </AuthenticatedLayout>
 
 </template>
 
@@ -53,11 +48,13 @@
     import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
     import {router} from '@inertiajs/vue3';
+    import Message from "@/Components/Message.vue";
 
     export default {
         name: "Edit",
+        layout: AuthenticatedLayout,
         props: ['comment'],
-        components: {Head, Link, router, AuthenticatedLayout},
+        components: {Head, Link, router, AuthenticatedLayout, Message},
 
         data(){
             return{
@@ -92,13 +89,17 @@
                     name: this.form.name,
                     description: this.form.description,
                     approved: this.form.approved,
-                    })
-                router.on('error', (errors) => {
-                    this.message.body = errors.detail.errors
-                    this.message.type = 'error'
-                    this.message.show = true
+                    }, {
+                    onError: (errors) => {
+                        this.message.body = errors.detail.errors
+                        this.message.type = 'error'
+                        this.message.show = true
+                    },
+                    onFinish: () => {
+                        this.$parent.getCommentsCount()
+                    },
                 })
-            },
+             },
         },
 
     }

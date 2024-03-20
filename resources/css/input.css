@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html{
+    scroll-behavior: smooth;
+}
+.main-wrapper{
+    display: grid;
+    grid-template-rows: 3.7rem minmax(calc(100vh - 9.7rem), max-content) 6rem;
+    grid-template-columns: max-content minmax(0, 100%);
+    grid-template-areas:
+    "nav header"
+    "nav main"
+    "nav footer";
+}
+
+header{
+    grid-area: header;
+}
+main{
+    align-self:stretch;
+    grid-area: main;
+}
+footer{
+    grid-area: footer;
+}
+nav{
+    grid-area: nav;
+}
+.parallax{
+    animation: parallax linear;
+    animation-timeline: scroll();
+}
+
+@keyframes parallax {
+    to
+    {
+        transform: translateY(50vw);
+    }
+}
+.ping-once{
+    animation: animation-ping-once 0.5s linear;
+}
+.ping-once-two{
+    animation: animation-ping-once-two 0.5s linear;
+}
+@keyframes animation-ping-once {
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+@keyframes animation-ping-once-two {
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}

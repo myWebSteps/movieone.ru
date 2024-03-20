@@ -1,16 +1,26 @@
 <script setup>
-import { computed } from "vue";
+import { computed } from 'vue';
 
-const emit = defineEmits(["update:checked"]);
+const emit = defineEmits(['update:checked']);
 
 const props = defineProps({
-    value: { default: null },
-    checked: { type: [Array, Boolean], default: false },
+    checked: {
+        type: [Array, Boolean],
+        required: true,
+    },
+    value: {
+        default: null,
+    },
 });
 
 const proxyChecked = computed({
-    get: () => props.checked,
-    set: (val) => emit("update:checked", val),
+    get() {
+        return props.checked;
+    },
+
+    set(val) {
+        emit('update:checked', val);
+    },
 });
 </script>
 
@@ -19,6 +29,6 @@ const proxyChecked = computed({
         type="checkbox"
         :value="value"
         v-model="proxyChecked"
-        class="form-check-input"
+        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
     />
 </template>

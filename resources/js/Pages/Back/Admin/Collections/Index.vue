@@ -2,91 +2,96 @@
 
     <Head title="Коллекции" />
 
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="display-6">Список коллекций</h2>
-        </template>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row mb-4 mt-4 col-md-4 col-6">
-
-                    <Link href="/admin/collections/create" class="btn btn-success">Добавить коллекцию</Link>
-                </div>
+    <h2 class="bg-white p-4 shadow-md">Список коллекций</h2>
 
 
-                <div class="row">
-                    <div class="col-md-10 col-12">
+    <section class="container mx-auto
+        p-4 grid grid-flow-row grid-rows-[minmax(50px,_max-content)_max-content_max-content]
+        items-center
+         gap-4">
+            <div class="justify-self-start">
+                <Link href="/admin/collections/create"
+                      class="px-4 py-2  rounded-xl border-2 border-cyan-950 text-cyan-950 hover:bg-cyan-950 hover:text-white">
+                    Добавить Коллекцию
+                </Link>
+            </div>
+            <div class="self-end">
+                <h3>Список коллекций:</h3>
+            </div>
+            <div class="grid grid-flow-row gap-4 border-2 border-cyan-950 p-4 bg-white
+            w-full
+            md:w-fit
+            ">
+                <div class="grid gap-4
+                    grid-flow-row
+                    md:grid-cols-[40px,_minmax(80px,_150px),_1fr,_120px,_minmax(100px,_150px)]
+                    lg:grid-cols-[40px,_minmax(100px,_200px),_1fr,_170px,_minmax(150px,_200px)]
+                    ">
+                    <div class="hidden md:block">#</div>
+                    <div class="hidden md:block">Title</div>
+                    <div class="hidden md:block">Description</div>
+                    <div class="hidden md:block">Status</div>
+                    <div class="justify-self-center hidden md:block">Action</div>
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Коллекции:</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body p-0">
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>Заголовок</th>
-                                        <th>Описание</th>
-                                        <th>Статус</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
-
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <template v-for="collection in data">
-                                        <tr>
-                                            <td>{{collection.id}}</td>
-                                            <td>{{collection.collection_title}}</td>
-                                            <td>{{collection.description_min}}</td>
-                                            <td v-if="Boolean(collection.is_published)" class="text-success">Коллекция опубликована</td>
-                                            <td v-else class="text-danger">Черновик</td>
-                                            <td>
-                                                <Link :href="`/admin/collections/${collection.id}/edit`" as="button" class="btn btn-block btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i>
-                                                </Link>
-                                            </td>
-                                            <td>
-                                                <Link method="delete" as="button" :href="`/admin/collections/${collection.id}`" type="button" class="btn btn-block btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i>
-                                                </Link>
-                                            </td>
-                                        </tr>
-
-
-                                    </template>
-
-
-
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
+                    <template v-for="collection in data">
+                        <div><span class="md:hidden"># </span>{{collection.id}}</div>
+                        <div><span class="md:hidden">Title: </span>{{collection.collection_title}}</div>
+                        <div><span class="md:hidden">Description: </span>{{collection.description_min}}</div>
+                        <div><span class="md:hidden">Status: </span>
+                            <template v-if="Boolean(collection.is_published)">
+                                <span class="text-green-500">Коллекция опубликована</span>
+                            </template>
+                            <template v-else>
+                                <span class="text-red-500">черновик</span>
+                            </template>
                         </div>
 
-
-                    </div>
+                        <div class="grid grid-flow-col justify-evenly justify-content-center content-center">
+                            <Link as="button" :href="`/admin/collections/${collection.id}/edit`"
+                                  class="py-1 px-6 border-2 border-amber-300 rounded-2xl text-amber-300 hover:bg-amber-300 hover:text-white
+                            order-2
+                            md:order-1
+                            grid items-center
+                            ">
+                                <span class="material-symbols-sharp font-bold">edit_square</span>
+                            </Link>
+                            <Link @click.prevent="deleteInstance(collection.id)" v-if="$page.props.auth.user.role == 1" as="button"
+                                  href="#"
+                                  type="button"
+                                  class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white
+                            order-1
+                            md:order-2
+                            grid items-center
+                            ">
+                                <span class="material-symbols-sharp font-bold">delete</span>
+                            </Link>
+                        </div>
+                    </template>
                 </div>
             </div>
+
+
+
         </section>
-
-
-
-    </AuthenticatedLayout>
 
 </template>
 
 <script>
-    import { Head } from "@inertiajs/vue3";
+import {Head, router} from "@inertiajs/vue3";
     import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
     export default {
         name: "Index",
+        layout: AuthenticatedLayout,
         props: ['data'],
-        components: {Head, Link, AuthenticatedLayout},
-
+        components: {Head, Link},
+        methods:{
+            deleteInstance(id){
+                router.delete(`/admin/collections/${id}`, {
+                    onBefore: () => confirm('Вы уверены, что хотите удалить эту коллекцию?'),
+                })
+            },
+        },
     }
 </script>

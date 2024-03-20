@@ -4,7 +4,7 @@ import GuestLayout from "@/Layouts/GuestLayout.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
+// import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const props = defineProps({
     email: String,
@@ -77,9 +77,9 @@ const submit = () => {
             </div>
 
             <div class="d-flex align-items-center justify-content-end">
-                <PrimaryButton :disabled="form.processing">
-                    Reset Password
-                </PrimaryButton>
+<!--                <PrimaryButton :disabled="form.processing">-->
+<!--                    Reset Password-->
+<!--                </PrimaryButton>-->
             </div>
         </form>
     </GuestLayout>

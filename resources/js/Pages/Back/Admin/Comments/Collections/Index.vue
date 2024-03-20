@@ -2,88 +2,95 @@
 
     <Head title="Комментарии к коллекциям" />
 
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="display-6">Список комментариев к коллекциям</h2>
-        </template>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
+    <h2 class="bg-white p-4 shadow-md">Список комментариев к коллекциям</h2>
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Комментарии к коллекциям:</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body p-0">
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Comment_id</th>
-                                        <th>Collection_name</th>
-                                        <th>Author_name</th>
-                                        <th>Rating</th>
-                                        <th>Comment</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+    <section class="container mx-auto
+        p-4 grid grid-flow-row grid-rows-[max-content_max-content]
+        items-center
+         gap-4">
+            <div class="self-end">
+                <h3>Список видео:</h3>
+            </div>
+            <div class="grid grid-flow-row gap-4 border-2 border-cyan-950 p-4 bg-white
+            w-full
+            md:w-fit
+            ">
+                <div class="grid gap-4
+                    grid-flow-row
+                    md:grid-cols-[max-content,_repeat(3,_60px),_repeat(2,_1fr),_minmax(100px,_150px)]
+                    lg:grid-cols-[max-content,_repeat(3,_100px),_repeat(2,_1fr),_minmax(150px,_200px)]
+                    ">
+                    <div class="hidden md:block">Comment id</div>
+                    <div class="hidden md:block">Collection name</div>
+                    <div class="hidden md:block">Author name</div>
+                    <div class="hidden md:block">Rating</div>
+                    <div class="hidden md:block">Comment</div>
+                    <div class="hidden md:block">Status</div>
+                    <div class="justify-self-center hidden md:block">Action</div>
 
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <template v-for="comment in data_comments">
-                                        <tr>
-                                            <td>{{comment.comment_id}}</td>
-                                            <td>{{comment.collection_name}}</td>
-                                            <td>{{comment.name}}</td>
-                                            <td>{{comment.rating}}</td>
-                                            <td>{{comment.description}}</td>
-                                            <td v-if="comment.approved === 0" class="text-danger">
-                                                На рассмотрении
-                                            </td>
-                                            <td v-else-if="comment.approved === 1" class="text-success">
-                                                Одобрено
-                                            </td>
-                                            <td>
-                                                <Link as="button" :href="`/admin/comments/collections/${comment.comment_id}/edit`" class="btn btn-block btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i>
-                                                </Link>
-                                            </td>
-                                            <td>
-                                                <Link method="delete" as="button" :href="`/admin/comments/collections/${comment.comment_id}`" type="button" class="btn btn-block btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i>
-                                                </Link>
-                                            </td>
-                                        </tr>
-
-
-                                    </template>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
+                    <template v-for="comment in data_comments">
+                        <div><span class="md:hidden">Comment_id: </span>{{comment.comment_id}}</div>
+                        <div><span class="md:hidden">Collection_name: </span>{{comment.collection_name}}</div>
+                        <div><span class="md:hidden">Author_name: </span>{{comment.name}}</div>
+                        <div><span class="md:hidden">Rating: </span>{{comment.rating}}</div>
+                        <div><span class="md:hidden">Comment: </span>{{comment.description}}</div>
+                        <div><span class="md:hidden">Status: </span>
+                            <template v-if="comment.approved === 0">
+                                <span class="text-red-500">На рассмотрении</span>
+                            </template>
+                            <template v-else>
+                                <span class="text-green-500">Одобрено</span>
+                            </template>
                         </div>
 
-
-                    </div>
+                       <div class="grid grid-flow-col justify-evenly justify-content-center content-center">
+                            <Link as="button" :href="`/admin/comments/collections/${comment.comment_id}/edit`"
+                                  class="py-1 px-6 border-2 border-amber-300 rounded-2xl text-amber-300 hover:bg-amber-300 hover:text-white
+                            order-2
+                            md:order-1
+                            grid items-center
+                            ">
+                                <span class="material-symbols-sharp font-bold">edit_square</span>
+                            </Link>
+                            <Link @click.prevent="deleteInstance(comment.comment_id)" as="button"
+                                  href="#"
+                                  type="button"
+                                  class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white
+                            order-1
+                            md:order-2
+                            grid items-center
+                            ">
+                                <span class="material-symbols-sharp font-bold">delete</span>
+                            </Link>
+                        </div>
+                    </template>
                 </div>
             </div>
+
+
+
         </section>
-
-
-
-    </AuthenticatedLayout>
 
 </template>
 
 <script>
-    import { Head } from "@inertiajs/vue3";
+import {Head, router} from "@inertiajs/vue3";
     import { Link } from "@inertiajs/vue3";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
     export default {
         name: "Index",
+        layout: AuthenticatedLayout,
         props: ['data_comments'],
         components: {Head, Link, AuthenticatedLayout},
-
+        methods:{
+            deleteInstance(id){
+                router.delete(`/admin/comments/collections/${id}`, {
+                    onBefore: () => confirm('Вы уверены, что хотите удалить этот комментарий?'),
+                    onSuccess: () => this.$parent.getCommentsCount()
+                })
+            },
+        },
     }
 </script>
 

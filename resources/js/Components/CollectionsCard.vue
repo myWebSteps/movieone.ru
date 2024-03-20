@@ -1,22 +1,23 @@
 <template>
-    <div class="col-xxl-3 col-xl-4 col-md-6 mb-4" v-for="collection in data">
-        <div class="card p-card shadow border-0">
-            <Link :href="`/collections/${collection.slug}`">
-                <div class="row no-gutters">
-                    <div class="col-4 d-grid align-content-center">
-                        <img v-lazy="collection.poster" class="card-img" alt="...">
-                    </div>
-                    <div class="col-8">
-                        <div class="card-body h-100 d-grid">
-                            <h5 class="text-gray-900">{{collection.collection_title}}</h5>
-                            <p class="card-text text-gray-900">{{collection.description_min}}</p>
-                            <small><p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.date}}</p></small>
-                        </div>
+
+    <div class="grid shadow-md bg-white rounded-sm overflow-hidden" v-for="collection in data">
+        <Link :href="`/collections/${collection.slug}`">
+            <div class="grid grid-cols-[1fr,_2fr] gap-4">
+                <div class="grid content-center">
+                    <img v-lazy="collection.poster" class="my-4" alt="...">
+                </div>
+                <div class="my-4">
+                    <div class="grid h-full items-baseline">
+                        <h5 class="text-gray-900">{{collection.collection_title}}</h5>
+                        <p class="text-gray-900 text-sm">{{collection.description_min}}</p>
+                        <small><p class="mb-0 text-gray-900"><i class="fas fa-calendar-alt fa-sm fa-fw mr-1"></i> {{collection.date}}</p></small>
                     </div>
                 </div>
-            </Link>
-        </div>
+            </div>
+        </Link>
+
     </div>
+
 </template>
 
 <script>

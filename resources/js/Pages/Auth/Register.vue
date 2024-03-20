@@ -89,7 +89,7 @@ const submit = () => {
             <div
                 class="d-flex align-items-center justify-content-end gap-3"
             >
-                <Link :href="route('login')"> Already registered? </Link>
+                <Link href="/login"> Already registered? </Link>
 
                 <PrimaryButton :disabled="form.processing">
                     Register

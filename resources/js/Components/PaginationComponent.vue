@@ -1,13 +1,12 @@
 <template>
 
-    <section class="row d-flex justify-content-center">
-        <nav v-if="data.meta.last_page > 1" aria-label="Page navigation example">
-            <ul class="pagination">
+    <ul v-if="data.meta.last_page > 1" class="justify-self-center w-fit rounded-sm overflow-x-hidden
+                            grid grid-flow-col auto-cols-fr items-center
+                            bg-gray-300">
                 <template v-if="data.meta.current_page != 1">
-                    <li v-if="data.meta.current_page != 1" class="page-item">
-                        <a @click.prevent="changePage(data.meta.current_page - 1)" class="page-link" href="#"
-                           aria-label="Previous">
-                            <div aria-hidden="true">&laquo;</div>
+                    <li v-if="data.meta.current_page != 1" class="py-2 px-4">
+                        <a @click.prevent="changePage(data.meta.current_page - 1)" class="page-link" href="#">
+                            <div>&laquo;</div>
                         </a>
                     </li>
                 </template>
@@ -15,8 +14,9 @@
                     <li v-if="Number(link.label) &&
                             (data.meta.current_page - link.label < 3 &&
                             data.meta.current_page - link.label > -3) ||
-                            Number(link.label) === 1 || Number(link.label) === data.meta.last_page
-                            " class="page-item" :class="link.active? 'active' : ''">
+                            Number(link.label) === 1 || Number(link.label) === data.meta.last_page"
+                        class="py-2 px-4"
+                        :class="link.active? 'bg-[#333454] text-white' : ''">
                         <a @click.prevent="changePage(link.label)"
                            class="page-link" href="#">{{link.label}}</a>
                     </li>
@@ -25,21 +25,21 @@
                             (data.current_page - link.label === 3) ||
                             Number(link.label) &&
                             data.meta.current_page != data.last_page - 3 &&
-                            (data.current_page - link.label === -3)">
-                        <div class="page-link">...</div>
+                            (data.current_page - link.label === -3)"
+                            class="py-2 px-4"
+                            >
+                        <div>...</div>
                     </li>
                 </template>
                 <template v-if="data.meta.current_page != data.last_page">
-                    <li v-if="data.meta.current_page != data.meta.last_page" class="page-item">
-                        <a @click.prevent="changePage(data.meta.current_page + 1)" class="page-link" href="#"
-                           aria-label="Next">
-                            <div aria-hidden="true">&raquo;</div>
+                    <li v-if="data.meta.current_page != data.meta.last_page" class="py-2 px-4">
+                        <a @click.prevent="changePage(data.meta.current_page + 1)" class="page-link" href="#">
+                            <div>&raquo;</div>
                         </a>
                     </li>
                 </template>
             </ul>
-        </nav>
-    </section>
+
 
 </template>
 
@@ -52,7 +52,7 @@
         methods:{
 
             send(){
-                this.$emit('interface', this.form)
+                this.$emit('interface', this.form.page)
             },
 
             changePage(page) {

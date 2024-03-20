@@ -1,26 +1,23 @@
 <template>
 
-    <div v-for="movie in data" :class="config.classes">
-        <div class="card m-card shadow border-0">
-            <Link :href="`/movies/${movie.slug}`">
-                <div class="m-card-cover phone-cover">
-                    <img v-lazy="movie.poster" class="card-img-top" :alt="movie.nameEn">
-                </div>
+    <div v-for="movie in data" :class="config.classes" class="shadow-md bg-white rounded-sm overflow-hidden">
+        <div>
+            <Link :href="`/movies/${movie.slug}`" class="grid grid-flow-row">
 
-                <div class="card-body">
-                    <h5 class="card-title text-gray-900 mb-1 text-wrap">{{movie.nameRu}}</h5>
-                    <h5 class="card-title text-gray-900 mb-1 text-wrap">{{movie.nameEn}}</h5>
-                    <p class="card-text mb-1">
-                        <small class="text-muted"><i class="fa-solid fa-tape mr-2"></i>
-                            <span v-for="genre in movie.genres" class="text-muted phone_text_size">
-                                                    {{genre.title}} &nbsp
+                    <img v-lazy="movie.poster" :alt="movie.nameEn">
+
+                <div class="p-2 grid grid-flow-row gap-1">
+                    <h5 class="text-gray-900 text-wrap">{{movie.nameRu}}</h5>
+                    <h5 class="text-gray-900 text-wrap">{{movie.nameEn}}</h5>
+                    <p class="grid grid-flow-col auto-cols-max items-center">
+                        <span class="material-symbols-sharp">camera_roll</span>
+                            <span class="text-sm font-light" v-for="genre in movie.genres">
+                                {{genre.title}}
                             </span>
-                        </small>
                     </p>
-                    <p class="card-text text-danger">
-                        <small>
-                            <span class="phone_text_size"><i class="fas fa-calendar-alt fa-sm text-gray-400"></i> {{movie.year}}</span>
-                        </small>
+                    <p class="grid grid-flow-col auto-cols-max items-center">
+                        <span class="material-symbols-sharp">today</span>
+                        <span class="text-red-800 font-light">{{movie.year}}</span>
                     </p>
 
                 </div>
