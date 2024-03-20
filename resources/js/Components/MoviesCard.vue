@@ -4,7 +4,8 @@
         <div>
             <Link :href="`/movies/${movie.slug}`" class="grid grid-flow-row">
 
-                    <img v-lazy="movie.poster" :alt="movie.nameEn">
+                    <img class="w-full"
+                        v-lazy="movie.poster" :alt="movie.nameEn">
 
                 <div class="p-2 grid grid-flow-row gap-1">
                     <h5 class="text-gray-900 text-wrap">{{movie.nameRu}}</h5>
