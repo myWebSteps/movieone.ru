@@ -124,7 +124,8 @@
                                 <div class="grid grid-flow-col grid-cols-[repeat(6,_1fr)] bg-gray-200">
                                     <label class="px-4 py-2 block justify-self-center"
                                            :class="form.default_plot === null ? 'bg-sky-950 text-white': ''"
-                                    ><i class="fa-solid fa-not-equal"></i>
+                                    >
+                                        <span class="material-symbols-sharp text-[#333545]">star_half</span>
                                         <input v-model="form.default_plot" :value=null type="radio"
                                                name="rate_plot"
                                                checked disabled
@@ -149,7 +150,8 @@
                                 <div class="grid grid-flow-col grid-cols-[repeat(6,_1fr)] bg-gray-200">
                                     <label class="px-4 py-2 block justify-self-center"
                                            :class="form.default_actors_game === null ? 'bg-sky-950 text-white': ''"
-                                    ><i class="fa-solid fa-not-equal"></i>
+                                    >
+                                        <span class="material-symbols-sharp text-[#333545]">star_half</span>
                                         <input v-model="form.default_actors_game" :value=null type="radio"
                                                name="rate_actors_game"
                                                checked disabled
@@ -174,7 +176,8 @@
                                 <div class="grid grid-flow-col grid-cols-[repeat(6,_1fr)] bg-gray-200">
                                     <label class="px-4 py-2 block justify-self-center"
                                            :class="form.default_atmosphere === null ? 'bg-sky-950 text-white': ''"
-                                    ><i class="fa-solid fa-not-equal"></i>
+                                    >
+                                        <span class="material-symbols-sharp text-[#333545]">star_half</span>
                                         <input v-model="form.default_atmosphere" :value=null type="radio"
                                                name="rate_atmosphere"
                                                checked disabled
