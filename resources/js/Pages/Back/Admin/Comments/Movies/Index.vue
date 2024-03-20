@@ -52,7 +52,7 @@
                             ">
                                 <span class="material-symbols-sharp font-bold">edit_square</span>
                             </Link>
-                            <Link @click.prevent="deleteInstance(comment.comment_id)" v-if="$page.props.auth.user.role == 1" as="button"
+                            <Link @click.prevent="deleteInstance(comment.comment_id)" as="button"
                                   href="#"
                                   type="button"
                                   class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white
