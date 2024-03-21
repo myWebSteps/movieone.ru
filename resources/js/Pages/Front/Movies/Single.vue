@@ -365,9 +365,9 @@
 
                 <!--Related Movies -->
                     <section v-if="relatedMovies.length > 0"
-                             class="grid grid-flow-row bg-white shadow-md px-4 py-2 gap-4">
+                             class="grid grid-flow-row bg-white shadow-md px-4 py-2 gap-1">
                         <h6 class="justify-self-start">Похожие фильмы:</h6>
-                        <div class="grid grid-cols-[repeat(auto-fit,_minmax(50px,_180px))]">
+                        <div class="grid grid-cols-[repeat(auto-fit,_minmax(50px,_180px))] gap-2">
                         <movies-card :data="relatedMovies" :config="{classes: 'col-xl-3 col-md-3 col-sm-4 col-10 mb-3'}"></movies-card>
                         </div>
                     </section>

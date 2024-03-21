@@ -6,12 +6,12 @@
 
                     <img v-lazy="movie.poster" :alt="movie.nameEn">
 
-                <div class="p-2 grid gap-1 self-stretch">
+                <div class="p-2 grid gap-1 self-stretch max-w-[200px]">
                     <h5 class="text-gray-900 text-wrap">{{movie.nameRu}}</h5>
                     <h5 class="text-gray-900 text-wrap">{{movie.nameEn}}</h5>
                     <p >
                         <span class="material-symbols-sharp">camera_roll</span>
-                            <span class="text-sm font-light text-balance" v-for="genre in movie.genres">
+                            <span class="text-sm font-light text-wrap" v-for="genre in movie.genres">
                                 <span>{{genre.title}}</span>&nbsp
                             </span>
                     </p>

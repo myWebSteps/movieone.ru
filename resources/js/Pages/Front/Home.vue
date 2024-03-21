@@ -6,7 +6,7 @@
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
     </Head>
 
-    <header class="h-[340px] bg-[url('/img/cover_min.webp')]  md:bg-[url('/img/cover.webp')] bg-no-repeat bg-cover bg-center bg-fixed
+    <header class="h-[35vh] bg-[url('/img/cover_min.webp')]  md:bg-[url('/img/cover.webp')] bg-no-repeat bg-cover bg-center bg-fixed
     grid items-center">
         <div class="parallax absolute mb-8 ml-[10%] opacity-50 font-extrabold z-10 text-xl sm:text-2xl md:text-3xl">
             MovieOne.Ru <br>
