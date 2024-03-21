@@ -161,15 +161,23 @@
         <div v-if="$page.component === 'Front/Movies/Index'" @click="show.filter = !show.filter"
              class="z-50 fixed  right-2 w-[40px] h-[40px] grid text-center content-center border-2 border-green-600 rounded-full
              md:hidden"
-             :class="show.filter ? 'bg-green-600 text-white top-[6rem]' : 'bg-white text-green-600 top-2'">
+             :class="show.filter ? 'bg-white text-green-600 top-2 ' : 'bg-green-600 text-white top-[6rem]'">
             <template v-if="show.filter">
-                <span class="material-symbols-sharp">filter_alt</span>
-            </template>
-            <template v-else>
                 <span class="material-symbols-sharp">close</span>
             </template>
-
+            <template v-else>
+                <span class="material-symbols-sharp">filter_alt</span>
+            </template>
         </div>
+
+        <div v-if="show.filter"
+        class="absolute top-0 bottom-0 right-0 left-0
+        z-30
+        "
+        @click="show.filter = !show.filter"
+        >
+        </div>
+
 
         <nav class="bg-[#1f2533]"
              :class="show.menu ? '' : 'hidden sm:block'"
@@ -233,11 +241,10 @@
             :class="$page.component === 'Front/Movies/Index' ? 'md:grid md:grid-cols-[max-content,_1fr]' : 'overflow-x-hidden'">
 
             <aside v-if="$page.component === 'Front/Movies/Index'"
-                   class="fixed right-0 top-0 z-40 duration-500 md:relative md:translate-x-0"
-                   :class="show.filter ? 'translate-x-full m-0' : ''"
+                   class="fixed right-0 top-0 z-40 duration-500 md:relative md:translate-x-0 md:my-2 md:ml-2"
+                   :class="show.filter ? 'translate-x-0 m-0' : 'translate-x-full'"
             >
                 <filter-component ref="filter"
-                class="md:m-4"
                 >
                 </filter-component>
             </aside>

@@ -6,7 +6,7 @@
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
     </Head>
 
-    <header class="h-[300px] bg-[url('/img/cover.webp')] bg-no-repeat bg-cover bg-center bg-fixed
+    <header class="h-[340px] bg-[url('/img/cover_min.webp')]  md:bg-[url('/img/cover.webp')] bg-no-repeat bg-cover bg-center bg-fixed
     grid items-center">
         <div class="parallax absolute mb-8 ml-[10%] opacity-50 font-extrabold z-10 text-xl sm:text-2xl md:text-3xl">
             MovieOne.Ru <br>
@@ -35,7 +35,13 @@
                     Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
                 </Link>
             </div>
-            <div class="px-4 grid grid-cols-[repeat(auto-fit,_minmax(100px,_200px))] justify-items-center gap-4">
+            <div class="
+            px-4 grid justify-self-center justify-items-center gap-4
+            sm:grid-cols-[repeat(auto-fit,_minmax(100px,_200px))]
+            sm:justify-self-stretch
+            "
+            >
+
             <movies-card :data="item.movies" :config = "{classes: ''}"></movies-card>
             </div>
         </template>
@@ -71,7 +77,7 @@
 
         },
 
-        mounted() {
+        beforeUnmount() {
             ym(94438576, 'hit', '/');
         },
 

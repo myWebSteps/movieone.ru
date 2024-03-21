@@ -7,7 +7,7 @@
     </Head>
 
 
-        <section class="grid grid-rows-[70px,_calc(100%-140px),_70px]">
+        <section class="mx-2 grid grid-rows-[70px,_calc(100%-140px),_70px]">
         <!-- Begin Page Content -->
         <!-- Page Heading -->
         <div class="grid grid-flow-col content-center">
@@ -21,13 +21,17 @@
             </Link>
         </div>
 
-        <div v-if="movies.data.length > 0" class="grid grid-cols-[repeat(auto-fit,_minmax(100px,_200px))] auto-rows-max justify-items-center gap-4">
+        <div v-if="movies.data.length > 0" class="
+        grid grid-cols-[repeat(auto-fit,_minmax(100px,_250px))] auto-rows-max justify-items-center justify-self-center gap-4
+        md:justify-self-stretch
+        "
+        >
                 <movies-card
                     :data="movies.data"
                     :config = "{classes: ''}">
                 </movies-card>
             </div>
-        <div v-else class="grid grid-flow-col auto-cols-max justify-self-center items-start gap-2">
+        <div v-else class="grid grid-flow-col auto-cols-[max-content,_minmax(50,_200px)] justify-self-center items-start gap-2">
                 <span class="material-symbols-sharp">troubleshoot</span>
                 <span class="font-light">Не нашел фильмов по заданным критериям. Попробуйте облегчить мне задачу</span>
             </div>
@@ -79,9 +83,8 @@
             }
         },
 
-        mounted() {
+        beforeUnmount() {
             ym(94438576, 'hit', '/movies');
-
         },
 
     }

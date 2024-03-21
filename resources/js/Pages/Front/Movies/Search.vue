@@ -33,9 +33,14 @@ export default {
     props: ['movies', 'data'],
     components: {Head, Link, MoviesCard},
     mounted() {
-        ym(94438576, 'hit', '/search');
         this.$parent.searchKey = ''
     },
+    beforeUnmount() {
+        ym(94438576, 'hit', '/search');
+    },
+
+
+
 
 
 

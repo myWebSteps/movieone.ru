@@ -71,9 +71,11 @@
             <div class="grid grid-flow-row grid-rows-[max-content]
             gap-4
             ">
-                <div class="grid grid-cols-[minmax(20%,_75%),_max-content] grid-rows-[max-content] gap-1 bg-white shadow-md
-                px-4 py-4">
-                    <div>
+                <div class="grid grid-rows-[max-content] gap-1 bg-white shadow-md px-4 py-4
+                grid-cols-1
+                sm:grid-cols-[minmax(20%,_75%),_max-content]
+                ">
+                    <div class="max-sm:order-1">
                         <h1 class="text-gray-900 text-2xl font-semibold">
                             {{ movie.nameRu }}</h1>
                         <h2 class="text-gray-900 text-xl font-light">
@@ -94,7 +96,11 @@
                         </h5>
                     </div>
 
-                    <div class="grid grid-cols-[1fr,_3fr] gap-2 items-center justify-items-center">
+                    <div class="grid auto-cols-max gap-2 grid-flow-col self-start
+                    justify-self-center
+                    sm:justify-self-end
+                    max-sm:order-3
+                    ">
                         <a @click.prevent="copyUrl()" href="#"
                            class="inline-grid content-center bg-blue-900 shadow-sm border-2
                          border-blue-900 text-white
@@ -128,7 +134,8 @@
 
                     </div>
 
-                    <div>
+                    <div class="max-sm:order-2
+                    ">
                     <div v-if="movie.budget">
                         <h5 class="text-rose-700 text-lg font-light grid grid-flow-col auto-cols-max
                                  items-center">
@@ -138,8 +145,11 @@
                     </div>
                     </div>
 
-                    <div class="grid grid-flow-col grid-cols-[repeat(3,_max-content)] auto-rows-[32px] items-center
-                        justify-self-center
+                    <div class="
+                    max-sm:order-4
+                    grid grid-flow-col grid-cols-[repeat(3,_max-content)] auto-rows-[32px] items-center
+                        justify-self-end
+                        sm:justify-self-center
                         ">
                         <a href="https://instagram.com/roman_makukha_89?igshid=OGQ5ZDc2ODk2ZA=="
                            target="_blank">
@@ -156,9 +166,9 @@
                     </div>
                 </div>
 
-                <section class="grid grid-flow-row bg-white shadow-md px-4 py-2 gap-4">
+                <section class="grid grid-flow-row bg-white shadow-md py-2 gap-4">
 
-                    <ul class="grid grid-cols-[repeat(auto-fit,minmax(max-content,_80px))]
+                    <ul class="px-4 grid grid-cols-[repeat(auto-fit,minmax(max-content,_80px))]
                     text-gray-900 auto-rows-[minmax(30px,_max-content)] gap-4
                     ">
                         <li :class="accordion === 'general' ? 'border-b-2 border-b-pink-900' : ''"
@@ -210,14 +220,14 @@
                     >
                         <div v-if="movie.video_allowed == 1" class="kinobox_player"></div>
 
-                        <article>
+                        <article class="px-4">
                             <h3 class="text-xl">{{ movie.slogan }}</h3>
                             <p class="font-light" v-html="movie.description"></p>
                         </article>
                     </div>
 
                     <div :class="accordion === 'trailers' ? '' : 'hidden'"
-                         class="grid gap-4 grid-cols-[repeat(auto-fit,_minmax(200px,_300px))]"
+                         class="px-4 grid gap-4 grid-cols-[repeat(auto-fit,_minmax(200px,_300px))]"
                     >
                         <template v-if="movie.trailers.videos_count > 0 && loadTrailers == true"
                                   v-for="trailer in movie.trailers.videos">
@@ -240,7 +250,7 @@
                     </div>
 
                     <div :class="accordion === 'comments' ? '' : 'hidden'"
-                         class="grid gap-4 grid-flow-row"
+                         class="px-4 grid gap-4 grid-flow-row"
                     >
                         <comments-component :comments="comments" :id="movie.id" type="movies"
                                             :message.sync="message"></comments-component>
@@ -248,7 +258,7 @@
                     </div>
 
                     <div :class="accordion === 'reviews' ? '' : 'hidden'"
-                         class="grid gap-4 grid-flow-row"
+                         class="px-4 grid gap-4 grid-flow-row"
                     >
                         <template v-for="review in reviews.items">
                             <article class="grid grid-flow-row gap-1">
@@ -307,7 +317,7 @@
                         </div>
 
                     <div :class="accordion === 'actors' ? '' : 'hidden'"
-                         class="grid gap-2 grid-cols-[repeat(auto-fit,_minmax(50px,_250px))] items-start"
+                         class="px-4 grid gap-2 grid-cols-[repeat(auto-fit,_minmax(50px,_250px))] items-start"
                     >
                         <section class="grid grid-flow-row gap-2">
                             <h6>Режиссеры:</h6>
@@ -477,6 +487,9 @@ export default {
             }).init();
         }
 
+    },
+
+    beforeUnmount() {
         ym(94438576, 'hit', `/movies/${this.movie.slug}`);
     },
 

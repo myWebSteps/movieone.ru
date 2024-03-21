@@ -190,10 +190,11 @@ export default {
         }
     },
 
-    mounted() {
-
+    beforeUnmount() {
         ym(94438576, 'hit', `/collections/${this.data.slug}`);
+    },
 
+    mounted() {
         this.togglePlaylistButton()
     },
 

@@ -2,12 +2,11 @@
 
     <div v-for="movie in data" :class="config.classes" class="shadow-md bg-white rounded-sm overflow-hidden">
 
-            <Link :href="`/movies/${movie.slug}`" class="h-full grid">
+            <Link :href="`/movies/${movie.slug}`" class="h-full grid grid-rows-[max-content,_1fr]">
 
-                    <img class="w-full"
-                        v-lazy="movie.poster" :alt="movie.nameEn">
+                    <img v-lazy="movie.poster" :alt="movie.nameEn">
 
-                <div class="p-2 grid gap-1">
+                <div class="p-2 grid gap-1 self-stretch">
                     <h5 class="text-gray-900 text-wrap">{{movie.nameRu}}</h5>
                     <h5 class="text-gray-900 text-wrap">{{movie.nameEn}}</h5>
                     <p >
