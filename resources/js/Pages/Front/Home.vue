@@ -36,7 +36,7 @@
                 </Link>
             </div>
             <div class="
-            px-4 grid justify-self-center justify-items-center gap-4
+            px-4 grid justify-self-center auto-rows-[minmax(100px,_200px)] justify-items-center gap-4
             sm:grid-cols-[repeat(auto-fit,_minmax(100px,_200px))]
             sm:justify-self-stretch
             "
