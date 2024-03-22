@@ -189,10 +189,10 @@
             <div class="sticky top-0">
                 <div class="bg-[#333545]">
                     <Link href="/" class="h-[3.7rem] mx-4 grid items-center justify-items-center
-                         sm:gap-2"
+                         sm:gap-1"
                           :class="show.menu ? 'sm:grid-cols-[max-content,_max-content]' : 'grid-cols-1'"
                     >
-                        <img src="/img/logo-icon.png" class="w-[60px] px-1" alt="...">
+                        <img src="/img/logo-icon.png" class="w-[50px] px-1" alt="...">
                         <p class="uppercase text-white text-base font-bold hidden
                         sm:block
                         "
@@ -200,7 +200,7 @@
                         >MovieOne</p>
                     </Link>
                 </div>
-                <ul class="m-4 grid grid-flow-row sm:justify-content-start gap-4"
+                <ul class="m-2 grid grid-flow-row sm:justify-content-start gap-4"
                     :class="$page.url.startsWith('/collections') ? 'text-white' : ''"
                 >
                     <li>

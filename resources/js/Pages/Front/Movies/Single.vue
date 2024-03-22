@@ -7,7 +7,7 @@
         <meta name="description" :content="movie.meta_description"/>
     </Head>
 
-    <header  class="grid items-top
+    <header class="grid items-top
     lg:sticky
     lg:top-0
     h-fit
@@ -15,7 +15,8 @@
     lg:max-h-[60vh]
     z-10 overflow-y-hidden"
     >
-        <img  class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="movie.backdropUrl" alt="...">
+        <img class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="movie.backdropUrl"
+             alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
         justify-self-end
@@ -44,7 +45,7 @@
     <main class="container mx-auto relative
     grid grid-flow-row gap-4 z-20 bg-slate-100
     ">
-        <div class="grid grid-flow-row relative mx-4 gap-4 -top-[1.5rem]
+        <div class="grid grid-flow-row relative mx-2 gap-2 -top-[1.5rem]
         lg:grid-flow-col lg:grid-cols-[1fr,_4fr]
         ">
             <!--Movie Poster Widget-->
@@ -115,13 +116,17 @@
                         </h5>
                     </div>
 
-                    <div class="grid auto-cols-max gap-2 grid-flow-col self-start
+                    <div class="grid auto-cols-max gap-2 self-start
+                    sm:grid-flow-col
                     justify-self-center
                     sm:justify-self-end
                     max-sm:order-3
-                    ">
+                    "
+                         :class="$parent.show.menu ? 'grid-flow-row' : 'grid-flow-col'"
+                    >
                         <a @click.prevent="copyUrl()" href="#"
                            class="inline-grid content-center bg-blue-900 shadow-sm border-2
+                           justify-self-center
                          border-blue-900 text-white
                          hover:bg-white hover:text-blue-900
                          px-2 py-1
@@ -155,13 +160,13 @@
 
                     <div class="max-sm:order-2
                     ">
-                    <div v-if="movie.budget">
-                        <h5 class="text-rose-700 text-lg font-light grid grid-flow-col auto-cols-max
+                        <div v-if="movie.budget">
+                            <h5 class="text-rose-700 text-lg font-light grid grid-flow-col auto-cols-max
                                  items-center">
-                            <span class="material-symbols-sharp">payments</span>&nbsp
-                            <span class="text-gray-900">{{ movie.budget }}</span>
-                        </h5>
-                    </div>
+                                <span class="material-symbols-sharp">payments</span>&nbsp
+                                <span class="text-gray-900">{{ movie.budget }}</span>
+                            </h5>
+                        </div>
                     </div>
 
                     <div class="
@@ -299,41 +304,41 @@
                         </template>
 
 
-                            <ul v-if="reviews.totalPages > 1"
+                        <ul v-if="reviews.totalPages > 1"
                             class="justify-self-center w-fit rounded-sm overflow-x-hidden
                             grid grid-flow-col auto-cols-fr items-center
                             bg-gray-300
                             ">
-                                <li v-if="currentPage != 1" class="py-2 px-4">
-                                    <a @click.prevent="getReviews(String(currentPage - 1))"
-                                        href="#">
-                                        &laquo;
-                                    </a>
-                                </li>
-                                <template v-for="page in reviews.totalPages">
-                                    <li v-if="(page - currentPage < 3 && page - currentPage > -3) || page == 1 || page == reviews.totalPages"
+                            <li v-if="currentPage != 1" class="py-2 px-4">
+                                <a @click.prevent="getReviews(String(currentPage - 1))"
+                                   href="#">
+                                    &laquo;
+                                </a>
+                            </li>
+                            <template v-for="page in reviews.totalPages">
+                                <li v-if="(page - currentPage < 3 && page - currentPage > -3) || page == 1 || page == reviews.totalPages"
                                     class="py-2 px-4"
-                                   :class="page == currentPage? 'bg-[#333454] text-white' : ''">
-                                            <a @click.prevent="getReviews(page)" href="#"
-                                               :value="page">{{ page }}</a>
-                                   </li>
-                                    <li v-if="(currentPage - page == 3 && currentPage != 4) || (currentPage - page == -3 && currentPage != reviews.totalPages - 3)"
-                                     class="py-2 px-4"
-                                    >
-                                        <div>...</div>
-                                    </li>
-                                </template>
-
-
-                                <li class="py-2 px-4">
-                                    <a v-if="currentPage != reviews.totalPages"
-                                       @click.prevent="getReviews(String(currentPage + 1))"
-                                       href="#">
-                                        &raquo;
-                                    </a>
+                                    :class="page == currentPage? 'bg-[#333454] text-white' : ''">
+                                    <a @click.prevent="getReviews(page)" href="#"
+                                       :value="page">{{ page }}</a>
                                 </li>
-                            </ul>
-                        </div>
+                                <li v-if="(currentPage - page == 3 && currentPage != 4) || (currentPage - page == -3 && currentPage != reviews.totalPages - 3)"
+                                    class="py-2 px-4"
+                                >
+                                    <div>...</div>
+                                </li>
+                            </template>
+
+
+                            <li class="py-2 px-4">
+                                <a v-if="currentPage != reviews.totalPages"
+                                   @click.prevent="getReviews(String(currentPage + 1))"
+                                   href="#">
+                                    &raquo;
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
                     <div :class="accordion === 'actors' ? '' : 'hidden'"
                          class="px-4 grid gap-2 grid-cols-[repeat(auto-fit,_minmax(50px,_250px))] items-start"
@@ -383,13 +388,12 @@
                 </section>
 
                 <!--Related Movies -->
-                    <section v-if="relatedMovies.length > 0"
-                             class="grid grid-flow-row bg-white shadow-md px-4 py-2 gap-1">
-                        <h6 class="justify-self-start">Похожие фильмы:</h6>
-                        <div class="grid grid-cols-[repeat(auto-fit,_minmax(50px,_180px))] gap-2">
-                        <movies-card :data="relatedMovies" :config="{classes: 'col-xl-3 col-md-3 col-sm-4 col-10 mb-3'}"></movies-card>
-                        </div>
-                    </section>
+                <section v-if="relatedMovies.length > 0"
+                         class="grid grid-flow-row bg-white shadow-md  py-2 gap-1">
+                    <h6 class="justify-self-start px-4">Похожие фильмы:</h6>
+                    <movies-card :data="relatedMovies"
+                                 :config="{classes: ''}"></movies-card>
+                </section>
 
             </div>
         </div>
@@ -440,7 +444,6 @@ export default {
     mounted() {
         this.getReviews()
         this.togglePlaylistButton()
-
 
 
         if (this.movie.video_allowed == 1) {
