@@ -190,7 +190,7 @@
                     </div>
                 </div>
 
-                <section class="grid grid-flow-row bg-white shadow-md py-2 gap-4">
+                <section class="grid grid-flow-row grid-cols-1 bg-white shadow-md py-2 gap-4">
 
                     <ul class="px-4 grid grid-cols-[repeat(auto-fit,minmax(max-content,_80px))]
                     text-gray-900 auto-rows-[minmax(30px,_max-content)] gap-4
@@ -389,7 +389,7 @@
 
                 <!--Related Movies -->
                 <section v-if="relatedMovies.length > 0"
-                         class="grid grid-flow-row bg-white shadow-md  py-2 gap-1">
+                         class="grid grid-flow-row grid-cols-1 bg-white shadow-md  py-2 gap-1">
                     <h6 class="justify-self-start px-4">Похожие фильмы:</h6>
                     <movies-card :data="relatedMovies"
                                  :config="{classes: ''}"></movies-card>
