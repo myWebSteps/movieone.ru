@@ -105,11 +105,11 @@
                             <span class="material-symbols-sharp">today</span>&nbsp
                             <span class="text-gray-900">{{ movie.endYear }}</span>
                         </h5>
-                        <h5 class="text-rose-700 text-lg font-light grid grid-flow-col auto-cols-max items-center">
+                        <h5 class="text-rose-700 text-lg font-light">
                             <span class="material-symbols-sharp">camera_roll</span>&nbsp
-                            <span class="text-gray-900 text-sm">
-                                <template v-for="genre in movie.genres">
-                                {{ genre.title }}&nbsp
+                            <span class="text-gray-900 text-sm text-wrap">
+                                <template v-for="genre in movie.genres" class="text-wrap">
+                                {{ genre.title}}&thinsp;
                                 </template>
                                 </span>
 
