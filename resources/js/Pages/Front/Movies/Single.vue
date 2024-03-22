@@ -96,9 +96,9 @@
                 sm:grid-cols-[minmax(20%,_75%),_max-content]
                 ">
                     <div class="max-sm:order-1">
-                        <h1 class="text-gray-900 text-2xl font-semibold">
+                        <h1 class="text-gray-900 text-xl font-semibold text-wrap">
                             {{ movie.nameRu }}</h1>
-                        <h2 class="text-gray-900 text-xl font-light">
+                        <h2 class="text-gray-900 text-lg font-light text-wrap">
                             {{ movie.nameEn }}</h2>
                         <h5 class="text-rose-700 text-lg font-light grid grid-flow-col grid-cols-[repeat(2,_max-content)]
                                  content-center items-center">
