@@ -45,7 +45,7 @@
     <main class="container mx-auto
     grid grid-flow-row gap-4 z-20 bg-slate-100
     ">
-        <div class="grid grid-flow-row mx-2 gap-2 -top-[1.5rem]
+        <div class="grid grid-flow-row grid-cols-1 mx-2 gap-2 -top-[1.5rem]
         lg:grid-flow-col lg:grid-cols-[1fr,_4fr]
         ">
             <!--Movie Poster Widget-->
