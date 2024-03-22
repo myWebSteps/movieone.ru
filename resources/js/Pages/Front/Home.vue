@@ -2,29 +2,31 @@
 
     <Head>
         <title>MovieOne.ru | Смотреть интересные фильмы и мультики, анимэ онлайн бесплатно без регистрации</title>
-        <meta name="description" content="MovieOne Онлайн кинотеатр с большим выбором фильмов, мультфильмов и аниме. У нас Вы всегда можете посмотреть любимые фильмы бесплатно и без регистрации" />
-        <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
+        <meta name="description"
+              content="MovieOne Онлайн кинотеатр с большим выбором фильмов, мультфильмов и аниме. У нас Вы всегда можете посмотреть любимые фильмы бесплатно и без регистрации"/>
+        <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
     </Head>
 
-    <header class="grid items-center
-    h-[40vh]
-    bg-[url('/img/cover_min.webp')]
-    bg-cover
-    bg-no-repeat bg-center
-    md:bg-[url('/img/cover.webp')]
-    md:bg-fixed
-    ">
-        <div class="absolute parallax
-        ml-[10%] text-white opacity-50 font-extrabold z-10
+    <header class="
+    h-[30vh]
+    lg:h-[40vh]
+    z-10 bg-[url('/img/cover.jpg')] bg-no-repeat bg-cover bg-top bg-fixed" >
+<!--        <img class="object-contain w-full" src="/img/cover.jpg" alt="...">-->
+    </header>
+
+
+    <div class="absolute
+        top-[20%]
+        parallax
+        ml-[10%] text-white opacity-60 font-extrabold z-10
         text-xl
         sm:text-2xl
         md:text-3xl">
-            MovieOne.Ru <br>
-            <span class="font-light">Онлайн-кинотеатр</span>
-        </div>
-    </header>
+        MovieOne.Ru <br>
+        <span class="font-light">Онлайн-кинотеатр</span>
+    </div>
 
-    <main class="container mx-auto mb-4 relative
+    <main class=" container mx-auto mb-4 relative
     grid grid-flow-row gap-4 z-20 bg-slate-100
     ">
         <div class="px-4 h-[70px] grid grid-flow-col justify-between content-center">
@@ -40,7 +42,7 @@
         <template v-for="item in data">
 
             <div class="px-4 h-[70px] grid grid-flow-col justify-between content-center">
-            <h2 class="text-gray-900">{{item.category}}</h2>
+                <h2 class="text-gray-900">{{ item.category }}</h2>
                 <Link :href="`/movies?category=${item.slug}&order=year&page=1`" class="text-sm">
                     Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
                 </Link>
@@ -52,7 +54,7 @@
             "
             >
 
-            <movies-card :data="item.movies" :config = "{classes: ''}"></movies-card>
+                <movies-card :data="item.movies" :config="{classes: ''}"></movies-card>
             </div>
         </template>
 
@@ -61,35 +63,35 @@
 </template>
 
 <script>
-    import { Head } from "@inertiajs/vue3";
-    import { Link } from "@inertiajs/vue3";
-    import FrontLayout from "@/Layouts/FrontLayout.vue";
-    import CollectionsCard from "@/Components/CollectionsCard.vue";
-    import MoviesCard from "@/Components/MoviesCard.vue";
+import {Head} from "@inertiajs/vue3";
+import {Link} from "@inertiajs/vue3";
+import FrontLayout from "@/Layouts/FrontLayout.vue";
+import CollectionsCard from "@/Components/CollectionsCard.vue";
+import MoviesCard from "@/Components/MoviesCard.vue";
 
 
-    export default {
-        name: "Home",
-        layout: FrontLayout,
-        props: ['data', 'collections'],
-        components: {CollectionsCard, MoviesCard, Head, Link},
+export default {
+    name: "Home",
+    layout: FrontLayout,
+    props: ['data', 'collections'],
+    components: {CollectionsCard, MoviesCard, Head, Link},
 
-        data(){
-            return{
-                slider:{
-                    one: "",
-                    two: "",
-                    three: "",
-                    four: "",
-                    five: "",
-                }
+    data() {
+        return {
+            slider: {
+                one: "",
+                two: "",
+                three: "",
+                four: "",
+                five: "",
             }
+        }
 
-        },
+    },
 
-        beforeUnmount() {
-            ym(94438576, 'hit', '/');
-        },
+    beforeUnmount() {
+        ym(94438576, 'hit', '/');
+    },
 
-    }
+}
 </script>
