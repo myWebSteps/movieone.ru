@@ -5,12 +5,12 @@
         <meta name="keywords" :content="data.meta_keywords"/>
         <meta name="description" :content="data.meta_description"/>
     </Head>
-    <div class="m-2 grid grid-flow-row lg:grid-flow-col lg:grid-cols-[3fr,_1fr] gap-2">
+    <div class="m-2 grid grid-flow-row grid-cols-1 lg:grid-flow-col lg:grid-cols-[3fr,_1fr] gap-2">
         <section class="grid grid-flow-row gap-2 relative self-start">
 
             <div class="grid bg-white p-2 gap-2">
-                <div class="grid grid-flow-col justify-between items-center">
-                    <h1 class="text-lg font-semibold">{{ data.collection_title }}</h1>
+                <div class="grid grid-flow-row grid-cols-1 sm:grid-flow-col justify-items-center sm:justify-between items-center">
+                    <h1 class="text-lg font-semibold max-sm:justify-self-start">{{ data.collection_title }}</h1>
                     <div class="grid grid-flow-col gap-2">
                         <a @click.prevent="copyUrl()" href="#"
                            class="inline-grid content-center bg-blue-900 shadow-sm border-2
