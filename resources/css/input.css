@@ -4,7 +4,7 @@
 html{
     scroll-behavior: smooth;
 }
-.main-wrapper{
+.main-wrapper-with-nav{
     display: grid;
     grid-template-rows: 3.7rem minmax(calc(100vh - 9.7rem), max-content) 6rem;
     grid-template-columns: max-content minmax(0, 100%);
@@ -12,6 +12,16 @@ html{
     "nav header"
     "nav main"
     "nav footer";
+}
+
+.main-wrapper{
+    display: grid;
+    grid-template-rows: 3.7rem minmax(calc(100vh - 9.7rem), max-content) 6rem;
+    grid-template-columns: 100%;
+    grid-template-areas:
+    "header"
+    "main"
+    "footer";
 }
 
 header{

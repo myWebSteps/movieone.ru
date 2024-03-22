@@ -1,6 +1,6 @@
 <template>
 
-    <div class="main-wrapper">
+    <div :class="show.menu ? 'main-wrapper-with-nav' : 'main-wrapper'">
         <header class="bg-[#333545] grid z-40">
             <div class="px-4 grid grid-cols-[max-content,_repeat(2,_1fr)] content-center gap-4">
 
@@ -242,7 +242,7 @@
         </nav>
 
         <main
-            :class="$page.component === 'Front/Movies/Index' ? 'lg:grid lg:grid-cols-[max-content,_1fr]' : 'overflow-x-hidden'">
+            :class="$page.component === 'Front/Movies/Index' ? 'lg:grid lg:grid-cols-[max-content,_1fr]' : ''">
 
             <aside v-if="$page.component === 'Front/Movies/Index'"
                    class="fixed right-0 top-0 z-40 duration-500 lg:relative lg:translate-x-0 lg:my-2 lg:ml-2"
