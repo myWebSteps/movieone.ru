@@ -8,12 +8,12 @@
     </Head>
 
     <header  class="grid items-top main-container
-    md:sticky md:top-0 h-fit max-h-[40vh] z-10 overflow-y-hidden"
+    lg:sticky lg:top-0 h-fit max-h-[40vh] z-10 overflow-y-hidden"
     >
-        <img  class="w-full row-start-1 row-end-1 col-start-1 col-end-1" src="/img/cover.jpg" alt="...">
+        <img  class="w-full row-start-1 row-end-1 col-start-1 col-end-1" src="/img/cover.webp" alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
-        pt-[5%]
+        pt-[6%]
         pl-[10%]
         text-white opacity-60 font-extrabold
         text-xl
@@ -24,13 +24,6 @@
         </span>
 
     </header>
-
-
-
-
-
-
-
 
     <main class=" container mx-auto mb-4 relative
     grid grid-flow-row gap-4 z-20 bg-slate-100
