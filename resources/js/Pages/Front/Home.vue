@@ -7,8 +7,7 @@
     </Head>
 
     <header class="grid items-center
-    min-h-[200px]
-    max-h-[40vh]
+    h-[300px]
     bg-[url('/img/cover_min.webp')]
     bg-cover
     bg-no-repeat bg-center
