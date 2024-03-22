@@ -42,10 +42,10 @@
     </header>
 
     <!-- Begin Page Content -->
-    <main class="container mx-auto relative
+    <main class="relative
     grid grid-flow-row gap-4 z-20 bg-slate-100
     ">
-        <div class="w-fit grid grid-flow-row relative mx-2 gap-2 -top-[1.5rem]
+        <div class="grid grid-flow-row relative mx-2 gap-2 -top-[1.5rem]
         lg:grid-flow-col lg:grid-cols-[1fr,_4fr]
         ">
             <!--Movie Poster Widget-->
