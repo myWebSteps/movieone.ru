@@ -31,7 +31,7 @@
 
     </header>
 
-    <main class=" container mx-auto mb-4 relative
+    <main class="container mx-auto mb-4 relative
     grid grid-flow-row gap-4 z-20 bg-slate-100
     ">
         <div class="px-4 h-[70px] grid grid-flow-col justify-between content-center">
@@ -40,15 +40,9 @@
                 Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
             </Link>
         </div>
-        <div class="px-4 grid
-        gap-4
-        sm:justify-self-stretch
-        sm:grid-cols-[repeat(auto-fit,_minmax(150px,_300px))]
-        "
-             :class="$parent.show.menu ? 'justify-self-center justify-items-center' : 'grid-cols-[repeat(auto-fit,_minmax(150px,_250px))]'"
-        >
+
             <collections-card :data="collections"></collections-card>
-        </div>
+
 
         <template v-for="item in data">
 
@@ -58,16 +52,10 @@
                     Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
                 </Link>
             </div>
-            <div class="
-            px-4 grid gap-4
-            sm:grid-cols-[repeat(auto-fit,_minmax(100px,_200px))]
-            sm:justify-self-stretch
-            "
-                 :class="$parent.show.menu ? 'justify-self-center justify-items-center' : 'grid-cols-2'"
-            >
+
 
                 <movies-card :data="item.movies" :config="{classes: ''}"></movies-card>
-            </div>
+
         </template>
 
     </main>

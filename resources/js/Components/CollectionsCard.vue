@@ -1,10 +1,20 @@
 <template>
 
+    <div class="grid
+        px-2
+        md:px-3
+        gap-2
+        sm:justify-self-stretch
+        sm:grid-cols-[repeat(auto-fit,_minmax(10rem,_18rem))]
+        "
+         :class="$parent.$parent.show.menu ? 'justify-self-center sm:justify-self-stretch' : 'justify-self-stretch'"
+    >
+
     <div class="grid shadow-md bg-white rounded-sm overflow-hidden" v-for="collection in data">
         <Link :href="`/collections/${collection.slug}`">
-            <div class="grid grid-cols-[1fr,_2fr] gap-4">
+            <div class="grid grid-cols-[2fr,_3fr] gap-4">
                 <div class="grid content-center">
-                    <img v-lazy="collection.poster" class="my-4" alt="...">
+                    <img v-lazy="collection.poster" class="w-full" alt="...">
                 </div>
 
                     <div class="grid self-stretch">
@@ -12,13 +22,14 @@
                         <p class="text-gray-900 text-sm">{{collection.description_min}}</p>
                         <p class="grid grid-flow-col auto-cols-max items-end">
                             <span class="material-symbols-sharp">today</span>
-                            <span class="self-end text-red-800 font-light">{{collection.date}}</span>
+                            <span class="self-end text-red-800 font-light text-wrap">{{collection.date}}</span>
                         </p>
                     </div>
 
             </div>
         </Link>
 
+    </div>
     </div>
 
 </template>

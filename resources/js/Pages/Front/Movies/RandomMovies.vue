@@ -24,9 +24,9 @@
                     Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
                 </Link>
             </div>
-            <div class="px-4 grid grid-cols-[repeat(auto-fit,_minmax(100px,_200px))] justify-items-center gap-4">
+
                 <movies-card :data="item.movies" :config = "{classes: ''}"></movies-card>
-            </div>
+
         </template>
 
     </main>

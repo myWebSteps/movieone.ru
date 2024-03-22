@@ -1,31 +1,50 @@
 <template>
 
+
     <Head>
         <title>{{movie.nameRu}}/{{movie.nameEn}} {{movie.meta_title}}</title>
         <meta name="keywords" :content="movie.meta_keywords"/>
         <meta name="description" :content="movie.meta_description"/>
     </Head>
 
-    <header ref="header" class="h-[300px] grid items-center z-10 bg-no-repeat bg-cover bg-center bg-fixed">
-        <div
-            class="justify-self-start self-start bg-white shadow-sm rounded-sm p-2 m-4 text-sm">
+    <header  class="grid items-top
+    lg:sticky
+    lg:top-0
+    h-fit
+    max-h-[40vh]
+    lg:max-h-[60vh]
+    z-10 overflow-y-hidden"
+    >
+        <img  class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="movie.backdropUrl" alt="...">
+
+        <span class="row-start-1 row-end-1 col-start-1 col-end-1
+        justify-self-end
+        lg:parallax
+        pt-[5%]
+        pr-[10%]
+        text-white opacity-60 font-extrabold
+        text-xl
+        sm:text-2xl
+        md:text-3xl">
+            {{ movie.nameRu }} <br>
+            <span class="font-light">{{ movie.nameEn }}</span>
+        </span>
+
+        <div class="row-start-1 row-end-1 col-start-1 col-end-1
+        justify-self-start self-start bg-white shadow-sm rounded-sm p-2 m-4 text-sm">
             <h6 class="text-gray-900 grid grid-flow-col auto-cols-max gap-0.5 items-center">
                 <span class="material-symbols-sharp text-rose-600">star_half</span>
                 <span>{{ movie.rating }}</span>
             </h6>
         </div>
-        <div
-            class="parallax absolute mb-8 ml-[10%] opacity-30 text-white font-medium z-10 text-xl sm:text-2xl md:text-3xl ">
-            {{ movie.nameRu }} <br>
-            <span class="font-light">{{ movie.nameEn }}</span>
-        </div>
+
     </header>
 
     <!-- Begin Page Content -->
     <main class="container mx-auto relative
     grid grid-flow-row gap-4 z-20 bg-slate-100
     ">
-        <div class="grid grid-flow-row relative mx-4 gap-4 -top-[3rem]
+        <div class="grid grid-flow-row relative mx-4 gap-4 -top-[1.5rem]
         lg:grid-flow-col lg:grid-cols-[1fr,_4fr]
         ">
             <!--Movie Poster Widget-->
@@ -422,7 +441,6 @@ export default {
         this.getReviews()
         this.togglePlaylistButton()
 
-        this.$refs.header.style.backgroundImage = `url("${this.movie.backdropUrl}")`
 
 
         if (this.movie.video_allowed == 1) {

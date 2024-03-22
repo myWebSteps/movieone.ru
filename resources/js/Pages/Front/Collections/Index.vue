@@ -6,17 +6,16 @@
         <meta name="keywords" content="Подборки фильмов, мультфильмов, анимэ"/>
     </Head>
 
-    <section class="grid grid-rows-[70px,_calc(100%-140px),_70px] px-2 h-full">
+    <section class="grid px-2">
         <!-- Begin Page Content -->
         <!-- Page Heading -->
         <div class="grid grid-flow-col content-center">
             <h1 class="justify-self-start text-gray-900">Подборки фильмов и мультиков</h1>
         </div>
 
-        <div class="grid auto-rows-max justify-items-center gap-4
-         sm:grid-cols-[repeat(auto-fit,_minmax(150px,_300px))]">
+
             <collections-card :data="form.collections.data"></collections-card>
-        </div>
+
 
         <!-- Pagination Row -->
         <pagination-component

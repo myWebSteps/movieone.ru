@@ -27,17 +27,6 @@ footer{
 nav{
     grid-area: nav;
 }
-.parallax{
-    animation: parallax linear;
-    animation-timeline: scroll();
-}
-
-@keyframes parallax {
-    to
-    {
-        transform: translateY(100vh);
-    }
-}
 .ping-once{
     animation: animation-ping-once 0.5s linear;
 }

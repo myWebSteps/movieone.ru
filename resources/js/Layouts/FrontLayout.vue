@@ -25,7 +25,9 @@
                                         <span class="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium text-gray-400 hover:text-gray-200 focus:outline-none transition ease-in-out duration-150"
+                                                class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium text-gray-400 hover:text-gray-200 focus:outline-none transition ease-in-out duration-150
+                                                shadow-md
+                                                "
                                             >
                                                 <span class="material-symbols-sharp">search</span>
                                             </button>

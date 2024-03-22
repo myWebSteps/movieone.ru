@@ -1,8 +1,15 @@
 <template>
 
+    <div class="grid gap-2 grid-cols-[repeat(auto-fit,_minmax(10rem,_12rem))]
+    px-2
+    md:px-3
+    "
+    :class="$parent.$parent.show.menu ? 'justify-self-center sm:justify-self-stretch' : 'justify-self-stretch'"
+    >
+
     <div v-for="movie in data" :class="config.classes" class="shadow-md bg-white rounded-sm overflow-hidden">
 
-            <Link :href="`/movies/${movie.slug}`" class="h-full grid grid-rows-[max-content,_1fr]">
+            <Link :href="`/movies/${movie.slug}`" class="h-full grid grid-rows-[max-content,_1fr] items-start">
 
                     <img v-lazy="movie.poster" :alt="movie.nameEn">
 
@@ -24,6 +31,7 @@
 
             </Link>
         </div>
+    </div>
 
 </template>
 
