@@ -929,6 +929,22 @@ select {
   order: 2;
 }
 
+.col-start-1 {
+  grid-column-start: 1;
+}
+
+.col-end-1 {
+  grid-column-end: 1;
+}
+
+.row-start-1 {
+  grid-row-start: 1;
+}
+
+.row-end-1 {
+  grid-row-end: 1;
+}
+
 .m-0 {
   margin: 0px;
 }
@@ -1119,10 +1135,6 @@ select {
   height: 300px;
 }
 
-.h-\[340px\] {
-  height: 340px;
-}
-
 .h-\[4\.375rem\] {
   height: 4.375rem;
 }
@@ -1139,8 +1151,17 @@ select {
   height: 70px;
 }
 
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
 .h-full {
   height: 100%;
+}
+
+.max-h-\[40vh\] {
+  max-height: 40vh;
 }
 
 .w-1\/2 {
@@ -1206,6 +1227,10 @@ select {
 
 .max-w-7xl {
   max-width: 80rem;
+}
+
+.max-w-\[200px\] {
+  max-width: 200px;
 }
 
 .max-w-\[500px\] {
@@ -1637,16 +1662,16 @@ select {
   overflow-x: hidden;
 }
 
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
 .text-wrap {
   text-wrap: wrap;
 }
 
 .text-nowrap {
   text-wrap: nowrap;
-}
-
-.text-balance {
-  text-wrap: balance;
 }
 
 .rounded {
@@ -1900,10 +1925,6 @@ select {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-\[url\(\'\/img\/cover_min\.webp\'\)\] {
-  background-image: url('/img/cover_min.webp');
-}
-
 .bg-cover {
   background-size: cover;
 }
@@ -1918,6 +1939,11 @@ select {
 
 .bg-no-repeat {
   background-repeat: no-repeat;
+}
+
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .p-0 {
@@ -2007,6 +2033,10 @@ select {
   padding-bottom: 1rem;
 }
 
+.pl-\[10\%\] {
+  padding-left: 10%;
+}
+
 .pr-2 {
   padding-right: 0.5rem;
 }
@@ -2021,6 +2051,10 @@ select {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pt-\[6\%\] {
+  padding-top: 6%;
 }
 
 .text-center {
@@ -2240,8 +2274,8 @@ select {
   opacity: 0.3;
 }
 
-.opacity-50 {
-  opacity: 0.5;
+.opacity-60 {
+  opacity: 0.6;
 }
 
 .opacity-75 {
@@ -2391,7 +2425,7 @@ nav{
 @keyframes parallax {
   to
     {
-    transform: translateY(50vw);
+    transform: translateY(100vh);
   }
 }
 
@@ -2890,10 +2924,6 @@ nav{
     border-right-width: 0px;
   }
 
-  .md\:bg-\[url\(\'\/img\/cover\.webp\'\)\] {
-    background-image: url('/img/cover.webp');
-  }
-
   .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
@@ -2901,6 +2931,18 @@ nav{
 }
 
 @media (min-width: 1024px) {
+  .lg\:sticky {
+    position: sticky;
+  }
+
+  .lg\:top-0 {
+    top: 0px;
+  }
+
+  .lg\:max-h-\[60vh\] {
+    max-height: 60vh;
+  }
+
   .lg\:grid-flow-row {
     grid-auto-flow: row;
   }
