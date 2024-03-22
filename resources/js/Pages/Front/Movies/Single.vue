@@ -6,16 +6,15 @@
         <meta name="keywords" :content="movie.meta_keywords"/>
         <meta name="description" :content="movie.meta_description"/>
     </Head>
-
     <header class="grid items-top
-    lg:sticky
-    lg:top-0
+    sticky
+    top-0
     h-fit
     max-h-[40vh]
     lg:max-h-[60vh]
     z-10 overflow-y-hidden"
     >
-        <img class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="movie.backdropUrl"
+        <img class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="coverImg"
              alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
@@ -42,10 +41,10 @@
     </header>
 
     <!-- Begin Page Content -->
-    <main class="container mx-auto
-    grid grid-flow-row gap-4 z-20 bg-slate-100
+    <main class="container mx-auto relative z-20
+    grid grid-flow-row gap-4 bg-slate-100
     ">
-        <div class="grid grid-flow-row grid-cols-1 mx-2 gap-2 -top-[2.1rem]
+        <div class="grid relative grid-flow-row grid-cols-1 mx-2 gap-2 -top-[2.1rem]
         lg:grid-flow-col lg:grid-cols-[1fr,_4fr]
         ">
             <!--Movie Poster Widget-->
@@ -419,6 +418,7 @@ export default {
 
     data() {
         return {
+            coverImg: null,
             loadTrailers: false,
             accordion: 'general',
             comment_errors: '',
@@ -445,6 +445,7 @@ export default {
         this.getReviews()
         this.togglePlaylistButton()
 
+        this.coverImg = this.movie.backdropUrl
 
         if (this.movie.video_allowed == 1) {
             new Kinobox('.kinobox_player', {

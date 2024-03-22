@@ -15,7 +15,7 @@
     lg:max-h-[60vh]
     z-10 overflow-y-hidden"
     >
-        <img  class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" src="/img/cover.webp" alt="...">
+        <img  class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="coverImg" alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
         lg:parallax
@@ -78,19 +78,16 @@ export default {
 
     data() {
         return {
-            slider: {
-                one: "",
-                two: "",
-                three: "",
-                four: "",
-                five: "",
-            }
+            coverImg: null,
         }
 
     },
 
     beforeUnmount() {
         ym(94438576, 'hit', '/');
+    },
+    mounted() {
+      this.coverImg = '/img/cover.webp'
     },
 
 }
