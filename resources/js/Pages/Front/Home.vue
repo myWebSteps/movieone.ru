@@ -6,7 +6,9 @@
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
     </Head>
 
-    <header class="h-[40vh] grid items-center
+    <header class="grid items-center
+    min-h-[200px]
+    max-h-[40vh]
     bg-[url('/img/cover_min.webp')]
     bg-cover
     bg-no-repeat bg-center
