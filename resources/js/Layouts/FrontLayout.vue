@@ -1,6 +1,6 @@
 <template>
 
-    <div :class="show.menu ? 'main-wrapper-with-nav' : 'main-wrapper'">
+    <div class="main-wrapper">
         <header class="bg-[#333545] grid z-40">
             <div class="px-4 grid grid-cols-[max-content,_repeat(2,_1fr)] content-center gap-4">
 

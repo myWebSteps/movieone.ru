@@ -4,7 +4,7 @@
 html{
     scroll-behavior: smooth;
 }
-.main-wrapper-with-nav{
+.main-wrapper{
     display: grid;
     grid-template-rows: 3.7rem minmax(calc(100vh - 9.7rem), max-content) 6rem;
     grid-template-columns: max-content minmax(0, 100%);
@@ -12,16 +12,6 @@ html{
     "nav header"
     "nav main"
     "nav footer";
-}
-
-.main-wrapper{
-    display: grid;
-    grid-template-rows: 3.7rem minmax(calc(100vh - 9.7rem), max-content) 6rem;
-    grid-template-columns: 100%;
-    grid-template-areas:
-    "header"
-    "main"
-    "footer";
 }
 
 header{
@@ -37,6 +27,7 @@ footer{
 nav{
     grid-area: nav;
 }
+
 .ping-once{
     animation: animation-ping-once 0.5s linear;
 }
