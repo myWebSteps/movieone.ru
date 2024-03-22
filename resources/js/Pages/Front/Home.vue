@@ -7,18 +7,16 @@
     </Head>
 
     <header class="grid items-center
-    h-[300px]
+    h-[40vh]
     bg-[url('/img/cover_min.webp')]
     bg-cover
     bg-no-repeat bg-center
     md:bg-[url('/img/cover.webp')]
     md:bg-fixed
     ">
-        <div class="
-        ml-[10%] opacity-50 font-extrabold z-10
+        <div class="absolute parallax
+        ml-[10%] text-white opacity-50 font-extrabold z-10
         text-xl
-        md:parallax
-        md:absolute
         sm:text-2xl
         md:text-3xl">
             MovieOne.Ru <br>
