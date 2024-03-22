@@ -42,7 +42,7 @@
     </header>
 
     <!-- Begin Page Content -->
-    <main class="w-1/2 container mx-auto
+    <main class="container mx-auto
     grid grid-flow-row gap-4 z-20 bg-slate-100
     ">
         <div class="grid grid-flow-row mx-2 gap-2 -top-[1.5rem]
