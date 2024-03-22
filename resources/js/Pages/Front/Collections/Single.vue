@@ -87,7 +87,7 @@
                         class="grid gap-2"
                     >
                         <a :href="`#article${article.article_id}`"
-                           class="text-wrap text-gray-600 grid grid-flow-col items-center auto-cols-max font-light">{{
+                           class="text-wrap text-gray-600 font-light">{{
                                 article.article_title
                             }}
                             <span class="material-symbols-sharp">arrow_right_alt</span>

@@ -2628,6 +2628,10 @@ nav{
   .max-sm\:grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
+
+  .max-sm\:justify-self-start {
+    justify-self: start;
+  }
 }
 
 @media (min-width: 640px) {
@@ -2707,6 +2711,10 @@ nav{
 
   .sm\:grid-cols-\[repeat\(auto-fit\2c _minmax\(10rem\2c _18rem\)\)\] {
     grid-template-columns: repeat(auto-fit, minmax(10rem, 18rem));
+  }
+
+  .sm\:justify-between {
+    justify-content: space-between;
   }
 
   .sm\:gap-1 {

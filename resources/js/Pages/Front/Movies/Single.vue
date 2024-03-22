@@ -7,7 +7,7 @@
         <meta name="description" :content="movie.meta_description"/>
     </Head>
     <header class="grid items-top
-    sticky
+    lg:sticky
     top-0
     h-fit
     max-h-[40vh]
