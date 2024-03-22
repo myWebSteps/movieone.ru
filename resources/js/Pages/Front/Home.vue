@@ -6,12 +6,15 @@
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации" />
     </Head>
 
-    <header class="h-[40vh]
+    <header class="h-[40vh] grid items-center
     bg-[url('/img/cover_min.webp')]
+    bg-contain
+    bg-no-repeat bg-center
     md:bg-[url('/img/cover.webp')]
-    bg-no-repeat bg-cover bg-center bg-fixed
-    grid items-center">
-        <div class=" absolute
+    md:bg-cover
+    md:bg-fixed
+    ">
+        <div class="absolute
         parallax ml-[10%] opacity-50 font-extrabold z-10
         text-xl
         sm:text-2xl
