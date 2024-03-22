@@ -23,7 +23,7 @@
 
         <div v-if="movies.data.length > 0" class="
         grid grid-cols-[repeat(auto-fit,_minmax(100px,_250px))] auto-rows-max justify-items-center justify-self-center gap-4
-        md:justify-self-stretch
+        sm:justify-self-stretch
         "
         >
                 <movies-card

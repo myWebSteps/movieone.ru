@@ -40,7 +40,13 @@
                 Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
             </Link>
         </div>
-        <div class="px-4 grid grid-cols-[repeat(auto-fit,_minmax(150px,_300px))] justify-items-center gap-4">
+        <div class="px-4 grid
+        gap-4
+        sm:justify-self-stretch
+        sm:grid-cols-[repeat(auto-fit,_minmax(150px,_300px))]
+        "
+             :class="$parent.show.menu ? 'justify-self-center justify-items-center' : 'grid-cols-[repeat(auto-fit,_minmax(150px,_250px))]'"
+        >
             <collections-card :data="collections"></collections-card>
         </div>
 
@@ -53,10 +59,11 @@
                 </Link>
             </div>
             <div class="
-            px-4 grid justify-self-center justify-items-center gap-4
+            px-4 grid gap-4
             sm:grid-cols-[repeat(auto-fit,_minmax(100px,_200px))]
             sm:justify-self-stretch
             "
+                 :class="$parent.show.menu ? 'justify-self-center justify-items-center' : 'grid-cols-2'"
             >
 
                 <movies-card :data="item.movies" :config="{classes: ''}"></movies-card>
@@ -92,10 +99,6 @@ export default {
             }
         }
 
-    },
-
-    mounted() {
-        console.log(this.$refs.head.clientHeight);
     },
 
     beforeUnmount() {

@@ -92,11 +92,13 @@
                                 <i class="lni lni-calendar text-rose-700"></i>&nbsp
                                 {{item.year}}
                             </span>
-                            <span><i class="lni lni-tag"></i>&nbsp
+                                <div>
+                            <span class="material-symbols-sharp text-rose-500">camera_roll</span>&nbsp
                             <template v-for="genre in item.genres">
-                                <span>{{genre.title}}&nbsp</span>
+                                {{genre.title}}&nbsp
                             </template>
-                            </span>
+                                </div>
+
                             </div>
 
                         </DropdownLink>
@@ -160,7 +162,7 @@
 
         <div v-if="$page.component === 'Front/Movies/Index'" @click="show.filter = !show.filter"
              class="z-50 fixed  right-2 w-[40px] h-[40px] grid text-center content-center border-2 border-green-600 rounded-full
-             md:hidden"
+             lg:hidden"
              :class="show.filter ? 'bg-white text-green-600 top-2 ' : 'bg-green-600 text-white top-[6rem]'">
             <template v-if="show.filter">
                 <span class="material-symbols-sharp">close</span>
@@ -238,10 +240,10 @@
         </nav>
 
         <main
-            :class="$page.component === 'Front/Movies/Index' ? 'md:grid md:grid-cols-[max-content,_1fr]' : ''">
+            :class="$page.component === 'Front/Movies/Index' ? 'lg:grid lg:grid-cols-[max-content,_1fr]' : 'overflow-x-hidden'">
 
             <aside v-if="$page.component === 'Front/Movies/Index'"
-                   class="fixed right-0 top-0 z-40 duration-500 md:relative md:translate-x-0 md:my-2 md:ml-2"
+                   class="fixed right-0 top-0 z-40 duration-500 lg:relative lg:translate-x-0 lg:my-2 lg:ml-2"
                    :class="show.filter ? 'translate-x-0 m-0' : 'translate-x-full'"
             >
                 <filter-component ref="filter"
