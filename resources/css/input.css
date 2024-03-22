@@ -35,7 +35,7 @@ nav{
 @keyframes parallax {
     to
     {
-        transform: translateY(70vh);
+        transform: translateY(100vh);
     }
 }
 .ping-once{

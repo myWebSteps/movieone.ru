@@ -7,21 +7,25 @@
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
     </Head>
 
-    <header  class="sticky h-fit top-0 h-[40vh] z-10 overflow-y-auto"
+    <header  class="sticky top-0 h-fit max-h-[60vh] z-10 overflow-y-hidden"
     >
         <img ref="head"  class="w-full" src="/img/cover.jpg" alt="...">
+
     </header>
 
     <div class="absolute
-        top-[5rem]
+        top-[7rem]
         parallax
-        ml-[10%] text-white opacity-60 font-extrabold z-10
+        pl-[10%]
+        text-white opacity-60 font-extrabold z-10
         text-xl
         sm:text-2xl
         md:text-3xl">
         MovieOne.Ru <br>
         <span class="font-light">Онлайн-кинотеатр</span>
     </div>
+
+
 
 
 
