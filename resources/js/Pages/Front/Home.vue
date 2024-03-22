@@ -8,11 +8,17 @@
     </Head>
 
     <header  class="grid items-top main-container
-    lg:sticky lg:top-0 h-fit max-h-[40vh] z-10 overflow-y-hidden"
+    lg:sticky
+    lg:top-0
+    h-fit
+    max-h-[40vh]
+    lg:max-h-[60vh]
+    z-10 overflow-y-hidden"
     >
-        <img  class="w-full row-start-1 row-end-1 col-start-1 col-end-1" src="/img/cover.webp" alt="...">
+        <img  class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" src="/img/cover.webp" alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
+        lg:parallax
         pt-[6%]
         pl-[10%]
         text-white opacity-60 font-extrabold
