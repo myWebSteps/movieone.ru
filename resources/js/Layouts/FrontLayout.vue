@@ -238,7 +238,7 @@
         </nav>
 
         <main
-            :class="$page.component === 'Front/Movies/Index' ? 'md:grid md:grid-cols-[max-content,_1fr]' : 'overflow-x-hidden'">
+            :class="$page.component === 'Front/Movies/Index' ? 'md:grid md:grid-cols-[max-content,_1fr]' : ''">
 
             <aside v-if="$page.component === 'Front/Movies/Index'"
                    class="fixed right-0 top-0 z-40 duration-500 md:relative md:translate-x-0 md:my-2 md:ml-2"

@@ -7,16 +7,13 @@
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
     </Head>
 
-    <header class="
-    h-[30vh]
-    lg:h-[40vh]
-    z-10 bg-[url('/img/cover.jpg')] bg-no-repeat bg-cover bg-top bg-fixed" >
-<!--        <img class="object-contain w-full" src="/img/cover.jpg" alt="...">-->
+    <header  class="sticky h-fit top-0 h-[40vh] z-10 overflow-y-auto"
+    >
+        <img ref="head"  class="w-full" src="/img/cover.jpg" alt="...">
     </header>
 
-
     <div class="absolute
-        top-[20%]
+        top-[5rem]
         parallax
         ml-[10%] text-white opacity-60 font-extrabold z-10
         text-xl
@@ -25,6 +22,9 @@
         MovieOne.Ru <br>
         <span class="font-light">Онлайн-кинотеатр</span>
     </div>
+
+
+
 
     <main class=" container mx-auto mb-4 relative
     grid grid-flow-row gap-4 z-20 bg-slate-100
@@ -87,6 +87,10 @@ export default {
             }
         }
 
+    },
+
+    mounted() {
+        console.log(this.$refs.head.clientHeight);
     },
 
     beforeUnmount() {
