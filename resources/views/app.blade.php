@@ -17,13 +17,11 @@
 
 
     <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-
-
+    <script>
         // Флаг, что Метрика уже загрузилась.
-        let loadedMetrica = false,
+        let loadedMetrica = false
         // Переменная для хранения таймера.
-            timerId;
+        let timerId;
 
         // Для бота Яндекса грузим Метрику сразу без "отложки",
         // чтобы в панели Метрики были зелёные кружочки
@@ -54,14 +52,6 @@
         }
 
         function loadMetrica( e ) {
-
-            // Пишем отладку в консоль браузера.
-            if ( e && e.type ) {
-                console.log( e.type );
-            } else {
-                console.log( 'DOMContentLoaded' );
-            }
-
             // Если флаг загрузки Метрики отмечен,
             // то ничего более не делаем.
             if ( loadedMetrica ) {
