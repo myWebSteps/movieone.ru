@@ -35,7 +35,7 @@
     <section class="mb-4 z-20 bg-slate-100 relative">
 
         <div class="px-4 h-[70px] grid grid-flow-col justify-between content-center">
-            <h1 class="text-gray-900">Подборки фильмов и мультиков</h1>
+            <h1 class="text-gray-900 text-wrap">Подборки фильмов и мультиков</h1>
             <Link :href="`/collections`" class="text-sm
              hover:text-rose-500
             ">
