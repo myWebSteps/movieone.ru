@@ -1,6 +1,6 @@
 <template>
     <div class="grid grid-flow-row gap-4">
-        <section class="py-2 border-b-gray-200 border-b-[1px] max-w-[500px] overflow-y-auto">
+        <section class="py-2 border-b-gray-200 border-b-[1px] w-full overflow-y-auto">
             <div v-if="comments.length > 0" v-for="comment in comments"
                  class="grid grid-cols-[1fr,_4fr]">
                 <img src="/img/comment.webp" class="w-1/2 justify-self-center self-top" alt="...">
@@ -30,14 +30,10 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <div v-else class="grid items-center bg-gray-300 h-[100px]">
-
                     <p class="align-self-center p-2">Комментариев еще нет.
                         Будьте первым!</p>
-
             </div>
 
         </section>
