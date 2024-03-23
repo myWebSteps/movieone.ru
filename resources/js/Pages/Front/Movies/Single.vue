@@ -18,6 +18,8 @@
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
         w-3/4
+        max-h-[40vh]
+        overflow-hidden
         text-end
         text-wrap
         justify-self-end
