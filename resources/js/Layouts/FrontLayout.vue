@@ -235,7 +235,7 @@
                         </Link>
                     </li>
 
-                    <li @click="show.menu = !show.menu" class="my-4 px-1 w-full text-center text-gray-300 hover:text-white cursor-pointer">
+                    <li @click="show.menu = !show.menu" class="px-1 w-full text-center text-gray-300 hover:text-white cursor-pointer">
                         <span v-if="show.menu" class="material-symbols-sharp">switch_right</span>
                         <span v-if="!show.menu" class="material-symbols-sharp">switch_left</span>
                     </li>
