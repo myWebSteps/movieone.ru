@@ -10,11 +10,10 @@
     lg:sticky
     top-0
     h-fit
-    max-h-[40vh]
-    lg:max-h-[60vh]
+    min-h-[200px]
     z-10 overflow-y-hidden"
     >
-        <img class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="coverImg"
+        <img v-if="coverImg !== null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="coverImg"
              alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
@@ -22,7 +21,7 @@
         lg:parallax
         pt-[5%]
         pr-[10%]
-        text-white opacity-60 font-extrabold
+        text-gray-400 opacity-75 font-extrabold
         text-xl
         sm:text-2xl
         md:text-3xl">
