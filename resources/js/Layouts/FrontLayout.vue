@@ -25,10 +25,7 @@
                                         <span class="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium text-gray-400 hover:text-gray-200 focus:outline-none transition ease-in-out duration-150
-                                                shadow-md
-                                                "
-                                            >
+                                                class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium text-gray-400 hover:text-gray-200 focus:outline-none transition ease-in-out duration-150"                                          >
                                                 <span class="material-symbols-sharp">search</span>
                                             </button>
                                         </span>
@@ -237,8 +234,17 @@
                             <span class="text-xs sm:text-sm">{{ category.title }}</span>
                         </Link>
                     </li>
+
+                    <li @click="show.menu = !show.menu" class="my-4 px-1 w-full text-center text-gray-300 hover:text-white cursor-pointer">
+                        <span v-if="show.menu" class="material-symbols-sharp">switch_right</span>
+                        <span v-if="!show.menu" class="material-symbols-sharp">switch_left</span>
+                    </li>
                 </ul>
+
+
+
             </div>
+
         </nav>
 
         <main

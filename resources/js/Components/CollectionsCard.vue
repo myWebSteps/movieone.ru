@@ -17,14 +17,14 @@
                     <img v-lazy="collection.poster" class="w-full" alt="...">
                 </div>
 
-                    <div class="grid self-stretch">
-                        <h5 class="text-gray-900">{{collection.collection_title}}</h5>
+                    <article class="grid self-stretch">
+                        <h3 class="text-gray-900">{{collection.collection_title}}</h3>
                         <p class="text-gray-900 text-sm">{{collection.description_min}}</p>
                         <p class="grid grid-flow-col auto-cols-max items-end">
                             <span class="material-symbols-sharp">today</span>
                             <span class="self-end text-red-800 font-light text-wrap">{{collection.date}}</span>
                         </p>
-                    </div>
+                    </article>
 
             </div>
         </Link>

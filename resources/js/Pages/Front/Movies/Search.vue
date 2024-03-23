@@ -6,16 +6,15 @@
             <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
         </Head>
 
-        <main class="container mx-auto mb-4
+    <section class="px-4 h-[70px] grid grid-flow-col justify-items-start bg-white content-center">
+        <h1 class="text-gray-900">Результаты запроса: {{ data.key }}</h1>
+    </section>
+
+        <section class="container mx-auto mb-4
     grid grid-flow-row gap-4 z-20 bg-slate-100
     ">
-            <div class="px-4 h-[70px] grid grid-flow-col justify-items-start bg-white content-center">
-                <h1 class="text-gray-900">Результаты запроса: {{ data.key }}</h1>
-            </div>
-                <movies-card :data="movies" :config="{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"></movies-card>
-
-
-        </main>
+          <movies-card :data="movies" :config="{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"></movies-card>
+        </section>
 
 </template>
 

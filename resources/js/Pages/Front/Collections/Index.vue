@@ -6,13 +6,14 @@
         <meta name="keywords" content="Подборки фильмов, мультфильмов, анимэ"/>
     </Head>
 
-    <section class="grid px-2">
-        <!-- Begin Page Content -->
-        <!-- Page Heading -->
-        <div class="grid grid-flow-col content-center">
-            <h1 class="justify-self-start text-gray-900">Подборки фильмов и мультиков</h1>
-        </div>
+    <!-- Page Heading -->
+    <section class="px-4 mb-4 h-[70px] grid bg-white content-center justify-start"
+    >
+        <h1 class="justify-self-start text-gray-900">Подборки фильмов и мультиков</h1>
+    </section>
 
+    <!-- Begin Page Content -->
+    <section class="grid px-2">
 
             <collections-card :data="form.collections.data"></collections-card>
 

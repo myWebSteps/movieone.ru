@@ -6,7 +6,7 @@
         <meta name="keywords" :content="movie.meta_keywords"/>
         <meta name="description" :content="movie.meta_description"/>
     </Head>
-    <header class="grid items-top
+    <section class="grid items-top
     lg:sticky
     top-0
     h-fit
@@ -38,11 +38,13 @@
             </h6>
         </div>
 
-    </header>
+    </section>
+
+    <section class="relative z-20 bg-slate-100">
 
     <!-- Begin Page Content -->
-    <main class="container mx-auto relative z-20
-    grid grid-flow-row gap-4 bg-slate-100
+    <div class="container mx-auto
+    grid grid-flow-row gap-4
     ">
         <div class="grid relative grid-flow-row grid-cols-1 mx-2 gap-2 -top-[2.1rem]
         lg:grid-flow-col lg:grid-cols-[1fr,_4fr]
@@ -69,7 +71,7 @@
                         </span>
                     </label>
 
-                    <div v-if="relatedCollections.length > 0">
+                    <article v-if="relatedCollections.length > 0">
                         <h6 class="font-semibold">Коллекции с видео:</h6>
                         <template v-for="collection in relatedCollections">
                             <div class="grid grid-flow-col grid-cols-[repeat(2,_max-content)] gap-2">
@@ -82,7 +84,7 @@
                                 </Link>
                             </div>
                         </template>
-                    </div>
+                    </article>
 
                 </div>
             </div>
@@ -286,7 +288,7 @@
                         <template v-for="review in reviews.items">
                             <article class="grid grid-flow-row gap-1">
                                 <span class="text-gray-500 font-light">{{ review.author }}</span>
-                                <h2>{{ review.title }}
+                                <h5>{{ review.title }}
                                     <span v-if="review.type === 'POSITIVE'"
                                           class="material-symbols-sharp text-green-500 font-bold">
                                 sentiment_very_satisfied
@@ -295,7 +297,7 @@
                                           class="material-symbols-sharp text-rose-500 font-bold">
                                 sentiment_dissatisfied
                                 </span>
-                                </h2>
+                                </h5>
 
                                 <p class="text-gray-900 font-light" v-html="review.description"></p>
 
@@ -396,7 +398,8 @@
 
             </div>
         </div>
-    </main>
+    </div>
+    </section>
 
     <message :message.sync="message"></message>
 </template>

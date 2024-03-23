@@ -6,8 +6,8 @@
               content="MovieOne Онлайн кинотеатр с большим выбором фильмов, мультфильмов и аниме. У нас Вы всегда можете посмотреть любимые фильмы бесплатно и без регистрации"/>
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
     </Head>
-
-    <header  class="grid items-top main-container
+    <!--cover-->
+    <section class="grid items-top main-container
     lg:sticky
     lg:top-0
     h-fit
@@ -15,7 +15,7 @@
     lg:max-h-[60vh]
     z-10 overflow-y-hidden"
     >
-        <img  class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="coverImg" alt="...">
+        <img class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="coverImg" alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
         lg:parallax
@@ -29,36 +29,51 @@
             <span class="font-light">Онлайн-кинотеатр</span>
         </span>
 
-    </header>
+    </section>
 
-    <main class="container mx-auto mb-4 relative
-    grid grid-flow-row gap-4 z-20 bg-slate-100
-    ">
+    <!--Main Wrapper-->
+    <section class="mb-4 z-20 bg-slate-100 relative">
+
         <div class="px-4 h-[70px] grid grid-flow-col justify-between content-center">
             <h1 class="text-gray-900">Подборки фильмов и мультиков</h1>
-            <Link :href="`/collections`" class="text-sm">
-                Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
+            <Link :href="`/collections`" class="text-sm
+             hover:text-rose-500
+            ">
+                Перейти ко всем &nbsp
+                <span class="material-symbols-sharp hover:text-rose-500">arrow_right_alt</span>
             </Link>
         </div>
 
+        <div class="container mx-auto
+    grid grid-flow-row gap-4
+    ">
             <collections-card :data="collections"></collections-card>
+
+        </div>
 
 
         <template v-for="item in data">
 
             <div class="px-4 h-[70px] grid grid-flow-col justify-between content-center">
                 <h2 class="text-gray-900">{{ item.category }}</h2>
-                <Link :href="`/movies?category=${item.slug}&order=year&page=1`" class="text-sm">
-                    Перейти ко всем &nbsp<i class="fas fa-eye fa-sm"></i>
+                <Link :href="`/movies?category=${item.slug}&order=year&page=1`" class="text-sm
+                hover:text-rose-500
+                ">
+                    Перейти ко всем &nbsp
+                    <span class="material-symbols-sharp hover:text-rose-500">arrow_right_alt</span>
                 </Link>
             </div>
 
-
+            <div class="container mx-auto
+            grid grid-flow-row gap-4
+            ">
                 <movies-card :data="item.movies" :config="{classes: ''}"></movies-card>
+            </div>
 
         </template>
 
-    </main>
+
+    </section>
 
 </template>
 
@@ -87,7 +102,7 @@ export default {
         ym(94438576, 'hit', '/');
     },
     mounted() {
-      this.coverImg = '/img/cover.webp'
+        this.coverImg = '/img/cover.webp'
     },
 
 }

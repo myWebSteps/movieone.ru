@@ -14,9 +14,11 @@
             <h1 class="justify-self-start text-gray-900">{{category.title}}</h1>
             <Link @click.prevent="$parent.$refs.filter.flush()" :href="`/movies?category=${data.category}&order=year&page=1`"
                   class="justify-self-end hidden md:block">
-                <p class="grid pr-4 grid-flow-col items-center">
+                <p class="grid pr-4 grid-flow-col items-center
+                hover:text-rose-500
+                ">
                     <span>Сбросить фильтр</span>
-                    <span class="material-symbols-sharp font-bold text-blue-950">filter_alt_off</span>
+                    <span class="material-symbols-sharp font-bold hover:text-rose-500">filter_alt_off</span>
                 </p>
             </Link>
         </div>
