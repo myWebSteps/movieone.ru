@@ -17,11 +17,13 @@
              alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
+        w-3/4
+        text-end
+        text-wrap
         justify-self-end
-        lg:parallax
         pt-[5%]
         pr-[10%]
-        text-gray-400 opacity-75 font-extrabold
+        text-gray-300 opacity-75 font-bold
         text-xl
         sm:text-2xl
         md:text-3xl">
