@@ -1152,6 +1152,10 @@ select {
   max-height: 40vh;
 }
 
+.min-h-\[200px\] {
+  min-height: 200px;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -1219,10 +1223,6 @@ select {
 
 .max-w-\[200px\] {
   max-width: 200px;
-}
-
-.max-w-\[500px\] {
-  max-width: 500px;
 }
 
 .max-w-xl {
