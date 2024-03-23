@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Carbon;
 
-class IndexResource extends JsonResource
+class RelativeCollectionsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,9 +20,8 @@ class IndexResource extends JsonResource
             'id' => $this->id,
             'collection_title' => $this->collection_title,
             'slug' => $this->slug,
-            'description_min' => $this->description_min,
             'poster' => URL('/storage/collections/posters/' . $this->poster),
-            'date' => Carbon::parse($this->updated_at)->format('d-m-Y H:i'),
+            'updated_at' => Carbon::parse($this->updated_at)->format('d-m-Y H:i'),
         ];
     }
 }
