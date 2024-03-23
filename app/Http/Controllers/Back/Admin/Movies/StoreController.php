@@ -20,12 +20,12 @@ class StoreController extends Controller
 
         //Poster Upload
             Image::make($data['poster'])
-                ->fit(342, 500)
+                ->fit(250, 404)
                 ->save(storage_path('/app/public/movies/posters'.'/poster'.$data['kinopoiskId'].'.'.$data['poster']->getClientOriginalExtension()));
         //Backdrop Upload
         if(isset($data['backdrop'])){
             Image::make($data['backdrop'])
-                ->fit(1300, 449)
+                ->fit(1535, 585)
                 ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoiskId'].'.'.$data['backdrop']->getClientOriginalExtension()));
         }
 

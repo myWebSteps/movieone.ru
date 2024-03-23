@@ -22,7 +22,7 @@ class UpdateController extends Controller
                 File::delete(storage_path('app/public/collections/posters/' . $collection->poster));
             $image_name = Carbon::now()->getTimestampMs() . '.' . $data['poster']->getClientOriginalExtension();
             Image::make($data['poster'])
-                ->fit(342, 500)
+                ->fit(250, 404)
                 ->save(storage_path('/app/public/collections/posters/' . $image_name));
             $data['poster'] = $image_name;
         } else {
@@ -63,7 +63,7 @@ class UpdateController extends Controller
                     }
                     $image_name = Carbon::now()->getTimestampMs() . '.' . $article['article_image']->getClientOriginalExtension();
                     Image::make($article['article_image'])
-                        ->fit(1300, 400)
+                        ->fit(1535, 585)
                         ->save(storage_path('/app/public/collections/articles/' . $image_name));
                     $article['article_image'] = $image_name;
                 } else {
