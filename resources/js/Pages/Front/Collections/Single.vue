@@ -137,6 +137,11 @@
                     <img v-lazy="collection.poster" class="card-img" alt="...">
                     <div class="grid items-stretch">
                         <h5 class="text-gray-900 text-md">{{ collection.collection_title }}</h5>
+                        <p class="font-light whitespace-nowrap text-nowrap overflow-hidden text-ellipsis">
+                            {{collection.description_min}}
+                        </p>
+
+
                         <span class="inline-grid grid-flow-col auto-cols-max gap-1 items-center"><span
                             class="material-symbols-sharp text-rose-500">today</span>&nbsp{{
                                 collection.updated_at
