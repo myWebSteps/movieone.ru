@@ -10,7 +10,7 @@
 
             <div class="grid bg-white p-2 gap-2">
                 <div class="grid grid-flow-row grid-cols-1 sm:grid-flow-col justify-items-center sm:justify-between items-center">
-                    <h1 class="text-lg font-semibold max-sm:justify-self-start">{{ data.collection_title }}</h1>
+                    <h1 class="text-lg font-semibold justify-self-start">{{ data.collection_title }}</h1>
                     <div class="grid grid-flow-col gap-2">
                         <a @click.prevent="copyUrl()" href="#"
                            class="inline-grid content-center bg-blue-900 shadow-sm border-2
