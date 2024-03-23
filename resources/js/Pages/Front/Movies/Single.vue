@@ -12,8 +12,8 @@
     overflow-hidden
     top-0
     h-fit
-    min-h-[200px]
     z-10 overflow-y-hidden"
+    :class="coverImg === null ? 'min-h-[200px]' : ''"
     >
         <img v-if="coverImg !== null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="coverImg"
              alt="...">
