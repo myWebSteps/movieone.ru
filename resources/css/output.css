@@ -1152,6 +1152,10 @@ select {
   max-height: 40vh;
 }
 
+.max-h-\[50vh\] {
+  max-height: 50vh;
+}
+
 .min-h-\[200px\] {
   min-height: 200px;
 }
