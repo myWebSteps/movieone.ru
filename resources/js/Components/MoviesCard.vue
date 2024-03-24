@@ -25,7 +25,7 @@
                                 <span>{{genre.title}}</span>&nbsp
                             </span>
                     </h5>
-                    <h6 class="grid grid-flow-col auto-cols-max auto-rows-max items-center">
+                    <h6 class="grid grid-flow-col auto-cols-max auto-rows-max self-end">
                         <span class="material-symbols-sharp">today</span>
                         <span class="self-end text-red-800 font-light">{{movie.year}}</span>
                     </h6>
