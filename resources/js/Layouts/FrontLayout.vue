@@ -77,6 +77,7 @@
                         </span>
                     </template>
                     <template #content>
+                        <template v-if="playlist !== null">
                         <h6 class="text-sm font-semibold p-2">Избранные видео:</h6>
                         <template v-for="item in playlist">
                         <DropdownLink :href="`/movies/${item.slug}`"
@@ -102,10 +103,12 @@
 
                         </DropdownLink>
                         </template>
-
-
-
-
+                        </template>
+                        <template v-else>
+                                <div class="min-w-[200px] p-2">
+                                    <span class="text-sm font-light p-2">У Вас пока нет избранный видео</span>
+                                </div>
+                        </template>
                     </template>
                 </Dropdown>
 
@@ -129,28 +132,30 @@
                         </span>
                     </template>
                     <template #content>
-                        <h6 class="text-sm font-semibold p-2">Избранные коллекции:</h6>
+                        <template v-if="bookmarks !== null">
+                        <h6 class="text-sm font-light p-2">Избранные коллекции:</h6>
                         <template v-for="item in bookmarks">
                             <DropdownLink :href="`/movies/${item.slug}`"
                                           class="grid grid-flow-col grid-cols-[1fr,_2fr] min-w-72 gap-2"
                             >
                                 <img :src="item.poster" alt="...">
-                                <div class="grid grid-flow-row text-wrap">
+                                <div class="grid grid-flow-row text-nowrap">
                                     <span class="font-semibold">{{item.collection_title}}</span>
-                                    <span class="font-semibold">{{item.description_min}}</span>
-                                    <span><i class="lni lni-tag"></i>&nbsp
-                            <template v-for="genre in item.genres">
-                                <span>{{genre.title}}&nbsp</span>
-                            </template>
-                            </span>
+                                    <span class="font-light whitespace-nowrap text-nowrap overflow-hidden text-ellipsis">{{item.description_min}}</span>
+                                    <span class="inline-grid grid-flow-col auto-cols-max gap-1 items-center"><span
+                                        class="material-symbols-sharp text-rose-500">today</span>&nbsp{{
+                                            item.updated_at
+                                        }}</span>
                                 </div>
 
                             </DropdownLink>
                         </template>
-
-
-
-
+                        </template>
+                        <template v-else>
+                            <div class="min-w-[200px] p-2">
+                            <span class="text-sm font-light p-2">У Вас пока нет избранных коллекций</span>
+                            </div>
+                        </template>
                     </template>
                 </Dropdown>
                 </div>

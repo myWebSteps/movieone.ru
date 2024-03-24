@@ -15,7 +15,10 @@
 
                 <div class="p-2 grid gap-1 self-stretch max-w-[200px]">
                     <h3 class="text-gray-900 text-wrap">{{movie.nameRu}}</h3>
-                    <h4 class="text-gray-900 text-wrap">{{movie.nameEn}}</h4>
+                    <h4 class="text-gray-900
+                    overflow-hidden text-nowrap whitespace-nowrap text-ellipsis"
+                    >
+                        {{movie.nameEn}}</h4>
                     <h5>
                         <span class="material-symbols-sharp">camera_roll</span>
                             <span class="text-sm font-light text-wrap" v-for="genre in movie.genres">
