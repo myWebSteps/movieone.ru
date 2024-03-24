@@ -1156,10 +1156,6 @@ select {
   max-height: 50vh;
 }
 
-.min-h-\[200px\] {
-  min-height: 200px;
-}
-
 .w-1\/2 {
   width: 50%;
 }
@@ -2428,6 +2424,10 @@ nav{
     transform: scale(2);
     opacity: 0;
   }
+}
+
+.cover-min-h{
+  min-height: 40vh;
 }
 
 .hover\:border-2:hover {

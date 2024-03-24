@@ -46,3 +46,6 @@ nav{
         opacity: 0;
     }
 }
+.cover-min-h{
+    min-height: 40vh;
+}

@@ -11,9 +11,8 @@
     max-h-[50vh]
     overflow-hidden
     top-0
-    h-fit
     z-10 overflow-y-hidden"
-    :class="coverImg === null ? 'min-h-[40vh]' : ''"
+    :class="coverImg === null ? 'cover-min-h' : ''"
     >
         <img v-if="coverImg !== null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="coverImg"
              alt="...">
