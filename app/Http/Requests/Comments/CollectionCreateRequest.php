@@ -24,7 +24,7 @@ class CollectionCreateRequest extends FormRequest
         return [
             'id' => 'required|integer',
             'name' => 'required|string|min:3|max:50',
-            'rating' => 'required|integer',
+            'rating' => 'required',
             'description' => 'required|string|min:5|max:500'
         ];
     }
