@@ -238,11 +238,16 @@
                         </label>
                     </div>
                     <div class="grid gap-4 grid-flow-row">
+                        <template v-if="previews.backdrop">
                         <img class="block justify-self-center" :src="previews.backdrop" alt="Превью фоновой картинки">
                         <label class="self-end">Фоновая картинка:<br>
                             <input @input="handleImg('backdrop', $event)"
                                    type="file">
                         </label>
+                        </template>
+                        <template v-else>
+                            <span class="justify-self-center">Фоновая картинка отсутствует</span>
+                        </template>
                     </div>
 
 

@@ -16,7 +16,12 @@ class EditResource extends JsonResource
     {
 
         $posterUrl = url('storage/movies' . $this->poster);
-        $backdropUrl = url('storage/movies' . $this->backdrop);
+        if($this->backdrop != null) {
+            $backdropUrl = url('storage/movies' . $this->backdrop);
+        }else{
+            $backdropUrl = null;
+        }
+
 
         $genresArr = [];
         foreach ($this->genres->toArray() as $item){
