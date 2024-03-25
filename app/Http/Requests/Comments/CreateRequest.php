@@ -28,7 +28,7 @@ class CreateRequest extends FormRequest
             'actors_game' => 'required|integer',
             'atmosphere' => 'required|integer',
             'rating' => 'required',
-            'description' => 'required|string|min:5|max:500'
+            'description' => 'required|string|min:5|max:255'
         ];
     }
 
