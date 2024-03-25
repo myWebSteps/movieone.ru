@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <div class="grid items-center grid-flow-col auto-cols-max">
+                <div v-if="data.rating > 0" class="grid items-center grid-flow-col auto-cols-max">
                     <span class="material-symbols-sharp text-rose-600">star_half</span>
                     <span>{{ data.rating }}</span>
                 </div>
