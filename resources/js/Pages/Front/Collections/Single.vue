@@ -153,9 +153,9 @@
             </div>
 
             <div class="bg-white p-2">
-                <comments-component :comments="data.comments" :id="data.id" type="collections"
+                <comments-collections-component :comments="data.comments" :id="data.id" type="collections"
                                                 :message.sync="message">
-                </comments-component>
+                </comments-collections-component>
 
             </div>
 
@@ -175,13 +175,12 @@ import {Head} from "@inertiajs/vue3";
 import {Link} from "@inertiajs/vue3";
 import {router} from '@inertiajs/vue3';
 import CommentsCollectionsComponent from "@/Components/CommentsCollectionsComponent.vue";
-import CommentsComponent from "@/Components/CommentsComponent.vue";
 
 export default {
     name: "Collections_single",
     layout: FrontLayout,
     props: ['data', 'relativeCollections'],
-    components: {CommentsComponent, Head, Link, Message},
+    components: {CommentsCollectionsComponent, Head, Link, Message},
 
     data() {
         return {
