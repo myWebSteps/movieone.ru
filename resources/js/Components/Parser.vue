@@ -11,9 +11,9 @@
                 "
          :class="show.parser ? 'fixed' : 'absolute top-[1rem]'"
     >
-        <span v-if="show.parser === false" class="material-symbols-sharp">recenter</span>
+        <span v-if="show.parser === false" class="material-symbols-sharp cursor-pointer">recenter</span>
 
-        <span v-if="show.parser === true" class="material-symbols-sharp">close</span>
+        <span v-if="show.parser === true" class="material-symbols-sharp cursor-pointer">close</span>
     </div>
 
     <div
@@ -92,13 +92,16 @@ export default {
                     }
                 })
                 .then(response => {
+                    console.log(response)
                     this.form.year = response.data.year
                     this.form.nameRu = response.data.name
                     this.form.nameEn = response.data.alternativeName
                     this.form.duration = response.data.movieLength
                     this.form.age_limits = response.data.ageRating
                     this.form.budget = response.data.budget.value + ' ' + response.data.budget.currency
-                    this.form.slogan = response.data.slogan
+                    if(response.data.slogan !== null) {
+                        this.form.slogan = response.data.slogan
+                    }
                     this.examples.description = response.data.description
                     if (response.data.videos.trailers.length > 0) {
                         this.form.trailers = response.data.videos.trailers
@@ -109,7 +112,9 @@ export default {
                     this.examples.type = response.data.isSeries
                     this.examples.posterUrlPreview = response.data.poster.previewUrl
                     this.examples.backdropUrl = response.data.backdrop.url
-                    this.examples.countries = response.data.countries
+                    if(response.data.countries.length > 0) {
+                        this.examples.countries = response.data.countries
+                    }
 
                     this.message.body = ['Информация успешно получена']
                     this.message.type = 'success'

@@ -1067,6 +1067,10 @@ select {
   height: 0.125rem;
 }
 
+.h-1\/4 {
+  height: 25%;
+}
+
 .h-3 {
   height: 0.75rem;
 }
@@ -1118,6 +1122,10 @@ select {
 
 .h-full {
   height: 100%;
+}
+
+.h-60 {
+  height: 15rem;
 }
 
 .max-h-96 {
@@ -2053,6 +2061,11 @@ select {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-bold {
