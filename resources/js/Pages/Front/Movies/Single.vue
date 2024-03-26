@@ -248,7 +248,7 @@
                         <div v-if="movie.video_allowed == 1" class="kinobox_player"></div>
                         <div v-else class="w-full h-60 bg-gray-200 text-gray-900 font-light grid grid-flow-col auto-cols-max items-center justify-center"
                         >
-                            <span class="material-symbols-sharp">warning</span>&nbsp
+                            <span class="material-symbols-sharp">notification_important</span>&nbsp
                             <span class="text-xl">Видео не найдено</span>
                         </div>
 
