@@ -31,18 +31,7 @@
                                             >
                                                 {{ $page.props.auth.user.name }}
 
-                                                <svg
-                                                    class="ms-2 -me-0.5 h-4 w-4"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fill-rule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clip-rule="evenodd"
-                                                    />
-                                                </svg>
+                                 <span class="material-symbols-sharp">keyboard_arrow_down</span>
                                             </button>
                                         </span>
                         </template>
@@ -101,11 +90,16 @@
                     <li class="py-2 text-gray-500">
 
                         <div
-                            class="hover:text-white cursor-pointer relative grid grid-flow-col justify-items-start grid-cols-[repeat(2,_max-content)]"
+                            class="hover:text-white cursor-pointer relative grid grid-flow-col justify-items-start auto-cols-max"
                             href="#"
                             @click.prevent="show.comments = !show.comments"
                         >
-                            <span>Комментарии  <i class="fas fa-angle-down"></i></span>
+                            <div class="grid grid-flow-col">
+                                <span>Комментарии</span>
+                                  <span class="material-symbols-sharp"
+                                        :class="show.comments ? 'rotate-180' : ''"
+                                  >keyboard_arrow_down</span>
+                            </div>
                             <span v-if="comments.total > 0" class="relative flex h-3 w-3 mx-1">
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                                 <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
@@ -140,11 +134,14 @@
 
                     <li class="py-2 text-gray-500">
 
-                        <div class="hover:text-white cursor-pointer"
+                        <div class="hover:text-white cursor-pointer grid grid-flow-col auto-cols-max items-center"
                              href="#"
                              @click.prevent="show.options = !show.options"
                         >
-                            Настройки <i class="fas fa-angle-down"></i>
+                            Настройки
+                            <span class="material-symbols-sharp"
+                            :class="show.options ? 'rotate-180' : ''"
+                            >keyboard_arrow_down</span>
                         </div>
 
                         <div v-if="show.options" class="grid grid-flow-row my-2 mx-1 bg-white rounded-md">

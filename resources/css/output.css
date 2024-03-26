@@ -983,14 +983,6 @@ select {
   margin-bottom: 1rem;
 }
 
-.-me-0 {
-  margin-inline-end: -0px;
-}
-
-.-me-0\.5 {
-  margin-inline-end: -0.125rem;
-}
-
 .mb-3 {
   margin-bottom: 0.75rem;
 }
@@ -1263,6 +1255,11 @@ select {
 
 .-rotate-45 {
   --tw-rotate: -45deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-180 {
+  --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
