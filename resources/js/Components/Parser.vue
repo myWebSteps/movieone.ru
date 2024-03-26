@@ -9,10 +9,11 @@
                 border-2 border-green-600
                 hover:bg-white hover:text-green-600
                 "
-         :class="show.parser ? 'fixed top-[8.89rem]' : 'absolute top-[1rem]'"
+         :class="show.parser ? 'fixed' : 'absolute top-[1rem]'"
     >
-        <i v-if="show.parser === false" class="fa-brands fa-searchengin"></i>
-        <i v-if="show.parser === true" class="fa-solid fa-xmark"></i>
+        <span v-if="show.parser === false" class="material-symbols-sharp">recenter</span>
+
+        <span v-if="show.parser === true" class="material-symbols-sharp">close</span>
     </div>
 
     <div

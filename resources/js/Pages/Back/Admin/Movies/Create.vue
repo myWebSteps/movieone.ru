@@ -153,7 +153,7 @@
                                     <label class="px-4 py-2 block justify-self-center"
                                            :class="form.plot === null ? 'bg-sky-950 text-white': ''"
                                     >
-                                        <span class="material-symbols-sharp text-[#333545]">star_half</span>
+                                        <span class="material-symbols-sharp">star_half</span>
                                         <input v-model="form.plot" :value=null type="radio"
                                                name="rate_plot"
                                                checked disabled
@@ -179,7 +179,7 @@
                                     <label class="px-4 py-2 block justify-self-center"
                                            :class="form.actors_game === null ? 'bg-sky-950 text-white': ''"
                                     >
-                                        <span class="material-symbols-sharp text-[#333545]">star_half</span>
+                                        <span class="material-symbols-sharp">star_half</span>
                                         <input v-model="form.actors_game" :value=null type="radio"
                                                name="rate_actors_game"
                                                checked disabled
@@ -206,7 +206,7 @@
                                     <label class="px-4 py-2 block justify-self-center"
                                            :class="form.atmosphere === null ? 'bg-sky-950 text-white': ''"
                                     >
-                                        <span class="material-symbols-sharp text-[#333545]">star_half</span>
+                                        <span class="material-symbols-sharp">star_half</span>
                                         <input v-model="form.atmosphere" :value=null type="radio"
                                                name="rate_atmosphere"
                                                checked disabled
