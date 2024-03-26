@@ -394,7 +394,6 @@
 import {Head, Link, router,} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import Message from '@/Components/Message.vue'
-import Wrapper from "@/Components/Wrapper.vue";
 import Parser from "@/Components/Parser.vue";
 
 export default {
