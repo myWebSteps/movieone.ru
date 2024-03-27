@@ -395,6 +395,13 @@
                     </div>
                 </section>
 
+                <section v-if="spinMovies.length > 0"
+                         class="grid grid-flow-row grid-cols-1 bg-white shadow-md  py-2 gap-1">
+                    <h6 class="justify-self-start px-4">Сиквелы и приквелы:</h6>
+                    <movies-card :data="spinMovies"
+                                 :config="{classes: ''}"></movies-card>
+                </section>
+
                 <!--Related Movies -->
                 <section v-if="relatedMovies.length > 0"
                          class="grid grid-flow-row grid-cols-1 bg-white shadow-md  py-2 gap-1">
@@ -423,7 +430,7 @@ import CommentsComponent from "@/Components/CommentsComponent.vue";
 export default {
     name: "Single",
     layout: FrontLayout,
-    props: ['movie', 'comments', 'commentsCount', 'relatedMovies', 'relatedCollections'],
+    props: ['movie', 'comments', 'commentsCount', 'relatedMovies', 'spinMovies', 'relatedCollections'],
     components: {CommentsComponent, Head, Link, FrontLayout, MoviesCard, Message},
 
     data() {
@@ -446,9 +453,6 @@ export default {
             },
 
         }
-    },
-    updated() {
-        console.log([this.loadTrailers, this.accordion])
     },
 
     mounted() {

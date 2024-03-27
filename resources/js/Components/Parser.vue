@@ -147,7 +147,6 @@ export default {
                 this.form.meta_keywords = ''
                 this.form.meta_description = ''
                 this.form.title_id = null
-                this.form.sequels = []
 
                 this.examples.genres = null
                 this.examples.type = null
@@ -161,11 +160,11 @@ export default {
 
             });
             this.checkInBD()
-            // this.testVideo()
+            this.testVideo()
         },
 
         testVideo() {
-            axios.get(`https://kinobox.tv/api/players/main?kinopoisk=${this.form.kinopoiskId}`)
+            axios.get(`https://kinobox.tv/api/players/?kinopoisk=${this.form.kinopoiskId}`)
                 .then(response => {
                     this.test.players = response.data
                     console.log(this.test.players)

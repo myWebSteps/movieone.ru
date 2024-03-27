@@ -277,32 +277,6 @@
                                 <span >{{sequel.name}} / {{sequel.year}}</span>
                             </div>
                         </div>
-
-                        <div class="grid grid-flow-col grid-cols-[200px,_max-content]">
-                            <input @keypress.enter.prevent="getMovies()"
-                                   v-model="filter.movies"
-                                   type="search"
-                                   class="w-full"
-                                   placeholder="Фильтр по названию...">
-                            <button @click.prevent="getMovies()"
-                                    class="bg-green-600 text-white box-border border-[1px] border-green-600 px-4 py-2
-                             hover:text-green-600 hover:border-green-600 hover:bg-white"
-                            >
-                                <span class="material-symbols-sharp grid content-center">search</span>
-                            </button>
-                        </div>
-
-                        <div>
-                                <label> Выберите сиквел <br>
-                                    <select class="w-full" name="sequels" v-model="form.sequels" multiple>
-                                        <option :value="[]">Нет сиквелов</option>
-                                        <option v-for="movie in list.movies" :value="movie.id">{{movie.nameRu}} / {{movie.nameEn}} / {{movie.year}}</option>
-                                    </select>
-                                </label>
-                        </div>
-
-
-
                     </div>
 
                 </section>
@@ -458,9 +432,6 @@ export default {
             genres: {
                 list: null,
             },
-            filter:{
-                movies: ''
-            },
             examples: {
                 genres: null,
                 type: null,
@@ -497,7 +468,6 @@ export default {
                 meta_keywords: '',
                 meta_description: '',
                 title_id: null,
-                sequels: [],
             },
             list:{
                 movies: this.movies_list,
@@ -511,14 +481,6 @@ export default {
     },
 
     methods: {
-        getMovies(){
-            axios.post('/admin/collections/get_filtered_movies', {
-                query_filter: this.filter.movies
-            })
-                .then(res=>{
-                    this.list.movies = res.data;
-                })
-        },
         handleImg(type, event) {
             this.form[type] = event.target.files[0];
             this.previews[type] = URL.createObjectURL(event.target.files[0])
@@ -552,8 +514,6 @@ export default {
         },
 
         store() {
-            console.log(this.form.sequels)
-
             this.form.trailers = this.form.trailers.filter((elem) => {
                 if (elem.url != '' && elem.name != '') {
                     return elem

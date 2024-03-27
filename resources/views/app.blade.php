@@ -9,12 +9,11 @@
         <!-- Scripts -->
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
-        <script defer src="https://kinobox.tv/kinobox.min.js"></script>
-
     </head>
     <body class="bg-slate-100">
         @inertia
     </body>
 
     <script async src="../js/metrica.js"></script>
+    <script src="https://kinobox.tv/kinobox.min.js"></script>
 </html>

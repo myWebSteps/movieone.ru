@@ -17,9 +17,6 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
-
-        dd($data);
-
         //Poster Upload
             Image::make($data['poster'])
                 ->fit(250, 404)

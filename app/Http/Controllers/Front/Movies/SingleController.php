@@ -28,15 +28,20 @@ class SingleController extends Controller
 
         $genre = Genre::where('id', $result->genres[0]->id)->first();
 
-        $resultRelatedMovies = $genre->movies->whereNotIn('slug', $request->movie)->shuffle()->take(4);
+        $spinName = explode(' ', $data['nameRu']);
+        $spinName = $spinName[0];
+        $resultSpinMovies = Movie::whereNot('slug', $request->movie)->where('nameRu', 'like', "%$spinName%")->get();
+
+        $resultRelatedMovies = $genre->movies->whereNotIn('slug', $request->movie)->whereNotIn('nameRu', 'like', "%$spinName%")->shuffle()->take(4);
 
         $comments = CommentResource::collection(Comment::where('movie_id', $data->id)->where('approved', 1)->orderBy('id', 'DESC')->get())->resolve();
         $commentsCount = Comment::where('movie_id', $data->id)->where('approved', 1)->count();
 
         $relatedMovies = RelatedMoviesResource::collection($resultRelatedMovies)->resolve();
+        $spinMovies = RelatedMoviesResource::collection($resultSpinMovies)->resolve();
 
         $relatedCollections = RelatedCollectionsResource::collection($data->collections()->where('is_published', '1')->get())->resolve();
 
-        return Inertia::render('Front/Movies/Single', compact('movie', 'comments', 'commentsCount', 'relatedMovies', 'relatedCollections'));
+        return Inertia::render('Front/Movies/Single', compact('movie', 'comments', 'commentsCount', 'relatedMovies', 'spinMovies', 'relatedCollections'));
     }
 }
