@@ -92,30 +92,27 @@ export default {
                     }
                 })
                 .then(response => {
-                    console.log(response)
                     this.form.year = response.data.year
                     this.form.nameRu = response.data.name
                     this.form.nameEn = response.data.alternativeName
                     this.form.duration = response.data.movieLength
                     this.form.age_limits = response.data.ageRating
                     this.form.budget = response.data.budget.value + ' ' + response.data.budget.currency
-                    if(response.data.slogan !== null) {
+                    if (response.data.slogan !== null) {
                         this.form.slogan = response.data.slogan
                     }
                     this.examples.description = response.data.description
-                    if (response.data.videos.trailers.length > 0) {
-                        this.form.trailers = response.data.videos.trailers
-                    }
+                    this.form.trailers = response.data.videos.trailers
                     this.examples.rate = response.data.rating.kp
                     this.examples.genres = response.data.genres
                     this.examples.category = response.data.type
                     this.examples.type = response.data.isSeries
                     this.examples.posterUrlPreview = response.data.poster.previewUrl
                     this.examples.backdropUrl = response.data.backdrop.url
-                    if(response.data.countries.length > 0) {
+                    if (response.data.countries.length > 0) {
                         this.examples.countries = response.data.countries
                     }
-
+                    this.examples.sequels = response.data.sequelsAndPrequels
                     this.message.body = ['Информация успешно получена']
                     this.message.type = 'success'
                     this.message.show = true
@@ -125,15 +122,53 @@ export default {
                 this.message.body = [error.message]
                 this.message.type = 'error'
                 this.message.show = true
+
+                this.form.kinopoiskId = null
+                this.form.year = null
+                this.form.nameRu = null
+                this.form.nameEn = null
+                this.form.poster = null
+                this.form.backdrop = null
+                this.form.category = ""
+                this.form.countries = []
+                this.form.type = ""
+                this.form.duration = null
+                this.form.age_limits = null
+                this.form.plot = null
+                this.form.actors_game = null
+                this.form.atmosphere = null
+                this.form.rate = null
+                this.form.slogan = ''
+                this.form.description = ''
+                this.form.genres = []
+                this.form.trailers = []
+                this.form.video_allowed = 1
+                this.form.budget = ""
+                this.form.meta_keywords = ''
+                this.form.meta_description = ''
+                this.form.title_id = null
+                this.form.sequels = []
+
+                this.examples.genres = null
+                this.examples.type = null
+                this.examples.category = null
+                this.examples.posterUrlPreview = null
+                this.examples.backdropUrl = null
+                this.examples.countries = null
+                this.examples.rate = null
+                this.examples.description = null
+                this.examples.sequels = []
+
             });
             this.checkInBD()
-            this.testVideo()
+            // this.testVideo()
         },
 
         testVideo() {
             axios.get(`https://kinobox.tv/api/players/main?kinopoisk=${this.form.kinopoiskId}`)
                 .then(response => {
                     this.test.players = response.data
+                    console.log(this.test.players)
                 })
         },
 

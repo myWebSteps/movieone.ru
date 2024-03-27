@@ -223,12 +223,6 @@
                             >Случайное<br> видео</span>
                         </Link>
                     </li>
-                    <li class="w-full">
-                        <div class="py-1 text-gray-500">Кинотеатр</div>
-                        <!-- Divider -->
-                        <hr class="text-gray-500">
-                        <!-- Nav Item  -->
-                    </li>
                     <li v-for="category in $page.props.categories"
                         :class="$page.url.startsWith(`/movies?category=${category.slug}`) ? 'text-white' : ''">
                         <Link

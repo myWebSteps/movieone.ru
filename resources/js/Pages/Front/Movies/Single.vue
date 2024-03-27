@@ -521,9 +521,9 @@ export default {
 
     },
 
-    beforeUnmount() {
-        ym(94438576, 'hit', `/movies/${this.movie.slug}`);
-    },
+    // beforeUnmount() {
+    //     ym(94438576, 'hit', `/movies/${this.movie.slug}`);
+    // },
 
     methods: {
 

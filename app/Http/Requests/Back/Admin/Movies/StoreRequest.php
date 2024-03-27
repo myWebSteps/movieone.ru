@@ -42,6 +42,7 @@ class StoreRequest extends FormRequest
             'backdrop' => 'nullable|file',
             'type'=>'required|string',
             'trailers' => 'nullable',
+            'sequels' => 'nullable|array',
             'video_allowed' => 'required|boolean',
             'title_id' =>'required|string',
             'meta_keywords' => 'required|string|min:3|max:255',

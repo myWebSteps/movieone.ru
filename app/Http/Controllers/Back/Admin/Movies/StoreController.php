@@ -18,6 +18,8 @@ class StoreController extends Controller
     {
         $data = $request->validated();
 
+        dd($data);
+
         //Poster Upload
             Image::make($data['poster'])
                 ->fit(250, 404)
