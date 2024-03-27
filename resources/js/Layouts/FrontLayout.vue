@@ -330,7 +330,6 @@ export default {
 
     methods: {
         loadMetrica(){
-
                 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
                 m[i].l=1*new Date();
                 for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -338,6 +337,7 @@ export default {
                 (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
                 ym(94438576, "init", {
+                async: true,
                 clickmap:true,
                 trackLinks:true,
                 accurateTrackBounce:true
