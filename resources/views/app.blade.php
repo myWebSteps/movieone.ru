@@ -14,6 +14,6 @@
         @inertia
     </body>
 
-    <script async src="../js/metrica.js"></script>
+    <script src="../js/metrica.js"></script>
     <script src="https://kinobox.tv/kinobox.min.js"></script>
 </html>
