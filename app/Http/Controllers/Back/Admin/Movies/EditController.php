@@ -19,14 +19,12 @@ class EditController extends Controller
         $result = Movie::where('id', $request->movie)->first();
 
         $movie = new EditResource($result);
-
-
         $categories = Category::all();
         $genres = Genre::where('category_id', $movie->category_id)->get();
         $countries = Country::all();
         $titles = Title::all();
         $movie = $movie->resolve();
-
-        return Inertia::render('Back/Admin/Movies/Edit', compact('movie', 'categories', 'genres', 'countries', 'titles'));
+        $movies_list = Movie::all('id', 'kinopoisk_id', 'nameRu', 'year');
+        return Inertia::render('Back/Admin/Movies/Edit', compact('movie', 'categories', 'genres', 'countries', 'titles', 'movies_list'));
     }
 }

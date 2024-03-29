@@ -71,7 +71,7 @@
 <script>
 export default {
     name: "Parser",
-    props: ['form', 'examples', 'message', 'show'],
+    props: ['form', 'examples', 'message', 'show', 'spinOff'],
 
     data() {
         return {
@@ -112,7 +112,20 @@ export default {
                     if (response.data.countries.length > 0) {
                         this.examples.countries = response.data.countries
                     }
-                    this.examples.sequels = response.data.sequelsAndPrequels
+                    console.log(response.data.sequelsAndPrequels)
+                    response.data.sequelsAndPrequels.forEach(elem=>{
+                        this.spinOff.parsed.push(
+                            {
+                            id: null,
+                            kinopoisk_id: elem.id,
+                            nameRu:elem.name,
+                            year:elem.year,
+                            })
+                    })
+
+
+
+
                     this.message.body = ['Информация успешно получена']
                     this.message.type = 'success'
                     this.message.show = true
@@ -147,6 +160,7 @@ export default {
                 this.form.meta_keywords = ''
                 this.form.meta_description = ''
                 this.form.title_id = null
+                this.form.spin_off_movies = []
 
                 this.examples.genres = null
                 this.examples.type = null
@@ -156,8 +170,6 @@ export default {
                 this.examples.countries = null
                 this.examples.rate = null
                 this.examples.description = null
-                this.examples.sequels = []
-
             });
             this.checkInBD()
             this.testVideo()

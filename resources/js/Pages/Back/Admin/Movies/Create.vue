@@ -10,6 +10,7 @@
                     :examples.sync="examples"
                     :message.sync="message"
                     :show="show"
+                    :spinOff.sync="spinOff"
                     >
             </parser>
 
@@ -21,8 +22,8 @@
                 >
                     Информация
                 </span>
-                    <span v-if="examples.sequels.length > 0" class="cursor-pointer" @click="accordion = 'sequels'"
-                          :class="accordion === 'sequels' ? 'border-b-2 border-red-400' : ''"
+                    <span class="cursor-pointer" @click="accordion = 'spin_off'"
+                          :class="accordion === 'spin_off' ? 'border-b-2 border-red-400' : ''"
                     >
                     Сиквелы
                 </span>
@@ -268,15 +269,34 @@
                     </div>
 
                 </section>
-                <section v-if="accordion === 'sequels'">
+                <section v-if="accordion === 'spin_off'">
 
                     <div class="grid grid-flow-row gap-4">
                         <div>Сиквелы: <br>
-                            <div v-for="sequel in examples.sequels">
+                            <div v-for="spin_off in spinOff.parsed" class="grid grid-flow-col auto-cols-max items-center gap-4">
                                 <span class="material-symbols-sharp text-green-500">check_circle</span>
-                                <span >{{sequel.name}} / {{sequel.year}}</span>
+                                <span >{{spin_off.nameRu}} / {{spin_off.year}}</span>
+                                <span @click.prevent="deleteSpinOff(spin_off)" class="material-symbols-sharp text-red-500 cursor-pointer">delete</span>
                             </div>
+
+                            <template v-if="spinOff.selected.length > 0">
+                                <div v-for="selected_movie in spinOff.selected" class="grid grid-flow-col auto-cols-max items-center gap-4">
+                                    <span class="material-symbols-sharp text-green-500">check_circle</span>
+                                    <span >{{selected_movie.nameRu}} / {{selected_movie.year}}</span>
+                                </div>
+                            </template>
+
                         </div>
+
+                        <div>
+                            <label for="spin_off_movies">Выберите другие спин-оффы, Сиквели или приквелы</label>
+                            <select v-model="spinOff.selected" id="spin_off_movies" class="w-full" multiple>
+
+                                <option v-for="movie in list.movies" :value="movie">{{movie.nameRu}}</option>
+
+                            </select>
+                        </div>
+
                     </div>
 
                 </section>
@@ -443,6 +463,11 @@ export default {
                 description: null,
                 sequels: []
             },
+            spinOff:{
+                parsed: [],
+                selected: [],
+                final:[],
+            },
             form: {
                 kinopoiskId: null,
                 year: null,
@@ -468,6 +493,7 @@ export default {
                 meta_keywords: '',
                 meta_description: '',
                 title_id: null,
+                spin_off: [],
             },
             list:{
                 movies: this.movies_list,
@@ -481,6 +507,14 @@ export default {
     },
 
     methods: {
+
+        deleteSpinOff(spinOff){
+            this.spinOff.parsed = this.spinOff.parsed.filter((elem, index)=>{
+                return elem.kinopoisk_id !== spinOff.kinopoisk_id
+            })
+
+        },
+
         handleImg(type, event) {
             this.form[type] = event.target.files[0];
             this.previews[type] = URL.createObjectURL(event.target.files[0])
@@ -514,6 +548,8 @@ export default {
         },
 
         store() {
+            this.spinOff.final = this.spinOff.parsed.concat(this.spinOff.selected)
+            this.form.spin_off = this.spinOff.final.map(elem=> elem.kinopoisk_id);
             this.form.trailers = this.form.trailers.filter((elem) => {
                 if (elem.url != '' && elem.name != '') {
                     return elem

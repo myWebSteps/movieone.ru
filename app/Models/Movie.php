@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Traits\Filterable;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
@@ -46,6 +45,10 @@ class Movie extends Model
         return $this->belongsToMany(Collection::class, CollectionMovie::class);
     }
 
+    public function spinOff()
+    {
+        return $this->hasManyThrough(Movie::class, MovieSpinoff::class, 'movie_id', 'kinopoisk_id', 'id', 'spin_off');
+    }
 
 
     public function sluggable(): array

@@ -8,6 +8,7 @@ use App\Http\Requests\Back\Admin\Movies\StoreRequest;
 use App\Models\CountryMovie;
 use App\Models\Movie;
 use App\Models\GenreMovie;
+use App\Models\MovieSpinoff;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -17,6 +18,7 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
+
         //Poster Upload
             Image::make($data['poster'])
                 ->fit(250, 404)
@@ -74,6 +76,14 @@ class StoreController extends Controller
 
         $movie->genres()->attach($data['genres']);
         $movie->countries()->attach($data['countries']);
+        foreach ($data['spin_off'] as $item)
+        {
+            MovieSpinoff::create([
+                'movie_id' => $movie->id,
+                'spin_off' => $item,
+            ]);
+        }
+
 
         if(isset($data['trailers']) || !empty($data['trailers'])) {
             foreach($data['trailers'] as $item) {

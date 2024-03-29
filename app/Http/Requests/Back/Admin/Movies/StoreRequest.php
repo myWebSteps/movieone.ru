@@ -47,6 +47,7 @@ class StoreRequest extends FormRequest
             'title_id' =>'required|string',
             'meta_keywords' => 'required|string|min:3|max:255',
             'meta_description' => 'required|string|min:3|max:16383',
+            'spin_off' => 'nullable|array'
         ];
     }
 }

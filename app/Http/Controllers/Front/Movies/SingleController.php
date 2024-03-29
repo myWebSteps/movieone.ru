@@ -28,17 +28,22 @@ class SingleController extends Controller
 
         $genre = Genre::where('id', $result->genres[0]->id)->first();
 
-        $spinName = explode(' ', $data['nameRu']);
-        $spinName = $spinName[0];
-        $resultSpinMovies = Movie::whereNot('slug', $request->movie)->where('nameRu', 'like', "%$spinName%")->get();
+        $spinMovies = RelatedMoviesResource::collection($data->spinOff)->resolve();
 
-        $resultRelatedMovies = $genre->movies->whereNotIn('slug', $request->movie)->whereNotIn('nameRu', 'like', "%$spinName%")->shuffle()->take(4);
+        $kinopoiskIds = [];
+
+        foreach($data->spinOff as $item)
+        {
+            $kinopoiskIds[] = $item['kinopoisk_id'];
+        }
+
+        $resultRelatedMovies = $genre->movies->whereNotIn('slug', $request->movie)->whereNotIn('kinopoisk_id', $kinopoiskIds)->shuffle()->take(4);
 
         $comments = CommentResource::collection(Comment::where('movie_id', $data->id)->where('approved', 1)->orderBy('id', 'DESC')->get())->resolve();
+
         $commentsCount = Comment::where('movie_id', $data->id)->where('approved', 1)->count();
 
         $relatedMovies = RelatedMoviesResource::collection($resultRelatedMovies)->resolve();
-        $spinMovies = RelatedMoviesResource::collection($resultSpinMovies)->resolve();
 
         $relatedCollections = RelatedCollectionsResource::collection($data->collections()->where('is_published', '1')->get())->resolve();
 

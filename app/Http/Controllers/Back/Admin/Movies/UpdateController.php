@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Back\Admin\Movies\UpdateRequest;
 use App\Models\Comment;
 use App\Models\Movie;
+use App\Models\MovieSpinoff;
 use Inertia\Inertia;
 use Intervention\Image\Facades\Image;
 
@@ -40,6 +41,20 @@ class UpdateController extends Controller
         $movie->genres()->sync($data['genres']);
         $movie->countries()->sync($data['countries']);
 
+        $spinOffToDelete = MovieSpinoff::where('movie_id', $data['id'])->get();
+        foreach ($spinOffToDelete as $item)
+        {
+            $item->delete();
+        }
+
+        foreach ($data['spin_off'] as $item)
+        {
+            MovieSpinoff::create([
+                'movie_id' => $movie->id,
+                'spin_off' => $item,
+            ]);
+        }
+
         $movie->trailers()->each(function ($trailer){
             $trailer->delete();
         });
@@ -63,6 +78,7 @@ class UpdateController extends Controller
         unset($data['countries']);
         unset ($data['genres']);
         unset($data['trailers']);
+        unset($data['spin_off']);
 
         $comments = Comment::where('approved', 1)
             ->where('movie_id', $data['id'])

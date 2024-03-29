@@ -18,7 +18,7 @@ class CreateController extends Controller
         $categories = Category::all();
         $countries = Country::all();
         $titles = Title::all();
-        $movies_list = Movie::all();
+        $movies_list = Movie::all('id', 'kinopoisk_id', 'nameRu', 'year');
        return Inertia::render('Back/Admin/Movies/Create', compact('categories', 'countries', 'titles', 'movies_list'));
     }
 }

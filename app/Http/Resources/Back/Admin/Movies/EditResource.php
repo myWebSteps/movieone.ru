@@ -60,6 +60,7 @@ class EditResource extends JsonResource
             'title_id' => $this->title_id,
             'meta_keywords' => $this->meta_keywords,
             'meta_description' => $this->meta_description,
+            'spin_off' => $this->spinOff
         ];
     }
 }

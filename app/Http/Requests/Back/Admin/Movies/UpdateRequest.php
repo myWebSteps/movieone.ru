@@ -49,6 +49,7 @@ class UpdateRequest extends FormRequest
             'title_id' => 'required',
             'meta_keywords' => 'required|string|min:3|max:255',
             'meta_description' => 'required|string|min:3|max:16300',
+            'spin_off' => 'nullable|array',
         ];
     }
 }
