@@ -430,7 +430,6 @@ export default {
                 meta_description: this.movie.meta_description,
                 spin_off: [],
             },
-            array: {},
             previews: {
                 poster: this.movie.poster,
                 backdrop: this.movie.backdrop,
@@ -489,6 +488,7 @@ export default {
         updateMovie() {
             this.spinOff.final = this.spinOff.parsed.concat(this.spinOff.selected)
             this.form.spin_off = this.spinOff.final.map(elem=> elem.kinopoisk_id);
+
             this.form.trailers = this.form.trailers.filter((elem) => {
                 if (elem.url != '' && elem.name != '') {
                     return elem
@@ -522,7 +522,9 @@ export default {
                 meta_keywords: this.form.meta_keywords,
                 meta_description: this.form.meta_description,
                 spin_off: this.form.spin_off
-            })
+            },
+                {forceFormData: true,}
+            )
             router.on('error', (errors) => {
                 this.message.body = errors.detail.errors
                 this.message.type = 'error'

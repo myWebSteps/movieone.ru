@@ -42,17 +42,18 @@ class UpdateController extends Controller
         $movie->countries()->sync($data['countries']);
 
         $spinOffToDelete = MovieSpinoff::where('movie_id', $data['id'])->get();
+
         foreach ($spinOffToDelete as $item)
         {
             $item->delete();
         }
-
-        foreach ($data['spin_off'] as $item)
-        {
-            MovieSpinoff::create([
-                'movie_id' => $movie->id,
-                'spin_off' => $item,
-            ]);
+        if(isset($data['spin_off'])){
+            foreach ($data['spin_off'] as $item) {
+                MovieSpinoff::create([
+                    'movie_id' => $movie->id,
+                    'spin_off' => $item,
+                ]);
+            }
         }
 
         $movie->trailers()->each(function ($trailer){

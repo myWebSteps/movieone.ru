@@ -76,14 +76,14 @@ class StoreController extends Controller
 
         $movie->genres()->attach($data['genres']);
         $movie->countries()->attach($data['countries']);
-        foreach ($data['spin_off'] as $item)
-        {
-            MovieSpinoff::create([
-                'movie_id' => $movie->id,
-                'spin_off' => $item,
-            ]);
+        if(isset($data['spin_off'])) {
+            foreach ($data['spin_off'] as $item) {
+                MovieSpinoff::create([
+                    'movie_id' => $movie->id,
+                    'spin_off' => $item,
+                ]);
+            }
         }
-
 
         if(isset($data['trailers']) || !empty($data['trailers'])) {
             foreach($data['trailers'] as $item) {
