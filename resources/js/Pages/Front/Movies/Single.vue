@@ -12,9 +12,9 @@
     overflow-hidden
     top-0
     z-10 overflow-y-hidden"
-    :class="coverImg === null ? 'cover-min-h' : ''"
+    :class="movie.backdropUrl === null ? 'cover-min-h' : ''"
     >
-        <img v-if="coverImg !== null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="coverImg"
+        <img v-if="movie.backdropUrl !== null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="movie.backdropUrl"
              alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
@@ -435,7 +435,6 @@ export default {
 
     data() {
         return {
-            coverImg: null,
             loadTrailers: false,
             accordion: 'general',
             comment_errors: '',
@@ -458,8 +457,6 @@ export default {
     mounted() {
         this.getReviews()
         this.togglePlaylistButton()
-
-        this.coverImg = this.movie.backdropUrl
 
         if (this.movie.video_allowed == 1) {
             new Kinobox('.kinobox_player', {
