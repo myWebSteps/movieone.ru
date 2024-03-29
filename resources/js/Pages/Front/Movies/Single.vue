@@ -6,6 +6,7 @@
         <meta name="keywords" :content="movie.meta_keywords"/>
         <meta name="description" :content="movie.meta_description"/>
     </Head>
+
     <section class="grid items-top
     lg:sticky
     max-h-[50vh]
@@ -58,7 +59,7 @@
             lg:grid-flow-row lg:self-start
             ">
                 <img :src="movie.posterUrl" class="rounded-md" :alt="movie.nameEn">
-                <div class="grid grid-flow-row gap-1 justify-self-start auto-rows-max">
+                <div class="grid grid-flow-row gap-2 justify-self-start auto-rows-max">
                     <h6 class="font-semibold">Продолжительность:</h6>
                     <p class="font-light">{{ movie.filmLength }} мин</p>
                     <h6 class="font-semibold">Год окончания:</h6>
@@ -73,13 +74,13 @@
                         </span>
                     </label>
 
-                    <article v-if="relatedCollections.length > 0">
+                    <article v-if="relatedCollections.length > 0" class="grid gap-1">
                         <h6 class="font-semibold">Коллекции с видео:</h6>
                         <template v-for="collection in relatedCollections">
                             <div class="grid grid-flow-col grid-cols-[repeat(2,_max-content)] gap-2">
                                 <span class="material-symbols-sharp text-green-500">task_alt</span>
                                 <Link :href="`/collections/${collection.slug}`"
-                                      class="justify-self-start grid grid-flow-col content-center"
+                                      class="justify-self-start grid grid-flow-col content-center text-wrap max-w-40"
                                 >
                                     {{ collection.collection_title }}
                                     <span class="material-symbols-sharp">arrow_forward</span>
@@ -108,14 +109,13 @@
                             <span class="material-symbols-sharp">today</span>&nbsp
                             <span class="text-gray-900">{{ movie.endYear }}</span>
                         </h5>
-                        <h5 class="text-rose-700 text-lg font-light">
-                            <span class="material-symbols-sharp">camera_roll</span>&nbsp
-                            <span class="text-gray-900 text-sm text-wrap">
-                                <template v-for="genre in movie.genres" class="text-wrap">
+                        <h5 class="text-rose-700 text-lg font-light grid grid-flow-col grid-cols-[20px,_1fr] gap-3 items-center">
+                            <span class="material-symbols-sharp">camera_roll</span>
+                            <span class="text-gray-900 text-sm text-wrap max-w-[90%]">
+                                <template v-for="genre in movie.genres" >
                                 {{ genre.title}}&thinsp;
                                 </template>
-                                </span>
-
+                            </span>
                         </h5>
                     </div>
 

@@ -1201,12 +1201,20 @@ select {
   min-width: 200px;
 }
 
+.max-w-40 {
+  max-width: 10rem;
+}
+
 .max-w-7xl {
   max-width: 80rem;
 }
 
 .max-w-\[200px\] {
   max-width: 200px;
+}
+
+.max-w-\[90\%\] {
+  max-width: 90%;
 }
 
 .max-w-xl {
@@ -1357,6 +1365,10 @@ select {
 
 .grid-cols-\[200px\2c _max-content\] {
   grid-template-columns: 200px max-content;
+}
+
+.grid-cols-\[20px\2c _1fr\] {
+  grid-template-columns: 20px 1fr;
 }
 
 .grid-cols-\[2fr\2c _3fr\] {
