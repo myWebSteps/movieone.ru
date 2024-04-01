@@ -7,11 +7,6 @@
             </div>
         </section>
 
-    <section class="container mx-auto p-4">
-        <Link as="button" href="/sitemap" class="grid justify-items-center">
-            Generate Sitemap
-        </Link>
-    </section>
 </template>
 
 <script>

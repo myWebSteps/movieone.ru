@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     @foreach ($movies as $movie)
         <url>
-            <loc>{{ '/movies/'.$movie->slug }}</loc>
+            <loc>{{ route('sitemap.movie_single',$movie->slug) }}</loc>
             <lastmod>{{ $movie->updated_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>1</priority>
