@@ -194,7 +194,7 @@
                          sm:gap-1"
                           :class="show.menu ? 'sm:grid-cols-[max-content,_max-content]' : 'grid-cols-1'"
                     >
-                        <img src="/img/logo-icon.png" class="w-[50px] px-1" alt="...">
+                        <img src="/img/logo-icon.webp" class="w-[50px] px-1" alt="...">
                         <p class="uppercase text-white text-base font-bold hidden
                         sm:block
                         "

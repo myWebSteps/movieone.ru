@@ -14,7 +14,7 @@
 ">
             <div class="justify-self-center">
                 <Link href="/" class=" h-[4.375rem] mx-auto ">
-                        <img src="/img/logo-icon.png" class="w-[60px]" alt="...">
+                        <img src="/img/logo-icon.webp" class="w-[60px]" alt="...">
                 </Link>
             </div>
             <div class="my-2 justify-self-center">

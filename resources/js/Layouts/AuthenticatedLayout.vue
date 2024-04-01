@@ -54,7 +54,7 @@
                 <div class="bg-[#333545]">
                     <Link href="/" class=" h-[3.7rem] mx-4 grid grid-flow-col items-center max-lg:grid-cols-1">
                         <div class="justify-self-center">
-                            <img src="/img/logo-icon.png" class="w-[60px] px-1" alt="...">
+                            <img src="/img/logo-icon.webp" class="w-[60px] px-1" alt="...">
                         </div>
                         <div class="justify-self-center px-2 max-lg:hidden">
                             <p class="uppercase text-white text-base font-bold
