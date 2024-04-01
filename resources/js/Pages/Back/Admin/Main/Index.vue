@@ -6,15 +6,22 @@
                 <div>You're logged in!</div>
             </div>
         </section>
+
+    <section class="container mx-auto p-4">
+        <Link as="button" href="/sitemap" class="grid justify-items-center">
+            Generate Sitemap
+        </Link>
+    </section>
 </template>
 
 <script>
 import { Head } from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
 export default {
     name: 'Main',
     layout: AuthenticatedLayout,
-    components:{Head},
+    components:{Head, Link},
 }
 </script>
