@@ -2,8 +2,8 @@
         <Head>
             <title>Поиск фильмов MovieOne.ru</title>
             <meta name="description"
-                  content="MovieOne Онлайн кинотеатр с большим выбором фильмов, мультфильмов и аниме. У нас Вы всегда можете посмотреть любимые фильмы бесплатно и без регистрации"/>
-            <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
+                  content="Поиск фильмов, мультиков, аниме и документальных видео"/>
+            <meta name="keywords" content="Поиск фильмов, мультиков, аниме и документальных видео"/>
         </Head>
 
     <section class="px-4 h-[70px] grid grid-flow-col justify-items-start bg-white content-center">

@@ -2,8 +2,8 @@
 
     <Head>
         <title>MovieOne.ru | Подборки фильмов, мультфильмов, анимэ</title>
-        <meta name="description" content="Подборки фильмов, мультфильмов, анимэ"/>
-        <meta name="keywords" content="Подборки фильмов, мультфильмов, анимэ"/>
+        <meta name="description" content="Подборки фильмов, мультфильмов, анимэ и документальных видео"/>
+        <meta name="keywords" content="Подборки фильмов, мультфильмов, анимэ и документальных видео"/>
     </Head>
 
     <!-- Page Heading -->
