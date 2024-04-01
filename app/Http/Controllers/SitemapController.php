@@ -33,7 +33,7 @@ class SitemapController extends Controller
     {
         $movies = Movie::where('slug', 'LIKE', "$slug%")->get();
 
-        return response()->view('Sitemap.movies.show', [
+        return response()->view('Sitemap.movies_show', [
             'movies' => $movies,
         ])->header('Content-Type', 'text/xml');
     }
@@ -50,7 +50,7 @@ class SitemapController extends Controller
     {
         $collections = Collection::where('slug', 'LIKE', "$slug%")->get();
 
-        return response()->view('Sitemap.collections.show', [
+        return response()->view('Sitemap.collections_show', [
             'collections' => $collections,
         ])->header('Content-Type', 'text/xml');
     }
