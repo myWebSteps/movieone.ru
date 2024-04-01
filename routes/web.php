@@ -17,11 +17,11 @@ Route::post('/playlist', \App\Http\Controllers\Front\Movies\PlaylistController::
 Route::post('/bookmarks', \App\Http\Controllers\Front\Collections\BookmarksController::class);
 Route::post('/get_comments_count', \App\Http\Controllers\Info\CommentsCountController::class);
 
-Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index']);
-Route::get('/sitemap/movies', [\App\Http\Controllers\SitemapController::class, 'movies']);
-Route::get('/sitemap/movies/{slug}', [\App\Http\Controllers\SitemapController::class, 'movie_single']);
-Route::get('/sitemap/collections', [\App\Http\Controllers\SitemapController::class, 'collections']);
-Route::get('/sitemap/collections/{slug}', [\App\Http\Controllers\SitemapController::class, 'collection_single']);
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap.index');
+Route::get('/sitemap/movies.xml', [\App\Http\Controllers\SitemapController::class, 'movies'])->name('sitemap.movies');
+Route::get('/sitemap/movies/{slug}.xml', [\App\Http\Controllers\SitemapController::class, 'movie_single'])->name('sitemap.movie_single');
+Route::get('/sitemap/collections.xml', [\App\Http\Controllers\SitemapController::class, 'collections'])->name('sitemap.collections');
+Route::get('/sitemap/collections/{slug}.xml', [\App\Http\Controllers\SitemapController::class, 'collection_single'])->name('sitemap.collection_single');
 
 Route::get('/', \App\Http\Controllers\Front\HomeController::class)->name('front.index');
 Route::get('/movies', \App\Http\Controllers\Front\Movies\IndexController::class)->name('catalog.index');

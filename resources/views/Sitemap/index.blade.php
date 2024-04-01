@@ -3,11 +3,11 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
         <sitemap>
-            <loc>{{ '/sitemap/movies' }}</loc>
+            <loc>{{ route('sitemap.movies') }}</loc>
             <lastmod>{{ $movie->updated_at->tz('UTC')->toAtomString() }}</lastmod>
         </sitemap>
     <sitemap>
-        <loc>{{ '/sitemap/collections' }}</loc>
+        <loc>{{ route('sitemap.collections') }}</loc>
         <lastmod>{{ $collection->updated_at->tz('UTC')->toAtomString() }}</lastmod>
     </sitemap>
 
