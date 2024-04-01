@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     @foreach ($collections as $collection)
         <url>
-            <loc>{{ '/collections/'.$collection->slug.'.xml' }}</loc>
+            <loc>{{ '/collections/'.$collection->slug }}</loc>
             <lastmod>{{ $collection->updated_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.9</priority>
