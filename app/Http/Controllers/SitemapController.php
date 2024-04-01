@@ -48,7 +48,7 @@ class SitemapController extends Controller
     }
     public function collection_single($slug)
     {
-        $collections = Movie::where('slug', 'LIKE', "$slug%")->get();
+        $collections = Collection::where('slug', 'LIKE', "$slug%")->get();
 
         return response()->view('Sitemap.collections.show', [
             'collections' => $collections,
