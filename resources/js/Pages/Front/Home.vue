@@ -15,7 +15,7 @@
     lg:max-h-[60vh]
     z-10 overflow-y-hidden"
     >
-        <img v-if="coverImg !== null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="coverImg" alt="...">
+        <img v-if="coverImg !== null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" v-lazy="coverImg" alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
         lg:parallax
