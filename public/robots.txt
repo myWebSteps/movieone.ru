@@ -9,3 +9,4 @@ Disallow: /collections/$
 Disallow: /random_movies/
 Disallow: /img/
 Host: https://www.movieone.ru
+
