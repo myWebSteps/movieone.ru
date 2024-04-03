@@ -20,13 +20,13 @@
                     >
                         {{movie.nameEn}}</h4>
                     <h5>
-                        <span class="material-symbols-sharp">camera_roll</span>
+                        <i class="icon-camera_roll"></i>
                             <span class="text-sm font-light text-wrap" v-for="genre in movie.genres">
                                 <span>{{genre.title}}</span>&nbsp
                             </span>
                     </h5>
                     <h6 class="grid grid-flow-col auto-cols-max auto-rows-max self-end">
-                        <span class="material-symbols-sharp">today</span>
+                        <i class="icon-today"></i>
                         <span class="self-end text-red-800 font-light">{{movie.year}}</span>
                     </h6>
 

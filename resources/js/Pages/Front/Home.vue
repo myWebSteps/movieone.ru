@@ -15,7 +15,7 @@
     lg:max-h-[60vh]
     z-10 overflow-y-hidden"
     >
-        <img v-if="coverImg !== null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" v-lazy="coverImg" alt="...">
+        <img class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" v-lazy="coverImg" alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
         lg:parallax
@@ -40,7 +40,7 @@
              hover:text-rose-500
             ">
                 Перейти ко всем &nbsp
-                <span class="material-symbols-sharp hover:text-rose-500">arrow_right_alt</span>
+                <i class="icon-arrow_right_alt text-xl hover:text-rose-500"></i>
             </Link>
         </div>
 
@@ -60,7 +60,7 @@
                 hover:text-rose-500
                 ">
                     Перейти ко всем &nbsp
-                    <span class="material-symbols-sharp hover:text-rose-500">arrow_right_alt</span>
+                    <i class="icon-arrow_right_alt text-xl hover:text-rose-500"></i>
                 </Link>
             </div>
 
@@ -97,13 +97,17 @@ export default {
         }
 
     },
+    beforeMount() {
+        console.log(window.screen.width)
+        if(window.screen.width <= 430){
+            this.coverImg = '/img/cover_min.webp'
+        }else{
+            this.coverImg = '/img/cover.webp'
+        }
+    },
 
     beforeUnmount() {
         ym(94438576, 'hit', '/');
     },
-    mounted() {
-        this.coverImg = '/img/cover.webp'
-    },
-
 }
 </script>

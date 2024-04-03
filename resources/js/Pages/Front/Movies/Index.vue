@@ -18,7 +18,7 @@
                 hover:text-rose-500
                 ">
                     <span>Сбросить фильтр</span>
-                    <span class="material-symbols-sharp font-bold hover:text-rose-500">filter_alt_off</span>
+                    <i class="icon-filter_alt_off font-bold hover:text-rose-500"></i>
                 </p>
             </Link>
         </div>
@@ -30,7 +30,7 @@
                 </movies-card>
             </div>
         <div v-else class="grid grid-flow-col auto-cols-[max-content,_minmax(50,_200px)] justify-self-center items-start gap-2">
-                <span class="material-symbols-sharp">troubleshoot</span>
+                <i class="icon-troubleshoot"></i>
                 <span class="font-light">Не нашел фильмов по заданным критериям. Попробуйте облегчить мне задачу</span>
             </div>
 

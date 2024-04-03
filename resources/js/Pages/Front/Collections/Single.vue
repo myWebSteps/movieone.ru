@@ -18,7 +18,7 @@
                          hover:bg-white hover:text-blue-900
                          px-2 py-1
                         rounded-md">
-                            <span class="material-symbols-sharp">share</span>
+                            <i class="icon-share"></i>
                         </a>
 
                         <a @click.prevent="toggleBookmarks(data.id)" href="#"
@@ -30,13 +30,13 @@
                             <template v-if="!bookmarksItems">
                                 <div class="grid grid-flow-col items-center">
                                     <span class="font-light">В избранное</span>
-                                    <span class="material-symbols-sharp">heart_plus</span>
+                                    <i class="icon-heart_plus"></i>
                                 </div>
                             </template>
                             <template v-if="bookmarksItems">
                                 <div class="grid grid-flow-col items-center">
                                     <span class="font-light">Убрать</span>
-                                    <span class="material-symbols-sharp">heart_minus</span>
+                                    <i class="icon-heart_minus"></i>
                                 </div>
                             </template>
                         </a>
@@ -48,7 +48,7 @@
                 <div class="grid grid-flow-col justify-between">
 
                     <div class="grid items-center grid-flow-col auto-cols-max">
-                        <span class="material-symbols-sharp text-rose-500">today</span>&nbsp
+                        <i class="icon-today text-rose-500"></i>&nbsp
                         <span class="text-gray-900 font-light text-sm">{{ data.date }}</span>
                     </div>
                     <div class="grid grid-flow-col grid-cols-[repeat(3,_max-content)] auto-rows-[32px] items-center
@@ -70,7 +70,7 @@
                 </div>
 
                 <div v-if="data.rating > 0" class="grid items-center grid-flow-col auto-cols-max">
-                    <span class="material-symbols-sharp text-rose-600">star_half</span>
+                    <i class="icon-star_half text-rose-600"></i>
                     <span>{{ data.rating }}</span>
                 </div>
 
@@ -90,7 +90,7 @@
                            class="text-wrap text-gray-600 font-light">{{
                                 article.article_title
                             }}
-                            <span class="material-symbols-sharp">arrow_right_alt</span>
+                            <i class="icon-arrow_right_alt"></i>
                         </a>
                     </li>
                 </ul>
@@ -142,8 +142,8 @@
                         </p>
 
 
-                        <span class="inline-grid grid-flow-col auto-cols-max gap-1 items-center"><span
-                            class="material-symbols-sharp text-rose-500">today</span>&nbsp{{
+                        <span class="inline-grid grid-flow-col auto-cols-max gap-1 items-center">
+                            <i class="icon-today text-rose-500"></i>&nbsp{{
                                 collection.updated_at
                             }}</span>
                     </div>

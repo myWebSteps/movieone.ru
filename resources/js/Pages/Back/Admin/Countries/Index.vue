@@ -31,14 +31,14 @@
                                   class="py-1 px-6 border-2 border-amber-300 rounded-2xl text-amber-300 hover:bg-amber-300 hover:text-white
                             grid items-center
                             ">
-                                <span class="material-symbols-sharp font-bold">edit_square</span>
+                                <i class="icon-edit_square font-bold"></i>
                             </Link>
                             <Link @click.prevent="deleteInstance(country.id)" v-if="$page.props.auth.user.role <= 9" as="button"
                                   href="#"
                                   type="button"
                                   class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white
                                     grid items-center">
-                                <span class="material-symbols-sharp font-bold">delete</span>
+                                <i class="icon-delete font-bold"></i>
                             </Link>
                         </div>
                     </template>

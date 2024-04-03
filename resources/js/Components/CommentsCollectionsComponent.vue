@@ -43,7 +43,7 @@
                         <label>Оценка:</label><br>
                         <ul class="grid grid-cols-[repeat(6,_40px)] grid-flow-col w-[240px] rounded-md overflow-hidden">
                             <li class="grid items-center justify-items-center bg-gray-300 cursor-pointer py-1">
-                                <span class="material-symbols-sharp text-[#333545]">star_half</span>
+                                <i class="icon-star_half text-[#333545]"></i>
                             </li>
                             <li v-for="item in 5"
                                 class="grid items-center justify-items-center cursor-pointer py-1"

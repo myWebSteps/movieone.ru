@@ -139,7 +139,7 @@
                                     class="bg-green-600 text-white box-border border-[1px] border-green-600 px-4 py-2
                              hover:text-green-600 hover:border-green-600 hover:bg-white"
                             >
-                                <span class="material-symbols-sharp grid content-center">search</span>
+                                <i class="icon-search grid content-center"></i>
                             </button>
                         </div>
 

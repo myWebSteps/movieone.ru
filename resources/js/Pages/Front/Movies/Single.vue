@@ -36,7 +36,7 @@
         <div class="row-start-1 row-end-1 col-start-1 col-end-1
         justify-self-start self-start bg-white shadow-sm rounded-sm p-2 m-4 text-sm">
             <h6 class="text-gray-900 grid grid-flow-col auto-cols-max gap-0.5 items-center">
-                <span class="material-symbols-sharp text-rose-600">star_half</span>
+                <i class="icon-star_half text-rose-600"></i>
                 <span>{{ movie.rating }}</span>
             </h6>
         </div>
@@ -78,12 +78,12 @@
                         <h6 class="font-semibold">Коллекции с видео:</h6>
                         <template v-for="collection in relatedCollections">
                             <div class="grid grid-flow-col grid-cols-[repeat(2,_max-content)] gap-2">
-                                <span class="material-symbols-sharp text-green-500">task_alt</span>
+                                <i class="icon-task_alt text-green-500"></i>
                                 <Link :href="`/collections/${collection.slug}`"
                                       class="justify-self-start grid grid-flow-col content-center text-wrap max-w-40"
                                 >
                                     {{ collection.collection_title }}
-                                    <span class="material-symbols-sharp">arrow_forward</span>
+                                    <i class="icon-arrow_right_alt"></i>
                                 </Link>
                             </div>
                         </template>
@@ -106,11 +106,11 @@
                             {{ movie.nameEn }}</h2>
                         <h5 class="text-rose-700 text-lg font-light grid grid-flow-col grid-cols-[repeat(2,_max-content)]
                                  content-center items-center">
-                            <span class="material-symbols-sharp">today</span>&nbsp
+                            <i class="icon-today"></i>&nbsp
                             <span class="text-gray-900">{{ movie.endYear }}</span>
                         </h5>
                         <h5 class="text-rose-700 text-lg font-light grid grid-flow-col grid-cols-[20px,_1fr] gap-3 items-center">
-                            <span class="material-symbols-sharp">camera_roll</span>
+                            <i class="icon-camera_roll"></i>
                             <span class="text-gray-900 text-sm text-wrap max-w-[90%]">
                                 <template v-for="genre in movie.genres" >
                                 {{ genre.title}}&thinsp;
@@ -136,7 +136,7 @@
                         rounded-md
                         "
                         >
-                            <span class="material-symbols-sharp">share</span>
+                            <i class="icon-share"></i>
                         </a>
 
                         <a @click.prevent="togglePlaylist(movie.id)" href="#"
@@ -148,13 +148,13 @@
                             <template v-if="!playlistItems">
                                 <div class="grid grid-flow-col items-center">
                                     <span class="font-light">В избранное</span>
-                                    <span class="material-symbols-sharp">heart_plus</span>
+                                    <i class="icon-heart_plus"></i>
                                 </div>
                             </template>
                             <template v-if="playlistItems">
                                 <div class="grid grid-flow-col items-center">
                                     <span class="font-light">Убрать</span>
-                                    <span class="material-symbols-sharp">heart_minus</span>
+                                    <i class="icon-heart_minus"></i>
                                 </div>
                             </template>
                         </a>
@@ -166,7 +166,7 @@
                         <div v-if="movie.budget">
                             <h5 class="text-rose-700 text-lg font-light grid grid-flow-col auto-cols-max
                                  items-center">
-                                <span class="material-symbols-sharp">payments</span>&nbsp
+                                <i class="icon-payments"></i>&nbsp
                                 <span class="text-gray-900">{{ movie.budget }}</span>
                             </h5>
                         </div>
@@ -229,10 +229,10 @@
                                   class="block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
                             {{ reviews.total }}
                             </span>
-                            <span v-else
-                                  class="material-symbols-sharp block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
+                            <i v-else
+                                  class="icon-all_inclusive block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
                                 all_inclusive
-                            </span>
+                            </i>
                         </li>
                         <li :class="accordion === 'actors' ? 'border-b-2 border-b-pink-900' : ''"
                             @click.prevent="[accordion = 'actors', getStaff(movie.kinopoisk_id)]"
@@ -248,7 +248,7 @@
                         <div v-if="movie.video_allowed == 1" class="kinobox_player"></div>
                         <div v-else class="w-full h-60 bg-gray-200 text-gray-900 font-light grid grid-flow-col auto-cols-max items-center justify-center"
                         >
-                            <span class="material-symbols-sharp">notification_important</span>&nbsp
+                            <i class="icon-notification_important"></i>&nbsp
                             <span class="text-xl">Видео не найдено</span>
                         </div>
 
@@ -296,14 +296,12 @@
                             <article class="grid grid-flow-row gap-1">
                                 <span class="text-gray-500 font-light">{{ review.author }}</span>
                                 <h5>{{ review.title }}
-                                    <span v-if="review.type === 'POSITIVE'"
-                                          class="material-symbols-sharp text-green-500 font-bold">
-                                sentiment_very_satisfied
-                                </span>
-                                    <span v-if="review.type === 'NEGATIVE'"
-                                          class="material-symbols-sharp text-rose-500 font-bold">
-                                sentiment_dissatisfied
-                                </span>
+                                    <i v-if="review.type === 'POSITIVE'"
+                                          class="icon-sentiment_very_satisfied text-green-500 font-bold">
+                                </i>
+                                    <i v-if="review.type === 'NEGATIVE'"
+                                          class="icon-sentiment_dissatisfied text-rose-500 font-bold">
+                                </i>
                                 </h5>
 
                                 <p class="text-gray-900 font-light" v-html="review.description"></p>

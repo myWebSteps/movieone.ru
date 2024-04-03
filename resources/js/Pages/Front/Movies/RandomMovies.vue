@@ -13,7 +13,7 @@
         hover:text-rose-500
         ">
             <span>Перемешать</span> &nbsp
-            <span class="material-symbols-sharp hover:text-rose-500">shuffle</span>
+            <i class="icon-shuffle hover:text-rose-500"></i>
         </Link>
     </section>
 
@@ -30,7 +30,7 @@
                        "
                 >
                     Перейти ко всем &nbsp
-                    <span class="material-symbols-sharp">arrow_right_alt</span>
+                    <i class="icon-arrow_right_alt"></i>
                 </Link>
             </div>
 

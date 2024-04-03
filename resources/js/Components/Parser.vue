@@ -11,9 +11,9 @@
                 "
          :class="show.parser ? 'fixed' : 'absolute top-[1rem]'"
     >
-        <span v-if="show.parser === false" class="material-symbols-sharp cursor-pointer">recenter</span>
+        <i v-if="show.parser === false" class="icon-filter_alt cursor-pointer"></i>
 
-        <span v-if="show.parser === true" class="material-symbols-sharp cursor-pointer">close</span>
+        <i v-if="show.parser === true" class="icon-close cursor-pointer"></i>
     </div>
 
     <div

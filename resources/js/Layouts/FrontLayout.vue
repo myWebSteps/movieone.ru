@@ -26,7 +26,7 @@
                                             <button
                                                 type="button"
                                                 class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium text-gray-400 hover:text-gray-200 focus:outline-none transition ease-in-out duration-150"                                          >
-                                                <span class="material-symbols-sharp">search</span>
+                                                <i class="icon-search text-xl"></i>
                                             </button>
                                         </span>
                     </template>
@@ -37,7 +37,7 @@
                                    >
                             <button @click.prevent="commenceSearch()" class="text-gray-400 hover:text-[#333545]"
                                     type="button">
-                                <span class="material-symbols-sharp">search</span>
+                                <i class="icon-search text-xl"></i>
                             </button>
                         </div>
                     </template>
@@ -52,7 +52,7 @@
                            class="max-sm:hidden rounded-md" placeholder="Искать фильмы по названию..."
                            aria-label="Search" aria-describedby="basic-addon2">
                     <button @click.prevent="commenceSearch()" class="text-gray-400 hover:text-white" type="button">
-                        <span class="material-symbols-sharp">search</span>
+                        <i class="icon-search text-xl"></i>
                     </button>
                 </form>
 
@@ -60,8 +60,8 @@
                 <div class="z-50 justify-self-end self-center grid grid-flow-col gap-4">
                 <Dropdown :closeOnClick=false align="right" width="half" class="self-center cursor-pointer">
                     <template #trigger>
-                         <span class="grid self-end text-gray-400 hover:text-white">
-                                            <span class="material-symbols-sharp ">favorite</span>
+                         <span class="grid self-end text-gray-400 hover:text-white text-2xl">
+                                            <i class="icon-favorite"></i>
                         <span v-if="playCount != null" class="absolute -top-1 right-2">
                                         <span
                                             :class="trigger.playlist ? 'ping-once' : 'ping-once-two'"
@@ -87,13 +87,13 @@
                             <div class="grid grid-flow-row text-wrap">
                             <span class="font-semibold">{{item.nameRu}}</span>
                             <span class="font-light">{{item.nameEn}}</span>
-                            <span class="grid grid-flow-col grid-cols-[repeat(2,_max-content)]
-                             items-center">
-                                <i class="lni lni-calendar text-rose-700"></i>&nbsp
+                            <div class="grid grid-flow-col grid-cols-[repeat(2,_max-content)]
+                             items-center font-light">
+                                <i class="icon-today text-xl text-rose-700"></i>&nbsp
                                 {{item.year}}
-                            </span>
-                                <div>
-                            <span class="material-symbols-sharp text-rose-500">camera_roll</span>&nbsp
+                            </div>
+                                <div class="font-light p-1">
+                            <i class="icon-camera_roll text-rose-700"></i>&nbsp
                             <template v-for="genre in item.genres">
                                 {{genre.title}}&nbsp
                             </template>
@@ -114,8 +114,8 @@
 
                 <Dropdown :closeOnClick=false align="right" width="half" class="self-center cursor-pointer">
                     <template #trigger>
-                                <span class="grid self-end text-gray-400 hover:text-white">
-                        <span class="material-symbols-sharp">bookmark</span>
+                                <span class="grid self-end text-gray-400 hover:text-white text-2xl">
+                        <i class="icon-bookmark"></i>
                         <span v-if="bookmarksCount != null" class="absolute -top-1 right-2">
                                         <span
                                             :class="trigger.bookmark ? 'ping-once' : 'ping-once-two'"
@@ -139,13 +139,12 @@
                                           class="grid grid-flow-col grid-cols-[1fr,_2fr] min-w-72 gap-2"
                             >
                                 <img :src="item.poster" alt="...">
-                                <div class="grid grid-flow-row text-nowrap">
-                                    <span class="font-semibold">{{item.collection_title}}</span>
+                                <div class="grid grid-flow-row">
+                                    <span class="font-semibold whitespace-nowrap text-nowrap overflow-hidden text-ellipsis">{{item.collection_title}}</span>
                                     <span class="font-light whitespace-nowrap text-nowrap overflow-hidden text-ellipsis">{{item.description_min}}</span>
-                                    <span class="inline-grid grid-flow-col auto-cols-max gap-1 items-center"><span
-                                        class="material-symbols-sharp text-rose-500">today</span>&nbsp{{
-                                            item.updated_at
-                                        }}</span>
+                                    <span class="inline-grid grid-flow-col auto-cols-max gap-1 items-center">
+                                        <span class="text-rose-700 text-xl"><i class="icon-today"></i></span>&nbsp
+                                        {{item.updated_at}}</span>
                                 </div>
 
                             </DropdownLink>
@@ -169,10 +168,10 @@
              lg:hidden"
              :class="show.filter ? 'bg-white text-green-600 top-2 ' : 'bg-green-600 text-white top-[6rem]'">
             <template v-if="show.filter">
-                <span class="material-symbols-sharp">close</span>
+                <i class="icon-close"></i>
             </template>
             <template v-else>
-                <span class="material-symbols-sharp">filter_alt</span>
+                <i class="icon-filter_alt"></i>
             </template>
         </div>
 
@@ -209,7 +208,8 @@
                         <Link :class="show.menu ? 'sm:grid-flow-col sm:grid-cols-[repeat(2,_max-content)]' : ''"
                               href="/collections"
                               class="text-gray-500 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
-                        ><span class="material-symbols-sharp">video_library</span>
+                        >
+                            <i class="icon-video_library"></i>
                             <span class="text-xs sm:text-sm ">Подборки</span>
                         </Link>
                     </li>
@@ -218,7 +218,7 @@
                               href="/random_movies"
                               class="text-gray-500 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
                         >
-                            <span class="material-symbols-sharp">shuffle</span>
+                            <i class="icon-shuffle"></i>
                             <span class="text-xs sm:text-sm text-wrap"
                             >Случайное<br> видео</span>
                         </Link>
@@ -229,14 +229,14 @@
                             :class="show.menu ? 'sm:grid-flow-col sm:grid-cols-[repeat(2,_max-content)]' : ''"
                             class="text-gray-500 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
                             :href="`/movies?category=${category.slug}&order=year&page=1`">
-                            <span class="material-symbols-sharp">{{category.logo}}</span>
+                            <i :class="`icon-${category.logo}`"></i>
                             <span class="text-xs sm:text-sm">{{ category.title }}</span>
                         </Link>
                     </li>
 
-                    <li @click="show.menu = !show.menu" class="px-1 w-full text-center text-gray-300 hover:text-white cursor-pointer">
-                        <span v-if="show.menu" class="material-symbols-sharp">switch_right</span>
-                        <span v-if="!show.menu" class="material-symbols-sharp">switch_left</span>
+                    <li @click="show.menu = !show.menu" class="px-1 w-full text-center text-gray-300 hover:text-white cursor-pointer text-2xl">
+                        <i v-if="show.menu" class="icon-switch_right"></i>
+                        <i v-if="!show.menu" class="icon-switch_left"></i>
                     </li>
                 </ul>
 

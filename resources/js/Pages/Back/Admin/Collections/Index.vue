@@ -53,7 +53,7 @@
                             md:order-1
                             grid items-center
                             ">
-                                <span class="material-symbols-sharp font-bold">edit_square</span>
+                                <i class="icon-edit_square font-bold"></i>
                             </Link>
                             <Link @click.prevent="deleteInstance(collection.id)" v-if="$page.props.auth.user.role <= 9" as="button"
                                   href="#"
@@ -63,7 +63,7 @@
                             md:order-2
                             grid items-center
                             ">
-                                <span class="material-symbols-sharp font-bold">delete</span>
+                                <i class="icon-delete font-bold"></i>
                             </Link>
                         </div>
                     </template>

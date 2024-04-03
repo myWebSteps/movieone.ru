@@ -59,7 +59,7 @@
                            type="search" placeholder="Поиск жанра..."
                     >
                     <button @click.prevent="send()">
-                        <span class="material-symbols-sharp">search</span>
+                        <i class="icon-search"></i>
                     </button>
                 </div>
             </form>
@@ -98,7 +98,7 @@
                            type="search" placeholder="Поиск стран..."
                     >
                     <button @click.prevent="send()">
-                        <span class="material-symbols-sharp">search</span>
+                        <i class="icon-search"></i>
                     </button>
                 </div>
             </form>
@@ -185,7 +185,7 @@
         <Link @click.prevent="flush()" href="#"
               class="justify-self-end md:hidden grid grid-flow-col items-center auto-cols-max">
             <span>Сбросить фильтр</span>
-            <span class="material-symbols-sharp">filter_alt_off</span>
+            <i class="icon-filter_alt_off"></i>
         </Link>
 
     </div>

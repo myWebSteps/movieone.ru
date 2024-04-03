@@ -31,7 +31,7 @@
                                             >
                                                 {{ $page.props.auth.user.name }}
 
-                                 <span class="material-symbols-sharp">keyboard_arrow_down</span>
+                                 <i class="icon-keyboard_arrow_down"></i>
                                             </button>
                                         </span>
                         </template>
@@ -94,11 +94,11 @@
                             href="#"
                             @click.prevent="show.comments = !show.comments"
                         >
-                            <div class="grid grid-flow-col">
+                            <div class="hover:text-white cursor-pointer grid grid-flow-col auto-cols-max items-center">
                                 <span>Комментарии</span>
-                                  <span class="material-symbols-sharp"
+                                  <i class="icon-keyboard_arrow_down"
                                         :class="show.comments ? 'rotate-180' : ''"
-                                  >keyboard_arrow_down</span>
+                                  ></i>
                             </div>
                             <span v-if="comments.total > 0" class="relative flex h-3 w-3 mx-1">
                                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
@@ -138,10 +138,10 @@
                              href="#"
                              @click.prevent="show.options = !show.options"
                         >
-                            Настройки
-                            <span class="material-symbols-sharp"
+                            <span>Настройки</span>
+                            <i class="icon-keyboard_arrow_down"
                             :class="show.options ? 'rotate-180' : ''"
-                            >keyboard_arrow_down</span>
+                            ></i>
                         </div>
 
                         <div v-if="show.options" class="grid grid-flow-row my-2 mx-1 bg-white rounded-md">

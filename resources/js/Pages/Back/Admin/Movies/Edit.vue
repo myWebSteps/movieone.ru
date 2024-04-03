@@ -129,7 +129,7 @@
                                     <label class="px-4 py-2 block justify-self-center"
                                            :class="form.default_plot === null ? 'bg-sky-950 text-white': ''"
                                     >
-                                        <span class="material-symbols-sharp text-[#333545]">star_half</span>
+                                        <i class="icon-star_half text-[#333545]"></i>
                                         <input v-model="form.default_plot" :value=null type="radio"
                                                name="rate_plot"
                                                checked disabled
@@ -155,7 +155,7 @@
                                     <label class="px-4 py-2 block justify-self-center"
                                            :class="form.default_actors_game === null ? 'bg-sky-950 text-white': ''"
                                     >
-                                        <span class="material-symbols-sharp text-[#333545]">star_half</span>
+                                        <i class="icon-star_half text-[#333545]"></i>
                                         <input v-model="form.default_actors_game" :value=null type="radio"
                                                name="rate_actors_game"
                                                checked disabled
@@ -181,7 +181,7 @@
                                     <label class="px-4 py-2 block justify-self-center"
                                            :class="form.default_atmosphere === null ? 'bg-sky-950 text-white': ''"
                                     >
-                                        <span class="material-symbols-sharp text-[#333545]">star_half</span>
+                                        <i class="icon-star_half text-[#333545]"></i>
                                         <input v-model="form.default_atmosphere" :value=null type="radio"
                                                name="rate_atmosphere"
                                                checked disabled
@@ -235,14 +235,14 @@
                     <div class="grid grid-flow-row gap-4">
                         <div>Сиквелы: <br>
                             <div v-for="spin_off in spinOff.parsed" class="grid grid-flow-col auto-cols-max items-center gap-4">
-                                <span class="material-symbols-sharp text-green-500">check_circle</span>
+                                <i class="icon-check_circle text-green-500"></i>
                                 <span >{{spin_off.nameRu}} / {{spin_off.year}}</span>
-                                <span @click.prevent="deleteSpinOff(spin_off)" class="material-symbols-sharp text-red-500 cursor-pointer">delete</span>
+                                <i @click.prevent="deleteSpinOff(spin_off)" class="icon-delete text-red-500 cursor-pointer"></i>
                             </div>
 
                             <template v-if="spinOff.selected.length > 0">
                                 <div v-for="selected_movie in spinOff.selected" class="grid grid-flow-col auto-cols-max items-center gap-4">
-                                    <span class="material-symbols-sharp text-green-500">check_circle</span>
+                                    <i class="icon-check_circle text-green-500"></i>
                                     <span >{{selected_movie.nameRu}} / {{selected_movie.year}}</span>
                                 </div>
                             </template>
