@@ -98,7 +98,6 @@ export default {
 
     },
     beforeMount() {
-        console.log(window.screen.width)
         if(window.screen.width <= 430){
             this.coverImg = '/img/cover_min.webp'
         }else{

@@ -23,6 +23,12 @@ class ShowResource extends JsonResource
         }else{
             $backdropUrl = null;
         }
+        if($this->backdrop_min != null) {
+            $backdropUrl_min = url('storage/movies' . $this->backdrop_min);
+        }else{
+            $backdropUrl_min = null;
+        }
+
 
         return [
             'id' => $this->id,
@@ -30,6 +36,7 @@ class ShowResource extends JsonResource
             'kinopoisk_id' => $this->kinopoisk_id,
             'posterUrl' => $posterUrl,
             'backdropUrl' => $backdropUrl,
+            'backdropUrl_min' => $backdropUrl_min,
             'trailers' => [
                 'videos_count' => $this->trailers->count(),
                 'videos' => $this->trailers

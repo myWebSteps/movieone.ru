@@ -8,6 +8,7 @@ use App\Http\Requests\Back\Admin\Movies\UpdateRequest;
 use App\Models\Comment;
 use App\Models\Movie;
 use App\Models\MovieSpinoff;
+use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 use Intervention\Image\Facades\Image;
 
@@ -29,11 +30,19 @@ class UpdateController extends Controller
         }
 
         if(isset($data['backdrop']) && $data['backdrop'] !=null){
+            File::delete(storage_path('/app/public/movies' . $movie->backdrop));
+            File::delete(storage_path('/app/public/movies' . $movie->backdrop_min));
+
             $backdrop_path = '/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension();
-            $data['backdrop'] = Image::make($data['backdrop'])
-                ->fit(1535, 585)
+            Image::make($data['backdrop'])
+                ->fit(1200, 450)
                 ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension()));
-        $data['backdrop'] = $backdrop_path;
+            $backdrop_path_min = '/backdrops'.'/backdrop'.$data['kinopoisk_id'].'_min.'.$data['backdrop']->getClientOriginalExtension();
+            Image::make($data['backdrop'])
+                ->fit(400, 150)
+                ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoisk_id'].'_min.'.$data['backdrop']->getClientOriginalExtension()));
+            $data['backdrop'] = $backdrop_path;
+            $data['backdrop_min'] = $backdrop_path_min;
         }else{
             unset($data['backdrop']);
         }

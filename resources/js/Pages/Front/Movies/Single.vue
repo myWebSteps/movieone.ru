@@ -15,7 +15,7 @@
     z-10 overflow-y-hidden"
     :class="movie.backdropUrl === null ? 'cover-min-h' : ''"
     >
-        <img v-if="movie.backdropUrl !== null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="movie.backdropUrl"
+        <img v-if="movie.backdropUrl != null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="backdrop"
              alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
@@ -448,11 +448,22 @@ export default {
                 type: '',
                 show: false,
             },
+            backdrop: null,
 
+        }
+    },
+    beforeMount(){
+        this.b = window.screen.width
+        if(window.screen.width <= 430)
+        {
+            this.backdrop = this.movie.backdropUrl_min
+        }else{
+            this.backdrop = this.movie.backdropUrl
         }
     },
 
     mounted() {
+        console.log(this.screen_width);
         this.getReviews()
         this.togglePlaylistButton()
 

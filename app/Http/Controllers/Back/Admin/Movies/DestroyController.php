@@ -10,10 +10,9 @@ class DestroyController extends Controller
 {
     public function __invoke(Movie $movie)
     {
-
-        $fileToDelete = $movie->getAttribute('poster');
-
-        File::delete(storage_path('/app/public/movies' . $fileToDelete));
+        File::delete(storage_path('/app/public/movies' . $movie->backdrop));
+        File::delete(storage_path('/app/public/movies' . $movie->backdrop_min));
+        File::delete(storage_path('/app/public/movies' . $movie->poster));
 
         $movie->delete();
     }

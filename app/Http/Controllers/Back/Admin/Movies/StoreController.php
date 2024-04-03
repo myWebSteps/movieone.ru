@@ -26,8 +26,11 @@ class StoreController extends Controller
         //Backdrop Upload
         if(isset($data['backdrop'])){
             Image::make($data['backdrop'])
-                ->fit(1535, 585)
+                ->fit(1200, 450)
                 ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoiskId'].'.'.$data['backdrop']->getClientOriginalExtension()));
+            Image::make($data['backdrop'])
+                ->fit(400, 150)
+                ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoiskId'].'_min.'.$data['backdrop']->getClientOriginalExtension()));
         }
 
             $poster_path = '/posters'.'/poster'.$data['kinopoiskId'].'.'.$data['poster']->getClientOriginalExtension();
@@ -35,9 +38,11 @@ class StoreController extends Controller
         if(isset($data['backdrop']))
             {
                 $backdrop_path = '/backdrops'.'/backdrop'.$data['kinopoiskId'].'.'.$data['backdrop']->getClientOriginalExtension();
+                $backdrop_path_min = '/backdrop'.$data['kinopoiskId'].'_min.'.$data['backdrop']->getClientOriginalExtension();
             }else
             {
                 $backdrop_path = null;
+                $backdrop_path_min = null;
             }
 
         if(!isset($data['budget']) || $data['budget'] == '' || $data['budget'] == 'undefined undefined')
