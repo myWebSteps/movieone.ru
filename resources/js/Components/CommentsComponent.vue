@@ -52,7 +52,7 @@
                         <label>Сюжет:</label><br>
                             <ul class="grid grid-cols-[repeat(6,_40px)] grid-flow-col w-[240px] rounded-md overflow-hidden">
                                 <li class="grid items-center justify-items-center bg-gray-300 cursor-pointer py-1">
-                                    <span class="icon-star_half text-[#333545]"></span>
+                                    <span class="icon-star_half text-[#333545] text-xl"></span>
                                 </li>
                                 <li v-for="item in 5" @click="countScore(item, commentsForm.actors_game, commentsForm.atmosphere)"
                                     class="grid items-center justify-items-center cursor-pointer py-1"
@@ -66,7 +66,7 @@
                                 <label>Игра актеров:</label><br>
                                 <ul class="grid grid-cols-[repeat(6,_40px)] grid-flow-col w-[240px] rounded-md overflow-hidden">
                                     <li class="grid items-center justify-items-center bg-gray-300 cursor-pointer py-1">
-                                        <i class="icon-star_half text-[#333545]"></i>
+                                        <i class="icon-star_half text-[#333545] text-xl"></i>
                                     </li>
                                     <li v-for="item in 5" @click="countScore(commentsForm.plot, item, commentsForm.atmosphere)"
                                         class="grid items-center justify-items-center cursor-pointer py-1"
@@ -80,7 +80,7 @@
                                 <label>Атмосфера:</label><br>
                                 <ul class="grid grid-cols-[repeat(6,_40px)] grid-flow-col w-[240px] rounded-md overflow-hidden">
                                     <li class="grid items-center justify-items-center bg-gray-300 cursor-pointer py-1">
-                                        <i class="icon-star_half text-[#333545]"></i>
+                                        <i class="icon-star_half text-[#333545] text-xl"></i>
                                     </li>
                                     <li v-for="item in 5" @click="countScore(commentsForm.plot, commentsForm.actors_game, item)"
                                         class="grid items-center justify-items-center cursor-pointer py-1"

@@ -36,7 +36,7 @@
         <div class="row-start-1 row-end-1 col-start-1 col-end-1
         justify-self-start self-start bg-white shadow-sm rounded-sm p-2 m-4 text-sm">
             <h6 class="text-gray-900 grid grid-flow-col auto-cols-max gap-0.5 items-center">
-                <i class="icon-star_half text-rose-600"></i>
+                <i class="icon-star_half text-rose-700 text-2xl"></i>
                 <span>{{ movie.rating }}</span>
             </h6>
         </div>
