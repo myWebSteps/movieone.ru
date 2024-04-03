@@ -135,7 +135,7 @@
                         <template v-if="bookmarks !== null">
                         <h6 class="text-sm font-light p-2">Избранные коллекции:</h6>
                         <template v-for="item in bookmarks">
-                            <DropdownLink :href="`/movies/${item.slug}`"
+                            <DropdownLink :href="`/collections/${item.slug}`"
                                           class="grid grid-flow-col grid-cols-[1fr,_2fr] min-w-72 gap-2"
                             >
                                 <img :src="item.poster" alt="...">
