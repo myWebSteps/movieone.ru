@@ -13,9 +13,9 @@
     overflow-hidden
     top-0
     z-10 overflow-y-hidden"
-    :class="movie.backdropUrl === null ? 'cover-min-h' : ''"
+    :class="backdrop === null ? 'cover-min-h' : ''"
     >
-        <img v-if="movie.backdropUrl != null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="backdrop"
+        <img v-if="backdrop != null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="backdrop"
              alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
@@ -453,7 +453,6 @@ export default {
         }
     },
     beforeMount(){
-        this.b = window.screen.width
         if(window.screen.width <= 430)
         {
             this.backdrop = this.movie.backdropUrl_min
