@@ -1136,6 +1136,10 @@ select {
   max-height: 50vh;
 }
 
+.min-h-36 {
+  min-height: 9rem;
+}
+
 .w-1\/2 {
   width: 50%;
 }

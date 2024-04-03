@@ -12,8 +12,9 @@
     max-h-[50vh]
     overflow-hidden
     top-0
-    z-10 overflow-y-hidden"
-    :class="backdrop === null ? 'cover-min-h' : ''"
+    z-10 overflow-y-hidden
+    min-h-36
+    "
     >
         <img v-if="backdrop != null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="backdrop"
              alt="...">
