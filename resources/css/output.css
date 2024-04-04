@@ -2905,6 +2905,10 @@ nav{
     max-height: 60vh;
   }
 
+  .lg\:min-h-52 {
+    min-height: 13rem;
+  }
+
   .lg\:translate-x-0 {
     --tw-translate-x: 0px;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));

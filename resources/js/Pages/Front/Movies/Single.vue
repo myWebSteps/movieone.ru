@@ -14,8 +14,10 @@
     top-0
     z-10 overflow-y-hidden
     min-h-36
+    lg:min-h-52
     "
     >
+
         <img v-if="backdrop != null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="backdrop"
              alt="...">
 
@@ -453,19 +455,18 @@ export default {
 
         }
     },
-    beforeMount(){
+
+
+    mounted() {
+        this.getReviews()
+        this.togglePlaylistButton()
+
         if(window.screen.width <= 430)
         {
             this.backdrop = this.movie.backdropUrl_min
         }else{
             this.backdrop = this.movie.backdropUrl
         }
-    },
-
-    mounted() {
-        console.log(this.screen_width);
-        this.getReviews()
-        this.togglePlaylistButton()
 
         if (this.movie.video_allowed == 1) {
             new Kinobox('.kinobox_player', {
