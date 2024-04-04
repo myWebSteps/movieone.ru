@@ -455,18 +455,18 @@ export default {
 
         }
     },
-
-
-    mounted() {
-        this.getReviews()
-        this.togglePlaylistButton()
-
+    beforeMount() {
         if(window.screen.width <= 430)
         {
             this.backdrop = this.movie.backdropUrl_min
         }else{
             this.backdrop = this.movie.backdropUrl
         }
+    },
+
+    mounted() {
+        this.getReviews()
+        this.togglePlaylistButton()
 
         if (this.movie.video_allowed == 1) {
             new Kinobox('.kinobox_player', {
