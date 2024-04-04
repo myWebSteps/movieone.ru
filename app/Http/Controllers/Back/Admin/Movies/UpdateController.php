@@ -20,6 +20,7 @@ class UpdateController extends Controller
         $data = $request->validated();
 
         if(isset($data['poster']) && $data['poster'] !=null){
+            File::delete(storage_path('/app/public/movies' . $movie->poster));
             $poster_path = '/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension();
             $data['poster'] = Image::make($data['poster'])
                 ->fit(250, 404)

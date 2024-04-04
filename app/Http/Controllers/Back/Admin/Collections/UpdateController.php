@@ -19,6 +19,7 @@ class UpdateController extends Controller
         $data = $request->validated();
 
         if (gettype($data['poster']) === 'object') {
+            File::delete(storage_path('/app/public/movies' . $collection->poster));
                 File::delete(storage_path('app/public/collections/posters/' . $collection->poster));
             $image_name = Carbon::now()->getTimestampMs() . '.' . $data['poster']->getClientOriginalExtension();
             Image::make($data['poster'])

@@ -48,7 +48,7 @@
                 <div class="grid grid-flow-col justify-between">
 
                     <div class="grid items-center grid-flow-col auto-cols-max">
-                        <i class="icon-today text-rose-500"></i>&nbsp
+                        <i class="icon-today text-rose-500 text-2xl"></i>&nbsp
                         <span class="text-gray-900 font-light text-sm">{{ data.date }}</span>
                     </div>
                     <div class="grid grid-flow-col grid-cols-[repeat(3,_max-content)] auto-rows-[32px] items-center
@@ -70,7 +70,7 @@
                 </div>
 
                 <div v-if="data.rating > 0" class="grid items-center grid-flow-col auto-cols-max">
-                    <i class="icon-star_half text-rose-600"></i>
+                    <i class="icon-star_half text-rose-600 text-2xl"></i>
                     <span>{{ data.rating }}</span>
                 </div>
 
@@ -143,7 +143,7 @@
 
 
                         <span class="inline-grid grid-flow-col auto-cols-max gap-1 items-center">
-                            <i class="icon-today text-rose-500"></i>&nbsp{{
+                            <i class="icon-today text-rose-500 text-xl"></i>&nbsp{{
                                 collection.updated_at
                             }}</span>
                     </div>
@@ -203,10 +203,6 @@ export default {
     },
 
     methods: {
-        getBackground(elem, background) {
-            console.log(elem)
-        },
-
         copyUrl() {
             navigator.clipboard.writeText(window.location.href)
             this.message.body = ['ссылка успешно скопирована']

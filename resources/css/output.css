@@ -2412,10 +2412,6 @@ nav{
   }
 }
 
-.cover-min-h{
-  min-height: 40vh;
-}
-
 .hover\:border-2:hover {
   border-width: 2px;
 }

@@ -2,7 +2,7 @@
 
     <div class="main-wrapper">
         <header class="bg-[#333545] grid z-40">
-            <div class="px-4 grid grid-cols-[max-content,_repeat(2,_1fr)] content-center gap-4">
+            <div class="px-8 grid grid-cols-[max-content,_repeat(2,_1fr)] content-center gap-4">
 
                 <div @click.prevent="show.menu = !show.menu" class="justify-self-start grid content-center self-center
                 cursor-pointer"
