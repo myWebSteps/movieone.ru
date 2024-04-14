@@ -106,7 +106,7 @@
                         </template>
                         <template v-else>
                                 <div class="min-w-[200px] p-2">
-                                    <span class="text-sm font-light p-2">У Вас пока нет избранный видео</span>
+                                    <span class="text-sm font-light p-2">У Вас пока нет избранных видео</span>
                                 </div>
                         </template>
                     </template>
@@ -207,7 +207,7 @@
                     <li>
                         <Link :class="show.menu ? 'sm:grid-flow-col sm:grid-cols-[repeat(2,_max-content)]' : ''"
                               href="/collections"
-                              class="text-gray-500 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
+                              class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
                         >
                             <i class="icon-video_library"></i>
                             <span class="text-xs sm:text-sm ">Подборки</span>
@@ -216,7 +216,7 @@
                     <li :class="$page.url === '/random_movies' ? 'text-white' : ''">
                         <Link :class="show.menu ? 'sm:grid-flow-col sm:grid-cols-[repeat(2,_max-content)]' : ''"
                               href="/random_movies"
-                              class="text-gray-500 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
+                              class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
                         >
                             <i class="icon-shuffle"></i>
                             <span class="text-xs sm:text-sm text-wrap"
@@ -227,7 +227,7 @@
                         :class="$page.url.startsWith(`/movies?category=${category.slug}`) ? 'text-white' : ''">
                         <Link
                             :class="show.menu ? 'sm:grid-flow-col sm:grid-cols-[repeat(2,_max-content)]' : ''"
-                            class="text-gray-500 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
+                            class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
                             :href="`/movies?category=${category.slug}&order=year&page=1`">
                             <i :class="`icon-${category.logo}`"></i>
                             <span class="text-xs sm:text-sm">{{ category.title }}</span>
