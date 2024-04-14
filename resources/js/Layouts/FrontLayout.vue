@@ -168,10 +168,10 @@
              lg:hidden"
              :class="show.filter ? 'bg-white text-green-600 top-2 ' : 'bg-green-600 text-white top-[6rem]'">
             <template v-if="show.filter">
-                <i class="icon-close"></i>
+                <i class="icon-close text-2xl"></i>
             </template>
             <template v-else>
-                <i class="icon-filter_alt"></i>
+                <i class="icon-filter_alt text-2xl"></i>
             </template>
         </div>
 

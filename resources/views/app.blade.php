@@ -12,7 +12,7 @@
     <body class="bg-slate-100">
         @inertia
     </body>
-
     <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date(); for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }} k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "../assets/metrica.js", "ym"); ym(94438576, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/94438576" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+    <script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter94438576 = new Ya.Metrika({ id:94438576, clickmap:true, trackLinks:true, accurateTrackBounce:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], x = "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/watch.js", s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; for (var i = 0; i < document.scripts.length; i++) { if (document.scripts[i].src === x) { return; } } s.type = "text/javascript"; s.async = true; s.src = x; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/94438576" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </html>
