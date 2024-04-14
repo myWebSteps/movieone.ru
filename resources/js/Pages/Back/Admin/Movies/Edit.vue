@@ -77,7 +77,7 @@
                                        placeholder="Введите ограничения по возрасту">
                             </label>
 
-                            <label>Продолжительность: <br>
+                            <label>Бюджет: <br>
                                 <input class="w-full" v-model="form.budget" type="text" placeholder="Бюджет">
                             </label>
 
