@@ -11,9 +11,9 @@
                 "
          :class="show.parser ? 'fixed' : 'absolute top-[1rem]'"
     >
-        <i v-if="show.parser === false" class="icon-filter_alt cursor-pointer"></i>
+        <i v-if="show.parser === false" class="icon-filter_alt cursor-pointer text-2xl"></i>
 
-        <i v-if="show.parser === true" class="icon-close cursor-pointer"></i>
+        <i v-if="show.parser === true" class="icon-close cursor-pointer text-2xl"></i>
     </div>
 
     <div
