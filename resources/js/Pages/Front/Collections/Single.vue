@@ -194,12 +194,9 @@ export default {
         }
     },
 
-    beforeUnmount() {
-        ym(94438576, 'hit', `/collections/${this.data.slug}`);
-    },
-
     mounted() {
         this.togglePlaylistButton()
+        ym(94438576, 'hit', `/collections/${this.data.slug}`);
     },
 
     methods: {

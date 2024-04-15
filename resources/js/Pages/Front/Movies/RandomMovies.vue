@@ -55,7 +55,7 @@
         props: ['data'],
         components: {MoviesCard, Head, Link},
 
-        beforeUnmount() {
+        mounted() {
             ym(94438576, 'hit', '/random_movies');
         },
 

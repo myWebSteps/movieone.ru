@@ -32,15 +32,8 @@ export default {
     components: {Head, Link, MoviesCard},
     mounted() {
         this.$parent.searchKey = ''
-    },
-    beforeUnmount() {
         ym(94438576, 'hit', '/search');
     },
-
-
-
-
-
 
 }
 </script>

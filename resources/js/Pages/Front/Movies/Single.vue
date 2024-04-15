@@ -255,8 +255,8 @@
                         </div>
 
                         <article class="px-4">
-                            <h3 class="text-xl">{{ movie.slogan }}</h3>
-                            <p class="font-light" v-html="movie.description"></p>
+                            <h3 class="text-gray-900 text-xl font-medium">{{ movie.slogan }}</h3>
+                            <p class="text-gray-700" v-html="movie.description"></p>
                         </article>
                     </div>
 
@@ -296,17 +296,17 @@
                     >
                         <template v-for="review in reviews.items">
                             <article class="grid grid-flow-row gap-1">
-                                <span class="text-gray-500 font-light">{{ review.author }}</span>
-                                <h5>{{ review.title }}
+                                <span class="text-gray-500 font-medium">{{ review.author }}</span>
+                                <h5 class="font-semibold">{{ review.title }}
                                     <i v-if="review.type === 'POSITIVE'"
-                                          class="icon-sentiment_very_satisfied text-green-500 font-bold">
+                                          class="icon-sentiment_very_satisfied text-green-500 font-bold text-2xl">
                                 </i>
                                     <i v-if="review.type === 'NEGATIVE'"
-                                          class="icon-sentiment_dissatisfied text-rose-500 font-bold">
+                                          class="icon-sentiment_dissatisfied text-rose-500 font-bold text-2xl">
                                 </i>
                                 </h5>
 
-                                <p class="text-gray-900 font-light" v-html="review.description"></p>
+                                <p class="text-gray-900 pt-1" v-html="review.description"></p>
 
                             </article>
                         </template>

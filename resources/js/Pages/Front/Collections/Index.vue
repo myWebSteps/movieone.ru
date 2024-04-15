@@ -54,7 +54,7 @@
             }
         },
 
-        beforeUnmount() {
+        mounted() {
             ym(94438576, 'hit', '/collections');
         },
 
