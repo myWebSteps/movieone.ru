@@ -358,7 +358,7 @@
                             >
                                 <img :src="person.posterUrl">
 
-                                <div class="font-weight-bold">
+                                <div class="font-weight-bold pl-1">
                                     <div class="text-gray-900">{{ person.nameRu }}</div>
                                     <div class="text-gray-500">{{ person.professionText }}</div>
                                 </div>
@@ -372,7 +372,7 @@
                             >
                                 <img :src="person.posterUrl">
 
-                                <div class="font-weight-bold">
+                                <div class="font-weight-bold pl-1">
                                     <div class="text-gray-900">{{ person.nameRu }}</div>
                                     <div class="text-gray-500">{{ person.professionText }}</div>
                                 </div>
@@ -386,7 +386,7 @@
                             >
                                 <img :src="person.posterUrl">
 
-                                <div class="font-weight-bold">
+                                <div class="font-weight-bold pl-1">
                                     <div class="text-gray-900">{{ person.nameRu }}</div>
                                     <div class="text-gray-500">{{ person.professionText }}</div>
                                 </div>
