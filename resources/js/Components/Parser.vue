@@ -102,7 +102,11 @@ export default {
                         this.form.slogan = response.data.slogan
                     }
                     this.examples.description = response.data.description
-                    this.form.trailers = response.data.videos.trailers
+                    if(response.data.hasOwnProperty('videos')) {
+                      this.form.trailers = response.data.videos.trailers
+                    }else{
+                        this.form.trailers = []
+                    }
                     this.examples.rate = response.data.rating.kp
                     this.examples.genres = response.data.genres
                     this.examples.category = response.data.type
@@ -112,7 +116,6 @@ export default {
                     if (response.data.countries.length > 0) {
                         this.examples.countries = response.data.countries
                     }
-                    console.log(response.data.sequelsAndPrequels)
                     response.data.sequelsAndPrequels.forEach(elem=>{
                         this.spinOff.parsed.push(
                             {
@@ -179,7 +182,6 @@ export default {
             axios.get(`https://kinobox.tv/api/players/?kinopoisk=${this.form.kinopoiskId}`)
                 .then(response => {
                     this.test.players = response.data
-                    console.log(this.test.players)
                 })
         },
 
