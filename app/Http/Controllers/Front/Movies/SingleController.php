@@ -13,6 +13,7 @@ use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use phpDocumentor\Reflection\Location;
 use function Monolog\toArray;
 use function Symfony\Component\String\length;
 
@@ -20,6 +21,9 @@ class SingleController extends Controller
 {
     public function __invoke(Request $request)
     {
+        $ip = request()->ip(); //ip of the user which is currently visiting.
+        $location = \Location::get($ip);
+
         $data = Movie::where('slug', $request->movie)->firstOrFail();
 
         $result = new ShowResource($data);
@@ -47,6 +51,6 @@ class SingleController extends Controller
 
         $relatedCollections = RelatedCollectionsResource::collection($data->collections()->where('is_published', '1')->get())->resolve();
 
-        return Inertia::render('Front/Movies/Single', compact('movie', 'comments', 'commentsCount', 'relatedMovies', 'spinMovies', 'relatedCollections'));
+        return Inertia::render('Front/Movies/Single', compact('movie', 'comments', 'commentsCount', 'relatedMovies', 'spinMovies', 'relatedCollections', 'location'));
     }
 }

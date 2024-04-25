@@ -413,6 +413,7 @@
             </div>
         </div>
     </div>
+        {{location}}
     </section>
 
     <message :message.sync="message"></message>
@@ -430,7 +431,7 @@ import CommentsComponent from "@/Components/CommentsComponent.vue";
 export default {
     name: "Single",
     layout: FrontLayout,
-    props: ['movie', 'comments', 'commentsCount', 'relatedMovies', 'spinMovies', 'relatedCollections'],
+    props: ['movie', 'comments', 'commentsCount', 'relatedMovies', 'spinMovies', 'relatedCollections', 'location'],
     components: {CommentsComponent, Head, Link, FrontLayout, MoviesCard, Message},
 
     data() {
