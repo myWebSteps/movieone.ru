@@ -540,7 +540,7 @@ export default {
     methods: {
 
         restrictions() {
-            if(this.movie.video_allowed == 0 && this.location.countryName === 'Russia'){
+            if(this.location.countryName === 'Russia'){
                 return false
             }else{
                 return true
