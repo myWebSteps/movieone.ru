@@ -247,12 +247,13 @@
                     <div :class="accordion === 'general' ? '' : 'hidden' "
                          class="grid grid-flow-row gap-4"
                     >
-                        <div v-if="movie.video_allowed == 1" class="kinobox_player"></div>
-                        <div v-else class="w-full h-60 bg-gray-200 text-gray-900 font-light grid grid-flow-col auto-cols-max items-center justify-center"
+
+                        <div v-if="restrictions()" class="w-full h-60 bg-gray-200 text-gray-900 font-light grid grid-flow-col auto-cols-max items-center justify-center"
                         >
                             <i class="icon-notification_important"></i>&nbsp
-                            <span class="text-xl">Видео не найдено</span>
+                            <span class="text-xl">Видео не найдено или запрещено к показу</span>
                         </div>
+                        <div v-else class="kinobox_player"></div>
 
                         <article class="px-4">
                             <h3 class="text-gray-900 text-xl font-medium">{{ movie.slogan }}</h3>
@@ -413,7 +414,6 @@
             </div>
         </div>
     </div>
-        {{location}}
     </section>
 
     <message :message.sync="message"></message>
@@ -538,6 +538,14 @@ export default {
     },
 
     methods: {
+
+        restrictions() {
+            if(this.movie.video_allowed == 0 && this.location.countryName === 'Russia'){
+                return false
+            }else{
+                return true
+            }
+        },
 
         togglePlaylistButton() {
             if (localStorage.getItem('playlist')) {
