@@ -112,7 +112,7 @@
                             <i class="icon-today"></i>&nbsp
                             <span class="text-gray-900">{{ movie.endYear }}</span>
                         </h5>
-                        <h5 class="text-rose-700 text-lg font-light grid grid-flow-col grid-cols-[20px,_1fr] gap-3 items-center">
+                        <h5 class="text-rose-700 text-lg font-light grid grid-flow-col grid-cols-[20px,_1fr] gap-1 items-center">
                             <i class="icon-camera_roll"></i>
                             <span class="text-gray-900 text-sm text-wrap max-w-[90%]">
                                 <template v-for="genre in movie.genres" >
@@ -169,7 +169,7 @@
                         <div v-if="movie.budget">
                             <h5 class="text-rose-700 text-lg font-light grid grid-flow-col auto-cols-max
                                  items-center">
-                                <i class="icon-payments"></i>&nbsp
+                                <i class="icon-attach_money text-xl"></i>&nbsp
                                 <span class="text-gray-900">{{ movie.budget }}</span>
                             </h5>
                         </div>
