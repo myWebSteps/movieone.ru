@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
+
 class StoreController extends Controller
 {
     public function __invoke(StoreRequest $request)
@@ -22,14 +23,17 @@ class StoreController extends Controller
         //Poster Upload
             Image::make($data['poster'])
                 ->fit(250, 404)
+                ->encode('webp', 90)
                 ->save(storage_path('/app/public/movies/posters'.'/poster'.$data['kinopoiskId'].'.'.$data['poster']->getClientOriginalExtension()));
         //Backdrop Upload
         if(isset($data['backdrop'])){
             Image::make($data['backdrop'])
                 ->fit(1200, 450)
+                ->encode('webp', 90)
                 ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoiskId'].'.'.$data['backdrop']->getClientOriginalExtension()));
             Image::make($data['backdrop'])
                 ->fit(400, 150)
+                ->encode('webp', 90)
                 ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoiskId'].'_min.'.$data['backdrop']->getClientOriginalExtension()));
         }
 
