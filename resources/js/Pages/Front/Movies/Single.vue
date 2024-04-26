@@ -455,18 +455,17 @@ export default {
 
         }
     },
-    beforeMount() {
+
+    mounted() {
+        this.getReviews()
+        this.togglePlaylistButton()
+
         if(window.screen.width <= 430)
         {
             this.backdrop = this.movie.backdropUrl_min
         }else{
             this.backdrop = this.movie.backdropUrl
         }
-    },
-
-    mounted() {
-        this.getReviews()
-        this.togglePlaylistButton()
 
         try {
             "use strict";
