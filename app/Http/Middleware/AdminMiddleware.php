@@ -16,7 +16,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->role < 9){
+        if(auth()->user()->role < 8){
 
             Auth::guard('web')->logout();
 
