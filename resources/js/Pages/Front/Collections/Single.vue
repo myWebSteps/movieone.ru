@@ -54,15 +54,15 @@
                     <div class="grid grid-flow-col grid-cols-[repeat(3,_max-content)] auto-rows-[32px] items-center
                         justify-self-center
                         ">
-                        <a href="https://instagram.com/roman_makukha_89?igshid=OGQ5ZDc2ODk2ZA=="
+                        <a href="https://vero.co/movieone"
                            target="_blank">
                             <img src="/img/social/vero.svg" alt="...">
                         </a>
-                        <a href="https://dzen.ru/movieone"
+                        <a href="https://t.me/kino_movieone"
                            target="_blank">
                             <img src="/img/social/telegram.svg" alt="...">
                         </a>
-                        <a href="https://t.me/kino_movieone"
+                        <a href="https://dzen.ru/movieone"
                            target="_blank">
                             <img src="/img/social/dzen.svg" alt="...">
                         </a>
