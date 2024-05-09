@@ -432,7 +432,6 @@ export default {
 
     data() {
         return {
-            user_location: this.location,
             loadTrailers: false,
             accordion: 'general',
             comment_errors: '',
@@ -472,8 +471,6 @@ export default {
     methods: {
 
         startPlayer(){
-  
-            console.log(this.user_location)
             if(this.movie.video_allowed == 0 && this.location.countryName == 'Russia'){
                 setTimeout(()=> {
                    document.querySelector('.work-space').appendChild(document.createElement("div")).classList.add('kinobox_player')
