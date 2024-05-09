@@ -309,8 +309,9 @@
                              alt="Превью постера">
                         <label class="self-end">Постер:<br>
                             <input @input="handleImg('poster', $event)"
-                                   type="file">
+                                   type="file" accept="jpg, jpeg">
                         </label>
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 250 X 404. Формат *jpg, *jpeg</figcaption>    
                         <a v-if="examples.posterUrlPreview != null" :href="examples.posterUrlPreview" target="_blank"
                            class="text-green-600 cursor-pointer"
                         >
@@ -322,8 +323,9 @@
                              alt="Превью фоновой картинки">
                         <label class="self-end">Фоновая картинка:<br>
                             <input @input="handleImg('backdrop', $event)"
-                                   type="file">
+                                   type="file" accept="jpg, jpeg">
                         </label>
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 1200 X 450. Формат *jpg, *jpeg</figcaption> 
                         <a v-if="examples.backdropUrl != null" :href="examples.backdropUrl" target="_blank"
                            class="text-green-600 cursor-pointer self-end"
                         >

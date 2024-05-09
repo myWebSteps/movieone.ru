@@ -123,9 +123,10 @@
                         <label>Картинка:
                             <div class="mb-3 grid">
                                 <input @input="handleImage($event, index)"
-                                       type="file">
+                                       type="file" accept="jpg, jpeg">
                             </div>
                         </label>
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 1200 X 450. Формат *jpg, *jpeg</figcaption> 
 
                         <label>Выберите видео, соответствующее статье:</label>
 

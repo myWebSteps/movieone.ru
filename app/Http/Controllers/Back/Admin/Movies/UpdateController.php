@@ -21,11 +21,11 @@ class UpdateController extends Controller
 
         if(isset($data['poster']) && $data['poster'] !=null){
             File::delete(storage_path('/app/public/movies' . $movie->poster));
-            $poster_path = '/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension();
+            $poster_path = '/posters'.'/poster'.$data['kinopoisk_id'].'.webp';
             $data['poster'] = Image::make($data['poster'])
                 ->fit(250, 404)
                 ->encode('webp', 90)
-                ->save(storage_path('/app/public/movies/posters'.'/poster'.$data['kinopoisk_id'].'.'.$data['poster']->getClientOriginalExtension()));
+                ->save(storage_path('/app/public/movies/posters'.'/poster'.$data['kinopoisk_id'].'.webp'));
             $data['poster'] = $poster_path;
         }else{
             unset($data['poster']);
@@ -35,16 +35,16 @@ class UpdateController extends Controller
             File::delete(storage_path('/app/public/movies' . $movie->backdrop));
             File::delete(storage_path('/app/public/movies' . $movie->backdrop_min));
 
-            $backdrop_path = '/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension();
+            $backdrop_path = '/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.webp';
             Image::make($data['backdrop'])
                 ->fit(1200, 450)
                 ->encode('webp', 90)
-                ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.'.$data['backdrop']->getClientOriginalExtension()));
-            $backdrop_path_min = '/backdrops'.'/backdrop'.$data['kinopoisk_id'].'_min.'.$data['backdrop']->getClientOriginalExtension();
+                ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoisk_id'].'.webp'));
+            $backdrop_path_min = '/backdrops'.'/backdrop'.$data['kinopoisk_id'].'_min.webp';
             Image::make($data['backdrop'])
                 ->fit(400, 150)
                 ->encode('webp', 90)
-                ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoisk_id'].'_min.'.$data['backdrop']->getClientOriginalExtension()));
+                ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoisk_id'].'_min.webp'));
             $data['backdrop'] = $backdrop_path;
             $data['backdrop_min'] = $backdrop_path_min;
         }else{

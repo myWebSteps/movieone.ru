@@ -18,9 +18,10 @@ class StoreController extends Controller
     {
         $data = $request->validated();
 
-        $image_name = Carbon::now()->getTimestampMs() . '.' . $data['poster']->getClientOriginalExtension();
+        $image_name = Carbon::now()->getTimestampMs() . '.' . 'webp';
         Image::make($data['poster'])
-            ->fit(250, 550)
+            ->fit(250, 450)
+            ->encode('webp', 90)
             ->save(storage_path('/app/public/collections/posters/' . $image_name));
         $data['poster'] = $image_name;
 
@@ -41,10 +42,11 @@ class StoreController extends Controller
 
         foreach($data['articles'] as $article){
 
-            $image_name = Carbon::now()->getTimestampMs() . '.' . $article['article_image']->getClientOriginalExtension();
+            $image_name = Carbon::now()->getTimestampMs() . '.' . 'webp';
 
             Image::make($article['article_image'])
-                ->fit(1535, 585)
+                ->fit(1200, 450)
+                ->encode('webp', 90)
                 ->save(storage_path('/app/public/collections/articles/'. $image_name));
 
             $moviesArr[] = $article['article_movie'];

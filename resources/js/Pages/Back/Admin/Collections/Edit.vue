@@ -93,13 +93,14 @@
                              v-if="poster_preview !== null">
                             <img :src="poster_preview" alt="...">
                         </div>
-                        <label>Картинка:
+                        <label>Постер:
                             <div class="mb-3">
                                 <input @input="handlePoster($event)"
                                        class="cform cform-custom-file"
-                                       type="file">
+                                       type="file" accept="jpg, jpeg">
                             </div>
                         </label>
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 250 X 404. Формат *jpg, *jpeg</figcaption> 
                     </div>
 
                 </section>
@@ -145,9 +146,10 @@
                                     <label>Картинка:
                                         <div class="mb-3">
                                             <input @input="handleImage($event, index)"
-                                                   type="file">
+                                                   type="file" accept="jpg, jpeg">
                                         </div>
                                     </label>
+                                    <figcaption class="text-sm text-gray-500 my-1">*Размер: 1200 X 450. Формат *jpg, *jpeg</figcaption> 
 
                                     <label>Выберите видео, соответствующее статье:</label>
 

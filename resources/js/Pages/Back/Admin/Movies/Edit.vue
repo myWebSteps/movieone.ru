@@ -269,8 +269,9 @@
                         <img class="block w-1/2 justify-self-center" :src="previews.poster" alt="Превью постера">
                         <label class="self-end">Постер:<br>
                             <input @input="handleImg('poster', $event)"
-                                   type="file">
+                                   type="file" accept="jpg, jpeg">
                         </label>
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 250 X 404. Формат *jpg, *jpeg</figcaption>    
                     </div>
                     <div class="grid gap-4 grid-flow-row">
                         <template v-if="previews.backdrop">
@@ -281,8 +282,9 @@
                         </template>
                         <label class="self-end">Загрузите фоновую картинку:<br>
                             <input @input="handleImg('backdrop', $event)"
-                                   type="file">
+                                   type="file" accept="jpg, jpeg">
                         </label>
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 1200 X 450. Формат *jpg, *jpeg</figcaption> 
                     </div>
 
 

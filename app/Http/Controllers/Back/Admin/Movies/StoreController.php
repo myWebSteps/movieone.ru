@@ -24,25 +24,25 @@ class StoreController extends Controller
             Image::make($data['poster'])
                 ->fit(250, 404)
                 ->encode('webp', 90)
-                ->save(storage_path('/app/public/movies/posters'.'/poster'.$data['kinopoiskId'].'.'.$data['poster']->getClientOriginalExtension()));
+                ->save(storage_path('/app/public/movies/posters'.'/poster'.$data['kinopoiskId'].'.webp'));
         //Backdrop Upload
         if(isset($data['backdrop'])){
             Image::make($data['backdrop'])
                 ->fit(1200, 450)
                 ->encode('webp', 90)
-                ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoiskId'].'.'.$data['backdrop']->getClientOriginalExtension()));
+                ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoiskId'].'.webp'));
             Image::make($data['backdrop'])
                 ->fit(400, 150)
                 ->encode('webp', 90)
-                ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoiskId'].'_min.'.$data['backdrop']->getClientOriginalExtension()));
+                ->save(storage_path('/app/public/movies/backdrops'.'/backdrop'.$data['kinopoiskId'].'_min.webp'));
         }
 
-            $poster_path = '/posters'.'/poster'.$data['kinopoiskId'].'.'.$data['poster']->getClientOriginalExtension();
+            $poster_path = '/posters'.'/poster'.$data['kinopoiskId'].'.webp';
 
         if(isset($data['backdrop']))
             {
-                $backdrop_path = '/backdrops'.'/backdrop'.$data['kinopoiskId'].'.'.$data['backdrop']->getClientOriginalExtension();
-                $backdrop_path_min = '/backdrop'.$data['kinopoiskId'].'_min.'.$data['backdrop']->getClientOriginalExtension();
+                $backdrop_path = '/backdrops'.'/backdrop'.$data['kinopoiskId'].'.webp';
+                $backdrop_path_min = '/backdrop'.$data['kinopoiskId'].'_min.webp';
             }else
             {
                 $backdrop_path = null;
