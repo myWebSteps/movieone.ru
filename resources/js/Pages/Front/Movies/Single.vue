@@ -248,12 +248,8 @@
                          class="grid grid-flow-row gap-4"
                     >
 
-                        <div v-if="!restrictions()" class="w-full h-60 bg-gray-200 text-gray-900 font-light grid grid-flow-col auto-cols-max items-center justify-center"
-                        >
-                            <i class="icon-notification_important"></i>&nbsp
-                            <span class="text-xl">Видео не найдено или запрещено к показу</span>
-                        </div>
-                        <div v-if="restrictions()" class="kinobox_player"></div>
+                    <div class="work-space"></div>
+
                         <article class="px-4">
                             <h3 class="text-gray-900 text-xl font-medium">{{ movie.slogan }}</h3>
                             <p class="text-gray-700" v-html="movie.description"></p>
@@ -436,6 +432,7 @@ export default {
 
     data() {
         return {
+            user_location: this.location,
             loadTrailers: false,
             accordion: 'general',
             comment_errors: '',
@@ -459,6 +456,8 @@ export default {
     mounted() {
         this.getReviews()
         this.togglePlaylistButton()
+        ym(94438576, 'hit', `/movies/${this.movie.slug}`)
+        this.startPlayer()
 
         if(window.screen.width <= 430)
         {
@@ -467,6 +466,28 @@ export default {
             this.backdrop = this.movie.backdropUrl
         }
 
+
+    },
+
+    methods: {
+
+        startPlayer(){
+  
+            console.log(this.user_location)
+            if(this.movie.video_allowed == 0 && this.location.countryName == 'Russia'){
+                setTimeout(()=> {
+                   document.querySelector('.work-space').appendChild(document.createElement("div")).classList.add('kinobox_player')
+                   this.initPlayer()
+                }, 
+                5000)
+            }else{
+                document.querySelector('.work-space').appendChild(document.createElement("div")).classList.add('kinobox_player')            
+                this.initPlayer()
+            }
+        }, 
+
+        initPlayer(){
+            
         try {
             "use strict";
 
@@ -851,20 +872,7 @@ export default {
                 }
             }).init();
         }catch(error){console.log(error)};
-
-    },
-
-    beforeUnmount() {
-        ym(94438576, 'hit', `/movies/${this.movie.slug}`);
-    },
-
-    methods: {
-        restrictions() {
-            if(this.movie.video_allowed == 0 && this.location.countryName === 'Russia'){
-                return false
-            }
-            return true
-        },
+        },  
 
         togglePlaylistButton() {
             if (localStorage.getItem('playlist')) {

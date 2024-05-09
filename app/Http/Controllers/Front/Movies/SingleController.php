@@ -22,7 +22,7 @@ class SingleController extends Controller
     public function __invoke(Request $request)
     {
         $ip = request()->ip(); //ip of the user which is currently visiting.
-        $location = \Location::get($ip);
+        $location = \Location::get($ip);    
 
         $data = Movie::where('slug', $request->movie)->firstOrFail();
 
