@@ -271,7 +271,7 @@
                             <input @input="handleImg('poster', $event)"
                                    type="file" accept="jpg, jpeg">
                         </label>
-                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 250 X 404. Формат *jpg, *jpeg</figcaption>    
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 267 X 400. Формат *jpg, *jpeg</figcaption>    
                     </div>
                     <div class="grid gap-4 grid-flow-row">
                         <template v-if="previews.backdrop">

@@ -22,7 +22,7 @@ class StoreController extends Controller
 
         //Poster Upload
             Image::make($data['poster'])
-                ->fit(250, 404)
+                ->fit(267, 400)
                 ->encode('webp', 90)
                 ->save(storage_path('/app/public/movies/posters'.'/poster'.$data['kinopoiskId'].'.webp'));
         //Backdrop Upload

@@ -72,12 +72,13 @@
                              v-if="poster_preview !== null">
                             <img :src="poster_preview" alt="...">
                         </div>
-                        <label>Картинка:
+                        <label>Постер:
                             <div class="mb-3 grid">
                                 <input @input="handlePoster($event)"
-                                       type="file">
+                                       type="file" accept="jpg, jpeg">
                             </div>
                         </label>
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 267 X 400. Формат *jpg, *jpeg</figcaption> 
                     </div>
 
                 </section>

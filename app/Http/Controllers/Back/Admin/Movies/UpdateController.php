@@ -23,7 +23,7 @@ class UpdateController extends Controller
             File::delete(storage_path('/app/public/movies' . $movie->poster));
             $poster_path = '/posters'.'/poster'.$data['kinopoisk_id'].'.webp';
             $data['poster'] = Image::make($data['poster'])
-                ->fit(250, 404)
+                ->fit(267, 400)
                 ->encode('webp', 90)
                 ->save(storage_path('/app/public/movies/posters'.'/poster'.$data['kinopoisk_id'].'.webp'));
             $data['poster'] = $poster_path;

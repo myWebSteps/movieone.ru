@@ -20,7 +20,7 @@ class StoreController extends Controller
 
         $image_name = Carbon::now()->getTimestampMs() . '.' . 'webp';
         Image::make($data['poster'])
-            ->fit(250, 450)
+            ->fit(267, 400)
             ->encode('webp', 90)
             ->save(storage_path('/app/public/collections/posters/' . $image_name));
         $data['poster'] = $image_name;
