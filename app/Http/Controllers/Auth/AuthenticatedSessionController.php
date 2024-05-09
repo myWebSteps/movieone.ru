@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if(Auth::user()->role != '1'){
+        if(Auth::user()->role < 8){
             abort(403);
         }
 
