@@ -97,7 +97,11 @@ export default {
                     this.form.nameEn = response.data.alternativeName
                     this.form.duration = response.data.movieLength
                     this.form.age_limits = response.data.ageRating
+                    if(response.data.hasOwnProperty('budget')){
                     this.form.budget = response.data.budget.value + ' ' + response.data.budget.currency
+                    }else{
+                        this.form.budget = "" 
+                    }
                     if (response.data.slogan !== null) {
                         this.form.slogan = response.data.slogan
                     }
@@ -116,6 +120,7 @@ export default {
                     if (response.data.countries.length > 0) {
                         this.examples.countries = response.data.countries
                     }
+                    if(response.data.hasOwnProperty('sequelsAndPrequels')){
                     response.data.sequelsAndPrequels.forEach(elem=>{
                         this.spinOff.parsed.push(
                             {
@@ -125,9 +130,7 @@ export default {
                             year:elem.year,
                             })
                     })
-
-
-
+                    }
 
                     this.message.body = ['Информация успешно получена']
                     this.message.type = 'success'
