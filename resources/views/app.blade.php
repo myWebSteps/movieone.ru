@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="yandex-verification" content="04c3bf7c897cb0df" />
         <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+        <meta name="google-site-verification" content="g7c3etR_RSTclA04HGiIwvCuIh8XugsxGr_MmYaWl4M" />
         <!-- Scripts -->
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
