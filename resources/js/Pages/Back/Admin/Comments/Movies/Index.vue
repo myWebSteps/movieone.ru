@@ -43,7 +43,7 @@
                             </template>
                         </div>
 
-                        <div class="grid grid-flow-col justify-evenly justify-content-center content-center">
+                        <div class="grid grid-flow-col justify-evenly justify-content-center content-center text-2xl">
                             <Link as="button" :href="`/admin/comments/movies/${comment.comment_id}/edit`"
                                   class="py-1 px-6 border-2 border-amber-300 rounded-2xl text-amber-300 hover:bg-amber-300 hover:text-white
                             order-2

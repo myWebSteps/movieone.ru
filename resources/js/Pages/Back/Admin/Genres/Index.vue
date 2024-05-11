@@ -25,12 +25,12 @@
                     <template v-for="genre in item.genres">
                             <div><span class="md:hidden"># </span>{{genre.id}}</div>
                             <div><span class="md:hidden">Title </span>{{genre.title}}</div>
-                            <div class="grid grid-flow-col justify-around justify-content-center">
+                            <div class="grid grid-flow-col justify-around justify-content-center text-2xl">
                                 <Link as="button" :href="`/admin/genres/${genre.id}/edit`"
                                       class="py-1 px-6 border-2 border-amber-300 rounded-2xl text-amber-300 hover:bg-amber-300 hover:text-white
                                 grid items-center"
                                 >
-                                    <i class="icon-edit_square font-bold"></i>
+                                    <i class="icon-edit_square"></i>
                                 </Link>
                                 <Link @click.prevent="deleteInstance(genre.id)" v-if="$page.props.auth.user.role <= 9" as="button"
                                       href="#"
@@ -38,7 +38,7 @@
                                       class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white
                                 grid items-center"
                                 >
-                                    <i class="icon-delete font-bold"></i>
+                                    <i class="icon-delete"></i>
                                 </Link>
                             </div>
                     </template>

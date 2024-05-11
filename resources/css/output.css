@@ -973,6 +973,11 @@ select {
   margin-right: auto;
 }
 
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -1073,10 +1078,6 @@ select {
 
 .h-4 {
   height: 1rem;
-}
-
-.h-60 {
-  height: 15rem;
 }
 
 .h-8 {
@@ -2006,6 +2007,10 @@ select {
   padding-bottom: 0.5rem;
 }
 
+.pl-1 {
+  padding-left: 0.25rem;
+}
+
 .pl-\[10\%\] {
   padding-left: 10%;
 }
@@ -2022,20 +2027,16 @@ select {
   padding-right: 10%;
 }
 
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
 .pt-\[5\%\] {
   padding-top: 5%;
 }
 
 .pt-\[6\%\] {
   padding-top: 6%;
-}
-
-.pt-1 {
-  padding-top: 0.25rem;
-}
-
-.pl-1 {
-  padding-left: 0.25rem;
 }
 
 .text-center {

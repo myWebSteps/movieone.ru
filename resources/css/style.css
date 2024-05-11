@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?ygzbxl');
-  src:  url('fonts/icomoon.eot?ygzbxl#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?ygzbxl') format('truetype'),
-    url('fonts/icomoon.woff?ygzbxl') format('woff'),
-    url('fonts/icomoon.svg?ygzbxl#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?mju8rt');
+  src:  url('fonts/icomoon.eot?mju8rt#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?mju8rt') format('truetype'),
+    url('fonts/icomoon.woff?mju8rt') format('woff'),
+    url('fonts/icomoon.svg?mju8rt#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,79 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-telegram .path1:before {
+  content: "\e922";
+  color: rgb(255, 255, 255);
+}
+.icon-telegram .path2:before {
+  content: "\e923";
+  margin-left: -1em;
+  color: rgb(241, 243, 244);
+}
+.icon-telegram .path3:before {
+  content: "\e924";
+  margin-left: -1em;
+  color: rgb(141, 156, 244);
+}
+.icon-telegram .path4:before {
+  content: "\e925";
+  margin-left: -1em;
+  color: rgb(123, 205, 209);
+}
+.icon-instagram .path1:before {
+  content: "\e926";
+  color: rgb(193, 53, 132);
+}
+.icon-instagram .path2:before {
+  content: "\e927";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-instagram .path3:before {
+  content: "\e928";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-instagram .path4:before {
+  content: "\e929";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-vero .path1:before {
+  content: "\e92a";
+  color: rgb(15, 40, 60);
+}
+.icon-vero .path2:before {
+  content: "\e92b";
+  margin-left: -1em;
+  color: rgb(7, 22, 25);
+}
+.icon-vero .path3:before {
+  content: "\e92c";
+  margin-left: -1em;
+  color: rgb(1, 215, 215);
+}
+.icon-vero .path4:before {
+  content: "\e92d";
+  margin-left: -1em;
+  color: rgb(27, 146, 184);
+}
+.icon-vero .path5:before {
+  content: "\e92e";
+  margin-left: -1em;
+  color: rgb(15, 40, 60);
+}
+.icon-vero .path6:before {
+  content: "\e92f";
+  margin-left: -1em;
+  color: rgb(7, 22, 25);
+}
+.icon-dzen:before {
+  content: "\e930";
+}
+.icon-bubble:before {
+  content: "\e921";
+}
 .icon-attach_money:before {
   content: "\e920";
 }

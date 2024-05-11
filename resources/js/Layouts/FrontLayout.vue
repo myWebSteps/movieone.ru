@@ -262,8 +262,9 @@
         </main>
 
         <footer class="bg-white self-bottom">
-            <div class="p-8 grid justify-start">
-                MovieOne.ru
+            <div class="p-8 grid grid-flow-col justify-between">
+                <div>MovieOne.ru</div>
+                <Socials></Socials>
             </div>
         </footer>
 
@@ -278,12 +279,13 @@ import Message from "@/Components/Message.vue";
 import FilterComponent from "@/Components/FilterComponent.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
+import Socials from "@/Components/Socials.vue";
 
 
 export default {
     name: "FrontLayout",
 
-    components: {DropdownLink, Dropdown, Link, Message, FilterComponent},
+    components: {DropdownLink, Dropdown, Link, Message, FilterComponent, Socials},
 
     data() {
         return {

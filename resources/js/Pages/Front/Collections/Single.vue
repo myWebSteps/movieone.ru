@@ -51,22 +51,9 @@
                         <i class="icon-today text-rose-500 text-2xl"></i>&nbsp
                         <span class="text-gray-900 font-light text-sm">{{ data.date }}</span>
                     </div>
-                    <div class="grid grid-flow-col grid-cols-[repeat(3,_max-content)] auto-rows-[32px] items-center
-                        justify-self-center
-                        ">
-                        <a href="https://vero.co/movieone"
-                           target="_blank">
-                            <img src="/img/social/vero.svg" alt="...">
-                        </a>
-                        <a href="https://t.me/kino_movieone"
-                           target="_blank">
-                            <img src="/img/social/telegram.svg" alt="...">
-                        </a>
-                        <a href="https://dzen.ru/movieone"
-                           target="_blank">
-                            <img src="/img/social/dzen.svg" alt="...">
-                        </a>
-                    </div>
+           
+                    <Socials></Socials>
+
                 </div>
 
                 <div v-if="data.rating > 0" class="grid items-center grid-flow-col auto-cols-max">
@@ -175,12 +162,13 @@ import {Head} from "@inertiajs/vue3";
 import {Link} from "@inertiajs/vue3";
 import {router} from '@inertiajs/vue3';
 import CommentsCollectionsComponent from "@/Components/CommentsCollectionsComponent.vue";
+import Socials from "@/Components/Socials.vue";
 
 export default {
     name: "Collections_single",
     layout: FrontLayout,
     props: ['data', 'relativeCollections'],
-    components: {CommentsCollectionsComponent, Head, Link, Message},
+    components: {CommentsCollectionsComponent, Head, Link, Message, Socials},
 
     data() {
         return {

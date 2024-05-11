@@ -14,7 +14,7 @@
                 </Link>
             </div>
 
-            <div class="grid grid-flow-row grid-rows-[50px_max-content_max-content] items-center">
+            <div class="grid grid-flow-row grid-rows-[50px_max-content_max-content] items-center text-2xl">
                 <div>
                     <h3>Seo Заголовки:</h3>
                 </div>
@@ -30,14 +30,14 @@
                             <Link as="button" :href="`/admin/titles/${title.id}/edit`"
                                   class="py-1 px-6 border-2 border-amber-300 rounded-2xl text-amber-300 hover:bg-amber-300 hover:text-white
                             grid items-center">
-                                <i class="icon-edit_square font-bold"></i>
+                                <i class="icon-edit_square"></i>
                             </Link>
                             <Link @click.prevent="deleteInstance(title.id)" v-if="$page.props.auth.user.role <= 9" as="button"
                                   href="#"
                                   type="button"
                                   class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white
                             grid items-center">
-                     <i class="icon-delete font-bold"></i>
+                     <i class="icon-delete"></i>
                             </Link>
                         </div>
                     </template>

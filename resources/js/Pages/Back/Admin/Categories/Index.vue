@@ -28,7 +28,7 @@
                         <div>{{ category.id }}</div>
                         <div>{{ category.title }}</div>
                         <div><i :class="category.logo"></i></div>
-                        <div class="grid grid-flow-col justify-around justify-content-center">
+                        <div class="grid grid-flow-col justify-around justify-content-center text-2xl">
                             <Link as="button" :href="`/admin/categories/${category.id}/edit`"
                                   class="py-1 px-6 border-2 border-amber-300 rounded-2xl text-amber-300 hover:bg-amber-300 hover:text-white
                             grid items-center">
@@ -39,7 +39,7 @@
                                   type="button"
                                   class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white
                                 grid items-center">
-                                <i class="icon-delete font-bold"></i>
+                                <i class="icon-delete"></i>
                             </Link>
                         </div>
                     </template>

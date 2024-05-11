@@ -40,14 +40,14 @@
                     <div><span class="md:hidden">nameRu: </span>{{ movie.nameRu }}</div>
                     <div><span class="md:hidden">nameEn: </span>{{ movie.nameEn }}</div>
 
-                    <div class="grid grid-flow-col justify-evenly justify-content-center content-center">
+                    <div class="grid grid-flow-col justify-evenly justify-content-center content-center text-2xl">
                         <Link as="button" :href="`/admin/movies/${movie.id}/edit`"
                               class="py-1 px-6 border-2 border-amber-300 rounded-2xl text-amber-300 hover:bg-amber-300 hover:text-white
                             order-2
                             md:order-1
-                            grid items-center
+                            grid items-center   
                             ">
-                            <i class="icon-edit_square font-bold"></i>
+                            <i class="icon-edit_square"></i>
                         </Link>
                         <Link @click.prevent="deleteInstance(movie.id)" v-if="$page.props.auth.user.role <= 9" as="button"
                               href="#"
@@ -57,7 +57,7 @@
                             md:order-2
                             grid items-center
                             ">
-                            <i class="icon-delete font-bold"></i>
+                            <i class="icon-delete"></i>
                         </Link>
                     </div>
                 </template>

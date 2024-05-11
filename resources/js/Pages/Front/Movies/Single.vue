@@ -175,25 +175,8 @@
                         </div>
                     </div>
 
-                    <div class="
-                    max-sm:order-4
-                    grid grid-flow-col grid-cols-[repeat(3,_max-content)] auto-rows-[32px] items-center
-                        justify-self-end
-                        sm:justify-self-center
-                        ">
-                        <a href="https://vero.co/movieone"
-                           target="_blank">
-                            <img src="/img/social/vero.svg" alt="...">
-                        </a>
-                        <a href="https://t.me/kino_movieone"
-                           target="_blank">
-                            <img src="/img/social/telegram.svg" alt="...">
-                        </a>
-                        <a href="https://dzen.ru/movieone"
-                           target="_blank">
-                            <img src="/img/social/dzen.svg" alt="...">
-                        </a>
-                    </div>
+                    <Socials></Socials>
+
                 </div>
 
                 <section class="grid grid-flow-row grid-cols-1 bg-white shadow-md py-2 gap-4">
@@ -422,13 +405,14 @@ import Message from "@/Components/Message.vue"
 import {Head} from "@inertiajs/vue3";
 import {Link} from "@inertiajs/vue3";
 import CommentsComponent from "@/Components/CommentsComponent.vue";
+import Socials from "@/Components/Socials.vue";
 
 
 export default {
     name: "Single",
     layout: FrontLayout,
     props: ['movie', 'comments', 'commentsCount', 'relatedMovies', 'spinMovies', 'relatedCollections', 'location'],
-    components: {CommentsComponent, Head, Link, FrontLayout, MoviesCard, Message},
+    components: {CommentsComponent, Head, Link, FrontLayout, MoviesCard, Message, Socials},
 
     data() {
         return {
