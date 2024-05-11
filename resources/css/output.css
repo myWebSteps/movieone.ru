@@ -1336,10 +1336,6 @@ select {
   grid-auto-flow: column;
 }
 
-.auto-rows-\[32px\] {
-  grid-auto-rows: 32px;
-}
-
 .auto-rows-\[minmax\(30px\2c _max-content\)\] {
   grid-auto-rows: minmax(30px, max-content);
 }
@@ -1410,10 +1406,6 @@ select {
 
 .grid-cols-\[repeat\(2\2c _max-content\)\] {
   grid-template-columns: repeat(2, max-content);
-}
-
-.grid-cols-\[repeat\(3\2c _max-content\)\] {
-  grid-template-columns: repeat(3, max-content);
 }
 
 .grid-cols-\[repeat\(6\2c _1fr\)\] {
@@ -2336,6 +2328,10 @@ select {
   transition-duration: 150ms;
 }
 
+.duration-100 {
+  transition-duration: 100ms;
+}
+
 .duration-150 {
   transition-duration: 150ms;
 }
@@ -2419,6 +2415,12 @@ nav{
     transform: scale(2);
     opacity: 0;
   }
+}
+
+.hover\:scale-125:hover {
+  --tw-scale-x: 1.25;
+  --tw-scale-y: 1.25;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .hover\:border-2:hover {
