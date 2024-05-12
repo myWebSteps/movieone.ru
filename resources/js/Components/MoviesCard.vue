@@ -1,17 +1,17 @@
 <template>
 
-    <div class="grid gap-4 grid-cols-[repeat(auto-fit,_minmax(10rem,_12rem))]
+    <div class="
     px-2
     md:px-3
     "
-    :class="$parent.$parent.show.menu ? 'justify-self-center sm:justify-self-stretch' : 'justify-self-stretch'"
+    :class="$parent.$parent.show.menu ? 'block w-[80%] m-auto sm:grid sm:gap-4 sm:grid-cols-[repeat(auto-fit,_minmax(10rem,_12rem))] sm:justify-self-stretch' : 'grid gap-4 grid-cols-[repeat(auto-fit,_minmax(10rem,_12rem))] justify-self-stretch'"
     >
 
-    <div v-for="movie in data" :class="config.classes" class="shadow-md bg-white rounded-sm overflow-hidden">
+    <div v-for="movie in data" :class="config.classes" class="shadow-md bg-white rounded-sm overflow-hidden mb-4">
 
             <Link :href="`/movies/${movie.slug}`" class="h-full grid grid-rows-[max-content,_1fr] items-start">
 
-                    <img v-lazy="movie.poster" :alt="movie.nameEn">
+                    <img v-lazy="movie.poster" :alt="movie.nameEn" class="w-full">
 
                 <div class="p-2 grid gap-1 self-stretch max-w-[200px]">
                     <h3 class="text-gray-900 text-wrap">{{movie.nameRu}}</h3>

@@ -37,10 +37,10 @@
         <div class="px-4 h-[70px] grid grid-flow-col justify-between content-center">
             <h1 class="text-gray-900 text-wrap">Подборки фильмов и мультиков</h1>
             <Link :href="`/collections`" class="text-sm
-             hover:text-rose-500
+             hover:text-[#1f2533]
             ">
-                Перейти ко всем &nbsp
-                <i class="icon-arrow_right_alt text-xl hover:text-rose-500"></i>
+                <span class="hidden md:block">Перейти ко всем &nbsp</span>
+                <span class="icon-arrow_right_alt text-xl"></span>
             </Link>
         </div>
 
