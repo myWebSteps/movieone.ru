@@ -2903,6 +2903,10 @@ nav{
     margin-left: 0.5rem;
   }
 
+  .lg\:block {
+    display: block;
+  }
+
   .lg\:grid {
     display: grid;
   }

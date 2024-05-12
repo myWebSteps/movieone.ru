@@ -57,8 +57,7 @@
                 </form>
 
                 <ul class="justify-self-start grid items-center grid-flow-col gap-4 auto-cols-max">
-                    <li class="hidden
-                              lg:block">
+                    <li class="hidden lg:block">
                         <Link href="/collections"
                         :class="$page.url.startsWith('/collections') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white
