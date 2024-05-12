@@ -3,7 +3,7 @@
     <div class="grid
         px-2
         md:px-3
-        gap-2
+        gap-4
         sm:justify-self-stretch
         sm:grid-cols-[repeat(auto-fit,_minmax(10rem,_18rem))]
         "
