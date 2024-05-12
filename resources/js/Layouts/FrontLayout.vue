@@ -61,7 +61,8 @@
                         <Link href="/collections"
                         :class="$page.url.startsWith('/collections') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white
-                              max-sm:hidden
+                              hidden
+                              md:block
                               "
                         >
                             <i class="icon-video_library pr-2"></i>
@@ -73,8 +74,8 @@
                         <Link href="/random_movies"
                         :class="$page.url.startsWith('/random_movies') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white
-                              max-sm:hidden"
-        
+                              hidden
+                              md:block"
                         >
                             <i class="icon-shuffle pr-2"></i>
                             <span class="text-nowrap"
@@ -213,7 +214,7 @@
 
 
         <nav class="bg-[#1f2533]"
-             :class="show.menu ? 'sm:hidden' : 'hidden sm:block'"
+             :class="show.menu ? '' : 'hidden'"
         >
             <div class="sticky top-0">
                 <div class="bg-[#333545]">
@@ -345,14 +346,29 @@ export default {
     beforeMount() {
         this.playListCount()
         this.bookmarksCountFunc()
-        },
+        this.screenWidth() 
+        },  
 
     mounted() {
         this.makePlaylist()
         this.makeBookmarks()
+     
+        
+
     },
 
+
     methods: {
+
+        screenWidth(){
+            console.log(window.screen.width)
+            if(window.screen.width >= 640)
+        {
+            this.show.menu = true
+        }else{
+            this.show.menu = false
+        }
+        },
 
         commenceSearch() {
             if (this.searchKey.length >= 3) {
