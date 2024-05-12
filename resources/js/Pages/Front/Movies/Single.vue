@@ -443,7 +443,7 @@ export default {
         ym(94438576, 'hit', `/movies/${this.movie.slug}`)
         this.startPlayer()
 
-        confsole.log(this.location)
+        console.log(this.location)
 
         if(window.screen.width <= 430)
         {
