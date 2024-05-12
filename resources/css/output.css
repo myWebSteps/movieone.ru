@@ -953,6 +953,10 @@ select {
   margin: 1rem;
 }
 
+.m-auto {
+  margin: auto;
+}
+
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -1187,6 +1191,10 @@ select {
 
 .w-\[60px\] {
   width: 60px;
+}
+
+.w-\[90\%\] {
+  width: 90%;
 }
 
 .w-fit {
@@ -2521,6 +2529,11 @@ nav{
   font-weight: 600;
 }
 
+.hover\:text-\[\#1f2533\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(31 37 51 / var(--tw-text-opacity));
+}
+
 .hover\:text-\[\#333545\]:hover {
   --tw-text-opacity: 1;
   color: rgb(51 53 69 / var(--tw-text-opacity));
@@ -2682,6 +2695,10 @@ nav{
     display: block;
   }
 
+  .sm\:grid {
+    display: grid;
+  }
+
   .sm\:hidden {
     display: none;
   }
@@ -2743,6 +2760,10 @@ nav{
     grid-template-columns: minmax(20%, 75%) max-content;
   }
 
+  .sm\:grid-cols-\[repeat\(auto-fit\2c _minmax\(10rem\2c _12rem\)\)\] {
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 12rem));
+  }
+
   .sm\:grid-cols-\[repeat\(auto-fit\2c _minmax\(10rem\2c _18rem\)\)\] {
     grid-template-columns: repeat(auto-fit, minmax(10rem, 18rem));
   }
@@ -2753,6 +2774,10 @@ nav{
 
   .sm\:gap-1 {
     gap: 0.25rem;
+  }
+
+  .sm\:gap-4 {
+    gap: 1rem;
   }
 
   .sm\:justify-self-end {

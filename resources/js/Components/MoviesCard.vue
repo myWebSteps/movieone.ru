@@ -4,7 +4,7 @@
     px-2
     md:px-3
     "
-    :class="$parent.$parent.show.menu ? 'block w-[80%] m-auto sm:grid sm:gap-4 sm:grid-cols-[repeat(auto-fit,_minmax(10rem,_12rem))] sm:justify-self-stretch' : 'grid gap-4 grid-cols-[repeat(auto-fit,_minmax(10rem,_12rem))] justify-self-stretch'"
+    :class="$parent.$parent.show.menu ? 'block w-[90%] m-auto sm:grid sm:gap-4 sm:grid-cols-[repeat(auto-fit,_minmax(10rem,_12rem))] sm:justify-self-stretch' : 'grid gap-4 grid-cols-[repeat(auto-fit,_minmax(10rem,_12rem))] justify-self-stretch'"
     >
 
     <div v-for="movie in data" :class="config.classes" class="shadow-md bg-white rounded-sm overflow-hidden mb-4">
