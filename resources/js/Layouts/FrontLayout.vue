@@ -57,12 +57,11 @@
                 </form>
 
                 <ul class="justify-self-start grid items-center grid-flow-col gap-4 auto-cols-max">
-                    <li>
+                    <li class="hidden
+                              lg:block">
                         <Link href="/collections"
                         :class="$page.url.startsWith('/collections') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white
-                              hidden
-                              lg:block
                               "
                         >
                             <i class="icon-video_library pr-2"></i>
@@ -70,7 +69,8 @@
                         </Link>
                     </li>
 
-                    <li>
+                    <li class="hidden
+                              lg:block">
                         <Link href="/random_movies"
                         :class="$page.url.startsWith('/random_movies') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white
@@ -231,22 +231,22 @@
                     </Link>
                 </div>
                 <ul class="m-2 grid grid-flow-row gap-4 pt-2 self-stretch">
-                    <li>
+                    <li class="lg:hidden">
                         <Link href="/collections"
                         :class="$page.url.startsWith('/collections') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white grid-flow-row gap-1 justify-items-center items-center
-                              grid lg:hidden
+                              grid
                               "
                         >
                             <i class="icon-video_library"></i>
                             <span class="text-md">Подборки</span>
                         </Link>
                     </li>
-                    <li>
+                    <li class="lg:hidden">
                         <Link href="/random_movies"
                         :class="$page.url.startsWith('/random_movies') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white grid-flow-row gap-1 justify-items-center items-center
-                              grid lg:hidden
+                              grid
                               "
                         >
                             <i class="icon-shuffle"></i>
