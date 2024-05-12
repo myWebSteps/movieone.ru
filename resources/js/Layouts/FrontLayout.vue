@@ -62,7 +62,7 @@
                         :class="$page.url.startsWith('/collections') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white
                               hidden
-                              md:block
+                              lg:block
                               "
                         >
                             <i class="icon-video_library pr-2"></i>
@@ -75,7 +75,7 @@
                         :class="$page.url.startsWith('/random_movies') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white
                               hidden
-                              md:block"
+                              lg:block"
                         >
                             <i class="icon-shuffle pr-2"></i>
                             <span class="text-nowrap"
@@ -234,8 +234,8 @@
                     <li>
                         <Link href="/collections"
                         :class="$page.url.startsWith('/collections') ? 'text-white' : ''"
-                              class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center
-                              sm:hidden
+                              class="text-gray-400 hover:text-white grid-flow-row gap-1 justify-items-center items-center
+                              grid lg:hidden
                               "
                         >
                             <i class="icon-video_library"></i>
@@ -245,8 +245,8 @@
                     <li>
                         <Link href="/random_movies"
                         :class="$page.url.startsWith('/random_movies') ? 'text-white' : ''"
-                              class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center
-                              sm:hidden
+                              class="text-gray-400 hover:text-white grid-flow-row gap-1 justify-items-center items-center
+                              grid lg:hidden
                               "
                         >
                             <i class="icon-shuffle"></i>
