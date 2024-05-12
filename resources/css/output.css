@@ -2760,12 +2760,12 @@ nav{
     grid-template-columns: minmax(20%, 75%) max-content;
   }
 
-  .sm\:grid-cols-\[repeat\(auto-fit\2c _minmax\(10rem\2c _18rem\)\)\] {
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 18rem));
+  .sm\:grid-cols-\[repeat\(auto-fill\2c _minmax\(9rem\2c _12rem\)\)\] {
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 12rem));
   }
 
-  .sm\:grid-cols-\[repeat\(auto-fit\2c _minmax\(9rem\2c _12rem\)\)\] {
-    grid-template-columns: repeat(auto-fit, minmax(9rem, 12rem));
+  .sm\:grid-cols-\[repeat\(auto-fit\2c _minmax\(10rem\2c _18rem\)\)\] {
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 18rem));
   }
 
   .sm\:justify-between {
