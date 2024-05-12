@@ -78,7 +78,7 @@
                         </span>
                     </label>
 
-                    <article v-if="relatedCollections.length > 0" class="grid gap-1">
+                    <article v-if="relatedCollections.length > 0" class="grid gap-2">
                         <h6 class="font-semibold">Коллекции с видео:</h6>
                         <template v-for="collection in relatedCollections">
                             <div class="grid grid-flow-col grid-cols-[repeat(2,_max-content)] gap-2">
