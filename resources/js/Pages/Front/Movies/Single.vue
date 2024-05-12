@@ -443,6 +443,8 @@ export default {
         ym(94438576, 'hit', `/movies/${this.movie.slug}`)
         this.startPlayer()
 
+        confsole.log(this.location)
+
         if(window.screen.width <= 430)
         {
             this.backdrop = this.movie.backdropUrl_min

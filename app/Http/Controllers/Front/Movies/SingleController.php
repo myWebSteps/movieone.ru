@@ -41,7 +41,7 @@ class SingleController extends Controller
             $kinopoiskIds[] = $item['kinopoisk_id'];
         }
 
-        $resultRelatedMovies = $genre->movies->whereNotIn('slug', $request->movie)->whereNotIn('kinopoisk_id', $kinopoiskIds)->shuffle()->take(4);
+        $resultRelatedMovies = $genre->movies->whereNotIn('slug', $request->movie)->whereNotIn('kinopoisk_id', $kinopoiskIds)->shuffle()->take(6);
 
         $comments = CommentResource::collection(Comment::where('movie_id', $data->id)->where('approved', 1)->orderBy('id', 'DESC')->get())->resolve();
 
