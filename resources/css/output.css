@@ -2455,6 +2455,15 @@ nav{
   border-width: 2px;
 }
 
+.hover\:border-b-2:hover {
+  border-bottom-width: 2px;
+}
+
+.hover\:border-\[\#1f2533\]:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(31 37 51 / var(--tw-border-opacity));
+}
+
 .hover\:border-\[\#333545\]:hover {
   --tw-border-opacity: 1;
   border-color: rgb(51 53 69 / var(--tw-border-opacity));
@@ -2527,11 +2536,6 @@ nav{
 
 .hover\:font-semibold:hover {
   font-weight: 600;
-}
-
-.hover\:text-\[\#1f2533\]:hover {
-  --tw-text-opacity: 1;
-  color: rgb(31 37 51 / var(--tw-text-opacity));
 }
 
 .hover\:text-\[\#333545\]:hover {
@@ -2835,6 +2839,10 @@ nav{
 
   .md\:block {
     display: block;
+  }
+
+  .md\:inline {
+    display: inline;
   }
 
   .md\:hidden {
