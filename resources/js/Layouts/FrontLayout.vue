@@ -2,7 +2,7 @@
 
     <div class="main-wrapper">
         <header class="bg-[#333545] grid z-40">
-            <div class="px-8 grid grid-cols-[max-content,_repeat(2,_1fr)] content-center gap-4">
+            <div class="px-8 grid grid-cols-[max-content,_max-content,_1fr,_max-content] content-center gap-4">
 
                 <div @click.prevent="show.menu = !show.menu" class="justify-self-start grid content-center self-center
                 cursor-pointer"
@@ -55,6 +55,34 @@
                         <i class="icon-search text-xl"></i>
                     </button>
                 </form>
+
+                <ul class="justify-self-start grid items-center grid-flow-col gap-4 auto-cols-max">
+                    <li>
+                        <Link href="/collections"
+                        :class="$page.url.startsWith('/collections') ? 'text-white' : ''"
+                              class="text-gray-400 hover:text-white
+                              max-md:hidden
+                              "
+                        >
+                            <i class="icon-video_library pr-2"></i>
+                            <span>Подборки</span>
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link href="/random_movies"
+                        :class="$page.url.startsWith('/random_movies') ? 'text-white' : ''"
+                              class="text-gray-400 hover:text-white
+                              max-md:hidden"
+        
+                        >
+                            <i class="icon-shuffle pr-2"></i>
+                            <span class="text-nowrap"
+                            >Случайное видео</span>
+                        </Link>
+                    </li>
+
+                </ul>
 
 
                 <div class="z-50 justify-self-end self-center grid grid-flow-col gap-4">
@@ -185,7 +213,7 @@
 
 
         <nav class="bg-[#1f2533]"
-             :class="show.menu ? '' : 'hidden sm:block'"
+             :class="show.menu ? 'sm:hidden' : 'hidden sm:block'"
         >
             <div class="sticky top-0">
                 <div class="bg-[#333545]">
@@ -201,45 +229,46 @@
                         >MovieOne</p>
                     </Link>
                 </div>
-                <ul class="m-2 grid grid-flow-row sm:justify-content-start gap-4"
-                    :class="$page.url.startsWith('/collections') ? 'text-white' : ''"
-                >
+                <ul class="m-2 grid grid-flow-row gap-4 pt-2 self-stretch">
                     <li>
-                        <Link :class="show.menu ? 'sm:grid-flow-col sm:grid-cols-[repeat(2,_max-content)]' : ''"
-                              href="/collections"
-                              class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
+                        <Link href="/collections"
+                        :class="$page.url.startsWith('/collections') ? 'text-white' : ''"
+                              class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center
+                              md:hidden
+                              "
                         >
                             <i class="icon-video_library"></i>
-                            <span class="text-xs sm:text-sm ">Подборки</span>
+                            <span>Подборки</span>
                         </Link>
                     </li>
-                    <li :class="$page.url === '/random_movies' ? 'text-white' : ''">
-                        <Link :class="show.menu ? 'sm:grid-flow-col sm:grid-cols-[repeat(2,_max-content)]' : ''"
-                              href="/random_movies"
-                              class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
+                    <li>
+                        <Link href="/random_movies"
+                        :class="$page.url.startsWith('/random_movies') ? 'text-white' : ''"
+                              class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center
+                              md:hidden
+                              "
                         >
                             <i class="icon-shuffle"></i>
-                            <span class="text-xs sm:text-sm text-wrap"
-                            >Случайное<br> видео</span>
+                            <span>Случайное<br> видео</span>
                         </Link>
                     </li>
                     <li v-for="category in $page.props.categories"
                         :class="$page.url.startsWith(`/movies?category=${category.slug}`) ? 'text-white' : ''">
-                        <Link
-                            :class="show.menu ? 'sm:grid-flow-col sm:grid-cols-[repeat(2,_max-content)]' : ''"
-                            class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
+                        <Link class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
                             :href="`/movies?category=${category.slug}&order=year&page=1`">
                             <i :class="`icon-${category.logo}`"></i>
-                            <span class="text-xs sm:text-sm">{{ category.title }}</span>
+                            <span>{{ category.title }}</span>
                         </Link>
-                    </li>
-
-                    <li @click="show.menu = !show.menu" class="px-1 w-full text-center text-gray-300 hover:text-white cursor-pointer text-2xl">
-                        <i v-if="show.menu" class="icon-switch_right"></i>
-                        <i v-if="!show.menu" class="icon-switch_left"></i>
                     </li>
                 </ul>
 
+                <div
+                     @click="show.menu = !show.menu" 
+                     class="px-1 w-full text-center text-gray-300 hover:text-white cursor-pointer text-2xl pt-8
+                     ">
+                        <i v-if="show.menu" class="icon-switch_right"></i>
+                        <i v-if="!show.menu" class="icon-switch_left"></i>
+                </div>
 
 
             </div>

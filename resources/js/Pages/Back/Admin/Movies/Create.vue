@@ -57,7 +57,7 @@
                             <label> Показ видео: <br>
                                 <select class="w-full" v-model="form.video_allowed">
                                     <option :value="1">Разрешено</option>
-                                    <option :value="0">Запрещено</option>
+                                    <option :value="0">Задержка</option>
                                 </select>
                             </label>
 
