@@ -239,7 +239,7 @@
                               "
                         >
                             <i class="icon-video_library"></i>
-                            <span>Подборки</span>
+                            <span class="text-sm md:text-md">Подборки</span>
                         </Link>
                     </li>
                     <li>
@@ -250,7 +250,7 @@
                               "
                         >
                             <i class="icon-shuffle"></i>
-                            <span>Случайное<br> видео</span>
+                            <span class="text-sm md:text-md">Случайное<br> видео</span>
                         </Link>
                     </li>
                     <li v-for="category in $page.props.categories"
@@ -258,7 +258,7 @@
                         <Link class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
                             :href="`/movies?category=${category.slug}&order=year&page=1`">
                             <i :class="`icon-${category.logo}`"></i>
-                            <span>{{ category.title }}</span>
+                            <span class="text-sm md:text-md">{{ category.title }}</span>
                         </Link>
                     </li>
                 </ul>
