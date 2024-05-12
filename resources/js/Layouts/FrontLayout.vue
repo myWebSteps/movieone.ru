@@ -61,7 +61,7 @@
                         <Link href="/collections"
                         :class="$page.url.startsWith('/collections') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white
-                              max-md:hidden
+                              max-sm:hidden
                               "
                         >
                             <i class="icon-video_library pr-2"></i>
@@ -73,7 +73,7 @@
                         <Link href="/random_movies"
                         :class="$page.url.startsWith('/random_movies') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white
-                              max-md:hidden"
+                              max-sm:hidden"
         
                         >
                             <i class="icon-shuffle pr-2"></i>
@@ -234,7 +234,7 @@
                         <Link href="/collections"
                         :class="$page.url.startsWith('/collections') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center
-                              md:hidden
+                              sm:hidden
                               "
                         >
                             <i class="icon-video_library"></i>
@@ -245,7 +245,7 @@
                         <Link href="/random_movies"
                         :class="$page.url.startsWith('/random_movies') ? 'text-white' : ''"
                               class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center
-                              md:hidden
+                              sm:hidden
                               "
                         >
                             <i class="icon-shuffle"></i>
