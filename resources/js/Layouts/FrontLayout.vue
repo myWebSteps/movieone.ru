@@ -237,7 +237,7 @@
                               grid
                               "
                         >
-                            <i class="icon-video_library"></i>
+                            <i class="icon-video_library text-2xl"></i>
                             <span class="text-sm md:text-md">Подборки</span>
                         </Link>
                     </li>
@@ -248,13 +248,15 @@
                               grid
                               "
                         >
-                            <i class="icon-shuffle"></i>
+                            <i class="icon-shuffle text-2xl"></i>
                             <span class="text-sm md:text-md">Случайное<br> видео</span>
                         </Link>
                     </li>
                     <li v-for="category in $page.props.categories"
                         :class="$page.url.startsWith(`/movies?category=${category.slug}`) ? 'text-white' : ''">
-                        <Link class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center"
+                        <Link class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center
+                        text-2xl
+                        "
                             :href="`/movies?category=${category.slug}&order=year&page=1`">
                             <i :class="`icon-${category.logo}`"></i>
                             <span class="text-sm md:text-md">{{ category.title }}</span>
