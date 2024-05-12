@@ -1460,10 +1460,6 @@ select {
   grid-template-columns: repeat(auto-fit, minmax(50px, 300px));
 }
 
-.grid-cols-\[repeat\(auto-fit\2c _minmax\(9rem\2c _12rem\)\)\] {
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 12rem));
-}
-
 .grid-cols-\[repeat\(auto-fit\2c minmax\(max-content\2c _80px\)\)\] {
   grid-template-columns: repeat(auto-fit,minmax(max-content, 80px));
 }
