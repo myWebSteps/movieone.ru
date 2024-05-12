@@ -1,6 +1,6 @@
 <template>
 
-    <div class="grid gap-2 grid-cols-[repeat(auto-fit,_minmax(10rem,_12rem))]
+    <div class="grid gap-4 grid-cols-[repeat(auto-fit,_minmax(10rem,_12rem))]
     px-2
     md:px-3
     "
