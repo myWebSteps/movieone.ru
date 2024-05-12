@@ -2,10 +2,10 @@
 
     <div class="main-wrapper">
         <header class="bg-[#333545] grid z-40">
-            <div class="px-8 grid grid-cols-[max-content,_max-content,_1fr,_max-content] content-center gap-4">
+            <div class="pr-8 grid grid-cols-[max-content,_max-content,_1fr,_max-content] content-center gap-4">
 
                 <div @click.prevent="show.menu = !show.menu" class="justify-self-start grid content-center self-center
-                cursor-pointer"
+                cursor-pointer py-2 px-6" 
                      :class="show.menu ? '' : 'space-y-1'"
                 >
                     <span class="block w-4 h-0.5 bg-gray-400"

@@ -56,10 +56,11 @@
         lg:grid-flow-col lg:grid-cols-[1fr,_4fr]
         ">
             <!--Movie Poster Widget-->
-            <div class="grid p-2 bg-white shadow-md justify-items-center gap-2
+            <div class="grid bg-white shadow-md justify-items-center gap-2
             grid-flow-row
             sm:grid-flow-col
             lg:grid-flow-row lg:self-start
+            pt-2 pb-4 px-2
             ">
                 <img :src="movie.posterUrl" class="rounded-md" :alt="movie.nameEn">
                 <div class="grid grid-flow-row gap-2 justify-self-start auto-rows-max">
@@ -228,7 +229,7 @@
                     </ul>
 
                     <div :class="accordion === 'general' ? '' : 'hidden' "
-                         class="grid grid-flow-row gap-4"
+                         class="grid grid-flow-row gap-4 pt-2 pb-4"
                     >
 
                     <div class="work-space"></div>
@@ -375,7 +376,7 @@
                 </section>
 
                 <section v-if="spinMovies.length > 0"
-                         class="grid grid-flow-row grid-cols-1 bg-white shadow-md  py-2 gap-1">
+                         class="grid grid-flow-row grid-cols-1 bg-white shadow-md pt-2 pb-4 gap-2">
                     <h6 class="justify-self-start px-4">Сиквелы и приквелы:</h6>
                     <movies-card :data="spinMovies"
                                  :config="{classes: ''}"></movies-card>
@@ -383,7 +384,7 @@
 
                 <!--Related Movies -->
                 <section v-if="relatedMovies.length > 0"
-                         class="grid grid-flow-row grid-cols-1 bg-white shadow-md  py-2 gap-1">
+                         class="grid grid-flow-row grid-cols-1 bg-white shadow-md pt-2 pb-4 gap-2">
                     <h6 class="justify-self-start px-4">Похожие фильмы:</h6>
                     <movies-card :data="relatedMovies"
                                  :config="{classes: ''}"></movies-card>
