@@ -238,7 +238,7 @@
                               "
                         >
                             <i class="icon-video_library"></i>
-                            <span class="text-md">Подборки</span>
+                            <span class="text-sm md:text-md">Подборки</span>
                         </Link>
                     </li>
                     <li class="lg:hidden">
@@ -249,7 +249,7 @@
                               "
                         >
                             <i class="icon-shuffle"></i>
-                            <span class="text-md">Случайное<br> видео</span>
+                            <span class="text-sm md:text-md">Случайное<br> видео</span>
                         </Link>
                     </li>
                     <li v-for="category in $page.props.categories"
