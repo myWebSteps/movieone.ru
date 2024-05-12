@@ -8,7 +8,7 @@
     <div class="m-2 grid grid-flow-row grid-cols-1 lg:grid-flow-col lg:grid-cols-[3fr,_1fr] gap-2">
         <section class="grid grid-flow-row gap-2 relative self-start">
 
-            <div class="grid bg-white p-2 gap-2">
+            <div class="grid bg-white pt-2 pb-4 px-2 gap-2">
                 <div class="grid grid-flow-row grid-cols-1 sm:grid-flow-col justify-items-center sm:justify-between items-center">
                     <h1 class="text-lg font-semibold justify-self-start">{{ data.collection_title }}</h1>
                     <div class="grid grid-flow-col gap-2">
@@ -68,8 +68,8 @@
             </div>
 
             <div class="grid grid-flow-row bg-white p-2">
-                <h6 class="font-semibold text-gray-900 text-sm">Статьи:</h6>
-                <ul class="grid grid-cols-[repeat(auto-fit,_minmax(20px,_200px))]">
+                <h6 class="font-semibold text-gray-900 text-sm pb-2">Статьи:</h6>
+                <ul class="grid grid-cols-[repeat(auto-fit,_minmax(20px,_200px))] gap-2">
                     <li v-for="article in data.articles"
                         class="grid gap-2"
                     >
@@ -85,10 +85,10 @@
 
 
             <article v-for="article in data.articles"
-                     class="bg-white grid grid-flow-row gap-2"
+                     class="bg-white grid grid-flow-row gap-4 pb-4"
                      :id="`article${article.article_id}`"
             >
-                <h3 class="text-gray-800 text-xl font-semibold p-2">
+                <h3 class="text-gray-800 text-xl font-semibold px-2 pt-4">
                     {{ article.article_title }}</h3>
                 <img v-lazy="article.image" :alt="article.article_title">
                 <div class="p-2 grid grid-flow-row gap-4">
@@ -112,9 +112,9 @@
 
 
         </section>
-        <section class="grid self-start gap-2">
-            <div class="bg-white p-2">
-            <h6 class="font-semibold ">Другие коллекции</h6>
+        <section class="grid self-start gap-4">
+            <div class="bg-white pt-2 pb-4 px-2">
+            <h6 class="font-semibold pb-4">Другие коллекции</h6>
             <div v-for="collection in relativeCollections"
                  class="grid grid-cols-[repeat(auto-fit,_minmax(150px,_250px))]"
             >

@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-flow-row gap-4">
+    <div class="grid grid-flow-row gap-4 pb-4">
         <section class="py-2 border-b-gray-200 border-b-[1px] w-full max-h-96 overflow-y-auto">
             <div v-if="comments.length > 0" v-for="comment in comments"
                  class="grid grid-cols-[1fr,_4fr]">
