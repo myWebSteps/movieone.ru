@@ -13,6 +13,7 @@ use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use function Symfony\Component\ErrorHandler\ErrorRenderer\abbrClass;
 
@@ -47,9 +48,13 @@ class IndexController extends Controller
             $data['genres_filter'] = null;
         };
 
-        $category = Category::where('slug', $request->get('category'))->first();
-        $originalYearFrom = Movie::where('category_id', $category->id)->min('year');
-        $originalYearTo = Movie::where('category_id', $category->id)->max('year');
+        $category = Cache::get('categories')->where('slug', $data['category'])->first();
+
+        $data['category_id'] = $category->id;
+
+        $originalYearFrom = Cache::get("movies")->where('category_id', $category->id)->min('year');
+
+        $originalYearTo = Cache::get("movies")->where('category_id', $category->id)->max('year');
 
         if(!isset($data['yearFrom']))
         {
@@ -65,13 +70,14 @@ class IndexController extends Controller
             $data['yearTo'] = $originalYearTo;
         }
         //totalCount
-        $totalCount = Movie::where('category_id', $category->id)->count();
+        $totalCount = Cache::get("movies")->where('category_id', $category->id)->count();
 
         //Types count
         $typesCount = [];
-        $typesCount['feature'] = Movie::where('category_id', $category->id)->where('type', 2)->count();
-        $typesCount['serial'] = Movie::where('category_id', $category->id)->where('type', 3)->count();
-        $typesCount['mini_serial'] = Movie::where('category_id', $category->id)->where('type', 4)->count();
+
+        $typesCount['feature'] = Cache::get("movies")->where('category_id', $category->id)->where('type', 2)->count();
+        $typesCount['serial'] = Cache::get("movies")->where('category_id', $category->id)->where('type', 3)->count();
+        $typesCount['mini_serial'] = Cache::get("movies")->where('category_id', $category->id)->where('type', 4)->count();
         //End Types Count
 
         //Movies filter
@@ -81,6 +87,7 @@ class IndexController extends Controller
         //End of Movies Filter
 
         //Genres Filter
+
         $genres_filter = app()->make(GenresFilter::class, ['queryParams' => array_filter($data)]);
         $genres_result = Genre::where('category_id', $category->id)->filter($genres_filter)
             ->orderBy('title', 'ASC')

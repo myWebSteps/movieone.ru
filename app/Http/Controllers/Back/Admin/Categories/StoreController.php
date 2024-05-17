@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Back\Admin\Categories;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Back\Admin\Categories\StoreRequest;
 use App\Models\Category;
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\In;
 use Inertia\Inertia;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     public function __invoke(StoreRequest $request)
     {
@@ -18,6 +19,8 @@ class StoreController extends Controller
         Category::firstOrCreate(['title' => $data['title']],
         $data
         );
+
+        $this->service->resetCache();
 
        return to_route('categories.index');
     }

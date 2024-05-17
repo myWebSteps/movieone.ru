@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Back\Admin\Comments\Collections;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\CollectionComment;
 
 
-class DestroyController extends Controller
+class DestroyController extends BaseController
 {
     public function __invoke(CollectionComment $comment)
     {
@@ -38,6 +39,7 @@ class DestroyController extends Controller
             'rating' => $rating,
         ]);
 
+        $this->service->resetCache();
 
        return to_route('collection.comments.index');
     }

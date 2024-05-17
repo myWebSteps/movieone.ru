@@ -202,9 +202,13 @@
                         </li>
                         <li :class="accordion === 'comments' ? 'border-b-2 border-b-pink-900' : ''"
                             @click.prevent="accordion = 'comments'"
-                            class="w-fit cursor-pointer"
+                            class="w-fit cursor-pointer relative"
                         >
                             Комментарии
+                            <span v-if="commentsCount > 0"
+                                  class="block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
+                            {{commentsCount}}
+                            </span>
                         </li>
                         <li v-if="reviews.total"
                             :class="accordion === 'reviews' ? 'border-b-2 border-b-pink-900' : ''"
@@ -378,6 +382,7 @@
                 <section v-if="spinMovies.length > 0"
                          class="grid grid-flow-row grid-cols-1 bg-white shadow-md pt-2 pb-4 gap-2">
                     <h6 class="justify-self-start px-4">Сиквелы и приквелы:</h6>
+
                     <movies-card :data="spinMovies"
                                  :config="{classes: ''}"></movies-card>
                 </section>
@@ -461,16 +466,16 @@ export default {
                 setTimeout(()=> {
                    document.querySelector('.work-space').appendChild(document.createElement("div")).classList.add('kinobox_player')
                    this.initPlayer()
-                }, 
+                },
                 5000)
             }else{
-                document.querySelector('.work-space').appendChild(document.createElement("div")).classList.add('kinobox_player')            
+                document.querySelector('.work-space').appendChild(document.createElement("div")).classList.add('kinobox_player')
                 this.initPlayer()
             }
-        }, 
+        },
 
         initPlayer(){
-            
+
         try {
             "use strict";
 
@@ -855,7 +860,7 @@ export default {
                 }
             }).init();
         }catch(error){console.log(error)};
-        },  
+        },
 
         togglePlaylistButton() {
             if (localStorage.getItem('playlist')) {

@@ -7,6 +7,7 @@ namespace App\Http\Filters;
 use App\Models\Category;
 use App\Models\Genre;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
 
 class GenresFilter extends AbstractFilter
 {
@@ -22,8 +23,7 @@ class GenresFilter extends AbstractFilter
 
     protected function genresFilter(Builder $builder, $value)
     {
-
-        $category = Category::where('slug', $this->getQueryParam('category'))->first();
+        $category = Cache::get("genres")->where('category_id', $this->getQueryParam('category_id'))->first();
 
         $builder->where('category_id', $category->id)
         ->where('title', 'like', "%$value%")

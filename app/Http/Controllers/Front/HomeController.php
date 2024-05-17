@@ -7,17 +7,18 @@ use App\Http\Resources\Front\Home\CollectionsResource;
 use App\Http\Resources\Front\Home\IndexResource;
 use App\Models\Category;
 use App\Models\Collection;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 class HomeController extends Controller
 {
     public function __invoke()
     {
-        $categories = Category::all();
+        $categories = Cache::get('categories');
 
         $data = IndexResource::collection($categories)->resolve();
 
-        $result = Collection::where('is_published', '1')->select('id', 'collection_title', 'slug', 'poster', 'description_min')->take(4)->get();
+        $result = Cache::get('collections')->take(4);
 
         $collections = CollectionsResource::collection($result)->resolve();
 

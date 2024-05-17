@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Back\Admin\Collections;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Back\Admin\Collections\StoreRequest;
@@ -12,7 +13,7 @@ use Intervention\Image\Facades\Image;
 
 
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     public function __invoke(StoreRequest $request)
     {
@@ -62,6 +63,8 @@ class StoreController extends Controller
         };
 
         $collection->movies()->attach($moviesArr);
+
+        $this->service->resetCache();
 
         return to_route('collections.index');
     }

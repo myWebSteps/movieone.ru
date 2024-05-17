@@ -203,7 +203,6 @@ export default {
         return {
             queryArr: {},
             form: {
-                category: this.$page.props.data.category,
                 type: this.$page.props.data.type,
                 genre: this.$page.props.data.genre,
                 country: this.$page.props.data.country,
@@ -227,9 +226,9 @@ export default {
 
         send(page = 1) {
             this.makeQueryArr()
-            router.get('/movies',
+            router.get(`/movies`,
                 {
-                    category: this.queryArr.category,
+                    category: this.$page.props.category.slug,
                     type: this.queryArr.type,
                     genre: this.queryArr.genre,
                     country: this.queryArr.country,
@@ -247,7 +246,7 @@ export default {
 
         flush(){
             this.makeQueryArr()
-            router.get(`/movies?category=${this.$page.props.data.category}&order=year&page=1`,
+            router.get(`/movies?category=${this.$page.props.category.slug}&order=year&page=1`,
                 {},
                 {preserveScroll: true,
                         onSuccess: params => {

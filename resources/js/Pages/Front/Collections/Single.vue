@@ -51,7 +51,7 @@
                         <i class="icon-today text-rose-500 text-2xl"></i>&nbsp
                         <span class="text-gray-900 font-light text-sm">{{ data.date }}</span>
                     </div>
-           
+
                     <Socials></Socials>
 
                 </div>
@@ -115,9 +115,8 @@
         <section class="grid self-start gap-4">
             <div class="bg-white pt-2 pb-4 px-2">
             <h6 class="font-semibold pb-4">Другие коллекции</h6>
-            <div v-for="collection in relativeCollections"
-                 class="grid grid-cols-[repeat(auto-fit,_minmax(150px,_250px))]"
-            >
+                <template class="grid grid-cols-[repeat(auto-fit,_minmax(150px,_250px))] gap-4">
+            <div v-for="collection in relativeCollections">
                 <Link :href="`/collections/${collection.slug}`"
                       class="grid grid-cols-[1fr,_3fr] gap-2"
                 >
@@ -137,6 +136,7 @@
 
                 </Link>
             </div>
+                </template>
             </div>
 
             <div class="bg-white p-2">

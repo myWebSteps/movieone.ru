@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Front\Collections\IndexResource;
 use App\Models\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 
@@ -17,8 +18,11 @@ class IndexController extends Controller
         {
             $request['page'] = 1;
         };
+        $page = $request['page'];
 
-        $result = Collection::where('is_published', '1')->orderBy('id', 'DESC')->select('id', 'collection_title', 'poster', 'slug', 'description_min')->paginate(8, ['*'], 'page', $request['page']);
+        $result = Cache::rememberForever('collection' . $request['page'], function() use ($page) {
+            return Collection::where('is_published', '1')->orderBy('id', 'DESC')->select('id', 'collection_title', 'poster', 'slug', 'description_min')->paginate(8, ['*'], 'page', $page);
+        });
 
         $data = IndexResource::collection($result);
 

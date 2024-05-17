@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
 
 class MovieFilter extends AbstractFilter
 {
@@ -36,8 +37,7 @@ class MovieFilter extends AbstractFilter
 
     protected function category(Builder $builder, $value)
     {
-
-        $cat = Category::where('slug', $value)->first();
+        $cat = Cache::get("categories")->where('slug', $value)->first();
 
         $builder->where('category_id', $cat->id);
     }
@@ -80,9 +80,10 @@ class MovieFilter extends AbstractFilter
     protected function genre(Builder $builder, $value)
     {
         $builder->whereHas('genres', function ($b) use($value){
-            $cat = Category::where('slug', $this->getQueryParam('category'))->first();
-            $genre = Genre::where('category_id', $cat->id)->where('slug', $value)->first();
-
+            $cat = Cache::get("categories")->where('slug', $this->getQueryParam('category'))->first();
+            $genre = Cache::get("genres")
+                ->where('category_id', $cat->id)
+                ->where('slug', $value)->first();
             $b->where('genre_id', $genre->id);
 
         });
@@ -91,7 +92,7 @@ class MovieFilter extends AbstractFilter
     protected function country(Builder $builder, $value)
     {
         $builder->whereHas('countries', function ($b) use($value){
-            $country = Country::where('slug', $value)->first();
+            $country = Cache::get("countries")->where('slug', $value)->first();
             $b->where('country_id', $country->id);
 
         });

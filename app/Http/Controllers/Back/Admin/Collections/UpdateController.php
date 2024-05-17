@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Back\Admin\Collections;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Back\Admin\Collections\UpdateRequest;
@@ -12,7 +13,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 
 
-class UpdateController extends Controller
+class UpdateController extends BaseController
 {
     public function __invoke(UpdateRequest $request, Collection $collection)
     {
@@ -101,6 +102,8 @@ class UpdateController extends Controller
         ]);
 
         $collection->movies()->sync($articleMoviesArr);
+
+        $this->service->resetCache();
 
         return to_route('collections.index');
     }

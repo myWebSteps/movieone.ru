@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Back\Admin\Comments\Movies;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Back\Admin\Comments\Movies\UpdateRequest;
 use App\Models\Category;
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\In;
 use Inertia\Inertia;
 
-class UpdateController extends Controller
+class UpdateController extends BaseController
 {
     public function __invoke(UpdateRequest $request, Comment $comment)
     {
@@ -44,6 +45,8 @@ class UpdateController extends Controller
             'atmosphere' => $rating['atmosphere'],
             'rate' => round(($rating['plot'] + $rating['actors_game'] + $rating['atmosphere']) / 3 , 1),
         ]);
+
+        $this->service->resetCache();
 
        return to_route('comments.index');
     }

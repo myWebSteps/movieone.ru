@@ -5,7 +5,6 @@
                   content="Поиск фильмов, мультиков, аниме и документальных видео"/>
             <meta name="keywords" content="Поиск фильмов, мультиков, аниме и документальных видео"/>
         </Head>
-
     <section class="px-4 h-[70px] grid grid-flow-col justify-items-start bg-white content-center">
         <h1 class="text-gray-900">Результаты запроса: {{ data.key }}</h1>
     </section>

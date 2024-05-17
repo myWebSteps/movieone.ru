@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Back\Admin\Comments\Collections;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Back\Admin\Comments\Collections\UpdateRequest;
 use App\Models\CollectionComment;
 use App\Models\Comment;
 
 
-class UpdateController extends Controller
+class UpdateController extends BaseController
 {
     public function __invoke(UpdateRequest $request, CollectionComment $comment)
     {
@@ -40,6 +41,8 @@ class UpdateController extends Controller
         $comment->collection()->update([
             'rating' => $rating,
         ]);
+
+        $this->service->resetCache();
 
        return to_route('collection.comments.index');
     }

@@ -6,7 +6,6 @@
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
     </Head>
 
-
         <section class="mx-2 grid grid-rows-[70px,_calc(100%-140px),_70px]">
         <!-- Begin Page Content -->
         <!-- Page Heading -->
@@ -26,6 +25,7 @@
         <div v-if="movies.data.length > 0">
                 <movies-card
                     :data="movies.data"
+                    :slug="category.slug"
                     :config = "{classes: ''}">
                 </movies-card>
             </div>

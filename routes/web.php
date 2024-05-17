@@ -24,13 +24,14 @@ Route::get('/sitemap/collections.xml', [\App\Http\Controllers\SitemapController:
 Route::get('/sitemap/collections/{slug}.xml', [\App\Http\Controllers\SitemapController::class, 'collection_single'])->name('sitemap.collection_single');
 
 Route::get('/', \App\Http\Controllers\Front\HomeController::class)->name('front.index');
-Route::get('/movies', \App\Http\Controllers\Front\Movies\IndexController::class)->name('catalog.index');
 Route::get('/movies/{movie}', \App\Http\Controllers\Front\Movies\SingleController::class)->name('single.index');
+Route::get('/movies', \App\Http\Controllers\Front\Movies\IndexController::class)->name('catalog.index');
 Route::get('/random_movies', \App\Http\Controllers\Front\Movies\RandomMoviesController::class)->name('random.index');
 Route::get('/search', \App\Http\Controllers\Front\Movies\SearchController::class)->name('search.index');
 //Front Comments Routes
 Route::post('/movies/add_comment', \App\Http\Controllers\Comments\Movies\CreateController::class);
 Route::post('/collections/add_comment', \App\Http\Controllers\Comments\Collections\CreateController::class);
+
 
 Route::prefix('/collections')->group(function(){
     Route::get('/', \App\Http\Controllers\Front\Collections\IndexController::class)->name('front.collections.index');
@@ -108,6 +109,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/', \App\Http\Controllers\Back\Admin\Main\IndexController::class)->name('main.index');
 
     });
+
 
     //Profile Routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

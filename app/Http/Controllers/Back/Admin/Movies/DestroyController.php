@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Back\Admin\Movies;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use Illuminate\Support\Facades\File;
 
-class DestroyController extends Controller
+class DestroyController extends BaseController
 {
     public function __invoke(Movie $movie)
     {
@@ -15,5 +16,8 @@ class DestroyController extends Controller
         File::delete(storage_path('/app/public/movies' . $movie->poster));
 
         $movie->delete();
+
+        $this->service->resetCache();
+
     }
 }

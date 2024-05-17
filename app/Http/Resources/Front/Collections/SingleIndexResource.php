@@ -24,7 +24,7 @@ class SingleIndexResource extends JsonResource
             'description_min' => $this->description_min,
             'description' => $this->description,
             'articles' => ArticlesIndexResource::collection($this->articles)->resolve(),
-            'comments' => CommentsResource::collection($this->comments()->where('approved', 1)->orderBy('id', 'DESC')->get())->resolve(),
+            'comments' => CommentsResource::collection($this->comments->sortBy([['id', 'DESC']]))->resolve(),
             'meta_title' => $this->meta_title,
             'meta_description' => $this->meta_description,
             'meta_keywords' => $this->meta_keywords,

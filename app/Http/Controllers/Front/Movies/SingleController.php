@@ -7,10 +7,7 @@ use App\Http\Resources\Front\Movies\Single\CommentResource;
 use App\Http\Resources\Front\Movies\Single\RelatedCollectionsResource;
 use App\Http\Resources\Front\Movies\Single\RelatedMoviesResource;
 use App\Http\Resources\Front\Movies\Single\ShowResource;
-use App\Models\Category;
-use App\Models\Comment;
-use App\Models\Genre;
-use App\Models\Movie;
+use \Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use phpDocumentor\Reflection\Location;
@@ -21,16 +18,18 @@ class SingleController extends Controller
 {
     public function __invoke(Request $request)
     {
+        //Ip User
         $ip = request()->ip(); //ip of the user which is currently visiting.
-        $location = \Location::get($ip);    
+        $location = \Location::get($ip);
+        //End Ip User
 
-        $data = Movie::where('slug', $request->movie)->firstOrFail();
+        $data = Cache::get('movies')->where('slug', $request->movie)->firstOrFail();
 
         $result = new ShowResource($data);
 
         $movie = $result->resolve();
 
-        $genre = Genre::where('id', $result->genres[0]->id)->first();
+        $genre = Cache::get("genres")->where('id', $result->genres[0]->id)->first();
 
         $spinMovies = RelatedMoviesResource::collection($data->spinOff)->resolve();
 
@@ -41,15 +40,16 @@ class SingleController extends Controller
             $kinopoiskIds[] = $item['kinopoisk_id'];
         }
 
+
         $resultRelatedMovies = $genre->movies->whereNotIn('slug', $request->movie)->whereNotIn('kinopoisk_id', $kinopoiskIds)->shuffle()->take(5);
 
-        $comments = CommentResource::collection(Comment::where('movie_id', $data->id)->where('approved', 1)->orderBy('id', 'DESC')->get())->resolve();
+        $comments = CommentResource::collection($data->comments->sortBy([['id', 'DESC']]))->resolve();
 
-        $commentsCount = Comment::where('movie_id', $data->id)->where('approved', 1)->count();
+        $commentsCount = $data->comments->count();
 
         $relatedMovies = RelatedMoviesResource::collection($resultRelatedMovies)->resolve();
 
-        $relatedCollections = RelatedCollectionsResource::collection($data->collections()->where('is_published', '1')->get())->resolve();
+        $relatedCollections = RelatedCollectionsResource::collection($data->collections)->resolve();
 
         return Inertia::render('Front/Movies/Single', compact('movie', 'comments', 'commentsCount', 'relatedMovies', 'spinMovies', 'relatedCollections', 'location'));
     }

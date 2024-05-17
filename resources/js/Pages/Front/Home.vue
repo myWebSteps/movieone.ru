@@ -69,6 +69,7 @@
             <div class="container mx-auto
             grid grid-flow-row gap-4
             ">
+
                 <movies-card :data="item.movies" :config="{classes: ''}"></movies-card>
             </div>
 

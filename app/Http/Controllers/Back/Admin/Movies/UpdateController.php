@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Back\Admin\Movies;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Back\Admin\Movies\UpdateRequest;
@@ -13,7 +14,7 @@ use Inertia\Inertia;
 use Intervention\Image\Facades\Image;
 
 
-class UpdateController extends Controller
+class UpdateController extends BaseController
 {
     public function __invoke(UpdateRequest $request, Movie $movie)
     {
@@ -118,6 +119,8 @@ class UpdateController extends Controller
         $data['rate'] = round(($data['plot'] + $data['actors_game'] + $data['atmosphere']) / 3, 1);
 
         $movie->update($data);
+
+        $this->service->resetCache();
 
         return to_route('movies.index');
     }

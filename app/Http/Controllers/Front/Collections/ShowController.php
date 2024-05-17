@@ -7,6 +7,7 @@ use App\Http\Resources\Front\Collections\RelativeCollectionsResource;
 use App\Http\Resources\Front\Collections\SingleIndexResource;
 use App\Models\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 
@@ -14,12 +15,13 @@ class ShowController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $result = Collection::where('is_published', '1')->where('slug', $request->collection)->first();
+
+        $result = Cache::get('collections')->where('slug', $request->collection)->first();
 
         $collection = new SingleIndexResource($result);
 
-        $relCollections = Collection::where('is_published', '1')
-        ->whereNot('slug', $request->collection)->inRandomOrder()->take(4)->get();
+        $relCollections = Cache::get('collections')
+        ->where('slug','!=', $request)->sortBy([['id', 'DESC']])->take(4);
 
         $relativeCollections = RelativeCollectionsResource::collection($relCollections)->resolve();
 

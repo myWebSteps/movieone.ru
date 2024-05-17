@@ -5,7 +5,7 @@
             <div class="pr-8 grid grid-cols-[max-content,_max-content,_1fr,_max-content] content-center gap-4">
 
                 <div @click.prevent="show.menu = !show.menu" class="justify-self-start grid content-center self-center
-                cursor-pointer py-2 px-6" 
+                cursor-pointer py-2 px-6"
                      :class="show.menu ? '' : 'space-y-1'"
                 >
                     <span class="block w-4 h-0.5 bg-gray-400"
@@ -252,11 +252,11 @@
                             <span class="text-sm md:text-md">Случайное<br> видео</span>
                         </Link>
                     </li>
-                    <li v-for="category in $page.props.categories"
-                        :class="$page.url.startsWith(`/movies?category=${category.slug}`) ? 'text-white' : ''">
+                    <li v-for="category in $page.props.categories">
                         <Link class="text-gray-400 hover:text-white grid grid-flow-row gap-1 justify-items-center items-center
                         text-2xl
                         "
+                        :class="$page.url.startsWith(`/movies?category=${category.slug}`) ? 'text-white' : ''"
                             :href="`/movies?category=${category.slug}&order=year&page=1`">
                             <i :class="`icon-${category.logo}`"></i>
                             <span class="text-sm md:text-md">{{ category.title }}</span>
@@ -265,7 +265,7 @@
                 </ul>
 
                 <div
-                     @click="show.menu = !show.menu" 
+                     @click="show.menu = !show.menu"
                      class="px-1 w-full text-center text-gray-300 hover:text-white cursor-pointer text-2xl pt-8
                      ">
                         <i v-if="show.menu" class="icon-switch_right"></i>
@@ -347,14 +347,14 @@ export default {
     beforeMount() {
         this.playListCount()
         this.bookmarksCountFunc()
-        this.screenWidth() 
-        },  
+        this.screenWidth()
+        },
 
     mounted() {
         this.makePlaylist()
         this.makeBookmarks()
-     
-        
+
+
 
     },
 
@@ -398,6 +398,7 @@ export default {
             if (localStorage.hasOwnProperty('playlist') && localStorage.getItem('playlist') != '') {
                 axios.post('/playlist', {id: localStorage.getItem('playlist')})
                     .then(response => {
+                        console.log(response)
                         this.playlist = response.data.data
                     })
 

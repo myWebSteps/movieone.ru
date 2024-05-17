@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Back\Admin\Movies;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Back\Admin\Movies\StoreRequest;
@@ -14,7 +15,7 @@ use Intervention\Image\Facades\Image;
 
 
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
     public function __invoke(StoreRequest $request)
     {
@@ -104,6 +105,8 @@ class StoreController extends Controller
                 ]);
             }
         }
+
+        $this->service->resetCache();
 
         return to_route('movies.index');
     }
