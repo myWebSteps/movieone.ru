@@ -22,9 +22,6 @@ class SingleController extends BaseController
         $ip = request()->ip(); //ip of the user which is currently visiting.
         $location = $this->service::ip_info($ip);
 
-        //End Ip User
-        dd(Location::get($ip));
-
         $data = Cache::get('movies')->where('slug', $request->movie)->firstOrFail();
 
         $result = new ShowResource($data);
