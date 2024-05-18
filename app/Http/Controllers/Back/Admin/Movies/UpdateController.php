@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Back\Admin\Movies;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
-
 use App\Http\Requests\Back\Admin\Movies\UpdateRequest;
 use App\Models\Comment;
 use App\Models\Movie;
 use App\Models\MovieSpinoff;
 use Illuminate\Support\Facades\File;
-use Inertia\Inertia;
 use Intervention\Image\Facades\Image;
 
 

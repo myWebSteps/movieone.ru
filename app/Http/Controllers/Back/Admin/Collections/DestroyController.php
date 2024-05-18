@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Back\Admin\Collections;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
 use App\Models\Collection;
-use App\Models\Movie;
 use Illuminate\Support\Facades\File;
 use function Symfony\Component\ErrorHandler\ErrorRenderer\addElementToGhost;
 

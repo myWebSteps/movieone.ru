@@ -7,8 +7,6 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\Movie;
 use App\Models\Title;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\In;
 use Inertia\Inertia;
 
 class CreateController extends Controller

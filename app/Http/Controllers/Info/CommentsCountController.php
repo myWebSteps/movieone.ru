@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Info;
 use App\Http\Controllers\Controller;
 use App\Models\CollectionComment;
 use App\Models\Comment;
-use Illuminate\Http\Request;
-use Inertia\Inertia;
 
 class CommentsCountController extends Controller
 {

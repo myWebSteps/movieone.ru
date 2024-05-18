@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Front\Movies;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
 use App\Http\Resources\Front\Movies\Single\CommentResource;
 use App\Http\Resources\Front\Movies\Single\RelatedCollectionsResource;
 use App\Http\Resources\Front\Movies\Single\RelatedMoviesResource;

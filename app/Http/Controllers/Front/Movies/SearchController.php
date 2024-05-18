@@ -6,10 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Filters\MovieFilter;
 use App\Http\Requests\Front\FrontLayout\SearchRequest;
 use App\Http\Resources\Front\Movies\Index\IndexResource;
-use App\Models\Category;
-use App\Models\Genre;
 use App\Models\Movie;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class SearchController extends Controller

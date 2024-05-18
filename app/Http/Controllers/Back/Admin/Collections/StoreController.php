@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Back\Admin\Collections;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Back\Admin\Collections\StoreRequest;
 use App\Models\Article;

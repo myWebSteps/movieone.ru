@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Front\Collections;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Front\Collections\RelativeCollectionsResource;
 use App\Http\Resources\Front\Collections\SingleIndexResource;
-use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;

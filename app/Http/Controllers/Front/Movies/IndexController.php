@@ -8,7 +8,6 @@ use App\Http\Filters\GenresFilter;
 use App\Http\Filters\MovieFilter;
 use App\Http\Resources\Front\Movies\Index\GenresResource;
 use App\Http\Resources\Front\Movies\Index\IndexResource;
-use App\Models\Category;
 use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Movie;

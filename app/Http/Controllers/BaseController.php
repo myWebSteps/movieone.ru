@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\Cache\Service;
-use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {

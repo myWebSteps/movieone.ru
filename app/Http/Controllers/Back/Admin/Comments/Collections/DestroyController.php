@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Back\Admin\Comments\Collections;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
 use App\Models\CollectionComment;
 
 

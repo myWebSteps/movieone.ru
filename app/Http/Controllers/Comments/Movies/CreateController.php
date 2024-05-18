@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Comments\Movies;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Comments\CreateRequest;
 use App\Models\Comment;
-use Illuminate\Http\Request;
-use Inertia\Inertia;
 
 class CreateController extends Controller
 {

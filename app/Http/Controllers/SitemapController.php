@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Collection;
 use App\Models\Movie;
-use Illuminate\Http\Request;
 
 class SitemapController extends Controller
 {
