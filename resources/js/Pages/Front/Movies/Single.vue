@@ -462,7 +462,7 @@ export default {
     methods: {
 
         startPlayer(){
-            if(this.movie.video_allowed == 0 && this.location.countryName == 'Russia'){
+            if(this.movie.video_allowed == 0 && this.location.country_code == 'RU'){
                 setTimeout(()=> {
                    document.querySelector('.work-space').appendChild(document.createElement("div")).classList.add('kinobox_player')
                    this.initPlayer()
