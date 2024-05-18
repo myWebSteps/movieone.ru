@@ -8,10 +8,7 @@
     </Head>
     <!--cover-->
     <keep-alive>
-    <cover-img
-    class="max-h-[40vh]
-    lg:max-h-[60vh]">
-    </cover-img>
+    <cover-img></cover-img>
     </keep-alive>
     <!--Main Wrapper-->
     <section class="mb-4 z-20 bg-slate-100 relative">
@@ -62,26 +59,18 @@
 
 </template>
 
-<script setup>
-import{defineAsyncComponent} from "vue";
-
-const CoverImg = defineAsyncComponent({
-    loader: () => import('@/Components/CoverImg.vue'),
-    loading: "loading"
-})
-</script>
-
 <script>
 import {Head, Link} from "@inertiajs/vue3";
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 import CollectionsCard from "@/Components/CollectionsCard.vue";
 import MoviesCard from "@/Components/MoviesCard.vue";
+import CoverImg from "@/Components/CoverImg.vue";
 
 export default {
     name: "Home",
     layout: FrontLayout,
     props: ['data', 'collections'],
-    components: {CollectionsCard, MoviesCard, Head, Link},
+    components: {CoverImg, CollectionsCard, MoviesCard, Head, Link},
 
     mounted() {
         ym(94438576, 'hit', '/');
