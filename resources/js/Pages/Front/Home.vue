@@ -8,7 +8,10 @@
     </Head>
     <!--cover-->
     <keep-alive>
-    <cover-img></cover-img>
+    <cover-img
+    class="max-h-[40vh]
+    lg:max-h-[60vh]">
+    </cover-img>
     </keep-alive>
     <!--Main Wrapper-->
     <section class="mb-4 z-20 bg-slate-100 relative">
@@ -64,8 +67,6 @@ import{defineAsyncComponent} from "vue";
 
 const CoverImg = defineAsyncComponent({
     loader: () => import('@/Components/CoverImg.vue'),
-    delay: 200,
-    timeout: 3000,
     loading: "loading"
 })
 </script>
