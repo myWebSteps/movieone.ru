@@ -110,8 +110,7 @@ export default {
 
     mounted() {
         ym(94438576, 'hit', '/');
-        axios.get('https://api.ipdata.co')
-            .then(resp=> console.log(resp))
+
     },
 }
 </script>
