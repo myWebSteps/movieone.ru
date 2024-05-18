@@ -466,7 +466,7 @@ export default {
                    document.querySelector('.work-space').appendChild(document.createElement("div")).classList.add('kinobox_player')
                    this.initPlayer()
                 },
-                5000)
+                2500)
             }else{
                 document.querySelector('.work-space').appendChild(document.createElement("div")).classList.add('kinobox_player')
                 this.initPlayer()
