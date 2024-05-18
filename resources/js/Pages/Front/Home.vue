@@ -5,6 +5,8 @@
         <meta name="description"
               content="MovieOne Онлайн кинотеатр с большим выбором фильмов, мультфильмов и аниме. У нас Вы всегда можете посмотреть любимые фильмы бесплатно и без регистрации"/>
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
+        <link rel="preload" href="../img/cover_min.webp" as="image" type="image/webp">
+        <link rel="preload" href="../img/cover.webp" as="image" type="image/webp">
     </Head>
     <!--cover-->
     <keep-alive>
