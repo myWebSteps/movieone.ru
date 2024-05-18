@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front\Movies;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Front\Movies\Single\CommentResource;
 use App\Http\Resources\Front\Movies\Single\RelatedCollectionsResource;
@@ -10,18 +11,19 @@ use App\Http\Resources\Front\Movies\Single\ShowResource;
 use \Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use phpDocumentor\Reflection\Location;
 use function Monolog\toArray;
 use function Symfony\Component\String\length;
 
-class SingleController extends Controller
+class SingleController extends BaseController
 {
     public function __invoke(Request $request)
     {
         //Ip User
         $ip = request()->ip(); //ip of the user which is currently visiting.
-        $location = \Location::get($ip);
+        $location = $this->service::ip_info($ip);
+
         //End Ip User
+        dd(Location::get($ip));
 
         $data = Cache::get('movies')->where('slug', $request->movie)->firstOrFail();
 

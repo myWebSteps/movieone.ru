@@ -362,7 +362,6 @@ export default {
     methods: {
 
         screenWidth(){
-            console.log(window.screen.width)
             if(window.screen.width >= 640)
         {
             this.show.menu = true
@@ -398,7 +397,6 @@ export default {
             if (localStorage.hasOwnProperty('playlist') && localStorage.getItem('playlist') != '') {
                 axios.post('/playlist', {id: localStorage.getItem('playlist')})
                     .then(response => {
-                        console.log(response)
                         this.playlist = response.data.data
                     })
 

@@ -447,7 +447,7 @@ export default {
         this.togglePlaylistButton()
         ym(94438576, 'hit', `/movies/${this.movie.slug}`)
         this.startPlayer()
-
+        console.log(this.location)
 
         if(window.screen.width <= 430)
         {
