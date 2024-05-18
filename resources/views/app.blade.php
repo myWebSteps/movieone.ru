@@ -8,6 +8,7 @@
         <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
         <link rel="preload" href="../img/cover.webp" as="image" type="image/webp">
         <link rel="preload" href="../img/cover_min.webp" as="image" type="image/webp">
+        <link rel="preload" href="../img/logo-icon.webp" as="image" type="image/webp">
         <!-- Scripts -->
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
