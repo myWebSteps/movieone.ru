@@ -60,19 +60,30 @@
 
 </template>
 
+<script setup>
+import { defineAsyncComponent } from 'vue'
+
+const CoverImg = defineAsyncComponent({
+    loader: () => import("@/Components/CoverImg.vue"),
+    timeout: 3000,
+    loadingComponent: "Loading..."
+})
+
+</script>
+
+
 <script>
+
 import {Head, Link} from "@inertiajs/vue3";
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 import CollectionsCard from "@/Components/CollectionsCard.vue";
 import MoviesCard from "@/Components/MoviesCard.vue";
-import CoverImg from "@/Components/CoverImg.vue";
-import coverImg from "@/Components/CoverImg.vue";
 
 export default {
     name: "Home",
     layout: FrontLayout,
     props: ['data', 'collections', 'coverImg'],
-    components: {CoverImg, CollectionsCard, MoviesCard, Head, Link},
+    components: {CollectionsCard, MoviesCard, Head, Link},
 
     mounted() {
         ym(94438576, 'hit', '/');

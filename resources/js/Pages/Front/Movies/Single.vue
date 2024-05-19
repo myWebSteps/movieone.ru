@@ -403,6 +403,17 @@
     <message :message.sync="message"></message>
 </template>
 
+<script setup>
+import { defineAsyncComponent } from 'vue'
+
+const BackdropImg = defineAsyncComponent({
+    loader: () => import("@/Components/BackdropImg.vue"),
+    timeout: 3000,
+    loadingComponent: "Loading..."
+})
+
+</script>
+
 <script>
 import FrontLayout from "@/Layouts/FrontLayout.vue";
 import MoviesCard from "@/Components/MoviesCard.vue";
@@ -411,14 +422,13 @@ import {Head} from "@inertiajs/vue3";
 import {Link} from "@inertiajs/vue3";
 import CommentsComponent from "@/Components/CommentsComponent.vue";
 import Socials from "@/Components/Socials.vue";
-import BackdropImg from "@/Components/BackdropImg.vue";
 
 
 export default {
     name: "Single",
     layout: FrontLayout,
     props: ['movie', 'comments', 'commentsCount', 'relatedMovies', 'spinMovies', 'relatedCollections', 'location'],
-    components: {CommentsComponent, Head, Link, FrontLayout, MoviesCard, Message, Socials, BackdropImg},
+    components: {CommentsComponent, Head, Link, FrontLayout, MoviesCard, Message, Socials},
 
     data() {
         return {
