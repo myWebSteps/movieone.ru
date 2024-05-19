@@ -36,7 +36,7 @@ class StoreController extends BaseController
         if(isset($data['backdrop']))
             {
                 $backdrop_path = '/backdrops'.'/backdrop'.$data['kinopoiskId'].'.webp';
-                $backdrop_path_min = '/backdrop'.$data['kinopoiskId'].'_min.webp';
+                $backdrop_path_min = '/backdrops'.'/backdrop'.$data['kinopoiskId'].'_min.webp';
             }else
             {
                 $backdrop_path = null;
