@@ -7,7 +7,7 @@
     lg:max-h-[60vh]
     z-10 overflow-y-hidden"
     >
-        <img v-if="coverImg" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" v-lazy="coverImg" alt="...">
+        <img v-if="img" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" v-lazy="img" alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
         lg:parallax
@@ -27,21 +27,7 @@
 <script>
 export default {
     name: "CoverImg",
-
-    data() {
-        return {
-            coverImg: null,
-        }
-
-    },
-    beforeMount() {
-        if(window.screen.width <= 430){
-            this.coverImg = '/img/cover_min.webp'
-        }else{
-            this.coverImg = '/img/cover.webp'
-        }
-    },
-
+    props: ['img'],
 
 }
 </script>

@@ -5,6 +5,7 @@
         <title>{{movie.nameRu}}/{{movie.nameEn}} {{movie.meta_title}}</title>
         <meta name="keywords" :content="movie.meta_keywords"/>
         <meta name="description" :content="movie.meta_description"/>
+        <link rel="preload" :href="backdrop" as="image" type="image/webp">
     </Head>
 
     <section class="grid items-top
@@ -17,9 +18,7 @@
     lg:min-h-52
     "
     >
-
-        <img v-if="backdrop != null" class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="backdrop"
-             alt="...">
+        <backdrop-img :img="backdrop"></backdrop-img>
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
         w-3/4
@@ -412,13 +411,14 @@ import {Head} from "@inertiajs/vue3";
 import {Link} from "@inertiajs/vue3";
 import CommentsComponent from "@/Components/CommentsComponent.vue";
 import Socials from "@/Components/Socials.vue";
+import BackdropImg from "@/Components/BackdropImg.vue";
 
 
 export default {
     name: "Single",
     layout: FrontLayout,
     props: ['movie', 'comments', 'commentsCount', 'relatedMovies', 'spinMovies', 'relatedCollections', 'location'],
-    components: {CommentsComponent, Head, Link, FrontLayout, MoviesCard, Message, Socials},
+    components: {CommentsComponent, Head, Link, FrontLayout, MoviesCard, Message, Socials, BackdropImg},
 
     data() {
         return {
