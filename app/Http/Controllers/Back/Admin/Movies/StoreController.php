@@ -57,6 +57,7 @@ class StoreController extends BaseController
                     'age_limits' => $data['age_limits'],
                     'poster' => $poster_path,
                     'backdrop' => $backdrop_path,
+                    'backdrop_min' => $backdrop_path_min,
                     'type' => $data['type'],
                     'category_id' => $data['category'],
                     'year' => $data['year'],

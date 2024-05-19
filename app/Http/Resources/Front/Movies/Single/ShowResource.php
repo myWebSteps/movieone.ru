@@ -21,16 +21,18 @@ class ShowResource extends JsonResource
 
         $backdropUrl = "";
 
-        if($this->backdrop != null) {
-            $agent = new Agent();
+        $agent = new Agent();
 
+        if($this->backdrop != null) {
             if($agent->isMobile())
             {
                 $backdropUrl = url('storage/movies' . $this->backdrop_min);
-            }elseif($agent->isTablet())
+            }
+            elseif($agent->isTablet())
             {
                 $backdropUrl = url('storage/movies' . $this->backdrop_min);
-            }elseif ($agent->isDesktop())
+            }
+            elseif ($agent->isDesktop())
             {
                 $backdropUrl = url('storage/movies' . $this->backdrop);
             }
