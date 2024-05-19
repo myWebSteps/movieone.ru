@@ -5,7 +5,7 @@
         <title>{{movie.nameRu}}/{{movie.nameEn}} {{movie.meta_title}}</title>
         <meta name="keywords" :content="movie.meta_keywords"/>
         <meta name="description" :content="movie.meta_description"/>
-        <link rel="preload" :href="backdrop" as="image" type="image/webp">
+        <link rel="preload" :href="movie.backdropUrl" as="image" type="image/webp">
     </Head>
 
     <section class="grid items-top
@@ -18,7 +18,7 @@
     lg:min-h-52
     "
     >
-        <backdrop-img :img="backdrop"></backdrop-img>
+        <backdrop-img :img="movie.backdropUrl"></backdrop-img>
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
         w-3/4
@@ -437,7 +437,6 @@ export default {
                 type: '',
                 show: false,
             },
-            backdrop: null,
 
         }
     },
@@ -447,16 +446,7 @@ export default {
         this.togglePlaylistButton()
         ym(94438576, 'hit', `/movies/${this.movie.slug}`)
         this.startPlayer()
-
-        if(window.screen.width <= 430)
-        {
-            this.backdrop = this.movie.backdropUrl_min
-        }else{
-            this.backdrop = this.movie.backdropUrl
-        }
-
-
-    },
+        },
 
     methods: {
 

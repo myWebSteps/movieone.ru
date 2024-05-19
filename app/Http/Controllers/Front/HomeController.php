@@ -7,6 +7,7 @@ use App\Http\Resources\Front\Home\CollectionsResource;
 use App\Http\Resources\Front\Home\IndexResource;
 use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
+use Jenssegers\Agent\Agent;
 
 class HomeController extends Controller
 {
@@ -20,6 +21,22 @@ class HomeController extends Controller
 
         $collections = CollectionsResource::collection($result)->resolve();
 
-        return Inertia::render('Front/Home', compact('data', 'collections'));
+        $agent = new Agent();
+
+        $coverImg = "";
+
+        if($agent->isMobile())
+        {
+            $coverImg = "/img/cover_min.webp";
+        }elseif($agent->isTablet())
+        {
+            $coverImg = "/img/cover_min.webp";
+        }elseif ($agent->isDesktop())
+        {
+            $coverImg = "/img/cover.webp";
+        };
+
+
+        return Inertia::render('Front/Home', compact('data', 'collections', 'coverImg'));
     }
 }

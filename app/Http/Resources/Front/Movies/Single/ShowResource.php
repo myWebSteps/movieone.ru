@@ -3,9 +3,9 @@
 namespace App\Http\Resources\Front\Movies\Single;
 
 use App\Http\Resources\Back\Admin\Comments\IndexResource;
-use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Jenssegers\Agent\Agent;
 
 class ShowResource extends JsonResource
 {
@@ -19,14 +19,24 @@ class ShowResource extends JsonResource
 
         $posterUrl = url('storage/movies' . $this->poster);
         if($this->backdrop != null) {
-            $backdropUrl = url('storage/movies' . $this->backdrop);
+            $agent = new Agent();
+
+            $backdropUrl = "";
+
+            if($agent->isMobile())
+            {
+                $backdropUrl = url('storage/movies' . $this->backdrop_min);
+            }elseif($agent->isTablet())
+            {
+                $backdropUrl = url('storage/movies' . $this->backdrop_min);
+            }elseif ($agent->isDesktop())
+            {
+                $backdropUrl = url('storage/movies' . $this->backdrop);
+            };
+
+
         }else{
             $backdropUrl = null;
-        }
-        if($this->backdrop_min != null) {
-            $backdropUrl_min = url('storage/movies' . $this->backdrop_min);
-        }else{
-            $backdropUrl_min = null;
         }
 
 
@@ -36,7 +46,6 @@ class ShowResource extends JsonResource
             'kinopoisk_id' => $this->kinopoisk_id,
             'posterUrl' => $posterUrl,
             'backdropUrl' => $backdropUrl,
-            'backdropUrl_min' => $backdropUrl_min,
             'trailers' => [
                 'videos_count' => $this->trailers->count(),
                 'videos' => $this->trailers

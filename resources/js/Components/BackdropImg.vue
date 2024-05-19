@@ -9,5 +9,8 @@
 export default {
     name: "BackdropImg",
     props: ['img'],
+    mounted() {
+        console.log(this.img)
+    },
 }
 </script>

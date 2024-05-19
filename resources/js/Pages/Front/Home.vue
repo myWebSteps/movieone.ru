@@ -66,26 +66,13 @@ import FrontLayout from "@/Layouts/FrontLayout.vue";
 import CollectionsCard from "@/Components/CollectionsCard.vue";
 import MoviesCard from "@/Components/MoviesCard.vue";
 import CoverImg from "@/Components/CoverImg.vue";
+import coverImg from "@/Components/CoverImg.vue";
 
 export default {
     name: "Home",
     layout: FrontLayout,
-    props: ['data', 'collections'],
+    props: ['data', 'collections', 'coverImg'],
     components: {CoverImg, CollectionsCard, MoviesCard, Head, Link},
-
-    data() {
-        return {
-            coverImg: null,
-        }
-
-    },
-    beforeMount() {
-        if(window.screen.width <= 430){
-            this.coverImg = '/img/cover_min.webp'
-        }else{
-            this.coverImg = '/img/cover.webp'
-        }
-    },
 
     mounted() {
         ym(94438576, 'hit', '/');
