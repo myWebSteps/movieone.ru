@@ -7,7 +7,7 @@
     lg:max-h-[60vh]
     z-10 overflow-y-hidden"
     >
-        <img class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" v-lazy="img" alt="...">
+        <img class="w-full object-contain row-start-1 row-end-1 col-start-1 col-end-1" :src="img" alt="...">
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
         lg:parallax
