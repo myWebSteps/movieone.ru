@@ -20,8 +20,11 @@ class SingleController extends BaseController
         //Ip User
         $ip = request()->ip(); //ip of the user which is currently visiting.
         $location = $this->service::ip_info($ip);
-
-        $data = Cache::get('movies')->where('slug', $request->movie)->firstOrFail();
+        try {
+            $data = Cache::get('movies')->where('slug', $request->movie)->firstOrFail();
+        } catch (\Exception $e) {
+            abort(404);
+        }
 
         $result = new ShowResource($data);
 
@@ -33,8 +36,7 @@ class SingleController extends BaseController
 
         $kinopoiskIds = [];
 
-        foreach($data->spinOff as $item)
-        {
+        foreach ($data->spinOff as $item) {
             $kinopoiskIds[] = $item['kinopoisk_id'];
         }
 

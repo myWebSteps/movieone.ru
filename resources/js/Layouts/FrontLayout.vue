@@ -276,7 +276,6 @@
             </div>
 
         </nav>
-
         <main
             :class="$page.component === 'Front/Movies/Index' ? 'lg:grid lg:grid-cols-[max-content,_1fr]' : ''">
 
@@ -325,7 +324,7 @@ export default {
                 bookmark: false,
             },
             show: {
-                menu: false,
+                menu: this.$page.props.showMenu,
                 filter: false,
             },
             searchKey: '',
@@ -344,32 +343,16 @@ export default {
             },
         }
     },
-    beforeMount() {
-        this.playListCount()
-        this.bookmarksCountFunc()
-        this.screenWidth()
-        },
 
     mounted() {
         this.makePlaylist()
         this.makeBookmarks()
-
-
-
+        this.playListCount()
+        this.bookmarksCountFunc()
     },
 
 
     methods: {
-
-        screenWidth(){
-            if(window.screen.width >= 640)
-        {
-            this.show.menu = true
-        }else{
-            this.show.menu = false
-        }
-        },
-
         commenceSearch() {
             if (this.searchKey.length >= 3) {
                 router.get(`/search?key=${this.searchKey}`)

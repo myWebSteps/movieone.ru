@@ -21,22 +21,6 @@ class HomeController extends Controller
 
         $collections = CollectionsResource::collection($result)->resolve();
 
-        $agent = new Agent();
-
-        $coverImg = "";
-
-        if($agent->isMobile())
-        {
-            $coverImg = "/img/cover_min.webp";
-        }elseif($agent->isTablet())
-        {
-            $coverImg = "/img/cover_min.webp";
-        }elseif ($agent->isDesktop())
-        {
-            $coverImg = "/img/cover.webp";
-        };
-
-
-        return Inertia::render('Front/Home', compact('data', 'collections', 'coverImg'));
+        return Inertia::render('Front/Home', compact('data', 'collections'));
     }
 }

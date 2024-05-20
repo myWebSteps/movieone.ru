@@ -5,11 +5,11 @@
         <meta name="description"
               content="MovieOne Онлайн кинотеатр с большим выбором фильмов, мультфильмов и аниме. У нас Вы всегда можете посмотреть любимые фильмы бесплатно и без регистрации"/>
         <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
-        <link rel="preload" :href="coverImg" as="image" type="image/webp">
+        <link rel="preload" :href="$page.props.coverImg" as="image" type="image/webp">
     </Head>
     <!--cover-->
     <keep-alive>
-    <cover-img :img="coverImg"></cover-img>
+    <cover-img :img="$page.props.coverImg"></cover-img>
     </keep-alive>
     <!--Main Wrapper-->
     <section class="mb-4 z-20 bg-slate-100 relative">
@@ -49,7 +49,6 @@
             <div class="container mx-auto
             grid grid-flow-row gap-4
             ">
-
                 <movies-card :data="item.movies" :config="{classes: ''}"></movies-card>
             </div>
 
@@ -70,12 +69,11 @@ import CoverImg from "@/Components/CoverImg.vue";
 export default {
     name: "Home",
     layout: FrontLayout,
-    props: ['data', 'collections', 'coverImg'],
+    props: ['data', 'collections'],
     components: {CoverImg, CollectionsCard, MoviesCard, Head, Link},
 
     mounted() {
         ym(94438576, 'hit', '/');
-
     },
 }
 </script>

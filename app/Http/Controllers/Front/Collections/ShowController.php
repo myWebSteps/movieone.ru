@@ -15,12 +15,16 @@ class ShowController extends Controller
     public function __invoke(Request $request)
     {
 
-        $result = Cache::get('collections')->where('slug', $request->collection)->first();
+        try {
+            $result = Cache::get('collections')->where('slug', $request->collection)->firstOrFail();
+        } catch (\Exception $e) {
+            abort(404);
+        }
 
         $collection = new SingleIndexResource($result);
 
         $relCollections = Cache::get('collections')
-        ->where('slug','!=', $request)->sortBy([['id', 'DESC']])->take(4);
+            ->where('slug', '!=', $request)->sortBy([['id', 'DESC']])->take(4);
 
         $relativeCollections = RelativeCollectionsResource::collection($relCollections)->resolve();
 

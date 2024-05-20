@@ -2,11 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Category;
-use Doctrine\Common\Cache\Cache;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
-use Tightenco\Ziggy\Ziggy;
+use Jenssegers\Agent\Agent;
+
 
 class HandleInertiaRequests extends Middleware
 {
@@ -32,6 +31,18 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $agent = new Agent();
+
+        $showMenu = false;
+        $coverImg = "/img/cover_min.webp";
+
+        if ($agent->isDesktop())
+        {
+            $showMenu = true;
+            $coverImg = "/img/cover.webp";
+        };
+
+
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user()
@@ -42,7 +53,8 @@ class HandleInertiaRequests extends Middleware
 //                    'location' => $request->url(),
 //                ]);
 //            },
-
+            'showMenu' => $showMenu,
+            'coverImg' => $coverImg,
 
         ]);
     }
