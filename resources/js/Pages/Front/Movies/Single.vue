@@ -446,6 +446,7 @@ export default {
         this.togglePlaylistButton()
         ym(94438576, 'hit', `/movies/${this.movie.slug}`)
         this.startPlayer()
+        this.getFacts()
         },
 
     methods: {
@@ -464,7 +465,6 @@ export default {
         },
 
         initPlayer(){
-
         try {
             "use strict";
 
@@ -791,17 +791,17 @@ export default {
 
             new Kinobox('.kinobox_player', {
                 'X-Settings': {
-                    "Alloha": {
+                    "Videocdn": {
                         "enable": true,
                         "position": 1,
                         "token": "",
                     },
-                    "Ashdi": {
+                    "Kodik": {
                         "enable": true,
                         "position": 2,
                         "token": "",
                     },
-                    "Bazon": {
+                    "Alloha": {
                         "enable": true,
                         "position": 3,
                         "token": "",
@@ -811,27 +811,27 @@ export default {
                         "position": 4,
                         "token": "",
                     },
-                    "Collaps": {
+                    "Ashdi": {
                         "enable": true,
                         "position": 5,
                         "token": "",
                     },
-                    "Hdvb": {
+                    "Bazon": {
                         "enable": true,
                         "position": 6,
                         "token": "",
                     },
-                    "Iframe": {
+                    "Collaps": {
                         "enable": true,
                         "position": 7,
                         "token": "",
                     },
-                    "Kodik": {
+                    "Hdvb": {
                         "enable": true,
                         "position": 8,
                         "token": "",
                     },
-                    "Videocdn": {
+                    "Iframe": {
                         "enable": true,
                         "position": 9,
                         "token": "",

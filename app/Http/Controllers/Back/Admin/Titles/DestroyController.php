@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back\Admin\Titles;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\BaseControllers\BaseController;
 use App\Models\Title;
 
 class DestroyController extends BaseController
@@ -11,7 +11,7 @@ class DestroyController extends BaseController
     {
         $title->delete();
 
-        $this->service->resetCache();
+        $this->cacheService->resetCache();
 
        return to_route('titles.index');
     }

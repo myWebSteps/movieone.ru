@@ -92,6 +92,7 @@ export default {
                     }
                 })
                 .then(response => {
+                    console.log(response)
                     this.form.year = response.data.year
                     this.form.nameRu = response.data.name
                     this.form.nameEn = response.data.alternativeName
@@ -100,7 +101,7 @@ export default {
                     if(response.data.hasOwnProperty('budget')){
                     this.form.budget = response.data.budget.value + ' ' + response.data.budget.currency
                     }else{
-                        this.form.budget = "" 
+                        this.form.budget = ""
                     }
                     if (response.data.slogan !== null) {
                         this.form.slogan = response.data.slogan

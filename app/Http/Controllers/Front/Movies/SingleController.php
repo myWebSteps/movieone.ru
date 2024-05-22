@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Front\Movies;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\BaseControllers\BaseController;
 use App\Http\Resources\Front\Movies\Single\CommentResource;
 use App\Http\Resources\Front\Movies\Single\RelatedCollectionsResource;
 use App\Http\Resources\Front\Movies\Single\RelatedMoviesResource;
 use App\Http\Resources\Front\Movies\Single\ShowResource;
-use \Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use function Monolog\toArray;
 use function Symfony\Component\String\length;
@@ -19,7 +19,8 @@ class SingleController extends BaseController
     {
         //Ip User
         $ip = request()->ip(); //ip of the user which is currently visiting.
-        $location = $this->service::ip_info($ip);
+        $location = $this->ip_infoService::ip_info($ip);
+
         try {
             $data = Cache::get('movies')->where('slug', $request->movie)->firstOrFail();
         } catch (\Exception $e) {
