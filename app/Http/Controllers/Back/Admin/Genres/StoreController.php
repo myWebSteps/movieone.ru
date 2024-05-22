@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back\Admin\Genres;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\BaseControllers\BaseController;
 use App\Http\Requests\Back\Admin\Genres\StoreRequest;
 use App\Models\Genre;
 
@@ -14,7 +14,7 @@ class StoreController extends BaseController
 
         Genre::create($data);
 
-        $this->service->resetCache();
+        $this->cacheService->resetCache();
 
        return to_route('genres.index');
     }

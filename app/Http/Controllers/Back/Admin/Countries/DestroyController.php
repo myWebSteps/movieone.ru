@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back\Admin\Countries;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\BaseControllers\BaseController;
 use App\Models\Country;
 
 class DestroyController extends BaseController
@@ -11,7 +11,7 @@ class DestroyController extends BaseController
     {
         $country->delete();
 
-        $this->service->resetCache();
+        $this->cacheService->resetCache();
 
        return to_route('countries.index');
     }

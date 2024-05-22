@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back\Admin\Titles;
 
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\BaseControllers\BaseController;
 use App\Http\Requests\Back\Admin\Titles\StoreRequest;
 use App\Models\Title;
 
@@ -14,7 +14,7 @@ class StoreController extends BaseController
 
         Title::create($data);
 
-        $this->service->resetCache();
+        $this->cacheService->resetCache();
 
        return to_route('titles.index');
     }
