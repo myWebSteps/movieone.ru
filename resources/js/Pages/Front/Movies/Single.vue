@@ -446,7 +446,6 @@ export default {
         this.togglePlaylistButton()
         ym(94438576, 'hit', `/movies/${this.movie.slug}`)
         this.startPlayer()
-        this.getFacts()
         },
 
     methods: {
