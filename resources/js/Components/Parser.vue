@@ -133,6 +133,11 @@ export default {
                     })
                     }
 
+                    if(response.data.hasOwnProperty('facts'))
+                    {
+                        this.form.facts = response.data.facts
+                    }
+
                     this.message.body = ['Информация успешно получена']
                     this.message.type = 'success'
                     this.message.show = true

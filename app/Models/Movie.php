@@ -55,6 +55,11 @@ class Movie extends Model
         return $this->hasManyThrough(Movie::class, MovieSpinoff::class, 'movie_id', 'kinopoisk_id', 'id', 'spin_off');
     }
 
+    public function facts()
+    {
+        return $this->hasMany(FactMovie::class);
+    }
+
 
     public function sluggable(): array
     {

@@ -21,6 +21,7 @@ class CacheService
             $movie['spinOff'] = $movie->spinOff;
             $movie['comments'] = $movie->comments->where('approved', 1);
             $movie['collections'] = $movie->collections->where('is_published', 1);
+            $movie['int_facts'] = $movie->facts;
         });
 
         Cache::put('movies', $movies);

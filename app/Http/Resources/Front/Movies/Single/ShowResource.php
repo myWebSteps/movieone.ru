@@ -41,7 +41,6 @@ class ShowResource extends JsonResource
             $backdropUrl = null;
         }
 
-
         return [
             'id' => $this->id,
             'slug' => $this->slug,
@@ -72,7 +71,10 @@ class ShowResource extends JsonResource
             'meta_title' => $this->title->description,
             'meta_keywords' => $this->meta_keywords,
             'meta_description'=> $this->meta_description,
-
+            'facts' => $this->int_facts->where('type', 'FACT')->where('spoiler', false),
+            'bloopers' => $this->int_facts->where('type', 'BLOOPER')->where('spoiler', false),
+            'spoilers' => $this->int_facts->where('spoiler', true),
+            'facts_count' => $this->int_facts->count(),
         ];
     }
 }
