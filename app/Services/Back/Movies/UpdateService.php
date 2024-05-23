@@ -61,6 +61,7 @@ Class UpdateService
             }
         }
 
+        //Update Trailers
         $movie->trailers()->each(function ($trailer){
             $trailer->delete();
         });
@@ -76,15 +77,32 @@ Class UpdateService
             };
         }
 
+        //Update Facts
+        $movie->facts()->each(function ($fact){
+            $fact->delete();
+        });
+
+        if(isset($data['facts']) || !empty($data['facts'])) {
+            foreach ($data['facts'] as $item) {
+                $movie->facts()->create([
+                    'movie_id' => $movie->id,
+                    'value' => $item['value'],
+                    'type' => $item['type'],
+                    'spoiler' => $item['spoiler'],
+                ]);
+            };
+        }
+
         if(!isset($data['budget']) || $data['budget'] == '' || $data['budget'] == 'undefined undefined')
         {
             $data['budget'] = null;
         }
 
         unset($data['countries']);
-        unset ($data['genres']);
+        unset($data['genres']);
         unset($data['trailers']);
         unset($data['spin_off']);
+        unset($data['facts']);
 
         $comments = Comment::where('approved', 1)
             ->where('movie_id', $data['id'])

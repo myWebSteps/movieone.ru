@@ -18,6 +18,11 @@
                     >
                     Сиквелы
                 </span>
+                    <span class="cursor-pointer" @click="accordion = 'facts'"
+                          :class="accordion === 'facts' ? 'border-b-2 border-red-400' : ''"
+                    >
+                    Факты
+                </span>
                     <span class="cursor-pointer" @click="accordion = 'posters'"
                           :class="accordion === 'posters' ? 'border-b-2 border-red-400' : ''"
                     >
@@ -230,6 +235,56 @@
                     </div>
 
                 </section>
+                <section v-if="accordion === 'facts'" class="grid gap-4">
+                    <div v-for="(fact, index) in form.facts" class="grid gap-2 grid-flow-row
+                        p-2
+                        ">
+
+                        <div class="grid gri-cols-3 gap-2">
+                            <div class="grid-cols-subgrid col-span-3 bg-white p-2">
+                                <label>Факт: <br>
+                                    <textarea class="w-full" v-model="fact.value">{{fact.value}}</textarea>
+                                </label>
+                            </div>
+
+                            <div class="bg-white p-2">
+                                <label>Тип: <br>
+                                    <select v-model="fact.type">
+                                        <option value="FACT">факт</option>
+                                        <option value="BLOOPER">киноляп</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="bg-white p-2">
+                                <label>Спойлер: <br>
+                                    <select v-model="fact.spoiler">
+                                        <option :value=false>нет</option>
+                                        <option :value=true>да</option>
+                                    </select>
+                                </label>
+                            </div>
+
+
+                            <div class="bg-white p-2 grid items-center justify-center">
+                                <button @click="deleteFact(index)"
+                                        class="py-1 px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white">
+                                    <i class="icon-delete font-bold text-2xl"></i>Удалить
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="justify-self-start">
+                        <button @click="addFact()" type="button"
+                                class="bg-green-800 text-white box-border px-6 py-2 mr-6 rounded-md justify-self-end
+                             hover:text-green-800 hover:border-green-800 border-2 hover:bg-white">
+                            Add
+                        </button>
+                    </div>
+
+                </section>
                 <section v-if="accordion === 'spin_off'">
 
                     <div class="grid grid-flow-row gap-4">
@@ -271,7 +326,7 @@
                             <input @input="handleImg('poster', $event)"
                                    type="file" accept="jpg, jpeg">
                         </label>
-                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 267 X 400. Формат *jpg, *jpeg</figcaption>    
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 267 X 400. Формат *jpg, *jpeg</figcaption>
                     </div>
                     <div class="grid gap-4 grid-flow-row">
                         <template v-if="previews.backdrop">
@@ -284,7 +339,7 @@
                             <input @input="handleImg('backdrop', $event)"
                                    type="file" accept="jpg, jpeg">
                         </label>
-                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 1200 X 450. Формат *jpg, *jpeg</figcaption> 
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 1200 X 450. Формат *jpg, *jpeg</figcaption>
                     </div>
 
 
@@ -431,6 +486,7 @@ export default {
                 meta_keywords: this.movie.meta_keywords,
                 meta_description: this.movie.meta_description,
                 spin_off: [],
+                facts: this.movie.facts,
             },
             previews: {
                 poster: this.movie.poster,
@@ -478,6 +534,19 @@ export default {
                 site: 'youtube',
             })
         },
+        addFact() {
+            this.form.facts.push({
+                value: '',
+                type: "FACT",
+                spoiler: false,
+            })
+        },
+        deleteFact(elemIndex) {
+            this.form.facts = this.form.facts.filter((elem, index) => {
+                return index != elemIndex
+            })
+        },
+
 
         renderGenres() {
             this.form.genres = []
@@ -523,7 +592,8 @@ export default {
                 title_id: this.form.title_id,
                 meta_keywords: this.form.meta_keywords,
                 meta_description: this.form.meta_description,
-                spin_off: this.form.spin_off
+                spin_off: this.form.spin_off,
+                facts: this.form.facts,
             },
                 {forceFormData: true,}
             )

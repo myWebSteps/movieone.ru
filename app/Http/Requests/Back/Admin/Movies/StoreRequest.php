@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Back\Admin\Movies;
 
 use Illuminate\Foundation\Http\FormRequest;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class StoreRequest extends FormRequest
 {
@@ -47,7 +48,8 @@ class StoreRequest extends FormRequest
             'title_id' =>'required|string',
             'meta_keywords' => 'required|string|min:3|max:255',
             'meta_description' => 'required|string|min:3|max:16383',
-            'spin_off' => 'nullable|array'
+            'spin_off' => 'nullable|array',
+            'facts' => 'nullable|array',
         ];
     }
 }

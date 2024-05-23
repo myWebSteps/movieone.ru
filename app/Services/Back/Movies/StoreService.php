@@ -10,6 +10,7 @@ Class StoreService
 {
     public function store($data)
     {
+
         //Poster Upload
         Image::make($data['poster'])
             ->fit(267, 400)
@@ -84,6 +85,18 @@ Class StoreService
                 ]);
             }
         }
+
+        if(isset($data['facts']) || !empty($data['facts'])) {
+            foreach($data['facts'] as $item) {
+                $movie->facts()->create([
+                    'movie_id' => $movie->id,
+                    'value' => $item['value'],
+                    'type' => $item['type'],
+                    'spoiler' => $item['spoiler'],
+                ]);
+            }
+        }
+
 
         if(isset($data['trailers']) || !empty($data['trailers'])) {
             foreach($data['trailers'] as $item) {
