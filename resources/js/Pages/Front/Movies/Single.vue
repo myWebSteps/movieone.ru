@@ -325,9 +325,7 @@
                              class="grid grid-flow-row gap-4 pt-2 pb-4 px-4"
                         >
                             <div v-for="soundtrack in movie.soundtracks">
-                            <audio controls class="w-full">
-                                <source :src="soundtrack.file" type="audio/mpeg">
-                                <source :src="soundtrack.file" type="audio/ogg">
+                            <audio controls class="w-full" :src="soundtrack.file">
                                 <p>
                                     Ваш браузер не поддерживает HTML5 аудио. Вот взамен
                                     <a :href="soundtrack.file">ссылка на аудио</a>
