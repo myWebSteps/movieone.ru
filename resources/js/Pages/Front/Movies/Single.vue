@@ -217,7 +217,7 @@
                             >
                                 Саундтреки
                                 <span class="block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
-                            {{ movie.trailers.videos_count }}
+                            {{movie.soundtracks_count}}
                         </span>
                             </li>
                             <li :class="accordion === 'comments' ? 'border-b-2 border-b-pink-900' : ''"
