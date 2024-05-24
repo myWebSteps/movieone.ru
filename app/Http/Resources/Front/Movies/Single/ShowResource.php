@@ -6,6 +6,7 @@ use App\Http\Resources\Back\Admin\Comments\IndexResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Jenssegers\Agent\Agent;
+use function PHPUnit\Framework\isEmpty;
 
 class ShowResource extends JsonResource
 {
@@ -41,6 +42,18 @@ class ShowResource extends JsonResource
             $backdropUrl = null;
         }
 
+
+        $soundtracks = [];
+
+
+            foreach ($this->soundtracks as $key=>$item)
+            {
+                $soundtracks[$key]['file'] = url('storage/movies/soundtracks/'.$this->id.'/' . $item['file']);
+                $soundtracks[$key]['title'] = $item['title'];
+
+            }
+
+
         return [
             'id' => $this->id,
             'slug' => $this->slug,
@@ -75,6 +88,8 @@ class ShowResource extends JsonResource
             'bloopers' => $this->int_facts->where('type', 'BLOOPER')->where('spoiler', false),
             'spoilers' => $this->int_facts->where('spoiler', true),
             'facts_count' => $this->int_facts->count(),
+            'soundtracks' => $soundtracks,
+            'soundtracks_count' => $this->soundtracks->count(),
         ];
     }
 }

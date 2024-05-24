@@ -42,6 +42,11 @@
                 >
                     Трейлеры
                 </span>
+                <span class="cursor-pointer" @click="accordion = 'soundTracks'"
+                      :class="accordion === 'soundTracks' ? 'border-b-2 border-red-400' : ''"
+                >
+                    Саундтреки
+                </span>
                 <span class="cursor-pointer" @click="accordion = 'seo'"
                       :class="accordion === 'seo' ? 'border-b-2 border-red-400' : ''"
                 >
@@ -429,7 +434,7 @@
                                 w-1/4 justify-self-end self-center
                                 md:w-full
                                 ">
-                            Delete
+                            <i class="icon-delete font-bold text-2xl"></i>Удалить
                         </button>
                     </div>
                     <div class="justify-self-start">
@@ -440,6 +445,28 @@
                         </button>
                     </div>
                 </form>
+
+            </section>
+            <section v-if="accordion === 'soundTracks'" class="grid gap-4">
+                <form class="grid grid-cols-2 gap-2 bg-white p-4 justify-start"
+                v-for="(elem, index) in form.sound_tracks"
+                >
+                    <h6 class="col-span-2">Саундтреки:</h6>
+                    <label class="py-2"> Аудио файл: <br>
+                    <input @input.prevent="handleFile(index, $event)" type="file" accept="audio/*">
+                    </label>
+                    <label>Заголовок: <br>
+                    <input v-model="elem.title" type="text">
+                    </label>
+                    <button class="col-span-2 justify-self-end px-6 border-2 border-red-700 rounded-2xl text-red-700 hover:bg-red-700 hover:text-white" type="button" @click.prevent="deleteSoundTrack(index)">
+                        <i class="icon-delete font-bold text-2xl"></i>Удалить
+                    </button>
+                </form>
+
+                <button @click.prevent="addSoundTrack()" type="button" class="bg-green-800 text-white box-border px-6 py-2 mr-6 rounded-md justify-self-start
+                        hover:text-green-800 hover:border-green-800 border-2 hover:bg-white mt-4">
+                    Add
+                </button>
 
             </section>
             <section v-if="accordion === 'seo'">
@@ -557,6 +584,10 @@ export default {
                 title_id: null,
                 spin_off: [],
                 facts: [],
+                sound_tracks: [{
+                    file: '',
+                    title: '',
+                }],
             },
             list: {
                 movies: this.movies_list,
@@ -581,6 +612,10 @@ export default {
         handleImg(type, event) {
             this.form[type] = event.target.files[0];
             this.previews[type] = URL.createObjectURL(event.target.files[0])
+        },
+
+        handleFile(index, event){
+            this.form.sound_tracks[index].file = event.target.files[0];
         },
 
         countScore(plot, actors, atmosphere) {
@@ -616,6 +651,19 @@ export default {
                 return index != elemIndex
             })
         },
+        addSoundTrack(){
+            this.form.sound_tracks.push(
+                {
+                    file: '',
+                    title: '',
+                }
+            )
+        },
+        deleteSoundTrack(elemIndex){
+            this.form.sound_tracks = this.form.sound_tracks.filter((elem, index) => {
+                return index != elemIndex
+            })
+        },
 
 
         renderGenres() {
@@ -626,6 +674,7 @@ export default {
         },
 
         store() {
+            console.log(this.form.sound_tracks)
             this.spinOff.final = this.spinOff.parsed.concat(this.spinOff.selected)
             this.form.spin_off = this.spinOff.final.map(elem => elem.kinopoisk_id);
             this.form.trailers = this.form.trailers.filter((elem) => {
@@ -638,7 +687,14 @@ export default {
                     return elem
                 }
             })
-            router.post('/admin/movies/store', this.form)
+            this.form.sound_tracks = this.form.sound_tracks.filter((elem) => {
+                if (elem.title !== '' && elem.file !== '') {
+                    return elem
+                }
+            })
+            router.post('/admin/movies/store', this.form, {
+                forceFormData: true,
+            })
             router.on('error', (errors) => {
                 this.message.body = errors.detail.errors
                 this.message.type = 'error'

@@ -51,6 +51,8 @@ class UpdateRequest extends FormRequest
             'meta_description' => 'required|string|min:3|max:16300',
             'spin_off' => 'nullable|array',
             'facts' => 'nullable|array',
+            's_tracks_deleteIds' => 'nullable|array',
+            'new_s_tracks' => 'nullable|array',
         ];
     }
 }

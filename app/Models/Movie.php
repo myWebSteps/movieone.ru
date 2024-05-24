@@ -60,6 +60,11 @@ class Movie extends Model
         return $this->hasMany(FactMovie::class);
     }
 
+    public function soundTracks()
+    {
+        return $this->hasMany(MovieSoundtrack::class);
+    }
+
 
     public function sluggable(): array
     {

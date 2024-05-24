@@ -205,8 +205,18 @@
                                 @click.prevent="[accordion = 'trailers', loadTrailers = true]"
                                 class="w-fit relative cursor-pointer"
                             >
-                                Трейлеры <span
-                                class="block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
+                                Трейлеры
+                                <span class="block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
+                            {{ movie.trailers.videos_count }}
+                        </span>
+                            </li>
+                            <li v-if="movie.soundtracks_count > 0"
+                                :class="accordion === 'soundtracks' ? 'border-b-2 border-b-pink-900' : ''"
+                                @click.prevent="accordion = 'soundtracks'"
+                                class="w-fit relative cursor-pointer"
+                            >
+                                Саундтреки
+                                <span class="block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
                             {{ movie.trailers.videos_count }}
                         </span>
                             </li>
@@ -253,7 +263,7 @@
                                 <p class="text-gray-700" v-html="movie.description"></p>
                             </article>
                         </div>
-                        <div v-if="movie.facts_count > 0" :class="accordion === 'facts' ? '' : 'hidden' "
+                        <div :class="accordion === 'facts' ? '' : 'hidden' "
                              class="grid grid-flow-row gap-4 pt-2 pb-4 px-4"
                         >
                             <div v-if="Object.entries(movie.facts).length > 0"
@@ -308,6 +318,19 @@
                                     </blockquote>
                                 </div>
                             </div>
+
+
+                        </div>
+                        <div :class="accordion === 'soundtracks' ? '' : 'hidden' "
+                             class="grid grid-flow-row gap-4 pt-2 pb-4 px-4"
+                        >
+                            <div v-for="soundtrack in movie.soundtracks">
+                            <audio controls class="w-full">
+                                <source :src="soundtrack.file" type="audio/mpeg">
+                            </audio>
+                            <div class="py-2 text-gray-500">{{soundtrack.title}}</div>
+                            </div>
+
 
 
                         </div>
