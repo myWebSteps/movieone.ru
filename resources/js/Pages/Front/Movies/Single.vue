@@ -327,6 +327,11 @@
                             <div v-for="soundtrack in movie.soundtracks">
                             <audio controls class="w-full">
                                 <source :src="soundtrack.file" type="audio/mpeg">
+                                <source :src="soundtrack.file" type="audio/ogg">
+                                <p>
+                                    Ваш браузер не поддерживает HTML5 аудио. Вот взамен
+                                    <a :href="soundtrack.file">ссылка на аудио</a>
+                                </p>
                             </audio>
                             <div class="py-2 text-gray-500">{{soundtrack.title}}</div>
                             </div>
