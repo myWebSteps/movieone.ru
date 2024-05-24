@@ -32,7 +32,6 @@ class EditResource extends JsonResource
             $countriesArr[] = $item['id'];
         };
 
-
         return [
             'id' => $this->id,
             'slug' => $this->slug,
@@ -62,6 +61,7 @@ class EditResource extends JsonResource
             'meta_description' => $this->meta_description,
             'spin_off' => $this->spinOff,
             'facts' =>$this->facts,
+            'soundtracks' =>$this->soundtracks,
         ];
     }
 }

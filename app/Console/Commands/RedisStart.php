@@ -40,6 +40,7 @@ class RedisStart extends Command
             $movie['comments'] = $movie->comments->where('approved', 1);
             $movie['collections'] = $movie->collections->where('is_published', 1);
             $movie['int_facts'] = $movie->facts;
+            $movie['soundtracks'] = $movie->soundTracks;
         });
 
         Cache::put('movies', $movies);
@@ -56,6 +57,5 @@ class RedisStart extends Command
 
         Cache::put("collections", $collections);
 
-        dd(Cache::get('movies'));
     }
 }

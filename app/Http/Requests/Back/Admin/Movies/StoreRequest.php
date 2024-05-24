@@ -50,6 +50,7 @@ class StoreRequest extends FormRequest
             'meta_description' => 'required|string|min:3|max:16383',
             'spin_off' => 'nullable|array',
             'facts' => 'nullable|array',
+            'sound_tracks' => 'nullable|array',
         ];
     }
 }
