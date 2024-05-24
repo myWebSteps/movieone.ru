@@ -9,7 +9,7 @@
         <h1 class="text-gray-900">Результаты запроса: {{ data.key }}</h1>
     </section>
 
-        <section class="container mx-auto mb-4
+        <section class="container mx-auto my-4
     grid grid-flow-row gap-4 z-20 bg-slate-100
     ">
           <movies-card :data="movies" :config="{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"></movies-card>
