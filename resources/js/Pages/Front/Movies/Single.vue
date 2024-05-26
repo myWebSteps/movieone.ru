@@ -1169,17 +1169,12 @@ export default {
             wrapper.classList.add('grid')
             wrapper.classList.add('justify-items-center')
             wrapper.classList.add('items-center')
-            wrapper.onclick = () => {
-                wrapper.remove()
-            }
 
             let cover = document.createElement("div")
-            cover.classList.add('absolute')
             cover.classList.add('rounded-md')
-            cover.classList.add('bottom-10')
-            cover.classList.add('top-10')
-            cover.classList.add('right-10')
-            cover.classList.add('left-10')
+            cover.classList.add('overflow-auto')
+            cover.classList.add('w-[90%]')
+            cover.classList.add('h-[90%]')
             cover.classList.add('z-[61]')
             cover.classList.add('bg-gray-200')
             cover.classList.add('grid')
@@ -1191,23 +1186,28 @@ export default {
             closeBtn.classList.add('py-2')
             closeBtn.classList.add('bg-gray-500')
             closeBtn.classList.add('opacity-75')
-            closeBtn.classList.add('absolute')
-            closeBtn.classList.add('top-5')
-            closeBtn.classList.add('right-5')
+            closeBtn.classList.add('justify-self-end')
+            closeBtn.classList.add('self-start')
             closeBtn.classList.add('z-[62]')
             closeBtn.classList.add('text-white')
             closeBtn.classList.add('hover:bg-[#333545]')
             closeBtn.classList.add('hover:opacity-100')
             closeBtn.innerHTML = "&#10005;"
+            closeBtn.onclick = () => {
+                wrapper.remove()
+            }
 
 
             let img = document.createElement("img")
-            img.classList.add('h-full')
+            img.alt = "..."
             img.classList.add('justify-self-center')
+            img.classList.add('object-scale-down')
+            img.classList.add('w-[95%]')
+            img.classList.add('h-[95%]')
             img.src = this.graphics.items[index].imageUrl
 
-            cover.appendChild(img)
             cover.appendChild(closeBtn)
+            cover.appendChild(img)
             wrapper.appendChild(cover)
 
 
