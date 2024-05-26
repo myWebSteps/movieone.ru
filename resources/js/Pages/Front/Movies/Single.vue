@@ -522,7 +522,7 @@
                                         <div v-for="person in staff.directors"
                                              class="grid grid-flow-col grid-cols-[1fr,_2fr]"
                                         >
-                                            <img :src="person.posterUrl">
+                                            <img v-lazy="person.posterUrl">
 
                                             <div class="font-weight-bold pl-1">
                                                 <div class="text-gray-900">{{ person.nameRu }}</div>
@@ -537,7 +537,7 @@
                                         <div v-for="person in staff.actors"
                                              class="grid grid-flow-col grid-cols-[1fr,_2fr]"
                                         >
-                                            <img :src="person.posterUrl">
+                                            <img v-lazy="person.posterUrl">
                                             <div class="font-weight-bold pl-1">
                                                 <div class="text-gray-900">{{ person.nameRu }}</div>
                                             </div>
@@ -550,7 +550,7 @@
                                     <div class="grid grid-cols-[repeat(auto-fill,_minmax(100px,_200px))] gap-4">
                                         <div v-for="person in staff.support"
                                              class="grid grid-flow-col grid-cols-[1fr,_2fr]">
-                                            <img :src="person.posterUrl">
+                                            <img v-lazy="person.posterUrl">
 
                                             <div class="font-weight-bold pl-1">
                                                 <div class="text-gray-900">{{ person.nameRu }}</div>
