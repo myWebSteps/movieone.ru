@@ -1135,7 +1135,6 @@ export default {
                 },
                 this.loading.graphics = true
             ).then(resp => {
-                console.log(resp)
                 this.graphics = resp.data
                 this.graphics_currentPage = page
                 this.loading.graphics = false
