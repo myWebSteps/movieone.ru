@@ -6,7 +6,7 @@ export default {
 
 <template>
     <div>
-    <img src="/img/spinner.svg" alt="..." width="50px" height="50px">
+    <img src="/img/spinner.gif" alt="...">
     </div>
 </template>
 
