@@ -276,8 +276,7 @@
             </div>
 
         </nav>
-        <main
-            :class="$page.component === 'Front/Movies/Index' ? 'lg:grid lg:grid-cols-[max-content,_1fr]' : ''">
+        <main :class="$page.component === 'Front/Movies/Index' ? 'lg:grid lg:grid-cols-[max-content,_1fr]' : ''">
 
             <aside v-if="$page.component === 'Front/Movies/Index'"
                    class="fixed right-0 top-0 z-40 duration-500 lg:relative lg:translate-x-0 lg:my-2 lg:ml-2"
