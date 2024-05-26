@@ -182,7 +182,7 @@
                     <section class="grid grid-flow-row grid-cols-1 bg-white shadow-md py-2 gap-4">
 
                         <ul class="px-4 grid grid-cols-[repeat(auto-fit,minmax(max-content,_80px))]
-                    text-gray-900 auto-rows-[minmax(30px,_max-content)] gap-4
+                    text-gray-900 auto-rows-[minmax(30px,_max-content)] gap-6
                     ">
                             <li :class="accordion === 'general' ? 'border-b-2 border-b-pink-900' : ''"
                                 class="w-fit cursor-pointer"
@@ -206,7 +206,8 @@
                                 class="w-fit relative cursor-pointer"
                             >
                                 Трейлеры
-                                <span class="block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
+                                <span
+                                    class="block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
                             {{ movie.trailers.videos_count }}
                         </span>
                             </li>
@@ -216,8 +217,9 @@
                                 class="w-fit relative cursor-pointer"
                             >
                                 Саундтреки
-                                <span class="block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
-                            {{movie.soundtracks_count}}
+                                <span
+                                    class="block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
+                            {{ movie.soundtracks_count }}
                         </span>
                             </li>
                             <li :class="accordion === 'comments' ? 'border-b-2 border-b-pink-900' : ''"
@@ -244,8 +246,14 @@
                                       class="icon-all_inclusive block absolute -top-0.5 -right-4 bg-rose-400 rounded-full w-[18px] h-[18px] text-xs text-center text-white">
                             </span>
                             </li>
+                            <li :class="accordion === 'graphics' ? 'border-b-2 border-b-pink-900' : ''"
+                                @click.prevent="[accordion = 'graphics', getGraphicks()]"
+                                class="w-fit cursor-pointer"
+                            >
+                                Графика
+                            </li>
                             <li :class="accordion === 'actors' ? 'border-b-2 border-b-pink-900' : ''"
-                                @click.prevent="[accordion = 'actors', getStaff(movie.kinopoisk_id)]"
+                                @click.prevent="[accordion = 'actors', getStaff()]"
                                 class="w-fit cursor-pointer"
                             >
                                 Актеры
@@ -305,7 +313,8 @@
                                         </span>
                                         <span class="grid grid-flow-col" v-if="spoilersShow">
                                             <span>Скрыть</span>
-                                            <span :class="spoilersShow ? 'rotate-180' : ''"><i class="icon-keyboard_arrow_down"></i>
+                                            <span :class="spoilersShow ? 'rotate-180' : ''"><i
+                                                class="icon-keyboard_arrow_down"></i>
                                             </span>
                                         </span>
                                     </button>
@@ -325,15 +334,14 @@
                              class="grid grid-flow-row gap-4 pt-2 pb-4 px-4"
                         >
                             <div v-for="soundtrack in movie.soundtracks">
-                            <audio controls class="w-full" :src="soundtrack.file">
-                                <p>
-                                    Ваш браузер не поддерживает HTML5 аудио. Вот взамен
-                                    <a :href="soundtrack.file">ссылка на аудио</a>
-                                </p>
-                            </audio>
-                            <div class="py-2 text-gray-500">{{soundtrack.title}}</div>
+                                <audio controls class="w-full" :src="soundtrack.file">
+                                    <p>
+                                        Ваш браузер не поддерживает HTML5 аудио. Вот взамен
+                                        <a :href="soundtrack.file">ссылка на аудио</a>
+                                    </p>
+                                </audio>
+                                <div class="py-2 text-gray-500">{{ soundtrack.title }}</div>
                             </div>
-
 
 
                         </div>
@@ -372,6 +380,7 @@
                         <div :class="accordion === 'reviews' ? '' : 'hidden'"
                              class="px-4 grid gap-4 grid-flow-row"
                         >
+
                             <template v-for="review in reviews.items">
                                 <article class="grid grid-flow-row gap-1">
                                     <span class="text-gray-500 font-medium">{{ review.author }}</span>
@@ -416,10 +425,85 @@
                                 </template>
 
 
-                                <li class="py-2 px-4">
-                                    <a v-if="currentPage != reviews.totalPages"
-                                       @click.prevent="getReviews(String(currentPage + 1))"
+                                <li class="py-2 px-4" v-if="currentPage != reviews.totalPages">
+                                    <a @click.prevent="getReviews(String(currentPage + 1))" href="#">
+                                        &raquo;
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div :class="accordion === 'graphics' ? '' : 'hidden'"
+                             class="px-4 grid gap-4 grid-flow-row"
+                        >
+
+                            <div class="px-4 grid gap-4 grid-flow-row min-h-80 content-start"
+                            >
+
+                                <div class="grid grid-cols-[3fr,_1fr] lg:grid-cols-2 justify-start items-center">
+                                    <label> Тип графики <br>
+                                        <select v-model="graphics_type" @input="getGraphicks()"
+                                                class="w-full pt-2"
+                                        >
+                                            <option value="POSTER">Постеры</option>
+                                            <option value="FAN_ART">Фан арт</option>
+                                            <option value="PROMO">Промо</option>
+                                            <option value="CONCEPT">Концептуальные</option>
+                                            <option value="COVER">Обложки</option>
+                                            <option value="SCREENSHOT">Кадры</option>
+                                            <option value="STILL">Разное</option>
+                                        </select>
+                                    </label>
+
+                                    <loader v-if="loading.graphics"></loader>
+                                </div>
+
+                                <div v-if="graphics.items.length > 0"
+                                     class="py-4 px-2 grid grid-flow-row gap-4"
+                                >
+
+                                    <div class="grid grid-cols-[repeat(auto-fill,_minmax(150px,_300px))] gap-4">
+                                        <div v-for="(graphic, index) in graphics.items">
+                                            <img :src="graphic.previewUrl" @click="fullSize(index)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-else-if="checkGraphicsResult()">
+                                    <span
+                                        class="text-gray-500">Не нашел указанную графику, попробуйте изменить тип.</span>
+                                </div>
+                            </div>
+
+                            <ul v-if="graphics.totalPages > 1"
+                                class="justify-self-center w-fit rounded-sm overflow-x-hidden
+                            grid grid-flow-col auto-cols-fr items-center
+                            bg-gray-300
+                            ">
+                                <li v-if="graphics_currentPage != 1" class="py-2 px-4">
+                                    <a @click.prevent="getGraphicks(String(graphics_currentPage - 1))"
                                        href="#">
+                                        &laquo;
+                                    </a>
+                                </li>
+                                <template v-for="page in graphics.totalPages">
+                                    <li v-if="(page - graphics_currentPage < 3 && page - graphics_currentPage > -3) || page == 1 || page == graphics.totalPages"
+                                        class="py-2 px-4"
+                                        :class="page == graphics_currentPage? 'bg-[#333454] text-white' : ''">
+                                        <a @click.prevent="getGraphicks(page)" href="#"
+                                           :value="page">{{ page }}</a>
+                                    </li>
+                                    <li v-if="(graphics_currentPage - page == 3 && graphics_currentPage != 4) || (graphics_currentPage - page == -3 && graphics_currentPage != graphics.totalPages - 3)"
+                                        class="py-2 px-4"
+                                    >
+                                        <div>...</div>
+                                    </li>
+                                </template>
+
+
+                                <li class="py-2 px-4" v-if="graphics_currentPage != graphics.totalPages">
+                                    <a
+                                        @click.prevent="getGraphicks(String(graphics_currentPage + 1))"
+                                        href="#">
                                         &raquo;
                                     </a>
                                 </li>
@@ -427,48 +511,54 @@
                         </div>
 
                         <div :class="accordion === 'actors' ? '' : 'hidden'"
-                             class="px-4 grid gap-2 grid-cols-[repeat(auto-fit,_minmax(50px,_250px))] items-start"
+                             class="grid min-h-72"
                         >
-                            <section class="grid grid-flow-row gap-2">
-                                <h6>Режиссеры:</h6>
-                                <div v-for="person in staff.directors"
-                                     class="grid grid-flow-col grid-cols-[1fr,_2fr]"
-                                >
-                                    <img :src="person.posterUrl">
+                            <loader v-if="loading.actors" class="self-center justify-self-center"></loader>
 
-                                    <div class="font-weight-bold pl-1">
-                                        <div class="text-gray-900">{{ person.nameRu }}</div>
-                                        <div class="text-gray-500">{{ person.professionText }}</div>
+                            <section v-if="checkActors()" class="grid grid-flow-row gap-4 m-4">
+                                <div v-if="staff.directors.length > 0" class="grid grid-flow-row content-start gap-4">
+                                    <h6>Режиссеры:</h6>
+                                    <div class="grid grid-cols-[repeat(auto-fill,_minmax(100px,_200px))] gap-4">
+                                        <div v-for="person in staff.directors"
+                                             class="grid grid-flow-col grid-cols-[1fr,_2fr]"
+                                        >
+                                            <img :src="person.posterUrl">
+
+                                            <div class="font-weight-bold pl-1">
+                                                <div class="text-gray-900">{{ person.nameRu }}</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </section>
 
-                            <section class="grid grid-flow-row gap-2">
-                                <h6>Актеры:</h6>
-                                <div v-for="person in staff.actors"
-                                     class="grid grid-flow-col grid-cols-[1fr,_2fr]"
-                                >
-                                    <img :src="person.posterUrl">
-
-                                    <div class="font-weight-bold pl-1">
-                                        <div class="text-gray-900">{{ person.nameRu }}</div>
-                                        <div class="text-gray-500">{{ person.professionText }}</div>
+                                <div v-if="staff.actors.length > 0" class="grid grid-flow-row content-start gap-4">
+                                    <h6>Актеры:</h6>
+                                    <div class="grid grid-cols-[repeat(auto-fill,_minmax(100px,_200px))] gap-4">
+                                        <div v-for="person in staff.actors"
+                                             class="grid grid-flow-col grid-cols-[1fr,_2fr]"
+                                        >
+                                            <img :src="person.posterUrl">
+                                            <div class="font-weight-bold pl-1">
+                                                <div class="text-gray-900">{{ person.nameRu }}</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </section>
 
-                            <section class="grid grid-flow-row gap-2">
-                                <h6>Другие:</h6>
-                                <div v-for="person in staff.support"
-                                     class="grid grid-flow-col grid-cols-[1fr,_2fr]"
-                                >
-                                    <img :src="person.posterUrl">
+                                <div v-if="staff.support.length > 0" class="grid grid-flow-row content-start gap-4">
+                                    <h6>Другие:</h6>
+                                    <div class="grid grid-cols-[repeat(auto-fill,_minmax(100px,_200px))] gap-4">
+                                        <div v-for="person in staff.support"
+                                             class="grid grid-flow-col grid-cols-[1fr,_2fr]">
+                                            <img :src="person.posterUrl">
 
-                                    <div class="font-weight-bold pl-1">
-                                        <div class="text-gray-900">{{ person.nameRu }}</div>
-                                        <div class="text-gray-500">{{ person.professionText }}</div>
+                                            <div class="font-weight-bold pl-1">
+                                                <div class="text-gray-900">{{ person.nameRu }}</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
                             </section>
                         </div>
                     </section>
@@ -507,16 +597,20 @@ import {Link} from "@inertiajs/vue3";
 import CommentsComponent from "@/Components/CommentsComponent.vue";
 import Socials from "@/Components/Socials.vue";
 import BackdropImg from "@/Components/BackdropImg.vue";
-
+import Loader from "@/Components/Loader.vue";
 
 export default {
     name: "Single",
     layout: FrontLayout,
     props: ['movie', 'comments', 'commentsCount', 'relatedMovies', 'spinMovies', 'relatedCollections', 'location'],
-    components: {CommentsComponent, Head, Link, FrontLayout, MoviesCard, Message, Socials, BackdropImg},
+    components: {CommentsComponent, Head, Link, FrontLayout, MoviesCard, Message, Socials, BackdropImg, Loader},
 
     data() {
         return {
+            graphics: {
+                items: [],
+            },
+            graphics_type: "POSTER",
             spoilersShow: false,
             loadTrailers: false,
             accordion: 'general',
@@ -528,10 +622,15 @@ export default {
             playlistRes: [],
             newFilter: [],
             currentPage: 1,
+            graphics_currentPage: 1,
             message: {
                 body: [],
                 type: '',
                 show: false,
+            },
+            loading: {
+                graphics: false,
+                actors: false,
             },
 
         }
@@ -1005,7 +1104,8 @@ export default {
                         'X-API-KEY': 'e3409535-696e-40cb-8764-86dda0af9f48',
                         'Content-Type': 'application/json',
                     }
-                }
+                },
+                this.loading.actors = true,
             ).then(resp => {
 
                 this.staff.directors = resp.data.filter((elem, index) => {
@@ -1018,6 +1118,27 @@ export default {
                     return elem.professionKey !== 'DIRECTOR' && elem.professionKey !== 'ACTOR'
                 })
 
+                this.loading.actors = false
+
+            })
+        },
+
+        getGraphicks(page = 1) {
+            axios.get(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${this.movie.kinopoisk_id}/images?page=${page}`,
+
+                {
+                    params: {type: this.graphics_type},
+                    headers: {
+                        'X-API-KEY': 'e3409535-696e-40cb-8764-86dda0af9f48',
+                        'Content-Type': 'application/json',
+                    }
+                },
+                this.loading.graphics = true
+            ).then(resp => {
+                console.log(resp)
+                this.graphics = resp.data
+                this.graphics_currentPage = page
+                this.loading.graphics = false
             })
         },
 
@@ -1035,6 +1156,74 @@ export default {
                     this.reviews = r.data
                     this.currentPage = page
                 })
+        },
+
+        fullSize(index) {
+            let wrapper = document.createElement("div")
+            wrapper.classList.add('fixed')
+            wrapper.classList.add('bottom-0')
+            wrapper.classList.add('top-0')
+            wrapper.classList.add('right-0')
+            wrapper.classList.add('left-0')
+            wrapper.classList.add('z-[60]')
+            wrapper.classList.add('grid')
+            wrapper.classList.add('justify-items-center')
+            wrapper.classList.add('items-center')
+
+            let cover = document.createElement("div")
+            cover.classList.add('rounded-md')
+            cover.classList.add('overflow-auto')
+            cover.classList.add('w-[90%]')
+            cover.classList.add('h-[90%]')
+            cover.classList.add('z-[61]')
+            cover.classList.add('bg-gray-200')
+            cover.classList.add('grid')
+            cover.classList.add('p-4')
+
+            let closeBtn = document.createElement("button")
+            closeBtn.classList.add('rounded-full')
+            closeBtn.classList.add('px-4')
+            closeBtn.classList.add('py-2')
+            closeBtn.classList.add('bg-gray-500')
+            closeBtn.classList.add('opacity-75')
+            closeBtn.classList.add('justify-self-end')
+            closeBtn.classList.add('self-start')
+            closeBtn.classList.add('z-[62]')
+            closeBtn.classList.add('text-white')
+            closeBtn.classList.add('hover:bg-[#333545]')
+            closeBtn.classList.add('hover:opacity-100')
+            closeBtn.innerHTML = "&#10005;"
+            closeBtn.onclick = () => {
+                wrapper.remove()
+            }
+
+
+            let img = document.createElement("img")
+            img.alt = "..."
+            img.classList.add('justify-self-center')
+            img.classList.add('object-scale-down')
+            img.classList.add('w-[95%]')
+            img.classList.add('h-[95%]')
+            img.src = this.graphics.items[index].imageUrl
+
+            cover.appendChild(closeBtn)
+            cover.appendChild(img)
+            wrapper.appendChild(cover)
+
+
+            document.body.appendChild(wrapper)
+        },
+
+        checkGraphicsResult() {
+            if (this.graphics.items.length === 0 && this.loading.graphics === false) {
+                return true
+            }
+        },
+
+        checkActors() {
+            if (Object.keys(this.staff).length > 0 && this.loading.actors === false) {
+                return true
+            }
         },
 
         copyUrl() {
