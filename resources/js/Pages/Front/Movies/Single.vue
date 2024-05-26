@@ -464,7 +464,7 @@
 
                                     <div class="grid grid-cols-[repeat(auto-fill,_minmax(150px,_300px))] gap-4">
                                         <div v-for="(graphic, index) in graphics.items">
-                                            <img :src="graphic.previewUrl" @click="fullSize(index)">
+                                            <img v-lazy="graphic.previewUrl" @click="fullSize(index)">
                                         </div>
                                     </div>
                                 </div>
