@@ -83,7 +83,7 @@ class StoreService
             }
         }
 
-        if (isset($data['facts']) || !empty($data['facts']) || $data['facts'] != null) {
+        if (isset($data['facts']) || !empty($data['facts'])) {
             foreach ($data['facts'] as $item) {
                 $movie->facts()->create([
                     'movie_id' => $movie->id,
