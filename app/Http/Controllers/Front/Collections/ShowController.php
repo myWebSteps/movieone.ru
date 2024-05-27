@@ -24,7 +24,7 @@ class ShowController extends Controller
         $collection = new SingleIndexResource($result);
 
         $relCollections = Cache::get('collections')
-            ->where('slug', '!=', $request)->sortBy([['id', 'DESC']])->take(4);
+            ->where('slug', '!=', $request->collection)->sortBy([['id', 'DESC']])->take(4);
 
         $relativeCollections = RelativeCollectionsResource::collection($relCollections)->resolve();
 
