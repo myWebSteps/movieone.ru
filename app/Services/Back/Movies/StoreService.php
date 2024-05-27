@@ -95,7 +95,7 @@ class StoreService
         }
 
 
-        if (isset($data['trailers']) || !empty($data['trailers']) || $data['trailers'] != null) {
+        if (isset($data['trailers']) || !empty($data['trailers'])) {
             foreach ($data['trailers'] as $item) {
                 $movie->trailers()->create([
                     'movie_id' => $movie->id,
