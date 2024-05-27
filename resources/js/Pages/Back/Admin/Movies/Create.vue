@@ -583,7 +583,11 @@ export default {
                 meta_description: '',
                 title_id: null,
                 spin_off: [],
-                facts: [],
+                facts: [{
+                    value: '',
+                    type: "FACT",
+                    spoiler: false,
+                }],
                 sound_tracks: [{
                     file: '',
                     title: '',
@@ -674,7 +678,6 @@ export default {
         },
 
         store() {
-            console.log(this.form.sound_tracks)
             this.spinOff.final = this.spinOff.parsed.concat(this.spinOff.selected)
             this.form.spin_off = this.spinOff.final.map(elem => elem.kinopoisk_id);
             this.form.trailers = this.form.trailers.filter((elem) => {
@@ -682,11 +685,13 @@ export default {
                     return elem
                 }
             })
-            this.form.facts = this.form.facts.filter((elem) => {
-                if (elem.value != '') {
-                    return elem
-                }
-            })
+            if(this.form.facts !== null) {
+                this.form.facts = this.form.facts.filter((elem) => {
+                    if (elem.value != '') {
+                        return elem
+                    }
+                })
+            }
             this.form.sound_tracks = this.form.sound_tracks.filter((elem) => {
                 if (elem.title !== '' && elem.file !== '') {
                     return elem
