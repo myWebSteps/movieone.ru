@@ -83,7 +83,7 @@ class StoreService
             }
         }
 
-        if (isset($data['facts']) || !empty($data['facts'])) {
+        if (isset($data['facts']) || !empty($data['facts']) || $data['facts'] != null) {
             foreach ($data['facts'] as $item) {
                 $movie->facts()->create([
                     'movie_id' => $movie->id,
@@ -95,7 +95,7 @@ class StoreService
         }
 
 
-        if (isset($data['trailers']) || !empty($data['trailers'])) {
+        if (isset($data['trailers']) || !empty($data['trailers']) || $data['trailers'] != null) {
             foreach ($data['trailers'] as $item) {
                 $movie->trailers()->create([
                     'movie_id' => $movie->id,
