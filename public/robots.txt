@@ -6,6 +6,7 @@ Disallow: /login/
 Disallow: /search/
 Disallow: /movies/$
 Disallow: /collections/$
+Disallow: /privacy_policy/
 Disallow: /random_movies/
 Disallow: /img/
 Host: https://movieone.ru
