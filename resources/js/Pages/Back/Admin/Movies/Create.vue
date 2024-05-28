@@ -330,10 +330,9 @@
                 </div>
 
             </section>
-            <section v-if="accordion === 'spin_off'">
+            <section v-if="accordion === 'spin_off'" class="grid grid-flow-row gap-8">
 
-                <div class="grid grid-flow-row gap-4">
-                    <div>Сиквелы: <br>
+                    <div class="grid grid-flow-row gap-4">Сиквелы: <br>
                         <div v-for="spin_off in spinOff.parsed"
                              class="grid grid-flow-col auto-cols-max items-center gap-4">
                             <i class="icon-check_circle text-green-500"></i>
@@ -354,14 +353,27 @@
 
                     <div>
                         <label for="spin_off_movies">Выберите другие спин-оффы, Сиквели или приквелы</label>
-                        <select v-model="spinOff.selected" id="spin_off_movies" class="w-full" multiple>
+
+                        <div class="grid grid-flow-col grid-cols-[200px,_max-content] py-4">
+                            <input @keypress.enter.prevent="getFilteredMovies()"
+                                   v-model="movies_filter"
+                                   type="search"
+                                   class="w-full"
+                                   placeholder="Фильтр по названию...">
+                            <button @click.prevent="getFilteredMovies()"
+                                    class="bg-green-600 text-white box-border border-[1px] border-green-600 px-4 py-2
+                             hover:text-green-600 hover:border-green-600 hover:bg-white"
+                            >
+                                <i class="icon-search grid content-center"></i>
+                            </button>
+                        </div>
+
+                        <select v-model="spinOff.selected" id="spin_off_movies" class="w-full min-h-52 max-h-96 overflow-auto" multiple>
 
                             <option v-for="movie in list.movies" :value="movie">{{ movie.nameRu }}</option>
 
                         </select>
                     </div>
-
-                </div>
 
             </section>
             <section v-if="accordion === 'posters'" class="grid gap-4
@@ -596,6 +608,7 @@ export default {
             list: {
                 movies: this.movies_list,
             },
+            movies_filter: '',
             message: {
                 body: [],
                 type: '',
@@ -605,6 +618,15 @@ export default {
     },
 
     methods: {
+        getFilteredMovies(){
+            axios.post('/admin/get_filtered_movies', {
+                query_filter: this.movies_filter
+            })
+                .then(res=>{
+                    this.list.movies = res.data;
+                })
+        },
+
 
         deleteSpinOff(spinOff) {
             this.spinOff.parsed = this.spinOff.parsed.filter((elem, index) => {

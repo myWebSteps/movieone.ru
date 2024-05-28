@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Back\Admin\Collections;
+namespace App\Http\Controllers\Back\Admin;
 
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests\Back\Admin\Collections\FilteredMoviesRequest;
 use App\Models\Movie;
+use Illuminate\Support\Facades\DB;
 
 
 class FilteredMoviesController extends Controller
@@ -19,9 +19,9 @@ class FilteredMoviesController extends Controller
             $result = $data['query_filter'];
             $movies = Movie::where('nameRu', 'like', "%$result%")
                 ->orWhere('nameEn', 'like', "%$result%")
-                ->select('id', 'nameRu', 'nameEn', 'year')->get();
+                ->select('id', 'nameRu', 'nameEn', 'year')->orderBy('id', 'desc')->get();
         }else {
-            $movies = Movie::all('id', 'nameRu', 'nameEn', 'year');
+            $movies = DB::table('movies')->select('id', 'nameRu', 'nameEn', 'year')->orderBy('id', 'desc')->get();
         }
 
         return $movies;

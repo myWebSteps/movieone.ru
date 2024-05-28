@@ -10,6 +10,7 @@ use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\Title;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class EditController extends Controller
@@ -24,7 +25,7 @@ class EditController extends Controller
         $countries = Country::all();
         $titles = Title::all();
         $movie = $movie->resolve();
-        $movies_list = Movie::all('id', 'kinopoisk_id', 'nameRu', 'year');
+        $movies_list = DB::table('movies')->select('id', 'kinopoisk_id', 'nameRu', 'year')->orderBy('id', 'desc')->get();
         return Inertia::render('Back/Admin/Movies/Edit', compact('movie', 'categories', 'genres', 'countries', 'titles', 'movies_list'));
     }
 }

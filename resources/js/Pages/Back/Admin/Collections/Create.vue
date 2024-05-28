@@ -78,7 +78,7 @@
                                        type="file" accept="jpg, jpeg">
                             </div>
                         </label>
-                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 267 X 400. Формат *jpg, *jpeg</figcaption> 
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 267 X 400. Формат *jpg, *jpeg</figcaption>
                     </div>
 
                 </section>
@@ -127,7 +127,7 @@
                                        type="file" accept="jpg, jpeg">
                             </div>
                         </label>
-                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 1200 X 450. Формат *jpg, *jpeg</figcaption> 
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 1200 X 450. Формат *jpg, *jpeg</figcaption>
 
                         <label>Выберите видео, соответствующее статье:</label>
 
@@ -145,7 +145,7 @@
                             </button>
                         </div>
 
-                        <div class="movies_list_wrapper col-12">
+                        <div class="movies_list_wrapper max-h-52 overflow-auto">
                             <div>
                                 <label>
                                     <input v-model="article.article_movie"
@@ -277,7 +277,7 @@
 
         methods: {
             getFilteredMovies(index){
-                axios.post('/admin/collections/get_filtered_movies', {
+                axios.post('/admin/get_filtered_movies', {
                     query_filter: this.form.articles[index].movies_filter
                 })
                 .then(res=>{
