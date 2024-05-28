@@ -12,13 +12,13 @@
 
     <div class="grid shadow-md bg-white rounded-sm overflow-hidden" v-for="collection in data">
         <Link :href="`/collections/${collection.slug}`">
-            <div class="grid grid-cols-[2fr,_3fr] gap-4">
+            <div class="grid grid-cols-[3fr,_4fr] gap-4">
                 <div class="grid content-center">
                     <img v-lazy="collection.poster" class="w-full" alt="...">
                 </div>
 
-                    <article class="grid self-stretch">
-                        <h3 class="text-gray-900">{{collection.collection_title}}</h3>
+                    <article class="grid self-stretch py-2">
+                        <h3 class="text-gray-900 font-semibold">{{collection.collection_title}}</h3>
                         <p class="text-gray-900 text-sm">{{collection.description_min}}</p>
                         <p class="grid grid-flow-col items-center auto-cols-max">
                             <i class="icon-today"></i>
