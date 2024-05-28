@@ -28,6 +28,8 @@ Route::get('/movies/{movie}', \App\Http\Controllers\Front\Movies\SingleControlle
 Route::get('/movies', \App\Http\Controllers\Front\Movies\IndexController::class)->name('catalog.index');
 Route::get('/random_movies', \App\Http\Controllers\Front\Movies\RandomMoviesController::class)->name('random.index');
 Route::get('/search', \App\Http\Controllers\Front\Movies\SearchController::class)->name('search.index');
+Route::get('/privacy_policy', \App\Http\Controllers\Front\PrivacyPolicyController::class)->name('privacy_policy.index');
+Route::get('/back', \App\Http\Controllers\Front\BackController::class)->name('back');
 //Front Comments Routes
 Route::post('/movies/add_comment', \App\Http\Controllers\Comments\Movies\CreateController::class);
 Route::post('/collections/add_comment', \App\Http\Controllers\Comments\Collections\CreateController::class);
@@ -41,6 +43,10 @@ Route::prefix('/collections')->group(function(){
 Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::prefix('/admin')->group(function(){
+
+        Route::post('/get_filtered_movies', \App\Http\Controllers\Back\Admin\FilteredMoviesController::class)->name('collections.filtered_movies');
+
+
         route::prefix('/categories')->group(function(){
             Route::get('/{category}/edit', \App\Http\Controllers\Back\Admin\Categories\EditController::class)->name('categories.edit');
             Route::get('/create', \App\Http\Controllers\Back\Admin\Categories\CreateController::class)->name('categories.create');
@@ -82,7 +88,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
             Route::get('/', \App\Http\Controllers\Back\Admin\Collections\IndexController::class)->name('collections.index');
             Route::patch('/{collection}', \App\Http\Controllers\Back\Admin\Collections\UpdateController::class)->name('collections.update');
             Route::delete('/{collection}', \App\Http\Controllers\Back\Admin\Collections\DestroyController::class)->name('collections.destroy');
-            Route::post('/get_filtered_movies', \App\Http\Controllers\Back\Admin\Collections\FilteredMoviesController::class)->name('collections.filtered_movies');
         });
         route::prefix('/comments/movies')->group(function(){
             Route::get('/', \App\Http\Controllers\Back\Admin\Comments\Movies\IndexController::class)->name('comments.index');

@@ -7,6 +7,7 @@ use App\Http\Resources\Back\Admin\Collections\CollectionsIndexResource;
 use App\Models\Collection;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 
@@ -19,7 +20,7 @@ class EditController extends Controller
 
         $data = CollectionsIndexResource::collection($collection)->resolve();
 
-        $movies = Movie::all('id', 'nameRu', 'nameEn', 'year');
+        $movies = DB::table('movies')->select('id', 'nameRu', 'nameEn', 'year')->orderBy('id', 'desc')->get();
 
         return Inertia::render('Back/Admin/Collections/Edit', compact('data', 'movies'));
     }
