@@ -1446,10 +1446,6 @@ select {
   grid-template-columns: 3fr 1fr;
 }
 
-.grid-cols-\[3fr\2c _4fr\] {
-  grid-template-columns: 3fr 4fr;
-}
-
 .grid-cols-\[40px_max-content_max-content_minmax\(200px\2c _max-content\)\] {
   grid-template-columns: 40px max-content max-content minmax(200px, max-content);
 }
@@ -3006,6 +3002,10 @@ nav{
 
   .md\:grid-cols-\[3fr\2c _2fr\2c _1fr\2c _1fr\] {
     grid-template-columns: 3fr 2fr 1fr 1fr;
+  }
+
+  .md\:grid-cols-\[3fr\2c _4fr\] {
+    grid-template-columns: 3fr 4fr;
   }
 
   .md\:grid-cols-\[40px\2c _max-content_minmax\(200px\2c _max-content\)\] {
