@@ -291,9 +291,16 @@
         </main>
 
         <footer class="bg-white self-bottom">
-            <div class="p-8 grid grid-flow-col justify-between">
-                <div>MovieOne.ru</div>
+            <div class="p-6 grid grid-flow-col justify-between">
+                <div class="grid grid-flow-row gap-2">
+                    <span>MovieOne.ru</span>
+                    <Link class="text-gray-500 text-xs
+                    hover:text-[#333545]"
+                    href="/privacy_policy">Условия использования</Link>
+                </div>
+                <div class="grid content-center">
                 <Socials></Socials>
+                </div>
             </div>
         </footer>
 
