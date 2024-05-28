@@ -153,7 +153,7 @@
 
                                     <label>Выберите видео, соответствующее статье:</label>
 
-                                    <div class="grid grid-flow-col grid-cols-[200px,_max-content] max-h-52 overflow-auto">
+                                    <div class="grid grid-flow-col grid-cols-[200px,_max-content]">
                                         <input @keypress.enter.prevent="getFilteredMovies(index)"
                                                v-model="article.movies_filter"
                                                type="search"
@@ -180,6 +180,7 @@
                                                 Фильм не выбран
                                             </label>
                                         </div>
+                                        <div class="max-h-56 overflow-auto">
                                         <div v-for="movie in article.movies_list">
                                             <label>
                                                 <input v-model="article.article_movie"
@@ -190,6 +191,7 @@
                                                 >
                                                 {{ movie.nameRu }} / {{ movie.nameEn }} / {{ movie.year }}
                                             </label>
+                                        </div>
                                         </div>
                                     </div>
 
