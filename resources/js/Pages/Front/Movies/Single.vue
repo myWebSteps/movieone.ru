@@ -442,7 +442,7 @@
 
                                 <div class="grid grid-cols-[3fr,_1fr] lg:grid-cols-2 justify-start items-center">
                                     <label> Тип графики <br>
-                                        <select v-model="graphics_type" @input="getGraphicks()"
+                                        <select v-model="graphics_type" @input="getGraphicks(graphics_type)"
                                                 class="w-full pt-2"
                                         >
                                             <option value="POSTER">Постеры</option>
@@ -1123,11 +1123,11 @@ export default {
             })
         },
 
-        getGraphicks(page = 1) {
+        getGraphicks(page = 1, type) {
             axios.get(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${this.movie.kinopoisk_id}/images?page=${page}`,
 
                 {
-                    params: {type: this.graphics_type},
+                    params: {type: type},
                     headers: {
                         'X-API-KEY': 'e3409535-696e-40cb-8764-86dda0af9f48',
                         'Content-Type': 'application/json',
