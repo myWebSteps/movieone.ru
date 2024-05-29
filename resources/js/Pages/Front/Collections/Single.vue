@@ -92,7 +92,7 @@
                     {{ article.article_title }}</h3>
                 <img v-lazy="article.image" :alt="article.article_title" class="w-full">
                 <div class="p-2 grid grid-flow-row gap-4">
-                    <p class="text-gray-800 text-sm " v-html="article.description"></p>
+                    <p class="text-gray-700" v-html="article.description"></p>
                     <div class="grid grid-cols-[repeat(auto-fit,_minmax(150px,_200px))]">
                         <p class="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Сюжет:
                             {{ article.movies.plot }}</p>

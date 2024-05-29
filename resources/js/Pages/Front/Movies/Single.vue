@@ -393,7 +393,7 @@
                                         </i>
                                     </h5>
 
-                                    <p class="text-gray-900 pt-1" v-html="review.description"></p>
+                                    <p class="text-gray-700 pt-1" v-html="review.description"></p>
 
                                 </article>
                             </template>
