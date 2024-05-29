@@ -17,7 +17,7 @@ class HomeController extends Controller
 
         $data = IndexResource::collection($categories)->resolve();
 
-        $result = Cache::get('collections')->take(4);
+        $result = Cache::get('collections')->sortBy([['updated_at', 'DESC']])->take(4);
 
         $collections = CollectionsResource::collection($result)->resolve();
 
