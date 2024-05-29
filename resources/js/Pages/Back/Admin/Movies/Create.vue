@@ -486,7 +486,6 @@
                 <div class="grid grid-flow-row gap-4">
                     <label>Заголовок: <br>
                         <select v-model="form.title_id" class="w-full">
-                            <option value="null" disabled>Выберите строку заголовка</option>
                             <option v-for="title in titles" :value="title.id">{{ title.description }}
                             </option>
                         </select>
@@ -593,7 +592,7 @@ export default {
                 budget: "",
                 meta_keywords: '',
                 meta_description: '',
-                title_id: null,
+                title_id: 1,
                 spin_off: [],
                 facts: [{
                     value: '',
