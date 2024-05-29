@@ -35,12 +35,18 @@ Class StoreService
 
         foreach($data['articles'] as $article){
 
-            $image_name = Carbon::now()->getTimestampMs() . '.' . 'webp';
+            $image_name = Carbon::now()->getTimestampMs() . '.webp';
+            $image_name_min = 'min_' . Carbon::now()->getTimestampMs() . '.webp';
 
             Image::make($article['article_image'])
-                ->fit(1200, 450)
+                ->fit(1200, 300)
                 ->encode('webp', 90)
                 ->save(storage_path('/app/public/collections/articles/'. $image_name));
+
+            Image::make($article['article_image'])
+                ->fit(400, 100)
+                ->encode('webp', 90)
+                ->save(storage_path('/app/public/collections/articles/'. $image_name_min));
 
             $moviesArr[] = $article['article_movie'];
 
@@ -49,6 +55,7 @@ Class StoreService
                 'title' => $article['article_title'],
                 'description' => $article['article_description'],
                 'image' => $image_name,
+                'image_min' => $image_name_min,
                 'movie_id' => $article['article_movie']
             ]);
 

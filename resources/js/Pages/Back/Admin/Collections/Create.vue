@@ -127,7 +127,7 @@
                                        type="file" accept="jpg, jpeg">
                             </div>
                         </label>
-                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 1200 X 450. Формат *jpg, *jpeg</figcaption>
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 1200 X 300. Формат *jpg, *jpeg</figcaption>
 
                         <label>Выберите видео, соответствующее статье:</label>
 
@@ -316,10 +316,6 @@
 
 
             store() {
-                this.form.articles.forEach(elem=>{
-                    delete elem.movies_filter
-                    delete elem.movies_list
-                })
                 this.form.articles = this.form.articles.filter((elem) => {
                     if (elem.article_title != '' && elem.article_image != null && elem.article_description && elem.article_movie != null) {
                         return elem
@@ -330,6 +326,12 @@
                     this.message.body = errors.detail.errors
                     this.message.type = 'error'
                     this.message.show = true
+                })
+                router.on('success', ()=>{
+                    this.form.articles.forEach(elem=>{
+                        delete elem.movies_filter
+                        delete elem.movies_list
+                    })
                 })
             }
         },
