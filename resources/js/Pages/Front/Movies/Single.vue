@@ -267,7 +267,7 @@
                             <div class="work-space"></div>
 
                             <article class="px-4">
-                                <h3 class="text-gray-900 text-xl font-medium">{{ movie.slogan }}</h3>
+                                <h3 class="text-gray-900 text-xl font-medium py-2">{{ movie.slogan }}</h3>
                                 <p class="text-gray-700" v-html="movie.description"></p>
                             </article>
                         </div>

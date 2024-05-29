@@ -55,17 +55,27 @@ Class UpdateService
             if (gettype($article['article_image']) === 'object') {
                 if($articleInstance != null) {
                     File::delete(storage_path('app/public/collections/articles/' . $articleInstance->image));
+                    File::delete(storage_path('app/public/collections/articles/' . $articleInstance->image_min));
                 }
-                $image_name = Carbon::now()->getTimestampMs() . '.' . 'webp';
+                $image_name = Carbon::now()->getTimestampMs() . '.webp';
+                $image_name_min = 'min_' . Carbon::now()->getTimestampMs() . '.webp';
                 Image::make($article['article_image'])
-                    ->fit(1200, 450)
+                    ->fit(1200, 300)
                     ->encode('webp', 90)
                     ->save(storage_path('/app/public/collections/articles/' . $image_name));
+
+                Image::make($article['article_image'])
+                    ->fit(400, 100)
+                    ->encode('webp', 90)
+                    ->save(storage_path('/app/public/collections/articles/' . $image_name_min));
+
                 $article['article_image'] = $image_name;
+                $article['article_image_min'] = $image_name_min;
             } else {
                 $image_name = explode('/', $article['article_image']);
                 $last_name = array_pop($image_name);
                 $article['article_image'] = $last_name;
+                $article['article_image_min'] = 'min_' . $last_name;
             }
 
 
@@ -76,6 +86,7 @@ Class UpdateService
                 'title' => $article['article_title'],
                 'description' => $article['article_description'],
                 'image' => $article['article_image'],
+                'image_min' => $article['article_image_min'],
                 'movie_id' => $article['article_movie'],
             ]);
 
