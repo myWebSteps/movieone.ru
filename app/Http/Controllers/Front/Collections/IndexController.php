@@ -20,9 +20,9 @@ class IndexController extends Controller
         };
         $page = $request['page'];
 
-        $result = Cache::remember('collection' . $request['page'], 60 * 60, function() use ($page) {
-            return Collection::where('is_published', '1')->orderBy('id', 'DESC')->select('id', 'collection_title', 'poster', 'slug', 'description_min')->paginate(8, ['*'], 'page', $page);
-        });
+
+        $result = Collection::where('is_published', '1')->orderBy('updated_at', 'DESC')->select('id', 'collection_title', 'poster', 'slug', 'description_min', 'updated_at')->paginate(8, ['*'], 'page', $page);
+
 
         $data = IndexResource::collection($result);
 
