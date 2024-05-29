@@ -1442,10 +1442,6 @@ select {
   grid-template-columns: 20px 1fr;
 }
 
-.grid-cols-\[3fr\2c _1fr\] {
-  grid-template-columns: 3fr 1fr;
-}
-
 .grid-cols-\[40px_max-content_max-content_minmax\(200px\2c _max-content\)\] {
   grid-template-columns: 40px max-content max-content minmax(200px, max-content);
 }
@@ -3109,10 +3105,6 @@ nav{
 
   .lg\:grid-flow-col {
     grid-auto-flow: column;
-  }
-
-  .lg\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lg\:grid-cols-\[1fr\2c _4fr\] {
