@@ -13,6 +13,7 @@ Class DestroyService
         foreach ($collection->articles as $article)
         {
             File::delete(storage_path('/app/public/collections/articles/' . $article->image));
+            File::delete(storage_path('/app/public/collections/articles/' . $article->image_min));
         }
 
         $collection->delete();
