@@ -39,12 +39,12 @@ Class StoreService
             $image_name_min = 'min_' . Carbon::now()->getTimestampMs() . '.webp';
 
             Image::make($article['article_image'])
-                ->fit(1200, 300)
+                ->fit(1200, 450)
                 ->encode('webp', 90)
                 ->save(storage_path('/app/public/collections/articles/'. $image_name));
 
             Image::make($article['article_image'])
-                ->fit(400, 100)
+                ->fit(400, 150)
                 ->encode('webp', 90)
                 ->save(storage_path('/app/public/collections/articles/'. $image_name_min));
 
