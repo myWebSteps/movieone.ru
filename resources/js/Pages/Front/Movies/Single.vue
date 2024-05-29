@@ -437,25 +437,11 @@
                              class="px-4 grid gap-4 grid-flow-row"
                         >
 
-                            <div class="px-4 grid gap-4 grid-flow-row min-h-80 content-start"
+                            <div class="px-4 grid gap-4 grid-flow-row min-h-80"
                             >
 
-                                <div class="grid grid-cols-[3fr,_1fr] lg:grid-cols-2 justify-start items-center">
-                                    <label> Тип графики <br>
-                                        <select v-model="graphics_type" @input="getGraphicks()"
-                                                class="w-full pt-2"
-                                        >
-                                            <option value="POSTER">Постеры</option>
-                                            <option value="FAN_ART">Фан арт</option>
-                                            <option value="PROMO">Промо</option>
-                                            <option value="CONCEPT">Концептуальные</option>
-                                            <option value="COVER">Обложки</option>
-                                            <option value="SCREENSHOT">Кадры</option>
-                                            <option value="STILL">Разное</option>
-                                        </select>
-                                    </label>
-
-                                    <loader v-if="loading.graphics"></loader>
+                                <div v-if="loading.graphics" class="grid justify-center self-center">
+                                    <loader></loader>
                                 </div>
 
                                 <div v-if="graphics.items.length > 0"
@@ -610,7 +596,6 @@ export default {
             graphics: {
                 items: [],
             },
-            graphics_type: "POSTER",
             spoilersShow: false,
             loadTrailers: false,
             accordion: 'general',
@@ -1125,9 +1110,7 @@ export default {
 
         getGraphicks(page = 1) {
             axios.get(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${this.movie.kinopoisk_id}/images?page=${page}`,
-
                 {
-                    params: {type: this.graphics_type},
                     headers: {
                         'X-API-KEY': 'e3409535-696e-40cb-8764-86dda0af9f48',
                         'Content-Type': 'application/json',
