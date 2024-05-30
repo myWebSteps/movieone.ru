@@ -20,7 +20,7 @@ class ShowResource extends JsonResource
 
         $posterUrl = url('storage/movies' . $this->poster);
 
-        $backdropUrl = $this->backdrop_min;
+        $backdropUrl = url('storage/movies' . $this->backdrop_min);
 
         $agent = new Agent();
 
