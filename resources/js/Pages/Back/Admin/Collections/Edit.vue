@@ -169,7 +169,6 @@
 
                                     <div>
                                         <div>
-                                            <label>
                                                 <input v-model="article.article_movie"
                                                        value=""
                                                        class="hidden"
@@ -177,8 +176,6 @@
                                                        :name="`movie_article_${index}`"
                                                        disabled
                                                 >
-                                                Фильм не выбран
-                                            </label>
                                         </div>
                                         <div class="max-h-56 overflow-auto">
                                         <div v-for="movie in article.movies_list">
@@ -335,6 +332,10 @@ export default {
 
 
         store() {
+            this.form.articles.forEach(elem => {
+                delete elem.movies_filter
+                delete elem.movies_list
+            })
            this.form.articles = this.form.articles.filter((elem) => {
                 if (elem.article_title != '' && elem.article_image != null && elem.article_description && elem.article_movie != null) {
                     return elem
@@ -353,21 +354,12 @@ export default {
                 meta_title: this.form.meta_title,
                 meta_keywords: this.form.meta_keywords,
                 meta_description: this.form.meta_description
-            },
-            this.form.articles.forEach(elem => {
-                delete elem.movies_filter
-                delete elem.movies_list
             })
-            )
-            router.on('error', (errors) => {
+             router.on('error', (errors) => {
                 this.message.body = errors.detail.errors
                 this.message.type = 'error'
                 this.message.show = true
             })
-            router.on('success', ()=>{
-
-            })
-
 
         }
     },

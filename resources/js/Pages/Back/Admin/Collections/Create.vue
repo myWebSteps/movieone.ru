@@ -316,24 +316,20 @@
 
 
             store() {
+                this.form.articles.forEach(elem=>{
+                    delete elem.movies_filter
+                    delete elem.movies_list
+                })
                 this.form.articles = this.form.articles.filter((elem) => {
                     if (elem.article_title != '' && elem.article_image != null && elem.article_description && elem.article_movie != null) {
                         return elem
                     }
                 })
-                router.post('/admin/collections/store', this.form,
-                this.form.articles.forEach(elem=>{
-                    delete elem.movies_filter
-                    delete elem.movies_list
-                })
-                )
+                router.post('/admin/collections/store', this.form)
                 router.on('error', (errors) => {
                     this.message.body = errors.detail.errors
                     this.message.type = 'error'
                     this.message.show = true
-                })
-                router.on('success', ()=>{
-
                 })
             }
         },
