@@ -4,7 +4,7 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 const props = defineProps({
     align: {
         type: String,
-        default: 'right',
+        default: 'left',
     },
     width: {
         type: String,

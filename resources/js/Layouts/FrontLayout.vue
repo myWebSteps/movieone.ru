@@ -20,7 +20,7 @@
                     </span>
                 </div>
 
-                <Dropdown :closeOnClick=false class="md:hidden z-50 cursor-pointer" align="middle" width="half">
+                <Dropdown :closeOnClick=false class="md:hidden z-50 cursor-pointer" width="80">
                     <template #trigger>
                                         <span class="inline-flex rounded-md">
                                             <button
@@ -33,6 +33,7 @@
                     <template #content>
                         <div class="inline-grid grid-flow-col grid-cols-[max-content,_30px] px-4 py-2">
                             <input v-model="searchKey" type="text" class="rounded-md"
+                                   :class="show.menu ? 'max-w-36':''"
                                    placeholder="Искать фильмы по названию..."
                                    >
                             <button @click.prevent="commenceSearch()" class="text-gray-400 hover:text-[#333545]"
