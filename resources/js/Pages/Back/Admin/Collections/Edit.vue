@@ -353,17 +353,19 @@ export default {
                 meta_title: this.form.meta_title,
                 meta_keywords: this.form.meta_keywords,
                 meta_description: this.form.meta_description
+            },
+            this.form.articles.forEach(elem => {
+                delete elem.movies_filter
+                delete elem.movies_list
             })
+            )
             router.on('error', (errors) => {
                 this.message.body = errors.detail.errors
                 this.message.type = 'error'
                 this.message.show = true
             })
             router.on('success', ()=>{
-                this.form.articles.forEach(elem => {
-                    delete elem.movies_filter
-                    delete elem.movies_list
-                })
+
             })
 
 
