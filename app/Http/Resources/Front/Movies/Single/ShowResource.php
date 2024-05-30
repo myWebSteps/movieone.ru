@@ -20,15 +20,15 @@ class ShowResource extends JsonResource
 
         $posterUrl = url('storage/movies' . $this->poster);
 
-        $backdropUrl = url('storage/movies' . $this->backdrop_min);
+        $backdropUrl = url('storage/movies' . $this->backdrop);
 
         $agent = new Agent();
 
         if($this->backdrop != null) {
 
-            if ($agent->isDesktop())
+            if ($agent->isMobile())
             {
-                $backdropUrl = url('storage/movies' . $this->backdrop);
+                $backdropUrl = url('storage/movies' . $this->backdrop_min);
             }
 
         }else{

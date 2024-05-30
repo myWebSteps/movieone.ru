@@ -19,13 +19,13 @@ class ArticlesIndexResource extends JsonResource
         $movies = new MoviesIndexResource($this->movie);
         $movies = $movies->resolve();
 
-        $image = $this->image_min;
+        $image = $this->image;
 
         $agent = new Agent();
 
-            if ($agent->isDesktop())
+            if ($agent->isMobile())
             {
-                $image = $this->image;
+                $image = $this->image_min;
             }
 
 
