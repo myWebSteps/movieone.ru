@@ -321,17 +321,19 @@
                         return elem
                     }
                 })
-                router.post('/admin/collections/store', this.form)
+                router.post('/admin/collections/store', this.form,
+                this.form.articles.forEach(elem=>{
+                    delete elem.movies_filter
+                    delete elem.movies_list
+                })
+                )
                 router.on('error', (errors) => {
                     this.message.body = errors.detail.errors
                     this.message.type = 'error'
                     this.message.show = true
                 })
                 router.on('success', ()=>{
-                    this.form.articles.forEach(elem=>{
-                        delete elem.movies_filter
-                        delete elem.movies_list
-                    })
+
                 })
             }
         },
