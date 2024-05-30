@@ -42,7 +42,7 @@
                                 <span class="text-green-500">Коллекция опубликована</span>
                             </template>
                             <template v-else>
-                                <span class="text-red-500">черновик</span>
+                                <span class="text-red-500">Черновик</span>
                             </template>
                         </div>
 
