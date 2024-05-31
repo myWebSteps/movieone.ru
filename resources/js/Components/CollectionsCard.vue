@@ -14,7 +14,7 @@
         <Link :href="`/collections/${collection.slug}`">
             <div class="grid grid-cols-[1fr,_3fr] md:grid-cols-[3fr,_4fr] gap-4">
                 <div class="grid content-center">
-                    <img v-lazy="collection.poster" class="w-full" alt="..." width="70" height="100">
+                    <img v-lazy="collection.poster" class="w-full" :alt="collection.collection_title +' постер'" width="70" height="100">
                 </div>
 
                     <article class="grid self-stretch py-2">

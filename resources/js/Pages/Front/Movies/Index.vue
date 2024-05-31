@@ -3,7 +3,7 @@
     <Head>
         <title>MovieOne.ru | Каталог фильмов, мультфильмов, анимэ онлайн бесплатно без регистрации</title>
         <meta name="description" content="Каталог фильмов, мультфильмов, анимэ онлайн бесплатно без регистрации"/>
-        <meta name="keywords" content="Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
+        <meta name="keywords" content="Каталог Онлайн кинотеатр, смотреть фильмы онлайн, без регистрации"/>
     </Head>
 
         <section class="mx-2 grid grid-rows-[70px,_calc(100%-140px),_70px]">
