@@ -13,7 +13,7 @@ Class StoreService
     {
         $image_name = Carbon::now()->getTimestampMs() . '.' . 'webp';
         Image::make($data['poster'])
-            ->fit(267, 400)
+            ->fit(135, 200)
             ->encode('webp', 90)
             ->save(storage_path('/app/public/collections/posters/' . $image_name));
         $data['poster'] = $image_name;
