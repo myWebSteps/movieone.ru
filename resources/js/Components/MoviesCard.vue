@@ -11,7 +11,7 @@
 
             <Link :href="`/movies/${movie.slug}`" class="h-full grid grid-rows-[max-content,_1fr] items-start">
 
-                    <img v-lazy="movie.poster" :alt="movie.nameEn" class="w-full">
+                    <img v-lazy="movie.poster" :alt="movie.nameEn" class="w-full" width="267" height="400">
 
                 <div class="p-2 grid gap-1 self-stretch max-w-[200px]">
                     <h3 class="text-gray-900 text-wrap">{{movie.nameRu}}</h3>
