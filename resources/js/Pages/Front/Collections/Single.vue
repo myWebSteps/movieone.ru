@@ -120,7 +120,7 @@
                 <Link :href="`/collections/${collection.slug}`"
                       class="grid grid-cols-[1fr,_3fr] gap-2"
                 >
-                    <img v-lazy="collection.poster" class="card-img" alt="...">
+                    <img v-lazy="collection.poster" class="card-img" :alt="collection.collection_title">
                     <div class="grid items-stretch">
                         <h5 class="text-gray-900 text-md font-semibold">{{ collection.collection_title }}</h5>
                         <span class="inline-grid grid-flow-col auto-cols-max gap-1 items-center">

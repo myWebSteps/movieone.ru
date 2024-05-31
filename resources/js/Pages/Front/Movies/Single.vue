@@ -18,7 +18,7 @@
     lg:min-h-52
     "
     >
-        <backdrop-img :img="movie.backdropUrl"></backdrop-img>
+        <backdrop-img :img="movie.backdropUrl" :alt="movie.nameRu"></backdrop-img>
 
         <span class="row-start-1 row-end-1 col-start-1 col-end-1
         w-3/4
@@ -61,7 +61,7 @@
             lg:grid-flow-row lg:self-start
             pt-2 pb-4 px-2
             ">
-                    <img :src="movie.posterUrl" class="rounded-md" :alt="movie.nameEn">
+                    <img :src="movie.posterUrl" class="rounded-md" :alt="movie.nameRu + ' постер'">
                     <div class="grid grid-flow-row gap-2 justify-self-start auto-rows-max">
                         <h6 class="font-semibold">Продолжительность:</h6>
                         <p class="font-light">{{ movie.filmLength }} мин</p>
@@ -450,7 +450,7 @@
 
                                     <div class="grid grid-cols-[repeat(auto-fill,_minmax(150px,_300px))] gap-4">
                                         <div v-for="(graphic, index) in graphics.items">
-                                            <img v-lazy="graphic.previewUrl" @click="fullSize(index)">
+                                            <img v-lazy="graphic.previewUrl" @click="fullSize(index)" alt="...">
                                         </div>
                                     </div>
                                 </div>
@@ -508,7 +508,7 @@
                                         <div v-for="person in staff.directors"
                                              class="grid grid-flow-col grid-cols-[1fr,_2fr]"
                                         >
-                                            <img v-lazy="person.posterUrl">
+                                            <img v-lazy="person.posterUrl" :alt="person.nameRu">
 
                                             <div class="font-weight-bold pl-1">
                                                 <div class="text-gray-900">{{ person.nameRu }}</div>
@@ -523,7 +523,7 @@
                                         <div v-for="person in staff.actors"
                                              class="grid grid-flow-col grid-cols-[1fr,_2fr]"
                                         >
-                                            <img v-lazy="person.posterUrl">
+                                            <img v-lazy="person.posterUrl" :alt="person.nameRu">
                                             <div class="font-weight-bold pl-1">
                                                 <div class="text-gray-900">{{ person.nameRu }}</div>
                                             </div>
@@ -536,7 +536,7 @@
                                     <div class="grid grid-cols-[repeat(auto-fill,_minmax(100px,_200px))] gap-4">
                                         <div v-for="person in staff.support"
                                              class="grid grid-flow-col grid-cols-[1fr,_2fr]">
-                                            <img v-lazy="person.posterUrl">
+                                            <img v-lazy="person.posterUrl" :alt="person.nameRu">
 
                                             <div class="font-weight-bold pl-1">
                                                 <div class="text-gray-900">{{ person.nameRu }}</div>
