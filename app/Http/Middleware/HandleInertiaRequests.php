@@ -33,12 +33,12 @@ class HandleInertiaRequests extends Middleware
     {
         $agent = new Agent();
 
-        $showMenu = false;
+        $showMenu = true;
         $coverImg = "/img/cover.webp";
 
         if ($agent->isMobile())
         {
-            $showMenu = true;
+            $showMenu = false;
             $coverImg = "/img/cover_min.webp";
         };
 
