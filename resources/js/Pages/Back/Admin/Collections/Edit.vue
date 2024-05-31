@@ -100,7 +100,7 @@
                                        type="file" accept="jpg, jpeg">
                             </div>
                         </label>
-                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 267 X 400. Формат *jpg, *jpeg</figcaption>
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 135 X 200. Формат *jpg, *jpeg</figcaption>
                     </div>
 
                 </section>
