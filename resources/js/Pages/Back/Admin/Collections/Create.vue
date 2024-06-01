@@ -78,7 +78,7 @@
                                        type="file" accept="jpg, jpeg">
                             </div>
                         </label>
-                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 70 X 100. Формат *jpg, *jpeg</figcaption>
+                        <figcaption class="text-sm text-gray-500 my-1">*Размер: 105 X 150. Формат *jpg, *jpeg</figcaption>
                     </div>
 
                 </section>
