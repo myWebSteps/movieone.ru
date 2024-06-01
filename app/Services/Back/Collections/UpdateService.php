@@ -16,7 +16,7 @@ Class UpdateService
             File::delete(storage_path('app/public/collections/posters/' . $collection->poster));
             $image_name = Carbon::now()->getTimestampMs() . '.' . 'webp';
             Image::make($data['poster'])
-                ->fit(105, 150)
+                ->fit(135, 200)
                 ->encode('webp', 90)
                 ->save(storage_path('/app/public/collections/posters/' . $image_name));
             $data['poster'] = $image_name;
