@@ -112,7 +112,7 @@
                         <DropdownLink :href="`/movies/${item.slug}`"
                         class="grid grid-flow-col grid-cols-[1fr,_2fr] min-w-72 gap-2"
                         >
-                            <img :src="item.posterUrl" alt="...">
+                            <img :src="item.posterUrl" :alt="item.nameRu + ' постер'">
                             <div class="grid grid-flow-row text-wrap">
                             <span class="font-semibold">{{item.nameRu}}</span>
                             <span class="font-light">{{item.nameEn}}</span>
@@ -167,7 +167,7 @@
                             <DropdownLink :href="`/collections/${item.slug}`"
                                           class="grid grid-flow-col grid-cols-[1fr,_2fr] min-w-72 gap-2"
                             >
-                                <img :src="item.poster" alt="...">
+                                <img :src="item.poster" :alt="item.collection_title + ' постер'">
                                 <div class="grid grid-flow-row">
                                     <span class="font-semibold whitespace-nowrap text-nowrap overflow-hidden text-ellipsis">{{item.collection_title}}</span>
                                     <span class="font-light whitespace-nowrap text-nowrap overflow-hidden text-ellipsis">{{item.description_min}}</span>
@@ -222,7 +222,7 @@
                          sm:gap-1"
                           :class="show.menu ? 'sm:grid-cols-[max-content,_max-content]' : 'grid-cols-1'"
                     >
-                        <img src="/img/logo-icon.webp" class="w-[50px] px-1" alt="...">
+                        <img src="/img/logo-icon.webp" class="w-[50px] px-1" alt="logo icon" width="50" height="50">
                         <p class="uppercase text-white text-base font-bold hidden
                         sm:block
                         "
