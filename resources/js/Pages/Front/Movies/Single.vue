@@ -61,7 +61,7 @@
             lg:grid-flow-row lg:self-start
             pt-2 pb-4 px-2
             ">
-                    <img :src="movie.posterUrl" class="rounded-md" :alt="movie.nameRu + ' постер'">
+                    <img :src="movie.posterUrl" class="rounded-md" :alt="movie.nameRu + ' постер'" width="267" height="400">
                     <div class="grid grid-flow-row gap-2 justify-self-start auto-rows-max">
                         <h6 class="font-semibold">Продолжительность:</h6>
                         <p class="font-light">{{ movie.filmLength }} мин</p>
