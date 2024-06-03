@@ -1,5 +1,4 @@
 <template>
-
     <div class="main-wrapper">
         <header class="bg-[#333545] grid z-40">
             <div class="pr-8 grid grid-cols-[max-content,_max-content,_1fr,_max-content] content-center gap-4">

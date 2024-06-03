@@ -177,6 +177,7 @@
 
                         <Socials></Socials>
 
+
                     </div>
 
                     <section class="grid grid-flow-row grid-cols-1 bg-white shadow-md py-2 gap-4">
@@ -263,8 +264,9 @@
                         <div :class="accordion === 'general' ? '' : 'hidden' "
                              class="grid grid-flow-row gap-4 pt-2 pb-4"
                         >
-
+                            <button is='google-cast-button'></button>
                             <div class="work-space"></div>
+
 
                             <article class="px-4">
                                 <h3 class="text-gray-900 text-xl font-medium py-2">{{ movie.slogan }}</h3>
