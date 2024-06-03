@@ -969,58 +969,35 @@ export default {
                 });
 
                 new Kinobox('.kinobox_player', {
-                    'X-Settings': {
-                        "Videocdn": {
-                            "enable": true,
-                            "position": 1,
-                            "token": "",
+                    players: {
+                        Videocdn: {
+                            enable: true,
+                            position: 1,
                         },
-                        "Kodik": {
-                            "enable": true,
-                            "position": 2,
-                            "token": "",
+                        alloha: { // Название
+                            enable: true, // Включить
+                            position: 2, // Позиция в меню
                         },
-                        "Alloha": {
-                            "enable": true,
-                            "position": 3,
-                            "token": "",
+                        Cdnmovies: {
+                            enable: true,
+                            position: 3,
                         },
-                        "Cdnmovies": {
-                            "enable": true,
-                            "position": 4,
-                            "token": "",
+                        Kodik: {
+                            enable: true,
+                            position: 4,
                         },
-                        "Ashdi": {
-                            "enable": true,
-                            "position": 5,
-                            "token": "",
+                        Collaps: {
+                            enable: true,
+                            position: 5,
                         },
-                        "Bazon": {
-                            "enable": true,
-                            "position": 6,
-                            "token": "",
+                        Hdvb: {
+                            enable: true,
+                            position: 6,
                         },
-                        "Collaps": {
-                            "enable": true,
-                            "position": 7,
-                            "token": "",
+                        Voidboost: {
+                            enable: true,
+                            position: 7,
                         },
-                        "Hdvb": {
-                            "enable": true,
-                            "position": 8,
-                            "token": "",
-                        },
-                        "Iframe": {
-                            "enable": true,
-                            "position": 9,
-                            "token": "",
-                        },
-                        "Voidboost": {
-                            "enable": true,
-                            "position": 10,
-                            "token": "",
-                        },
-
                     },
                     search: {
                         kinopoisk: this.movie.kinopoisk_id,
