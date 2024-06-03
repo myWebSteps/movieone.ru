@@ -12,11 +12,45 @@
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
     </head>
+
     <body class="bg-slate-100">
         @inertia
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date(); for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }} k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "../assets/metrica.js", "ym"); ym(94438576, "init", { clickmap:false, trackLinks:false, accurateTrackBounce:false }); </script> <noscript>...</noscript>
         <!-- /Yandex.Metrika counter -->
+
+        <script>
+            window.__onGCastApiAvailable = function(isAvailable){
+                if(! isAvailable){
+                    return false;
+                }
+
+                var castContext = cast.framework.CastContext.getInstance();
+
+                castContext.setOptions({
+                    autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED,
+                    receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID
+                });
+
+                var stateChanged = cast.framework.CastContextEventType.CAST_STATE_CHANGED;
+                castContext.addEventListener(stateChanged, function(event){
+                    var castSession = castContext.getCurrentSession();
+                    var media = new chrome.cast.media.MediaInfo('https://www.example.com/my-song.mp3', 'audio/mp3');
+                    var request = new chrome.cast.media.LoadRequest(media);
+
+                    castSession && castSession
+                        .loadMedia(request)
+                        .then(function(){
+                            console.log('Success');
+                        })
+                        .catch(function(error){
+                            console.log('Error: ' + error);
+                        });
+                });
+            };
+        </script>
+        <script src='https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1'></script>
+
     </body>
 
 </html>
