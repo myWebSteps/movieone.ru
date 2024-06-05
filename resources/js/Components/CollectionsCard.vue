@@ -13,7 +13,7 @@
     <div class="grid shadow-md bg-white rounded-sm overflow-hidden" v-for="collection in data">
         <Link :href="`/collections/${collection.slug}`">
             <div class="grid grid-cols-[1fr,_3fr] md:grid-cols-[3fr,_4fr] gap-4">
-                <div class="grid content-center">
+                <div class="grid content-center min-h-24">
                     <img v-lazy="collection.poster" class="w-full" :alt="collection.collection_title +' постер'" width="70" height="100">
                 </div>
 
