@@ -22,7 +22,7 @@
                         <p class="text-gray-900 text-sm">{{collection.description_min}}</p>
                         <p class="grid grid-flow-col items-center auto-cols-max">
 
-                            <span class="text-red-800 font-light text-wrap self-end"><i class="icon-today text-gray-900"></i> {{collection.date}}</span>
+                            <span class="text-red-800 font-light text-wrap self-end text-sm"><i class="icon-today text-gray-900"></i> {{collection.date}}</span>
                         </p>
                     </article>
 
