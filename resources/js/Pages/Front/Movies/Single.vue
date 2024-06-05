@@ -279,9 +279,8 @@
                                 <h6>Факты:</h6>
                                 <div v-for="fact in movie.facts"
                                      class="bg-emerald-50 py-4 px-2 rounded-md shadow-md w-full">
-                                    <blockquote>
-                                        {{ fact.value }}
-                                    </blockquote>
+                                    <div v-html="fact.value">
+                                    </div>
                                 </div>
                             </div>
 

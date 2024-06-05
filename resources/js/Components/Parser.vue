@@ -92,7 +92,6 @@ export default {
                     }
                 })
                 .then(response => {
-                    console.log(response)
                     this.form.year = response.data.year
                     this.form.nameRu = response.data.name
                     this.form.nameEn = response.data.alternativeName
@@ -138,6 +137,14 @@ export default {
                         this.form.facts = response.data.facts
                     }
                     this.form.meta_keywords = `${response.data.name} ${response.data.alternativeName} ${response.data.year} смотреть онлайн бесплатно и без регистрации в хорошем качестве отзывы рецензии графика картинки описание саундтреки трейлеры`
+
+
+                        for(let item of this.form.facts)
+                        {
+                            item.value = item.value.replace(/<.+>/, '')
+                        }
+
+
 
                     this.message.body = ['Информация успешно получена']
                     this.message.type = 'success'
