@@ -645,13 +645,13 @@ export default {
             try {
                new Kinobox('.kinobox_player', {
                     players: {
-                        Videocdn: {
+                        alloha: {
                             enable: true,
                             position: 1,
                         },
-                        alloha: { // Название
-                            enable: true, // Включить
-                            position: 2, // Позиция в меню
+                        Videocdn: {
+                            enable: true,
+                            position: 2,
                         },
                         Cdnmovies: {
                             enable: true,
