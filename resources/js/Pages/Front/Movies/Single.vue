@@ -290,9 +290,8 @@
                                 <h6>Неудачные дубли:</h6>
                                 <div v-for="blooper in movie.bloopers"
                                      class="bg-amber-50 py-4 px-2 rounded-md shadow-md">
-                                    <blockquote>
-                                        {{ blooper.value }}
-                                    </blockquote>
+                                    <div v-html="blooper.value">
+                                    </div>
                                 </div>
                             </div>
 
@@ -320,9 +319,8 @@
 
                                 <div v-if="spoilersShow" v-for="spoiler in movie.spoilers"
                                      class="bg-rose-50 py-4 px-2 rounded-md shadow-md">
-                                    <blockquote>
-                                        {{ spoiler.value }}
-                                    </blockquote>
+                                    <div v-html="spoiler.value">
+                                    </div>
                                 </div>
                             </div>
 
