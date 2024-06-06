@@ -138,7 +138,7 @@ export default {
 
                         for(let item of this.form.facts)
                         {
-                            item.value = item.value.replace(/<.+>/, '')
+                            item.value = item.value.replace(/<.+"all">/, '').replace('</a>', '')
                         }
                     }
                     this.form.meta_keywords = `${response.data.name} ${response.data.alternativeName} ${response.data.year} смотреть онлайн бесплатно и без регистрации в хорошем качестве отзывы рецензии графика картинки описание саундтреки трейлеры`
