@@ -74,9 +74,8 @@
                 <label for="all_genres">Все жанры
                     <small class="text-xs text-gray-600">{{ $page.props.totalCount }}</small></label>
             </div>
-            <template v-for="genre in $page.props.genres"
-                 class="grid grid-flow-col justify-self-start items-center justify-items-center gap-1">
-                <div v-if="genre.genresCount > 0">
+            <template v-for="genre in $page.props.genres">
+                <div v-if="genre.genresCount > 0" class="grid gap-1 grid-flow-col justify-self-start">
                 <input @change.prevent="send()" v-model="form.genre" type="radio"
                        class="focus:ring-white text-gray-500 w-3 h-3 self-center"
                        :value="genre.genre.slug"
