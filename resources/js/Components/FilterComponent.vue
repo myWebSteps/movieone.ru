@@ -75,14 +75,17 @@
                     <small class="text-xs text-gray-600">{{ $page.props.totalCount }}</small></label>
             </div>
             <div v-for="genre in $page.props.genres"
-                 class="grid grid-flow-col justify-self-start items-center justify-items-center gap-1">
+                 class="grid grid-flow-col justify-self-start">
                 <template v-if="genre.genresCount > 0">
+                    <div class="grid grid-flow-col gap-1">
                 <input @change.prevent="send()" v-model="form.genre" type="radio"
                        class="focus:ring-white text-gray-500 w-3 h-3 self-center"
                        :value="genre.genre.slug"
                        name="genres_filter" :id="genre.genre.slug">
                 <label :for="genre.genre.slug">{{ genre.genre.title }}
-                    <small class="text-xs text-gray-600">{{ genre.genresCount }}</small></label>
+                    <small class="text-xs text-gray-600">{{ genre.genresCount }}</small>
+                </label>
+                    </div>
                 </template>
             </div>
 
