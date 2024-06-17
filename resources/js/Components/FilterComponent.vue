@@ -74,17 +74,17 @@
                 <label for="all_genres">Все жанры
                     <small class="text-xs text-gray-600">{{ $page.props.totalCount }}</small></label>
             </div>
-            <div v-for="genre in $page.props.genres"
+            <template v-for="genre in $page.props.genres"
                  class="grid grid-flow-col justify-self-start items-center justify-items-center gap-1">
-                <template v-if="genre.genresCount > 0">
+                <div v-if="genre.genresCount > 0">
                 <input @change.prevent="send()" v-model="form.genre" type="radio"
                        class="focus:ring-white text-gray-500 w-3 h-3 self-center"
                        :value="genre.genre.slug"
                        name="genres_filter" :id="genre.genre.slug">
                 <label :for="genre.genre.slug">{{ genre.genre.title }}
                     <small class="text-xs text-gray-600">{{ genre.genresCount }}</small></label>
-                </template>
-            </div>
+                </div>
+            </template>
 
         </div>
         <!--countries-->
@@ -113,17 +113,16 @@
                 <label for="all_countries">Все страны
                     <small class="text-xs text-gray-600">{{ $page.props.totalCount }}</small></label>
             </div>
-            <div v-for="country in $page.props.countries"
-                 class="grid grid-flow-col justify-self-start items-center justify-items-center gap-1">
-                <template v-if="country.count > 0">
+            <template v-for="country in $page.props.countries">
+                <div v-if="country.count > 0" class="grid grid-flow-col justify-self-start items-center justify-items-center gap-1">
                 <input @change.prevent="send()" v-model="form.country" type="radio"
                        class="focus:ring-white text-gray-500 w-3 h-3 self-center"
                        :value="country.slug"
                        name="countries_filter" :id="country.slug">
                 <label :for="country.slug">{{ country.title }}
                     <small class="text-xs text-gray-600">{{ country.count }}</small></label>
-                </template>
-            </div>
+                </div>
+            </template>
         </div>
         <!--Year-->
         <div class="grid grid-flow-row gap-2">
