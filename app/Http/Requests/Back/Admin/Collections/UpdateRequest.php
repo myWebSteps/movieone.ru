@@ -34,7 +34,7 @@ class UpdateRequest extends FormRequest
             'articles.*.article_title' => 'required|string',
             'articles.*.article_image' => 'required',
             'articles.*.article_description' => 'required|string',
-            'articles.*.article_movie' => 'required|integer',
+            'articles.*.article_movie' => 'nullable|integer',
             'meta_title'=> 'required|string',
             'meta_keywords' => 'required|string',
             'meta_description'=>'required|string',

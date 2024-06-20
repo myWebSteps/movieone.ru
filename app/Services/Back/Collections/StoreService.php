@@ -61,7 +61,10 @@ Class StoreService
 
         };
 
+        $moviesArr = array_filter($moviesArr);
+
         $collection->movies()->attach($moviesArr);
+
     }
 
 }
