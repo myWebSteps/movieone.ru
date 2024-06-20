@@ -74,16 +74,20 @@
                 <label for="all_genres">Все жанры
                     <small class="text-xs text-gray-600">{{ $page.props.totalCount }}</small></label>
             </div>
-            <template v-for="genre in $page.props.genres">
-                <div v-if="genre.genresCount > 0" class="grid gap-1 grid-flow-col justify-self-start">
-                <input @change.prevent="send()" v-model="form.genre" type="radio"
-                       class="focus:ring-white text-gray-500 w-3 h-3 self-center"
-                       :value="genre.genre.slug"
-                       name="genres_filter" :id="genre.genre.slug">
-                <label :for="genre.genre.slug">{{ genre.genre.title }}
-                    <small class="text-xs text-gray-600">{{ genre.genresCount }}</small></label>
-                </div>
-            </template>
+            <div v-for="genre in $page.props.genres"
+                 class="grid grid-flow-col justify-self-start">
+                <template v-if="genre.genresCount > 0">
+                    <div class="grid grid-flow-col gap-1">
+                        <input @change.prevent="send()" v-model="form.genre" type="radio"
+                               class="focus:ring-white text-gray-500 w-3 h-3 self-center"
+                               :value="genre.genre.slug"
+                               name="genres_filter" :id="genre.genre.slug">
+                        <label :for="genre.genre.slug">{{ genre.genre.title }}
+                            <small class="text-xs text-gray-600">{{ genre.genresCount }}</small>
+                        </label>
+                    </div>
+                </template>
+            </div>
 
         </div>
         <!--countries-->
@@ -112,32 +116,33 @@
                 <label for="all_countries">Все страны
                     <small class="text-xs text-gray-600">{{ $page.props.totalCount }}</small></label>
             </div>
-            <template v-for="country in $page.props.countries">
-                <div v-if="country.count > 0" class="grid grid-flow-col justify-self-start items-center justify-items-center gap-1">
-                <input @change.prevent="send()" v-model="form.country" type="radio"
-                       class="focus:ring-white text-gray-500 w-3 h-3 self-center"
-                       :value="country.slug"
-                       name="countries_filter" :id="country.slug">
-                <label :for="country.slug">{{ country.title }}
-                    <small class="text-xs text-gray-600">{{ country.count }}</small></label>
-                </div>
-            </template>
+            <div v-for="country in $page.props.countries"
+                 class="grid grid-flow-col justify-self-start items-center justify-items-center gap-1">
+                <template v-if="country.count > 0">
+                    <input @change.prevent="send()" v-model="form.country" type="radio"
+                           class="focus:ring-white text-gray-500 w-3 h-3 self-center"
+                           :value="country.slug"
+                           name="countries_filter" :id="country.slug">
+                    <label :for="country.slug">{{ country.title }}
+                        <small class="text-xs text-gray-600">{{ country.count }}</small></label>
+                </template>
+            </div>
         </div>
         <!--Year-->
         <div class="grid grid-flow-row gap-2">
             <h6 class="text-gray-500">По годам:</h6>
 
-                <input type="number"
-                       :min="$page.props.originalYearFrom"
-                       :max="$page.props.originalYearTo"
-                       step="1"
-                       v-model="form.yearFrom">
+            <input type="number"
+                   :min="$page.props.originalYearFrom"
+                   :max="$page.props.originalYearTo"
+                   step="1"
+                   v-model="form.yearFrom">
 
-                <input type="number"
-                       :min="$page.props.originalYearFrom"
-                       :max="$page.props.originalYearTo"
-                       step="1"
-                       v-model="form.yearTo">
+            <input type="number"
+                   :min="$page.props.originalYearFrom"
+                   :max="$page.props.originalYearTo"
+                   step="1"
+                   v-model="form.yearTo">
 
 
             <div class="justify-self-end mt-4">
@@ -238,18 +243,18 @@ export default {
             router.get(`/movies?category=${this.$page.props.category.slug}&order=year&page=1`,
                 {},
                 {preserveScroll: true,
-                        onSuccess: params => {
-                                this.form.category = this.$page.props.data.category,
-                                this.form.type = this.$page.props.data.type,
-                                this.form.genre = this.$page.props.data.genre,
-                                this.form.country = this.$page.props.data.country,
-                                this.form.order = this.$page.props.data.order,
-                                this.form.page = this.$page.props.data.page,
-                                this.form.genres_filter = this.$page.props.data.genres_filter,
-                                this.form.countries_filter = this.$page.props.data.countries_filter,
-                                this.form.yearFrom = this.$page.props.data.yearFrom,
-                                this.form.yearTo = this.$page.props.data.yearTo
-                        }}
+                    onSuccess: params => {
+                        this.form.category = this.$page.props.data.category,
+                            this.form.type = this.$page.props.data.type,
+                            this.form.genre = this.$page.props.data.genre,
+                            this.form.country = this.$page.props.data.country,
+                            this.form.order = this.$page.props.data.order,
+                            this.form.page = this.$page.props.data.page,
+                            this.form.genres_filter = this.$page.props.data.genres_filter,
+                            this.form.countries_filter = this.$page.props.data.countries_filter,
+                            this.form.yearFrom = this.$page.props.data.yearFrom,
+                            this.form.yearTo = this.$page.props.data.yearTo
+                    }}
             );
             this.queryArr = {}
         },
