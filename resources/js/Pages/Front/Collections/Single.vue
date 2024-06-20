@@ -93,7 +93,7 @@
                 <img v-lazy="article.image" :alt="article.article_title" class="w-full">
                 <div class="p-2 grid grid-flow-row gap-4">
                     <p class="text-gray-700" v-html="article.description"></p>
-                    <div class="grid grid-cols-[repeat(auto-fit,_minmax(150px,_200px))]">
+                    <div v-if="article.movies" class="grid grid-cols-[repeat(auto-fit,_minmax(150px,_200px))]">
                         <p class="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Сюжет:
                             {{ article.movies.plot }}</p>
                         <p class="text-gray-600 font-size-1 mt-2 col-xl-3 col-lg-6 col-sm-6 col-12">Игра актеров:
@@ -104,7 +104,7 @@
                             {{ article.movies.rating }}</p>
                     </div>
                 </div>
-                <Link :href="`/movies/${article.movies.slug}`"
+                <Link v-if="article.movies" :href="`/movies/${article.movies.slug}`"
                       class="px-2 py-1 m-2 justify-self-start border-2 border-red-700 rounded-md text-rose-700 hover:bg-rose-700 hover:text-white"
                 >Перейти к видео &#8594
                 </Link>

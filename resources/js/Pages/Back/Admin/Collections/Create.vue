@@ -149,11 +149,9 @@
                             <div>
                                 <label>
                                     <input v-model="article.article_movie"
-                                           value=""
-                                           class="hidden"
+                                           :value=null
                                            type="radio"
                                            :name="`movie_article_${index}`"
-                                           disabled
                                     >
                                     Фильм не выбран
                                 </label>
@@ -321,7 +319,7 @@
                     delete elem.movies_list
                 })
                 this.form.articles = this.form.articles.filter((elem) => {
-                    if (elem.article_title != '' && elem.article_image != null && elem.article_description && elem.article_movie != null) {
+                    if (elem.article_title != '' && elem.article_image != null && elem.article_description) {
                         return elem
                     }
                 })

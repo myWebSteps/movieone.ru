@@ -178,6 +178,16 @@
                                                 >
                                         </div>
                                         <div class="max-h-56 overflow-auto">
+                                            <div>
+                                                <label>
+                                                    <input v-model="article.article_movie"
+                                                           :value=null
+                                                           type="radio"
+                                                           :name="`movie_article_${index}`"
+                                                    >
+                                                    Фильм не выбран
+                                                </label>
+                                            </div>
                                         <div v-for="movie in article.movies_list">
                                             <label>
                                                 <input v-model="article.article_movie"
@@ -337,7 +347,7 @@ export default {
                 delete elem.movies_list
             })
            this.form.articles = this.form.articles.filter((elem) => {
-                if (elem.article_title != '' && elem.article_image != null && elem.article_description && elem.article_movie != null) {
+                if (elem.article_title != '' && elem.article_image != null && elem.article_description) {
                     return elem
                 }
             })

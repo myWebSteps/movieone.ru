@@ -31,7 +31,7 @@ class StoreRequest extends FormRequest
             'articles.*.article_title' => 'required|string',
             'articles.*.article_image' => 'required',
             'articles.*.article_description' => 'required|string',
-            'articles.*.article_movie' => 'required|integer',
+            'articles.*.article_movie' => 'nullable|integer',
             'meta_title' => 'required|string|min:3|max:255',
             'meta_keywords'=>'required|string|min:3|max:255',
             'meta_description'=>'required|string|min:3|max:16300',

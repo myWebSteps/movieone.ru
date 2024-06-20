@@ -16,8 +16,12 @@ class ArticlesIndexResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $movies = new MoviesIndexResource($this->movie);
-        $movies = $movies->resolve();
+        if($this->movie !== null) {
+            $movies = new MoviesIndexResource($this->movie);
+            $movies = $movies->resolve();
+        }else{
+            $movies = null;
+        };
 
         $image = $this->image;
 

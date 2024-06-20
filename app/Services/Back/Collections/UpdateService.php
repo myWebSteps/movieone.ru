@@ -104,7 +104,10 @@ Class UpdateService
             'meta_description' => $data['meta_description']
         ]);
 
+        $articleMoviesArr = array_filter($articleMoviesArr);
+
         $collection->movies()->sync($articleMoviesArr);
+
     }
 
 }
