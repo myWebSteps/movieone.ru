@@ -3,6 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SitemapController;
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+
 Route::get('/.well-known/acme-challenge/y2w5jVMe4L8tKFP4ZMbMfp1YwjiPT_93nG2YfAaYEaw', function (){
     return 'y2w5jVMe4L8tKFP4ZMbMfp1YwjiPT_93nG2YfAaYEaw.LssAdB7xfg32i65M9C72ThKkc5xl9VrbfS7rzzgayZ4';
 });
@@ -17,11 +21,11 @@ Route::post('/playlist', \App\Http\Controllers\Front\Movies\PlaylistController::
 Route::post('/bookmarks', \App\Http\Controllers\Front\Collections\BookmarksController::class);
 Route::post('/get_comments_count', \App\Http\Controllers\Info\CommentsCountController::class);
 
-Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap.index');
-Route::get('/sitemap/movies.xml', [\App\Http\Controllers\SitemapController::class, 'movies'])->name('sitemap.movies');
-Route::get('/sitemap/movies/{slug}.xml', [\App\Http\Controllers\SitemapController::class, 'movie_single'])->name('sitemap.movie_single');
-Route::get('/sitemap/collections.xml', [\App\Http\Controllers\SitemapController::class, 'collections'])->name('sitemap.collections');
-Route::get('/sitemap/collections/{slug}.xml', [\App\Http\Controllers\SitemapController::class, 'collection_single'])->name('sitemap.collection_single');
+//Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap.index');
+//Route::get('/sitemap/movies.xml', [\App\Http\Controllers\SitemapController::class, 'movies'])->name('sitemap.movies');
+//Route::get('/sitemap/movies/{slug}.xml', [\App\Http\Controllers\SitemapController::class, 'movie_single'])->name('sitemap.movie_single');
+//Route::get('/sitemap/collections.xml', [\App\Http\Controllers\SitemapController::class, 'collections'])->name('sitemap.collections');
+//Route::get('/sitemap/collections/{slug}.xml', [\App\Http\Controllers\SitemapController::class, 'collection_single'])->name('sitemap.collection_single');
 
 Route::get('/', \App\Http\Controllers\Front\HomeController::class)->name('front.index');
 Route::get('/movies/{movie}', \App\Http\Controllers\Front\Movies\SingleController::class)->name('single.index');
