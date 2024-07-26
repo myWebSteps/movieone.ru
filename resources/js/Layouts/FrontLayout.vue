@@ -293,7 +293,7 @@
         <footer class="bg-white self-bottom">
             <div class="p-6 grid grid-flow-col justify-between">
                 <div class="grid grid-flow-row gap-2">
-                    <span>MovieOne.ru</span>
+                    <span>© MovieOne.ru, {{ year }}</span>
                     <Link class="text-gray-500 text-xs
                     hover:text-[#333545]"
                     href="/privacy_policy">Условия использования</Link>
@@ -347,6 +347,7 @@ export default {
                 type: '',
                 show: false,
             },
+            year: new Date().getFullYear(),
         }
     },
 
