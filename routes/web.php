@@ -38,6 +38,7 @@ Route::get('/back', \App\Http\Controllers\Front\BackController::class)->name('ba
 Route::post('/movies/add_comment', \App\Http\Controllers\Comments\Movies\CreateController::class);
 Route::post('/collections/add_comment', \App\Http\Controllers\Comments\Collections\CreateController::class);
 
+Route::get('/{any}', \App\Http\Controllers\Front\NotFoundController::class)->where('any', '.*');
 
 Route::prefix('/collections')->group(function(){
     Route::get('/', \App\Http\Controllers\Front\Collections\IndexController::class)->name('front.collections.index');
