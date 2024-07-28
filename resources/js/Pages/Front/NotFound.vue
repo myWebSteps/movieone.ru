@@ -1,3 +1,6 @@
+<Head>
+   <title>404 | Смотреть интересные фильмы и мультики, анимэ онлайн бесплатно без регистрации</title>
+</Head>
 <template>
     <section class="mb-4 z-20 bg-slate-100 relative">
         <div class="not-found">
