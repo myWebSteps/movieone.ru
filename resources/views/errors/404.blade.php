@@ -10,7 +10,7 @@
 
   <style id="" media="all">
     /* cyrillic-ext */
-    @font-face {
+    /*@font-face {
       font-family: 'Montserrat';
       font-style: normal;
       font-weight: 900;
@@ -123,7 +123,7 @@
       .notfound h2 {
         font-size: 16px
       }
-    }
+    }*/
   </style>
   <meta name="robots" content="noindex, follow">
 </head>
@@ -135,7 +135,10 @@
         <h3>Страница не найдена</h3>
         <h1><span>4</span><span>0</span><span>4</span></h1>
       </div>
-      <a href="/" class="inline w-full text-center border-2 border-rose-700 text-white bg-rose-700 px-2 py-1 rounded-md shadow-md hover:text-rose-700 hover:bg-white" Н>
+      <a href="/" 
+          class="inline w-full text-center border-2 border-rose-700 text-white bg-rose-700 px-2 py-1 rounded-md shadow-md hover:text-rose-700 hover:bg-white">
+          На Главную
+      </a>
     </div>
   </div>
 </body>
