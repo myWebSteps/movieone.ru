@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="yandex-verification" content="04c3bf7c897cb0df" />
-        <meta name="google-site-verification" content="g7c3etR_RSTclA04HGiIwvCuIh8XugsxGr_MmYaWl4M" />
+        <meta name="yandex-verification" content="2288aa9543127b09" />
+        <meta name="google-site-verification" content="uvii9f3gBL71KDXRoH0u4OP2-Qma6lS-rgXV-VG5hxY" />
         <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
         <link rel="preload" href="../img/logo-icon.webp" as="image" type="image/webp">
         <link rel="preload" href="../assets/metrica.js" as="script" />

@@ -6,7 +6,6 @@
         <h6>Фильтр</h6>
         <!--types-->
         <div class="grid grid-flow-row gap-1">
-            <h6 class="text-gray-500">Тип</h6>
             <div class="grid grid-flow-col justify-self-start items-center justify-items-center gap-1">
                 <input @change.prevent="send()"
                        v-model="form.type" type="radio"
@@ -49,7 +48,6 @@
         </div>
         <!--genres-->
         <div class="grid grid-flow-row gap-1">
-            <h6 class="text-gray-500">Жанры</h6>
 
             <form>
                 <div class="grid grid-flow-col gap-1">
@@ -92,7 +90,6 @@
         </div>
         <!--countries-->
         <div class="grid grid-flow-row gap-1">
-            <h6 class="text-gray-500">Страны</h6>
             <form>
                 <div class="grid grid-flow-col gap-1">
                     <input @keypress.enter.prevent="send()"
@@ -130,7 +127,6 @@
         </div>
         <!--Year-->
         <div class="grid grid-flow-row gap-2">
-            <h6 class="text-gray-500">По годам:</h6>
 
             <input type="number"
                    :min="$page.props.originalYearFrom"
@@ -155,7 +151,6 @@
         </div>
         <!--sort by-->
         <div class="grid grid-flow-row gap-1">
-            <h6 class="text-gray-500">Сортировать по:</h6>
             <div class="grid grid-flow-col justify-self-start items-center justify-items-center gap-1">
                 <input @change.prevent="send()" v-model="form.order" type="radio"
                        class="focus:ring-white text-gray-500 w-3 h-3 self-center"
