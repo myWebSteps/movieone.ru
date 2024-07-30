@@ -12,8 +12,15 @@
         <section class="container mx-auto my-4
     grid grid-flow-row gap-4 z-20 bg-slate-100
     ">
-          <movies-card :data="movies" :config="{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"></movies-card>
+          <movies-card  v-if="movies.length > 0" :data="movies" :config="{classes: 'col-xxl-2 col-xl-3 col-md-4 mb-4'}"></movies-card>
+
+            <div v-else class="grid gap-2 mt-20 grid-flow-col grid-cols-[repeat(2,_max-content)] justify-self-center">
+                <div><i class="icon-troubleshoot"></i></div>
+                <div class="font-light">Не нашел фильмов по заданным критериям. Попробуйте облегчить мне задачу</div>
+            </div>
+
         </section>
+
 
 </template>
 

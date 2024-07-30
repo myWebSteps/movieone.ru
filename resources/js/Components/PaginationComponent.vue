@@ -12,8 +12,8 @@
                 </template>
                 <template v-for="link in data.meta.links" >
                     <li v-if="Number(link.label) &&
-                            (data.meta.current_page - link.label < 3 &&
-                            data.meta.current_page - link.label > -3) ||
+                            (Number(data.meta.current_page) - Number(link.label) < 3 &&
+                            Number(data.meta.current_page) - Number(link.label) > -3) ||
                             Number(link.label) === 1 || Number(link.label) === data.meta.last_page"
                         class="py-2 px-4"
                         :class="link.active? 'bg-[#333454] text-white' : ''">
@@ -21,11 +21,11 @@
                            class="page-link" href="#">{{link.label}}</a>
                     </li>
                     <li v-if="Number(link.label) &&
-                            data.meta.current_page != 4 &&
-                            (data.current_page - link.label === 3) ||
+                            Number(data.meta.current_page) != 4 &&
+                            (Number(data.meta.current_page) - Number(link.label) === 3) ||
                             Number(link.label) &&
-                            data.meta.current_page != data.last_page - 3 &&
-                            (data.current_page - link.label === -3)"
+                            Number(data.meta.current_page) != Number(data.last_page) - 3 &&
+                            (Number(data.meta.current_page) - Number(link.label) === -3)"
                             class="py-2 px-4"
                             >
                         <div>...</div>
