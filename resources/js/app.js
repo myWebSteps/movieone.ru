@@ -1,6 +1,6 @@
 import './bootstrap';
 import '../css/output.css';
-import '../css/stygit le.css';
+// import '../css/stygit le.css';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
